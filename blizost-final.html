@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Близость | Полянинова Бэлла Леонидовна</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#FDF8F2;color:#1A1008;font-family:'Jost',sans-serif;font-weight:400;overflow-x:hidden;}
+
+.page{display:none;min-height:100vh;}
+.page.show{display:block;}
+
+/* HOME */
+#home{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:64px 28px 80px;text-align:center;background:radial-gradient(ellipse at 20% 30%,rgba(180,100,50,0.15) 0%,transparent 55%),radial-gradient(ellipse at 80% 70%,rgba(100,150,90,0.10) 0%,transparent 50%);position:relative;}
+#home.show{display:flex;}
+.h-author{font-size:11px;letter-spacing:5px;text-transform:uppercase;color:#B05A20;margin-bottom:28px;}
+.h-title{font-family:'Cormorant Garamond',serif;font-size:clamp(68px,17vw,116px);font-weight:300;line-height:0.88;color:#1A1008;margin-bottom:6px;font-style:italic;}
+.h-line{width:44px;height:1.5px;background:#C4956A;margin:26px auto;}
+.h-sub{font-size:16px;line-height:1.8;color:#4A2E10;max-width:340px;margin:0 auto 10px;font-weight:400;}
+.h-includes{font-size:13px;color:#B8956A;margin-bottom:40px;letter-spacing:1px;}
+.h-nav{display:flex;flex-direction:column;gap:13px;width:100%;max-width:320px;}
+.h-quote{position:absolute;bottom:28px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;color:#C4A882;}
+
+/* BUTTONS */
+.btn{display:block;width:100%;padding:20px;font-family:'Jost',sans-serif;font-size:12px;font-weight:600;letter-spacing:3px;text-transform:uppercase;border:none;cursor:pointer;text-align:center;}
+.btn-main{background:#B05A20;color:#fff;}
+.btn-main:active{background:#7A3A10;}
+.btn-line{background:transparent;color:#1A1008;border:2px solid #C4956A;}
+.btn-line:active{border-color:#B05A20;color:#B05A20;}
+.btn-back{background:transparent;color:#B05A20;border:none;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:8px 0;cursor:pointer;font-family:'Jost',sans-serif;font-weight:500;}
+
+/* INNER */
+.inner{padding-bottom:80px;}
+.topbar{padding:24px 24px 0;margin-bottom:20px;}
+.page-head{text-align:center;padding:0 24px 32px;border-bottom:2px solid #EDE0CE;margin-bottom:36px;}
+.page-eyebrow{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:#B05A20;margin-bottom:12px;}
+.page-title{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,9vw,54px);font-weight:300;line-height:1.05;color:#1A1008;}
+.page-title em{font-style:italic;color:#B05A20;}
+.wrap{padding:0 24px;max-width:620px;margin:0 auto;}
+
+/* TEXT */
+.sec{margin-bottom:48px;}
+.sec-label{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:#B8956A;margin-bottom:10px;font-weight:500;}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;color:#1A1008;margin-bottom:18px;line-height:1.2;}
+.txt{font-size:16px;line-height:1.9;color:#3A2010;}
+.txt p{margin-bottom:16px;}
+.txt strong{color:#1A1008;font-weight:600;}
+.txt em{font-style:italic;}
+
+.hi{background:#FFF0E0;border-left:4px solid #B05A20;padding:22px 20px;margin:20px 0;}
+.hi p{font-size:16px;line-height:1.85;color:#3A2010;margin-bottom:12px;}
+.hi p:last-child{margin-bottom:0;}
+.hi strong{color:#B05A20;font-weight:600;}
+
+/* RITUAL */
+.ritual{display:flex;gap:16px;padding:20px 0;border-bottom:1.5px solid #EDE0CE;}
+.r-time{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#B05A20;min-width:88px;flex-shrink:0;padding-top:3px;font-weight:500;}
+.r-head{font-size:15px;font-weight:600;color:#1A1008;margin-bottom:7px;}
+.r-text{font-size:14px;line-height:1.8;color:#3A2010;}
+
+/* ACCORDION */
+.acc-wrap{display:flex;flex-direction:column;gap:0;margin:0;}
+
+.acc-item{border-bottom:1.5px solid #EDE0CE;}
+.acc-item:first-child{border-top:1.5px solid #EDE0CE;}
+
+.acc-header{display:flex;align-items:center;justify-content:space-between;padding:20px 0;cursor:pointer;gap:12px;}
+.acc-icon{font-size:22px;flex-shrink:0;}
+.acc-label-wrap{flex:1;}
+.acc-num{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#B05A20;font-weight:600;display:block;margin-bottom:4px;}
+.acc-name{font-size:17px;font-weight:600;color:#1A1008;font-family:'Cormorant Garamond',serif;}
+.acc-arrow{font-size:18px;color:#B8956A;transition:transform 0.3s;flex-shrink:0;}
+.acc-item.open .acc-arrow{transform:rotate(180deg);}
+
+.acc-body{display:none;padding-bottom:20px;}
+.acc-item.open .acc-body{display:block;}
+
+/* RULE INSIDE ACCORDION */
+.arule{padding:18px 0;border-bottom:1px solid #F0E6D6;}
+.arule:last-child{border-bottom:none;}
+.arule-head{display:flex;align-items:flex-start;gap:14px;margin-bottom:10px;}
+.arule-n{font-family:'Cormorant Garamond',serif;font-size:28px;color:#C4956A;line-height:1;min-width:28px;flex-shrink:0;}
+.arule-title{font-size:15px;font-weight:600;color:#1A1008;padding-top:4px;line-height:1.3;}
+.arule-text{font-size:14px;line-height:1.82;color:#3A2010;margin-bottom:10px;padding-left:42px;}
+.arule-example{margin-left:42px;background:#FFF8F2;border-left:3px solid #E8A882;padding:12px 14px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;line-height:1.6;color:#5A3020;}
+
+/* PHRASES */
+.phrase-list{display:flex;flex-direction:column;gap:10px;margin:16px 0;}
+.phrase{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border:1.5px solid #EDE0CE;background:#fff;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;line-height:1.5;color:#3A2010;}
+.phrase::before{content:'✦';color:#C4956A;font-style:normal;font-size:12px;margin-top:3px;flex-shrink:0;}
+
+/* TOPICS */
+.topic-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0;}
+.topic-item{padding:14px;background:#FFF0E0;font-size:14px;line-height:1.55;color:#3A2010;display:flex;gap:10px;}
+.t-dot{width:6px;height:6px;border-radius:50%;background:#B05A20;flex-shrink:0;margin-top:6px;}
+
+/* QUESTIONS */
+.cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:28px;}
+.cat-btn{padding:20px 12px;border:2px solid #EDE0CE;background:#fff;cursor:pointer;text-align:center;font-family:'Jost',sans-serif;transition:all 0.2s;}
+.cat-btn.on{border-color:#B05A20;background:#FFF0E0;}
+.cat-icon{font-size:22px;display:block;margin-bottom:8px;}
+.cat-name{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#1A1008;display:block;font-weight:600;}
+.cat-count{font-size:12px;color:#B8956A;display:block;margin-top:5px;}
+.cat-wide{grid-column:1/3;}
+
+.q-card{background:#fff;border:2px solid #EDE0CE;padding:40px 24px;text-align:center;min-height:210px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin-bottom:20px;}
+.q-cat-tag{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#B05A20;margin-bottom:20px;font-weight:500;}
+.q-question{font-family:'Cormorant Garamond',serif;font-size:clamp(20px,5.5vw,26px);font-weight:400;line-height:1.45;color:#1A1008;font-style:italic;}
+.q-placeholder{font-size:15px;color:#C4A882;}
+.q-counter{text-align:center;font-size:12px;color:#B8956A;margin-top:13px;font-weight:500;}
+.q-tip{text-align:center;margin-top:26px;padding:18px 20px;background:#FFF0E0;}
+.q-tip p{font-size:14px;line-height:1.78;color:#3A2010;}
+
+.nav-bottom{display:flex;flex-direction:column;gap:12px;margin-top:44px;max-width:320px;margin-left:auto;margin-right:auto;}
+.foot{text-align:center;padding:40px 24px 24px;border-top:1.5px solid #EDE0CE;margin-top:52px;}
+.foot p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;color:#B8956A;}
+
+/* CHECKLIST */
+#checklist { padding-bottom: 80px; }
+.week-block { margin-bottom: 32px; }
+.week-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px; font-weight: 400; color: #1A1008;
+  margin-bottom: 6px; line-height: 1.2;
+}
+.week-title em { font-style: italic; color: #B05A20; }
+.week-sub { font-size: 13px; color: #B8956A; margin-bottom: 16px; letter-spacing: 1px; text-transform: uppercase; }
+.check-item {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 14px 0; border-bottom: 1px solid #F0E6D6; cursor: pointer;
+}
+.check-item:last-child { border-bottom: none; }
+.check-box {
+  width: 26px; height: 26px; border: 2px solid #C4956A;
+  flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+  margin-top: 1px; transition: all 0.2s; background: #fff;
+}
+.check-item.done .check-box { background: #B05A20; border-color: #B05A20; }
+.check-tick { color: #fff; font-size: 14px; display: none; }
+.check-item.done .check-tick { display: block; }
+.check-label { flex: 1; }
+.check-title { font-size: 15px; font-weight: 600; color: #1A1008; margin-bottom: 4px; line-height: 1.3; }
+.check-item.done .check-title { color: #B8956A; text-decoration: line-through; text-decoration-color: #C4956A; }
+.check-desc { font-size: 13px; line-height: 1.7; color: #6A4A30; }
+.week-progress { height: 4px; background: #F0E6D6; margin-bottom: 20px; border-radius: 2px; }
+.week-progress-bar { height: 4px; background: #B05A20; border-radius: 2px; transition: width 0.4s ease; }
+.progress-label { font-size: 11px; color: #B8956A; margin-bottom: 6px; letter-spacing: 1px; }
+.result-block {
+  background: #FFF0E0; border: 2px solid #C4956A;
+  padding: 28px 24px; text-align: center; margin-top: 36px;
+}
+.result-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; color: #1A1008; margin-bottom: 12px; }
+.result-title em { font-style: italic; color: #B05A20; }
+.result-text { font-size: 15px; line-height: 1.8; color: #3A2010; }
+.reset-btn { background: transparent; border: 1.5px solid #C4956A; color: #B05A20; font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; padding: 12px 24px; cursor: pointer; margin-top: 20px; font-weight: 500; }
+</style>
+</head>
+<body>
+
+<!-- HOME -->
+<div id="home" class="page show">
+  <p class="h-author">Полянинова Бэлла Леонидовна</p>
+  <h1 class="h-title">Близость</h1>
+  <div class="h-line"></div>
+  <p class="h-sub">Программа для пар которые хотят вернуть тепло и выстроить новую жизнь рядом друг с другом.</p>
+  <p class="h-includes">Стратегия · Ритуалы · 20 правил · 100 вопросов</p>
+  <div class="h-nav">
+    <button class="btn btn-main" onclick="openPage('strategy')">Стратегия и ритуалы</button>
+    <button class="btn btn-line" onclick="openPage('rules')">20 правил близости</button>
+    <button class="btn btn-line" onclick="openPage('questions')">100 вопросов</button>
+    <button class="btn btn-line" onclick="openPage('checklist')">Чек-лист прогресса</button>
+  </div>
+  <p class="h-quote">"Близость — это тысяча маленьких «я тебя вижу»"</p>
+</div>
+
+<!-- СТРАТЕГИЯ -->
+<div id="strategy" class="page inner">
+  <div class="topbar"><button class="btn-back" onclick="openPage('home')">← На главную</button></div>
+  <div class="page-head">
+    <p class="page-eyebrow">Раздел первый</p>
+    <h2 class="page-title">Стратегия <em>совместной жизни</em></h2>
+  </div>
+  <div class="wrap">
+
+    <div class="sec">
+      <p class="sec-label">Главное</p>
+      <h3 class="sec-title">Вы одна команда</h3>
+      <div class="hi">
+        <p><strong>Соревнование между партнёрами — это самое последнее что может быть в паре.</strong> Мужчина и женщина не соревнуются друг с другом. Соревноваться можно с другой командой — но никак не между собой. Вы в одной команде.</p>
+        <p>Это значит: не "кто прав", не "я же говорила", не "я устал больше тебя". Это значит — <strong>каждый фанат друг друга.</strong> Каждый ищет в партнёре хорошее, а не проблему. Каждый восхищается — не соревнуется.</p>
+        <p>Когда вы перестаёте соревноваться — вы начинаете видеть друг друга.</p>
+      </div>
+    </div>
+
+    <div class="sec">
+      <p class="sec-label">Ритуалы двоих</p>
+      <h3 class="sec-title">Маленькие действия которые держат</h3>
+      <div class="txt"><p>Ритуал — это не торжественное событие. Это маленькое повторяющееся действие которое говорит: <em>ты важен для меня, я помню о нас.</em></p></div>
+      <div style="margin-top:20px;">
+        <div class="ritual"><p class="r-time">Утро</p><div><p class="r-head">Первые слова — не о задачах</p><p class="r-text">Прежде чем говорить о расписании — объятие. "Как ты?" — и пауза чтобы услышать ответ. Это 2 минуты. Они задают температуру всего дня.</p></div></div>
+        <div class="ritual"><p class="r-time">Возвращение</p><div><p class="r-head">Знак что думали</p><p class="r-text">Маленький знак при возвращении домой — шоколадка, цветок, просто "я думал о тебе пока ехал". Доказательство присутствия даже в разлуке.</p></div></div>
+        <div class="ritual"><p class="r-time">Вечер</p><div><p class="r-head">10 минут только для двоих</p><p class="r-text">Без телефонов, без детей, без завтрашних дел. Один вопрос, одно воспоминание, один момент из дня. Не обязательно глубоко — обязательно живо.</p></div></div>
+        <div class="ritual"><p class="r-time">После ссоры</p><div><p class="r-head">Спать вместе — всегда</p><p class="r-text">Никаких манипуляций молчанием. Поругались — спите вместе. Утром обнимаетесь как обычно. Проблемы решаете после обеда — когда оба спокойны.</p></div></div>
+        <div class="ritual"><p class="r-time">Выходные</p><div><p class="r-head">Одно общее впечатление в неделю</p><p class="r-text">Кофе вдвоём, прогулка взявшись за руки, кино только вдвоём. Или просто — накинуть одно одеяло и побыть рядом 20 минут. Чем больше тактильности — тем лучше.</p></div></div>
+        <div class="ritual"><p class="r-time">Раз в месяц</p><div><p class="r-head">Время вне дома — только вдвоём</p><p class="r-text">Отель на ночь, день в другом городе, вечер в кафе. Не обязательно дорого — обязательно только вы двое.</p></div></div>
+        <div class="ritual"><p class="r-time">Всегда</p><div><p class="r-head">Тайна только ваша</p><p class="r-text">Фраза, шутка, место — только ваших двоих. Это якорь. Он говорит: у нас есть мир который никто кроме нас не знает.</p></div></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <p class="sec-label">О чём говорить</p>
+      <h3 class="sec-title">Темы — кроме быта</h3>
+      <div class="txt"><p>Когда не знаете с чего начать — возьмите любую тему.</p></div>
+      <div class="topic-grid">
+        <div class="topic-item"><div class="t-dot"></div>Фильм который смотрели — что зацепило каждого</div>
+        <div class="topic-item"><div class="t-dot"></div>Мечта которую давно не вспоминали</div>
+        <div class="topic-item"><div class="t-dot"></div>Место куда хотелось бы поехать хоть раз</div>
+        <div class="topic-item"><div class="t-dot"></div>Что сегодня удивило — хоть немного</div>
+        <div class="topic-item"><div class="t-dot"></div>Воспоминание которое греет</div>
+        <div class="topic-item"><div class="t-dot"></div>Что заметили в природе или городе</div>
+        <div class="topic-item"><div class="t-dot"></div>Книга или музыка — что слушали</div>
+        <div class="topic-item"><div class="t-dot"></div>Что хотели бы попробовать вместе</div>
+        <div class="topic-item"><div class="t-dot"></div>Смешной момент из дня</div>
+        <div class="topic-item"><div class="t-dot"></div>Что сейчас вдохновляет — хоть немного</div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <p class="sec-label">Важно</p>
+      <h3 class="sec-title">Правила общежития</h3>
+      <div class="txt">
+        <p>Мужчина не <em>помогает</em> жене с детьми — это его дети. Не <em>помогает</em> убираться — это его дом. Слово "помогаю" в своём собственном доме — абсурд. Он делает — для себя, для семьи, для общей жизни.</p>
+        <p>Пересмотрите кто что делает — не из позиции "ты должен", а из позиции: <strong>как нам обоим будет легче</strong>.</p>
+      </div>
+    </div>
+
+    <div class="nav-bottom">
+      <button class="btn btn-main" onclick="openPage('rules')">20 правил близости →</button>
+      <button class="btn btn-line" onclick="openPage('questions')">100 вопросов</button>
+      <button class="btn btn-line" onclick="openPage('home')">На главную</button>
+    </div>
+    <div class="foot"><p>© Полянинова Бэлла Леонидовна · Копирование запрещено</p></div>
+  </div>
+</div>
+
+<!-- 20 ПРАВИЛ -->
+<div id="rules" class="page inner">
+  <div class="topbar"><button class="btn-back" onclick="openPage('home')">← На главную</button></div>
+  <div class="page-head">
+    <p class="page-eyebrow">Раздел второй</p>
+    <h2 class="page-title">20 правил <em>близости</em></h2>
+  </div>
+  <div class="wrap">
+
+    <div class="txt" style="margin-bottom:28px;"><p>Нажмите на любой блок — он раскроется. Выберите хотя бы три правила и начните сегодня. Не нужно делать всё сразу.</p></div>
+
+    <div class="acc-wrap">
+
+      <!-- БЛОК 1 -->
+      <div class="acc-item" id="acc1">
+        <div class="acc-header" onclick="toggleAcc('acc1')">
+          <span class="acc-icon">🤲</span>
+          <div class="acc-label-wrap">
+            <span class="acc-num">Блок 1 · 4 правила</span>
+            <span class="acc-name">Язык прикосновений</span>
+          </div>
+          <span class="acc-arrow">▼</span>
+        </div>
+        <div class="acc-body">
+          <div class="arule">
+            <div class="arule-head"><div class="arule-n">1</div><div class="arule-title">Касайтесь друг друга каждый день</div></div>
+            <p class="arule-text">Рука на плече, объятие при встрече, прикосновение когда проходите мимо. Тактильный контакт — это язык близости. Без слов. Без повода. Просто потому что вы рядом.</p>
+            <div class="arule-example">Он проходит мимо на кухне — просто кладёт руку на плечо. Она встаёт налить воды — касается его руки. Ничего не говорит. Просто — я здесь, я тебя вижу.</div>
+          </div>
+          <div class="arule">
+            <div class="arule-head"><div class="arule-n">2</div><div class="arule-title">Держитесь за руку — на улице, в машине, в кино</div></div>
+            <p class="arule-text">Это не жест для чужих глаз. Это сигнал внутри пары: мы вместе, я тебя выбираю прямо сейчас.</p>
+            <div class="arule-example">Едете в машине — он кладёт руку на её колено. Идёте по магазину — она берёт его за руку. Не потому что так надо. Потому что хочется.</div>
+          </div>
+          <div class="arule">
+            <div class="arule-head"><div class="arule-n">3</div><div class="arule-title">Обнимайтесь дольше обычного — раз в день</div></div>
+            <p class="arule-text">Не быстрое "ну всё пока" — а настоящее объятие на несколько секунд. Тело помнит близость лучше чем голова.</p>
+            <div class="arule-example">Утром перед работой — не просто поцелуй в щёку, а обнять по-настоящему. Задержаться на секунду. Почувствовать человека рядом.</div>
+          </div>
+          <div class="arule">
+            <div class="arule-head"><div class="arule-n">4</div><div class="arule-title">Смотрите на партнёра — по-настоящему</div></div>
+            <p class="arule-text">Не мимо, не в телефон пока он говорит. Остановитесь и посмотрите. Люди чувствуют когда их видят — и когда не видят.</p>
+            <div class="arule-example">Она что-то рассказывает — он откладывает телефон и смотрит ей в глаза. Просто смотрит. Это занимает 2 минуты. Она это запомнит.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- БЛОК 2 -->
+      <div class="acc-item" id="acc2">
+        <div class="acc-header" onclick="toggleAcc('acc2')">
+          <span class="acc-icon">💬</span>
+          <div class="acc-label-wrap">
+            <span class="acc-num">Блок 2 · 4 правила</span>
+            <span class="acc-name">Слова которые замечают</span>
+          </div>
+          <span class="acc-arrow">▼</span>
+        </div>
+        <div class="acc-body">
+          <div class="arule">
+            <div class="arule-head"><div class="arule-n">5</div><div class="arule-title">Три конкретных комплимента в день</div></div>
+            <p class="arule-text">Не "ты хорошо выглядишь" — а конкретно. Конкретика означает: я тебя вижу, я замечаю тебя, ты не фон моей жизни.</p>
+            <div class="arule-example">"Мне нравится эта рубашка на тебе — ты в ней особенный." "Ты сегодня пахнешь очень хорошо." "Я заметила как ты улыбнулся детям — мне это нравится в тебе."</div>
+          </div>
+          <div class="arule">
+            <div class="arule-head"><div class="arule-n">6</div><div class="arule-title">Замечайте одежду партнёра</div></div>
+            <p class="arule-text">Не "что наденешь?" и не "погладить тебе рубашку?" — а замечайте. Человек одевается не только для мира — он одевается и для вас.</p>
+            <div class="arule-example">"Мне нравится когда ты в этом платье — ты в нём очень красивая." "Эта рубашка тебе идёт — надевай её чаще." Просто сказать — без повода, без праздника.</div>
+          </div>
+          <div class="arule">
+            <div class="arule-head"><div class="arule-n">7</div><div class="arule-title">Благодарность вслух — раз в день</div></div>
+            <p class="arule-text">Конкретная. Не "спасибо за всё" — а за что-то конкретное сегодня. Маленькая благодарность создаёт большое ощущение.</p>
+            <div class="arule-example">"Спасибо что сегодня забрал ребёнка — я успела выдохнуть." "Я заметила что ты помыл посуду без напоминания — это важно для меня."</div>
+          </div>
+          <div class="arule">
+            <div class="arule-head"><div class="arule-n">8</div><div class="arule-title">Говорите о мечтах — не только о планах</div></div>
+            <p class="arule-text">Планы это про логистику. Мечты — про то кем вы хотите быть. Разговор о мечтах возвращает ощущение что жизнь больше чем ежедневник.</p>
+            <div class="arule-example">"Слушай, я давно хотела тебе сказать — я мечтаю однажды пожить у моря хотя бы месяц. А ты?" Не план. Просто мечта вслух.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- БЛОК 3 -->
+      <div class="acc-item" id="acc3">
+        <div class="acc-header" onclick="toggleAcc('acc3')">
+          <span class="acc-icon">🎁</span>
+          <div class="acc-label-wrap">
+            <span class="acc-num">Блок 3 · 4 правила</span>
+            <span class="acc-name">Молчаливый язык любви</span>
+          </div>
+          <span class="acc-arrow">▼</span>
+        </div>
+        <div class="acc-body">
+          <div class="arule">
+            <div class="arule-head"><div class="arule-n">9</div><div class="arule-title">Возвращайтесь домой не с пустыми руками</div></div>
+            <p class="arule-text">Это не про деньги и не про подарки. Это про привычку помнить. Пока вас не было — вы думали о человеке дома. И принесли знак.</p>
+            <div class="arule-example">Один мандарин из магазина. Маленький шоколад. Веточка с красивыми листьями с улицы. Один цветок. Чупа-чупс. Или просто — "я ехал и думал о тебе, и улыбался." Это тоже знак.</div>
+          </div>
+          <div class="arule">
+            <div class="arule-head"><div class="arule-n">10</div><div class="arule-title">Первые 10 минут после встречи — не о быте</div></div>
+            <p class="arule-text">Договоритесь: когда один из вас возвращается — первые 10 минут только про вас двоих. Потом можно говорить о чём угодно.</p>
+            <div class="arule-example">Он пришёл домой. Она не говорит сразу "там счёт не оплачен и ребёнок не сделал уроки". Сначала — обнялись, спросили как день, побыли рядом. Потом — всё остальное.</div>
+          </div>
+          <div class="arule">
+            <div class="arule-head"><div class="arule-n">11</div><div class="arule-title">Раз в неделю сделайте что-то не своё</div></div>
+            <p class="arule-text">Это не "помощь". Это послание: я вижу тебя, я хочу облегчить тебе жизнь. Молча. Без ожидания похвалы.</p>
+            <div class="arule-example">Он помыл полы — хотя обычно это не его. Она взяла на себя звонок который обычно делает он. Сделали — и не сказали ничего. Просто сделали.</div>
+          </div>
+          <div class="arule">
+            <div class="arule-head"><div class="arule-n">12</div><div class="arule-title">Один вопрос вечером — не про быт</div></div>
+            <p class="arule-text">Не про работу, не про детей, не про завтрашние дела. Один живой вопрос. Вопрос это мост — он открывает дверь.</p>
+            <div class="arule-example">"Что тебя сегодня порадовало — хоть маленькое?" "Помнишь как мы тогда..." "Слушай, а о чём ты сейчас мечтаешь?"</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- БЛОК 4 -->
+      <div class="acc-item" id="acc4">
+        <div class="acc-header" onclick="toggleAcc('acc4')">
+          <span class="acc-icon">👁</span>
+          <div class="acc-label-wrap">
+            <span class="acc-num">Блок 4 · 4 правила</span>
+            <span class="acc-name">Помните друг друга</span>
+          </div>
+          <span class="acc-arrow">▼</span>
+        </div>
+        <div class="acc-body">
+          <div class="arule">
+            <div class="arule-head"><div class="arule-n">13</div><div class="arule-title">Проверяйте себя — вы помните партнёра?</div></div>
+            <p class="arule-text">Где у неё родинка которую вы любили целовать? Во что она была одета вчера? Покрасила ли она волосы? Внимание — это форма любви. Замечать — значит ценить.</p>
+            <div class="arule-example">Она покрасила волосы — он заметил и сказал. Она купила новую кофту — он увидел. Это не мелочи. Для неё это огромно.</div>
+          </div>
+          <div class="arule">
+            <div class="arule-head"><div class="arule-n">14</div><div class="arule-title">Восхищайтесь — конкретным действием</div></div>
+            <p class="arule-text">Не внешностью — тем что человек делает. Как держится, как говорит, как справляется. Это видит человека — не обложку.</p>
+            <div class="arule-example">"Я восхищаюсь тем как ты держишься когда всё идёт не так." "Мне нравится как ты разговариваешь с детьми — ты терпеливый." "Ты очень хорошо водишь — мне спокойно когда ты за рулём."</div>
+          </div>
+          <div class="arule">
+            <div class="arule-head"><div class="arule-n">15</div><div class="arule-title">Одно воспоминание в неделю</div></div>
+            <p class="arule-text">Вспомните вместе один момент из вашей общей истории. Это напоминает: у вас есть история которую никто кроме вас не знает.</p>
+            <div class="arule-example">"Помнишь как мы тогда застряли в лифте и смеялись полчаса?" "Помнишь наш первый отпуск — как мы потерялись и нашли тот маленький ресторан?"</div>
+          </div>
+          <div class="arule">
+            <div class="arule-head"><div class="arule-n">16</div><div class="arule-title">Фотография вдвоём — каждый день</div></div>
+            <p class="arule-text">Не для Instagram. Для себя. Семейный альбом который строится каждый день — живой, не парадный.</p>
+            <div class="arule-example">Вечером на диване — сделали селфи. За ужином — сфотографировали момент. Не постановочно. Просто — мы сегодня были вместе, и вот доказательство.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- БЛОК 5 -->
+      <div class="acc-item" id="acc5">
+        <div class="acc-header" onclick="toggleAcc('acc5')">
+          <span class="acc-icon">🏡</span>
+          <div class="acc-label-wrap">
+            <span class="acc-num">Блок 5 · 4 правила</span>
+            <span class="acc-name">Традиции и общая память</span>
+          </div>
+          <span class="acc-arrow">▼</span>
+        </div>
+        <div class="acc-body">
+          <div class="arule">
+            <div class="arule-head"><div class="arule-n">17</div><div class="arule-title">Традиция только ваша</div></div>
+            <p class="arule-text">Одна вещь которую делаете только вы двое. Это якорь. Он говорит: у нас есть что-то своё.</p>
+            <div class="arule-example">Воскресное утро — кофе вдвоём без телефонов, пока дети спят. Или: каждую пятницу вечером — один фильм только вдвоём. Или: своя фраза которую говорите только друг другу.</div>
+          </div>
+          <div class="arule">
+            <div class="arule-head"><div class="arule-n">18</div><div class="arule-title">Одно общее впечатление в неделю</div></div>
+            <p class="arule-text">Прогулка, кино, кофе вдвоём, новое место. Что-то что создаёт общую память — не бытовую. Общие впечатления это цемент отношений.</p>
+            <div class="arule-example">Не обязательно ресторан. Просто выйти вдвоём — без детей, без телефонов — и пройти 20 минут пешком взявшись за руки. Этого достаточно.</div>
+          </div>
+          <div class="arule">
+            <div class="arule-head"><div class="arule-n">19</div><div class="arule-title">Раз в месяц — время вне дома только вдвоём</div></div>
+            <p class="arule-text">Отель на ночь, день в другом городе, вечер в кафе без спешки. Не обязательно дорого — обязательно только вы двое.</p>
+            <div class="arule-example">Даже просто снять номер в отеле в своём же городе на одну ночь. Без детей, без домашних дел, без расписания. Только вы двое и пустой вечер.</div>
+          </div>
+          <div class="arule">
+            <div class="arule-head"><div class="arule-n">20</div><div class="arule-title">Спать вместе — всегда</div></div>
+            <p class="arule-text">Даже после ссоры. Никаких манипуляций молчанием и "буду спать в другой комнате". Утром обнимаетесь как обычно. Проблемы решаете после обеда — когда оба спокойны.</p>
+            <div class="arule-example">Поругались вечером — легли вместе. Один повернулся к стене. Другой через 10 минут тихо обнял. Ничего не сказал. Просто — я здесь. Мы вместе. Даже сейчас.</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end acc-wrap -->
+
+    <div class="sec" style="margin-top:44px;">
+      <p class="sec-label">Как говорить чтобы вас слышали</p>
+      <h3 class="sec-title">Не обвинение — а приглашение</h3>
+      <div class="txt">
+        <p><strong>"Ты никогда не замечаешь меня"</strong> — партнёр слышит нападение. Закрывается. Разговора нет.</p>
+        <p><strong>"Мне важно когда ты замечаешь как я выгляжу"</strong> — партнёр слышит вашу потребность и хочет её закрыть.</p>
+        <p>Говорите от себя. Начинайте с <strong>"мне"</strong>, <strong>"я чувствую"</strong>, <strong>"для меня важно"</strong>.</p>
+      </div>
+      <div class="phrase-list">
+        <div class="phrase">"Мне повезло что ты так чувствуешь людей — ты всегда понимаешь когда мне плохо."</div>
+        <div class="phrase">"Я восхищаюсь тем как ты держишься когда всё идёт не так."</div>
+        <div class="phrase">"Мне спокойно когда ты за рулём — я тебе доверяю."</div>
+        <div class="phrase">"Я рада что именно ты отец моих детей — я вижу как ты с ними."</div>
+        <div class="phrase">"Мне приятно когда ты приходишь домой и обнимаешь меня первым делом."</div>
+        <div class="phrase">"Я заметила как ты сегодня слушал меня — это важно для меня."</div>
+      </div>
+    </div>
+
+    <div class="nav-bottom">
+      <button class="btn btn-main" onclick="openPage('questions')">100 вопросов →</button>
+      <button class="btn btn-line" onclick="openPage('strategy')">Стратегия и ритуалы</button>
+      <button class="btn btn-line" onclick="openPage('home')">На главную</button>
+    </div>
+    <div class="foot"><p>© Полянинова Бэлла Леонидовна · Копирование запрещено</p></div>
+  </div>
+</div>
+
+<!-- 100 ВОПРОСОВ -->
+<div id="questions" class="page inner">
+  <div class="topbar"><button class="btn-back" onclick="openPage('home')">← На главную</button></div>
+  <div class="page-head">
+    <p class="page-eyebrow">Раздел третий</p>
+    <h2 class="page-title">100 <em>вопросов</em></h2>
+  </div>
+  <div class="wrap">
+    <div class="txt" style="margin-bottom:24px;"><p>Выберите тему — нажмите кнопку — получите вопрос. Один вечер, один вопрос. По очереди. Слушайте — не перебивайте.</p></div>
+
+    <div class="cat-grid">
+      <button class="cat-btn on" id="cb-warmth" onclick="pickCat('warmth')"><span class="cat-icon">🌿</span><span class="cat-name">Сейчас</span><span class="cat-count">20 вопросов</span></button>
+      <button class="cat-btn" id="cb-memory" onclick="pickCat('memory')"><span class="cat-icon">🕯</span><span class="cat-name">Наше прошлое</span><span class="cat-count">20 вопросов</span></button>
+      <button class="cat-btn" id="cb-dreams" onclick="pickCat('dreams')"><span class="cat-icon">✦</span><span class="cat-name">Мечты</span><span class="cat-count">20 вопросов</span></button>
+      <button class="cat-btn" id="cb-depth" onclick="pickCat('depth')"><span class="cat-icon">🌊</span><span class="cat-name">Глубина</span><span class="cat-count">20 вопросов</span></button>
+      <button class="cat-btn cat-wide" id="cb-together" onclick="pickCat('together')"><span class="cat-icon">🏡</span><span class="cat-name">Что создаём вместе</span><span class="cat-count">20 вопросов</span></button>
+    </div>
+
+    <div class="q-card" id="qcard">
+      <p class="q-cat-tag" id="qtag">🌿 Сейчас</p>
+      <p class="q-placeholder" id="qtext">Нажмите кнопку ниже</p>
+    </div>
+    <button class="btn btn-main" onclick="showNext()">Следующий вопрос</button>
+    <p class="q-counter" id="qcounter"></p>
+    <div class="q-tip"><p>Один вечер — один вопрос.<br>Задавайте по очереди. Слушайте — не перебивайте.</p></div>
+
+    <div class="nav-bottom">
+      <button class="btn btn-line" onclick="openPage('strategy')">Стратегия и ритуалы</button>
+      <button class="btn btn-line" onclick="openPage('rules')">20 правил близости</button>
+      <button class="btn btn-line" onclick="openPage('home')">На главную</button>
+    </div>
+    <div class="foot"><p>© Полянинова Бэлла Леонидовна · Копирование запрещено</p></div>
+  </div>
+</div>
+
+
+<!-- ЧЕКЛИСТ -->
+<div id="checklist" class="page inner">
+  <div class="topbar"><button class="btn-back" onclick="openPage('home')">← На главную</button></div>
+  <div class="page-head">
+    <p class="page-eyebrow">Раздел четвёртый</p>
+    <h2 class="page-title">Чек-лист <em>прогресса</em></h2>
+  </div>
+  <div class="wrap">
+
+    <div class="txt" style="margin-bottom:28px;">
+      <p>Отмечайте что сделали — нажмите на пункт. Не нужно делать всё сразу. Один шаг в день меняет больше чем вы думаете.</p>
+    </div>
+
+    <!-- НЕДЕЛЯ 1 -->
+    <div class="week-block">
+      <p class="week-sub">Неделя 1</p>
+      <h3 class="week-title">Первые <em>шаги</em></h3>
+      <p class="progress-label" id="prog-label-1">Выполнено: 0 из 6</p>
+      <div class="week-progress"><div class="week-progress-bar" id="prog-bar-1" style="width:0%"></div></div>
+
+      <div class="check-item" onclick="toggle(this,'w1')" data-week="1">
+        <div class="check-box"><span class="check-tick">✓</span></div>
+        <div class="check-label">
+          <p class="check-title">Коснулись друг друга без повода</p>
+          <p class="check-desc">Рука на плече, прикосновение когда проходили мимо — просто так, без слов.</p>
+        </div>
+      </div>
+      <div class="check-item" onclick="toggle(this,'w1')" data-week="1">
+        <div class="check-box"><span class="check-tick">✓</span></div>
+        <div class="check-label">
+          <p class="check-title">Принесли что-то при возвращении домой</p>
+          <p class="check-desc">Мандарин, шоколадка, цветок, чупа-чупс — любой знак что думали о человеке дома.</p>
+        </div>
+      </div>
+      <div class="check-item" onclick="toggle(this,'w1')" data-week="1">
+        <div class="check-box"><span class="check-tick">✓</span></div>
+        <div class="check-label">
+          <p class="check-title">Задали один вопрос вечером — не про быт</p>
+          <p class="check-desc">Из раздела "100 вопросов" или свой. Просто один вопрос — и выслушали ответ.</p>
+        </div>
+      </div>
+      <div class="check-item" onclick="toggle(this,'w1')" data-week="1">
+        <div class="check-box"><span class="check-tick">✓</span></div>
+        <div class="check-label">
+          <p class="check-title">Первые 10 минут после встречи — не о делах</p>
+          <p class="check-desc">Пришли домой — сначала обнялись и побыли рядом. Потом всё остальное.</p>
+        </div>
+      </div>
+      <div class="check-item" onclick="toggle(this,'w1')" data-week="1">
+        <div class="check-box"><span class="check-tick">✓</span></div>
+        <div class="check-label">
+          <p class="check-title">Сделали совместное фото</p>
+          <p class="check-desc">Не постановочное. Просто живой момент вдвоём — селфи или кто-то сфотографировал.</p>
+        </div>
+      </div>
+      <div class="check-item" onclick="toggle(this,'w1')" data-week="1">
+        <div class="check-box"><span class="check-tick">✓</span></div>
+        <div class="check-label">
+          <p class="check-title">Сказали один конкретный комплимент</p>
+          <p class="check-desc">Не "ты хорошо выглядишь" — а конкретно. Про одежду, про поступок, про то что заметили.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- НЕДЕЛЯ 2 -->
+    <div class="week-block">
+      <p class="week-sub">Неделя 2</p>
+      <h3 class="week-title">Слова и <em>внимание</em></h3>
+      <p class="progress-label" id="prog-label-2">Выполнено: 0 из 6</p>
+      <div class="week-progress"><div class="week-progress-bar" id="prog-bar-2" style="width:0%"></div></div>
+
+      <div class="check-item" onclick="toggle(this,'w2')" data-week="2">
+        <div class="check-box"><span class="check-tick">✓</span></div>
+        <div class="check-label">
+          <p class="check-title">Заметили одежду партнёра и сказали об этом</p>
+          <p class="check-desc">"Мне нравится когда ты в этом." Просто заметить и произнести вслух.</p>
+        </div>
+      </div>
+      <div class="check-item" onclick="toggle(this,'w2')" data-week="2">
+        <div class="check-box"><span class="check-tick">✓</span></div>
+        <div class="check-label">
+          <p class="check-title">Поблагодарили за конкретное действие</p>
+          <p class="check-desc">"Спасибо что взял это на себя сегодня." Не за всё — за что-то конкретное.</p>
+        </div>
+      </div>
+      <div class="check-item" onclick="toggle(this,'w2')" data-week="2">
+        <div class="check-box"><span class="check-tick">✓</span></div>
+        <div class="check-label">
+          <p class="check-title">Держались за руку — на улице или в машине</p>
+          <p class="check-desc">Просто взяли за руку. Без повода. Потому что хочется быть рядом.</p>
+        </div>
+      </div>
+      <div class="check-item" onclick="toggle(this,'w2')" data-week="2">
+        <div class="check-box"><span class="check-tick">✓</span></div>
+        <div class="check-label">
+          <p class="check-title">Вспомнили вместе один момент из прошлого</p>
+          <p class="check-desc">"Помнишь как мы тогда..." — любое хорошее воспоминание вдвоём.</p>
+        </div>
+      </div>
+      <div class="check-item" onclick="toggle(this,'w2')" data-week="2">
+        <div class="check-box"><span class="check-tick">✓</span></div>
+        <div class="check-label">
+          <p class="check-title">Провели 10 минут только вдвоём — без телефонов</p>
+          <p class="check-desc">Вечером, без детей, без экранов. Просто побыли рядом и поговорили.</p>
+        </div>
+      </div>
+      <div class="check-item" onclick="toggle(this,'w2')" data-week="2">
+        <div class="check-box"><span class="check-tick">✓</span></div>
+        <div class="check-label">
+          <p class="check-title">Восхитились конкретным действием партнёра</p>
+          <p class="check-desc">"Я восхищаюсь тем как ты..." — не внешность, а поступок или качество.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- НЕДЕЛЯ 3 -->
+    <div class="week-block">
+      <p class="week-sub">Неделя 3</p>
+      <h3 class="week-title">Глубина и <em>забота</em></h3>
+      <p class="progress-label" id="prog-label-3">Выполнено: 0 из 6</p>
+      <div class="week-progress"><div class="week-progress-bar" id="prog-bar-3" style="width:0%"></div></div>
+
+      <div class="check-item" onclick="toggle(this,'w3')" data-week="3">
+        <div class="check-box"><span class="check-tick">✓</span></div>
+        <div class="check-label">
+          <p class="check-title">Сделали что-то не своё — молча</p>
+          <p class="check-desc">Взяли на себя задачу которая обычно не ваша. Сделали — и не ждали похвалы.</p>
+        </div>
+      </div>
+      <div class="check-item" onclick="toggle(this,'w3')" data-week="3">
+        <div class="check-box"><span class="check-tick">✓</span></div>
+        <div class="check-label">
+          <p class="check-title">Задали вопрос из раздела "Глубина"</p>
+          <p class="check-desc">Один глубокий вопрос — и просто слушали ответ без советов и комментариев.</p>
+        </div>
+      </div>
+      <div class="check-item" onclick="toggle(this,'w3')" data-week="3">
+        <div class="check-box"><span class="check-tick">✓</span></div>
+        <div class="check-label">
+          <p class="check-title">Обнялись дольше обычного</p>
+          <p class="check-desc">Не быстрое касание — настоящее объятие на несколько секунд. Почувствовали человека.</p>
+        </div>
+      </div>
+      <div class="check-item" onclick="toggle(this,'w3')" data-week="3">
+        <div class="check-box"><span class="check-tick">✓</span></div>
+        <div class="check-label">
+          <p class="check-title">Поговорили о мечте — не о плане</p>
+          <p class="check-desc">Не "нам нужно", а "я хочу когда-нибудь..." Просто мечта вслух — без обязательств.</p>
+        </div>
+      </div>
+      <div class="check-item" onclick="toggle(this,'w3')" data-week="3">
+        <div class="check-box"><span class="check-tick">✓</span></div>
+        <div class="check-label">
+          <p class="check-title">Посмотрели на партнёра по-настоящему</p>
+          <p class="check-desc">Отложили телефон, остановились и посмотрели. Просто увидели человека рядом.</p>
+        </div>
+      </div>
+      <div class="check-item" onclick="toggle(this,'w3')" data-week="3">
+        <div class="check-box"><span class="check-tick">✓</span></div>
+        <div class="check-label">
+          <p class="check-title">Спали вместе даже если был конфликт</p>
+          <p class="check-desc">Не разошлись по разным комнатам. Легли рядом — это уже много.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- НЕДЕЛЯ 4 -->
+    <div class="week-block">
+      <p class="week-sub">Неделя 4</p>
+      <h3 class="week-title">Традиция и <em>итог</em></h3>
+      <p class="progress-label" id="prog-label-4">Выполнено: 0 из 6</p>
+      <div class="week-progress"><div class="week-progress-bar" id="prog-bar-4" style="width:0%"></div></div>
+
+      <div class="check-item" onclick="toggle(this,'w4')" data-week="4">
+        <div class="check-box"><span class="check-tick">✓</span></div>
+        <div class="check-label">
+          <p class="check-title">Придумали традицию только для двоих</p>
+          <p class="check-desc">Одна маленькая вещь которую будете делать только вы. Утренний кофе, вечерняя прогулка, своя фраза.</p>
+        </div>
+      </div>
+      <div class="check-item" onclick="toggle(this,'w4')" data-week="4">
+        <div class="check-box"><span class="check-tick">✓</span></div>
+        <div class="check-label">
+          <p class="check-title">Вышли вдвоём — без детей и без дел</p>
+          <p class="check-desc">Прогулка, кафе, кино — неважно. Главное только вы двое и никаких обязательств.</p>
+        </div>
+      </div>
+      <div class="check-item" onclick="toggle(this,'w4')" data-week="4">
+        <div class="check-box"><span class="check-tick">✓</span></div>
+        <div class="check-label">
+          <p class="check-title">Прошли все 5 блоков правил вместе</p>
+          <p class="check-desc">Открыли каждый блок и обсудили — что из этого уже делаете, а что хотите начать.</p>
+        </div>
+      </div>
+      <div class="check-item" onclick="toggle(this,'w4')" data-week="4">
+        <div class="check-box"><span class="check-tick">✓</span></div>
+        <div class="check-label">
+          <p class="check-title">Задали друг другу вопросы из каждой темы</p>
+          <p class="check-desc">Хотя бы по одному вопросу из всех пяти категорий — Сейчас, Прошлое, Мечты, Глубина, Вместе.</p>
+        </div>
+      </div>
+      <div class="check-item" onclick="toggle(this,'w4')" data-week="4">
+        <div class="check-box"><span class="check-tick">✓</span></div>
+        <div class="check-label">
+          <p class="check-title">Сказали партнёру что изменилось за месяц</p>
+          <p class="check-desc">"Я заметил что за этот месяц..." Вслух. Честно. Это и есть близость.</p>
+        </div>
+      </div>
+      <div class="check-item" onclick="toggle(this,'w4')" data-week="4">
+        <div class="check-box"><span class="check-tick">✓</span></div>
+        <div class="check-label">
+          <p class="check-title">Запланировали время вне дома вдвоём</p>
+          <p class="check-desc">Отель, поездка, вечер — неважно. Назначили дату. Это уже шаг.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="result-block" id="result-block" style="display:none;">
+      <h3 class="result-title">Вы прошли <em>весь путь</em></h3>
+      <p class="result-text">Четыре недели маленьких шагов — это уже не мелочи. Это новая привычка быть рядом. Продолжайте — и возвращайтесь к программе когда почувствуете что нужно напоминание.</p>
+    </div>
+
+    <button class="reset-btn" onclick="resetAll()">Начать заново</button>
+
+    <div class="nav-bottom">
+      <button class="btn btn-line" onclick="openPage('rules')">20 правил близости</button>
+      <button class="btn btn-line" onclick="openPage('questions')">100 вопросов</button>
+      <button class="btn btn-line" onclick="openPage('home')">На главную</button>
+    </div>
+    <div class="foot"><p>© Полянинова Бэлла Леонидовна · Копирование запрещено</p></div>
+  </div>
+</div>
+<script>
+function openPage(id) {
+  var pages = document.querySelectorAll('.page');
+  for (var i = 0; i < pages.length; i++) {
+    pages[i].classList.remove('show');
+    pages[i].style.display = 'none';
+  }
+  var t = document.getElementById(id);
+  t.style.display = (id === 'home') ? 'flex' : 'block';
+  t.classList.add('show');
+  window.scrollTo(0, 0);
+}
+
+function toggleAcc(id) {
+  var item = document.getElementById(id);
+  item.classList.toggle('open');
+}
+
+// CHECKLIST
+var weekCounts = {w1:0, w2:0, w3:0, w4:0};
+var weekTotals = {w1:6, w2:6, w3:6, w4:6};
+
+function toggle(el, week) {
+  el.classList.toggle('done');
+  var weekNum = week.replace('w','');
+  var items = document.querySelectorAll('[data-week="'+weekNum+'"]');
+  var done = 0;
+  for (var i=0; i<items.length; i++) {
+    if (items[i].classList.contains('done')) done++;
+  }
+  var total = items.length;
+  var pct = Math.round((done/total)*100);
+  document.getElementById('prog-bar-'+weekNum).style.width = pct+'%';
+  document.getElementById('prog-label-'+weekNum).textContent = 'Выполнено: '+done+' из '+total;
+  checkAllDone();
+}
+
+function checkAllDone() {
+  var all = document.querySelectorAll('.check-item');
+  var done = 0;
+  for (var i=0; i<all.length; i++) {
+    if (all[i].classList.contains('done')) done++;
+  }
+  if (done >= all.length) {
+    document.getElementById('result-block').style.display = 'block';
+  } else {
+    document.getElementById('result-block').style.display = 'none';
+  }
+}
+
+function resetAll() {
+  var all = document.querySelectorAll('.check-item');
+  for (var i=0; i<all.length; i++) all[i].classList.remove('done');
+  for (var w=1; w<=4; w++) {
+    document.getElementById('prog-bar-'+w).style.width = '0%';
+    document.getElementById('prog-label-'+w).textContent = 'Выполнено: 0 из 6';
+  }
+  document.getElementById('result-block').style.display = 'none';
+}
+
+var allQ = {
+  warmth:["Что тебя сегодня порадовало — хоть совсем маленькое?","Что тебе сейчас нужно от меня — и ты можешь это назвать?","Есть ли что-то что я делаю и тебе от этого хорошо?","Когда ты последний раз смеялся так что не мог остановиться?","Что в нашей жизни прямо сейчас тебе нравится больше всего?","Что тебя сегодня удивило?","Если бы завтра был выходной без обязательств — что бы ты выбрал для себя?","Что тебя сейчас греет — человек, место, воспоминание?","Есть ли что-то что ты давно хотел сказать — но не находил момента?","Какой запах или звук напоминает тебе о чём-то хорошем?","Что бы ты сделал сегодня вечером если бы мог выбрать что угодно?","Что ты делаешь когда тебе нужно восстановиться?","Какое время дня тебе нравится больше всего — и почему?","Есть ли что-то что ты делаешь и чувствуешь себя по-настоящему собой?","Какое слово лучше всего описывает твоё состояние прямо сейчас?","Есть ли что-то простое что делает тебя счастливым каждый раз?","Что тебя сейчас вдохновляет — даже немного?","Что ты любишь в нашем доме больше всего?","Что ты любишь в нас двоих?","Если бы ты мог подарить мне одно ощущение — что бы это было?"],
+  memory:["Какой момент нашей жизни ты вспоминаешь чаще всего?","Когда ты почувствовал что мы — это мы?","Что ты помнишь о нашей первой поездке вместе?","Есть ли разговор между нами который ты помнишь дословно?","Что из того что мы делали раньше — ты хотел бы вернуть?","Какой день с тобой я бы хотел прожить ещё раз?","Что тебя удивило во мне — когда мы только познакомились?","Есть ли момент когда ты понял что влюблён?","Что в тебе изменилось с тех пор как мы вместе?","Есть ли что-то что я сделал — и ты никогда не забыл?","Какое место для тебя связано с нами?","Что из того что я говорил — ты помнишь до сих пор?","Какой подарок от меня тебе запомнился больше всего — и почему?","Что ты думал о нашем будущем в самом начале?","Есть ли что-то смешное из нашей истории которое ты любишь вспоминать?","Какой момент был труднее всего — и ты рад что мы прошли его вместе?","Что ты расскажешь о нас когда будешь старым?","Если бы нужно было описать нас двоих одной сценой — что это было бы?","Есть ли что-то из нашего прошлого о чём ты думаешь с теплом?","Какую нашу традицию ты вспоминаешь с теплом?"],
+  dreams:["Есть ли место куда ты хочешь попасть хоть раз в жизни?","Что ты мечтал делать в детстве — и не сделал?","Если бы деньги и время не имели значения — как бы выглядел твой идеальный год?","Есть ли что-то чему ты хочешь научиться?","Какой была бы твоя жизнь если бы ты ничего не боялся?","Что бы ты хотел попробовать вместе со мной?","Есть ли мечта которую ты давно не вспоминал?","Каким ты хочешь быть через 10 лет?","Что для тебя означает счастливая жизнь — конкретно?","Есть ли что-то что ты хочешь создать — написать, построить, начать?","Что бы ты хотел чтобы наши дети запомнили о нас?","Есть ли место где ты хотел бы жить — хоть какое-то время?","Что тебе важно успеть в этой жизни?","Если бы ты мог на год поменять профессию — что бы выбрал?","Есть ли что-то что ты хочешь сделать пока молодой?","Что ты хотел бы передать тем кто идёт после тебя?","Как ты представляешь нашу совместную старость?","Есть ли что-то о чём ты мечтаешь но никому не говорил?","Что сделало бы тебя счастливым прямо сейчас — если бы это было возможно?","Что ты хочешь чтобы о тебе говорили люди которые тебя знают?"],
+  depth:["Что тебя по-настоящему пугает — не поверхностно?","Когда ты чувствуешь себя одиноким — даже когда я рядом?","Что ты никогда не говоришь вслух — но думаешь?","Что для тебя означает быть понятым?","Есть ли что-то что ты хотел бы чтобы я знал о тебе?","Когда тебе бывает стыдно — и почему?","Что тебя заряжает — а что забирает энергию?","Есть ли что-то что ты прощаешь себе с трудом?","Когда ты чувствуешь что тебя не слышат?","Что для тебя означает доверие?","Есть ли что-то что ты изменил бы в себе?","Когда ты чувствуешь себя по-настоящему живым?","Что тебе сложно принять в нашей жизни — но ты молчишь?","Чего ты боишься потерять больше всего?","Что ты делаешь когда тебе очень плохо — и ты не хочешь об этом говорить?","Есть ли что-то что ты хотел бы чтобы я делал иначе?","Когда ты чувствуешь себя любимым — по-настоящему?","Что в нашей жизни тебе кажется важным — но мы никогда об этом не говорим?","Что делает тебя счастливым — даже если это кажется несерьёзным?","Если бы ты мог сказать мне одно — самое важное — что бы это было?"],
+  together:["Какую традицию ты хотел бы создать в нашей семье?","Если бы мы могли придумать один ритуал только наш — какой?","Как бы выглядело наше идеальное воскресенье?","Что для тебя важно в том как мы встречаем праздники?","Есть ли место которое хотелось бы посещать вместе регулярно?","Какую книгу или фильм ты хотел бы обсудить со мной?","Как ты хочешь чтобы мы заканчивали день?","Есть ли что-то что ты хочешь начать вместе — прямо в этом году?","Что для тебя означает семейный ужин?","Как ты представляешь наш дом через 5 лет?","Есть ли занятие которое мы могли бы делать вместе — и оба получали бы удовольствие?","Что для тебя важно в том как мы проводим выходные?","Есть ли что-то что ты хочешь успеть сделать в этом году — вместе?","Какое место в городе ты хочешь посетить — и ещё не был?","Что для тебя означает дом — не как место, а как ощущение?","Если бы мы писали список желаний на следующий год — что бы ты добавил первым?","Есть ли традиция из детства которую ты хотел бы перенести в нашу жизнь?","Что бы ты хотел чтобы мы делали вместе каждую неделю?","Как ты хочешь отмечать наши дни рождения?","Что бы ты хотел чтобы наши дети видели в нас?"]
+};
+
+var catNames={warmth:'🌿 Сейчас',memory:'🕯 Наше прошлое',dreams:'✦ Мечты',depth:'🌊 Глубина',together:'🏡 Что создаём вместе'};
+var currentCat='warmth';
+var usedIdx={warmth:[],memory:[],dreams:[],depth:[],together:[]};
+
+function pickCat(cat) {
+  currentCat = cat;
+  var cats = ['warmth','memory','dreams','depth','together'];
+  for (var i=0;i<cats.length;i++) document.getElementById('cb-'+cats[i]).classList.remove('on');
+  document.getElementById('cb-'+cat).classList.add('on');
+  document.getElementById('qtag').textContent = catNames[cat];
+  var el = document.getElementById('qtext');
+  el.textContent = 'Нажмите кнопку ниже';
+  el.className = 'q-placeholder';
+  document.getElementById('qcounter').textContent = '';
+}
+
+function showNext() {
+  var list = allQ[currentCat];
+  if (usedIdx[currentCat].length >= list.length) usedIdx[currentCat] = [];
+  var idx, tries=0;
+  do { idx = Math.floor(Math.random()*list.length); tries++; } while (usedIdx[currentCat].indexOf(idx)!==-1 && tries<50);
+  usedIdx[currentCat].push(idx);
+  var card = document.getElementById('qcard');
+  card.style.opacity='0';
+  card.style.transition='opacity 0.2s';
+  setTimeout(function(){
+    document.getElementById('qtag').textContent = catNames[currentCat];
+    var el = document.getElementById('qtext');
+    el.textContent = list[idx];
+    el.className = 'q-question';
+    document.getElementById('qcounter').textContent = usedIdx[currentCat].length+' из '+list.length;
+    card.style.opacity='1';
+  },220);
+}
+</script>
+</body>
+</html>
