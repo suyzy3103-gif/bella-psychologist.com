@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Как жить в браке без иллюзий</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue-deep: #1A3F5C;
+    --blue-mid: #2C6A96;
+    --blue-light: #A8CEDE;
+    --blue-pale: #D6EAF4;
+    --blue-mist: #EEF6FB;
+    --white: #FFFFFF;
+    --ink: #0D1F2D;
+    --ink-soft: #2A3D4D;
+    --accent: #6BA3C4;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--white);
+    color: var(--ink);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* COVER */
+  .cover {
+    min-height: 100vh;
+    background: linear-gradient(160deg, #1B3F5C 0%, #2C5F8A 45%, #4A8BB5 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 30px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(168,206,222,0.15) 0%, transparent 70%);
+  }
+
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -80px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(107,163,196,0.12) 0%, transparent 70%);
+  }
+
+  .cover-badge {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--blue-light);
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.2s;
+  }
+
+  .cover-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 7vw, 64px);
+    font-weight: 300;
+    color: var(--white);
+    text-align: center;
+    line-height: 1.2;
+    max-width: 700px;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.4s;
+  }
+
+  .cover-title em {
+    font-style: italic;
+    color: var(--blue-light);
+  }
+
+  .cover-subtitle {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: clamp(14px, 2.5vw, 17px);
+    color: rgba(214, 234, 244, 0.85);
+    text-align: center;
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 60px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.6s;
+  }
+
+  .cover-divider {
+    width: 60px;
+    height: 1px;
+    background: var(--blue-light);
+    margin: 0 auto 40px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.7s;
+  }
+
+  .cover-author {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(168, 206, 222, 0.7);
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.9s;
+  }
+
+  .cover-scroll {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 1.2s;
+  }
+
+  .cover-scroll span {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(168,206,222,0.5);
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(168,206,222,0.5), transparent);
+    animation: scrollPulse 2s ease infinite;
+  }
+
+  /* INTRO */
+  .intro {
+    background: var(--blue-mist);
+    padding: 80px 30px;
+    text-align: center;
+  }
+
+  .intro-inner {
+    max-width: 620px;
+    margin: 0 auto;
+  }
+
+  .intro p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(20px, 3.5vw, 26px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--blue-deep);
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+
+  .intro-note {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.8;
+  }
+
+  /* BLOCKS */
+  .block {
+    padding: 80px 30px;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .block-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 80px;
+    font-weight: 300;
+    color: var(--blue-pale);
+    line-height: 1;
+    margin-bottom: -10px;
+  }
+
+  .block-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(26px, 4vw, 36px);
+    font-weight: 400;
+    color: var(--blue-deep);
+    line-height: 1.25;
+    margin-bottom: 20px;
+  }
+
+  .block-idea {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: #1A3040;
+    line-height: 1.85;
+    margin-bottom: 40px;
+    padding-left: 20px;
+    border-left: 2px solid var(--blue-light);
+  }
+
+  .questions-label {
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--blue-mid);
+    margin-bottom: 20px;
+  }
+
+  .questions {
+    list-style: none;
+    margin-bottom: 48px;
+  }
+
+  .questions li {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 2.5vw, 22px);
+    font-weight: 500;
+    font-style: italic;
+    color: #0D1F2D;
+    line-height: 1.5;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--blue-pale);
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .questions li::before {
+    content: '—';
+    color: var(--blue-mid);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .practice-box {
+    background: linear-gradient(135deg, var(--blue-mist) 0%, #E0F0F8 100%);
+    border-radius: 16px;
+    padding: 36px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .practice-box::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 120px; height: 120px;
+    background: radial-gradient(circle, rgba(74,139,181,0.1) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .practice-label {
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--blue-mid);
+    margin-bottom: 14px;
+  }
+
+  .practice-text {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    color: #0D1F2D;
+    line-height: 1.85;
+  }
+
+  .practice-example {
+    margin-top: 16px;
+    padding: 14px 18px;
+    background: rgba(255,255,255,0.85);
+    border-radius: 10px;
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: #1A3040;
+    line-height: 1.7;
+  }
+
+  .practice-example em {
+    font-style: italic;
+    color: var(--blue-deep);
+  }
+
+  /* DIVIDERS */
+  .block-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--blue-light), transparent);
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .block-alt {
+    background: var(--blue-mist);
+  }
+
+  /* FINAL QUESTION */
+  .final-question {
+    background: linear-gradient(160deg, #1B3F5C 0%, #2C5F8A 100%);
+    padding: 80px 30px;
+    text-align: center;
+  }
+
+  .final-question-inner {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .fq-label {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--blue-light);
+    margin-bottom: 30px;
+  }
+
+  .fq-question {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 4vw, 34px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--white);
+    line-height: 1.4;
+    margin-bottom: 30px;
+  }
+
+  .fq-note {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    color: rgba(214,234,244,0.8);
+    line-height: 1.8;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  /* SALE BLOCK */
+  .sale {
+    padding: 80px 30px;
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .sale-eyebrow {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--blue-mid);
+    margin-bottom: 20px;
+  }
+
+  .sale-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 400;
+    color: var(--blue-deep);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .sale-subtitle {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: #1A3040;
+    line-height: 1.8;
+    max-width: 500px;
+    margin: 0 auto 40px;
+  }
+
+  .sale-card {
+    background: linear-gradient(135deg, var(--blue-mist) 0%, #ddeef7 100%);
+    border-radius: 20px;
+    padding: 48px 40px;
+    margin-bottom: 32px;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sale-card::after {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(74,139,181,0.12) 0%, transparent 70%);
+  }
+
+  .sale-what {
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--blue-mid);
+    margin-bottom: 20px;
+  }
+
+  .sale-list {
+    list-style: none;
+    margin-bottom: 32px;
+  }
+
+  .sale-list li {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    color: #0D1F2D;
+    line-height: 1.6;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(168,206,222,0.3);
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .sale-list li:last-child { border-bottom: none; }
+
+  .sale-list li::before {
+    content: '→';
+    color: var(--blue-mid);
+    flex-shrink: 0;
+    font-size: 14px;
+    margin-top: 2px;
+  }
+
+  .sale-promise {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(17px, 2.5vw, 21px);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--blue-deep);
+    line-height: 1.5;
+    padding: 20px;
+    background: rgba(255,255,255,0.6);
+    border-radius: 12px;
+    border-left: 3px solid var(--blue-mid);
+  }
+
+  .sale-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 6vw, 52px);
+    font-weight: 400;
+    color: var(--blue-deep);
+    margin: 32px 0 8px;
+    text-align: center;
+  }
+
+  .sale-price-note {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 13px;
+    color: var(--ink-soft);
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .btn-buy {
+    display: block;
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 20px 40px;
+    background: linear-gradient(135deg, var(--blue-deep) 0%, var(--blue-mid) 100%);
+    color: var(--white);
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 100px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 30px rgba(44,95,138,0.3);
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-buy:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(44,95,138,0.4);
+  }
+
+  .sale-reassure {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 13px;
+    color: var(--ink-soft);
+    text-align: center;
+    margin-top: 20px;
+    line-height: 1.7;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--blue-mist);
+    padding: 40px 30px;
+    text-align: center;
+  }
+
+  footer p {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 13px;
+    color: var(--ink-soft);
+    letter-spacing: 1px;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* MOBILE */
+  @media (max-width: 600px) {
+    .sale-card { padding: 32px 24px; }
+    .practice-box { padding: 28px 24px; }
+    .block { padding: 60px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<section class="cover">
+  <div class="cover-badge">Психолог Бэлла Леонидовна</div>
+  <h1 class="cover-title">Как жить в браке<br><em>без иллюзий</em><br>и не разрушать себя</h1>
+  <div class="cover-divider"></div>
+  <p class="cover-subtitle">4 шага, чтобы вернуть себе спокойствие, ясность и внутреннюю опору — даже если решение о разводе пока не принято</p>
+  <div class="cover-author">Гайд · Бэлла Леонидовна</div>
+  <div class="cover-scroll">
+    <div class="scroll-line"></div>
+    <span>читать</span>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="intro">
+  <div class="intro-inner reveal">
+    <p>Этот гайд не про то, как сохранить брак. И не про то, как решиться на развод.</p>
+    <p>Он про то, как не разрушить себя, пока вы живёте в ситуации, где ещё нет окончательного ответа.</p>
+    <div class="cover-divider" style="margin: 32px auto;"></div>
+    <p class="intro-note">Четыре шага — это четыре разговора с собой. Честных, взрослых, без самообмана. Читайте медленно. Возвращайтесь к вопросам. Записывайте ответы.</p>
+  </div>
+</section>
+
+<!-- BLOCK 1 -->
+<section class="block">
+  <div class="reveal">
+    <div class="block-number">01</div>
+    <h2 class="block-title">Перевести брак из ожиданий в договорённости</h2>
+    <p class="block-idea">Если чувства просели, не нужно каждый разговор превращать в попытку добиться любви, которой сейчас нет. Иногда брак на время нужно перевести в более трезвый формат: быт, деньги, дети, обязанности, график, личное пространство.</p>
+
+    <div class="questions-label">Вопросы для себя</div>
+    <ul class="questions">
+      <li>О чём я продолжаю просить мужа как о проявлении любви, хотя он годами этого не даёт?</li>
+      <li>Какие бытовые и финансовые вопросы нужно перестать обсуждать через обиду и начать — как договорённость?</li>
+      <li>Что он реально делает для семьи, даже если эмоционально я им недовольна?</li>
+      <li>Где мне нужна не близость, а конкретное правило?</li>
+    </ul>
+
+    <div class="practice-box">
+      <div class="practice-label">Практика</div>
+      <p class="practice-text">Выпишите три темы, по которым вы чаще всего ссоритесь. Напротив каждой напишите не эмоцию, а конкретную договорённость, которая вам нужна.</p>
+      <div class="practice-example">
+        <em>Не «будь внимательнее» →</em> «По воскресеньям ты забираешь ребёнка на два часа».<br>
+        <em>Не «помогай мне» →</em> «После ужина ты убираешь посуду три раза в неделю».
+      </div>
+    </div>
+    <p style="margin-top: 28px; font-family: 'Jost', sans-serif; font-weight: 400; font-size: 15px; color: #1A3F5C; line-height: 1.8; font-style: italic;">Как именно формулировать договорённости, чтобы муж услышал, а не закрылся — это отдельная работа. В <strong>Практической стратегии</strong> вы составите свои конкретные фразы под свою ситуацию.</p>
+  </div>
+</section>
+
+<div class="block-divider"></div>
+
+<!-- BLOCK 2 -->
+<section class="block block-alt" style="max-width: 100%; padding: 80px 30px;">
+  <div style="max-width: 700px; margin: 0 auto;" class="reveal">
+    <div class="block-number" style="color: rgba(44,95,138,0.15);">02</div>
+    <h2 class="block-title">Перестать переделывать взрослого человека</h2>
+    <p class="block-idea">Попытка изменить мужа часто держит женщину в зависимости сильнее, чем сам брак. Пока вы ждёте, что он станет другим, вы всё время эмоционально привязаны к его реакции, настроению, обещаниям и временным улучшениям.</p>
+
+    <div class="questions-label">Вопросы для себя</div>
+    <ul class="questions">
+      <li>Что я пытаюсь объяснить ему уже не первый год?</li>
+      <li>Какие его черты я называю временными, хотя они давно стали стабильными?</li>
+      <li>Где я всё ещё живу надеждой, что однажды он поймёт?</li>
+      <li>Что изменится в моём поведении, если я признаю, что он пока именно такой?</li>
+    </ul>
+
+    <div class="practice-box">
+      <div class="practice-label">Практика</div>
+      <p class="practice-text">Разделите лист на две колонки.</p>
+      <div class="practice-example">
+        <em>Колонка 1:</em> «Что я всё ещё пытаюсь в нём изменить»<br><br>
+        <em>Колонка 2:</em> «Как мне жить, если это не изменится в ближайшие полгода»
+      </div>
+      <p class="practice-text" style="margin-top: 16px;">Это неприятная практика, но она быстро возвращает из фантазии в управление.</p>
+    </div>
+    <p style="margin-top: 28px; font-family: 'Jost', sans-serif; font-weight: 400; font-size: 15px; color: #1A3F5C; line-height: 1.8; font-style: italic;">Сколько именно сил уходит на этот проект — и как их вернуть себе — вы считаете в <strong>Практической стратегии</strong>. Там есть конкретное задание, после которого многие женщины говорят: "я не думала, что трачу на это столько".</p>
+  </div>
+</section>
+
+<div class="block-divider"></div>
+
+<!-- BLOCK 3 -->
+<section class="block">
+  <div class="reveal">
+    <div class="block-number">03</div>
+    <h2 class="block-title">Снизить ожидания до уровня реальности</h2>
+    <p class="block-idea">Снижение ожиданий не означает, что вы согласились на плохую жизнь. Это значит, что вы перестали каждый раз подходить к пустому колодцу с ведром. Ожидание там, где нет реальных действий, превращается не в любовь, а в хроническое разочарование.</p>
+
+    <div class="questions-label">Вопросы для себя</div>
+    <ul class="questions">
+      <li>Чего я жду от него снова и снова, хотя фактов под это почти нет?</li>
+      <li>Какие обещания я принимаю за изменения?</li>
+      <li>Где я путаю надежду с реальной динамикой?</li>
+      <li>Что я могу перестать просить у него и начать давать себе через другие источники?</li>
+    </ul>
+
+    <div class="practice-box">
+      <div class="practice-label">Практика</div>
+      <p class="practice-text">Составьте список из пяти ожиданий к мужу. Напротив каждого поставьте отметку:</p>
+      <div class="practice-example">
+        <em>«Даёт стабильно»</em> / <em>«Даёт редко»</em> / <em>«Почти не даёт»</em><br><br>
+        Всё, что попало в третью категорию — перестаньте считать опорой. Это не значит, что вы этого не заслуживаете. Это значит, что именно здесь нельзя строить свою устойчивость.
+      </div>
+    </div>
+    <p style="margin-top: 28px; font-family: 'Jost', sans-serif; font-weight: 400; font-size: 15px; color: #1A3F5C; line-height: 1.8; font-style: italic;">Где брать опору, если не от него — и как выстроить свою карту устойчивости — это четвёртый шаг <strong>Практической стратегии</strong>. Там под каждую ситуацию есть конкретные направления действий.</p>
+  </div>
+</section>
+
+<div class="block-divider"></div>
+
+<!-- BLOCK 4 -->
+<section class="block block-alt" style="max-width: 100%; padding: 80px 30px;">
+  <div style="max-width: 700px; margin: 0 auto;" class="reveal">
+    <div class="block-number" style="color: rgba(44,95,138,0.15);">04</div>
+    <h2 class="block-title">Вернуть себе собственную жизнь</h2>
+    <p class="block-idea">Самая большая опасность сложного брака не только в конфликтах. Опасность в том, что женщина постепенно перестаёт жить своей жизнью. Она следит за настроением мужа, подстраивается под его реакции, откладывает себя — и потом чувствует, что исчезла.</p>
+
+    <div class="questions-label">Вопросы для себя</div>
+    <ul class="questions">
+      <li>Где моя жизнь стала слишком зависеть от его настроения?</li>
+      <li>Что я перестала делать для себя за время этого брака?</li>
+      <li>Какие мои желания всё время откладываются до лучших времён?</li>
+      <li>Что я могу вернуть уже сейчас, не дожидаясь его разрешения?</li>
+    </ul>
+
+    <div class="practice-box">
+      <div class="practice-label">Практика</div>
+      <p class="practice-text">Выберите одну маленькую часть жизни, которую вы возвращаете себе на этой неделе. Не глобально. Не «начать новую жизнь». Конкретно:</p>
+      <div class="practice-example">
+        тренировка · личные деньги · встреча с подругой · врач · обучение · прогулка · час тишины · свой проект
+      </div>
+      <p class="practice-text" style="margin-top: 16px;">Внутренняя опора возвращается не лозунгами, а маленькими повторяющимися действиями.</p>
+    </div>
+    <p style="margin-top: 28px; font-family: 'Jost', sans-serif; font-weight: 400; font-size: 15px; color: #1A3F5C; line-height: 1.8; font-style: italic;">Что именно вернуть себе на этой неделе, как не откатиться и как собрать личный план на 30 дней — четвёртый этап <strong>Практической стратегии</strong>. Там вы составляете его под себя, а не берёте чужой шаблон.</p>
+  </div>
+</section>
+
+<!-- FINAL QUESTION -->
+<section class="final-question">
+  <div class="final-question-inner reveal">
+    <div class="fq-label">Главный вопрос</div>
+    <p class="fq-question">«Не как заставить его измениться — а какую систему жизни я могу выстроить, если он останется таким же?»</p>
+    <p class="fq-note">Этот вопрос не про капитуляцию. Он про взрослость. Пока ваше состояние зависит от того, изменится он или нет — вы всё ещё живёте не своей жизнью. Когда вы начинаете строить систему вокруг реальности, появляется спокойствие, ясность и возможность принимать решения без паники.</p>
+  </div>
+</section>
+
+<!-- BRIDGE -->
+<section style="background: var(--white); padding: 60px 30px 0;">
+  <div style="max-width: 620px; margin: 0 auto;" class="reveal">
+    <p style="font-family: 'Cormorant Garamond', serif; font-size: clamp(20px, 3.5vw, 28px); font-weight: 400; font-style: italic; color: var(--blue-deep); line-height: 1.55; margin-bottom: 24px;">Гайд даёт ясность. Но ясность не всегда удерживает вас в моменте, когда он снова молчит, грубит, обещает, обесценивает или перекладывает всё на вас.</p>
+    <p style="font-family: 'Jost', sans-serif; font-size: 16px; font-weight: 400; color: #1A3040; line-height: 1.85;">Для этого нужна стратегия: что говорить, где перестать ждать, где перевести отношения в договорённости — и как вернуть себе нормальную жизнь без скандала и унижения.</p>
+  </div>
+</section>
+
+<!-- SALE -->
+<section class="sale">
+  <div class="reveal">
+    <div class="sale-eyebrow">Следующий шаг</div>
+    <h2 class="sale-title">Брак без иллюзий</h2>
+    <p class="sale-subtitle">Практическая стратегия для тех, кто пока не принял окончательное решение, но больше не хочет жить в режиме ожидания, обиды и постоянных попыток достучаться.</p>
+
+    <div class="sale-card">
+      <div class="sale-what">Что входит в практикум</div>
+      <ul class="sale-list">
+        <li>4 этапа, каждый с конкретными стратегиями для вашей ситуации</li>
+        <li>Вы находите свою ситуацию — получаете конкретные стратегии действий под неё</li>
+        <li>Таблицы, карта опор, список фраз для разговоров без скандала</li>
+        <li>Личная стратегия на 30 дней — собирается из ваших ответов</li>
+        <li>Бонус: 20 фраз, которые помогают говорить без унижения, мольбы и истерики</li>
+      </ul>
+      <p class="sale-promise">За 4 этапа вы разберёте свою ситуацию трезво: что можно перевести в договорённости, чего пора перестать ждать, где вы теряете себя — и какие конкретные шаги помогут вернуть опору уже сейчас.</p>
+    </div>
+
+    <div class="sale-price">1 490 ₽</div>
+    <p class="sale-price-note">Единоразовая оплата · Доступ сразу после оплаты</p>
+
+    <a href="https://app.lava.top/products/0c147737-64c2-4dcf-8969-7f037a70514f" class="btn-buy">Перейти к стратегии действий</a>
+
+    <p class="sale-reassure">Это не курс про развод и не инструкция как терпеть дальше.<br>Это взрослый инструмент для женщины, которая готова смотреть на свою ситуацию честно.</p>
+  </div>
+</section>
+
+<footer>
+  <p>Психолог Бэлла Леонидовна · @Bella_leonidovna</p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
