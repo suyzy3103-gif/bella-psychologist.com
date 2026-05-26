@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Спокойный родитель — Полянинова Бэлла Леонидовна</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink:        #1A2E25;
+  --sage-dark:  #3D6B55;
+  --sage:       #5A8A72;
+  --sage-light: #B8D4C4;
+  --sage-pale:  #E8F3ED;
+  --paper:      #F4FAF6;
+  --warm:       #B8955A;
+  --muted:      #6A8070;
+  --white:      #ffffff;
+  --alert:      #C0513A;
+  --alert-pale: #FDF0ED;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Jost', sans-serif; background: var(--paper); color: var(--ink); overflow-x: hidden; }
+
+/* COVER */
+.cover {
+  min-height: 100vh;
+  background: linear-gradient(160deg, #D4EADc 0%, #A8CDB8 50%, #7AAA90 100%);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 60px 32px 80px; position: relative; overflow: hidden;
+}
+.cover::before {
+  content:''; position:absolute; top:-60px; right:-60px; width:280px; height:280px;
+  border-radius:50%; background:radial-gradient(circle,rgba(255,255,255,0.3) 0%,transparent 70%); pointer-events:none;
+}
+.cover-badge {
+  font-size:11px; font-weight:500; letter-spacing:3px; text-transform:uppercase;
+  color:var(--sage-dark); background:rgba(255,255,255,0.55); border-radius:20px;
+  padding:6px 18px; margin-bottom:32px; opacity:0; animation:up 0.7s 0.2s forwards;
+}
+.cover-title {
+  font-family:'Cormorant Garamond',serif; font-size:clamp(50px,12vw,80px); font-weight:700;
+  color:var(--ink); line-height:1.0; margin-bottom:12px; opacity:0; animation:up 0.7s 0.4s forwards;
+}
+.cover-sub {
+  font-family:'Cormorant Garamond',serif; font-size:clamp(17px,4.5vw,24px); font-style:italic;
+  color:var(--sage-dark); margin-bottom:26px; opacity:0; animation:up 0.7s 0.55s forwards;
+}
+.cover-line { width:40px; height:2px; background:var(--warm); margin:0 auto 24px; opacity:0; animation:up 0.7s 0.65s forwards; }
+.cover-stats {
+  display:flex; gap:20px; justify-content:center; margin-bottom:40px;
+  opacity:0; animation:up 0.7s 0.75s forwards;
+}
+.stat { text-align:center; padding:0 16px; }
+.stat + .stat { border-left:1px solid rgba(26,46,37,0.2); }
+.stat-num { font-family:'Cormorant Garamond',serif; font-size:36px; font-weight:700; color:var(--ink); line-height:1; }
+.stat-label { font-size:10px; color:var(--sage-dark); letter-spacing:1px; text-transform:uppercase; margin-top:3px; }
+.cover-btn {
+  display:inline-block; padding:15px 40px; background:var(--sage-dark); color:var(--white);
+  font-size:12px; font-weight:600; letter-spacing:2.5px; text-transform:uppercase;
+  border:none; border-radius:3px; cursor:pointer; opacity:0; animation:up 0.7s 0.9s forwards; transition:background 0.25s;
+}
+.cover-btn:hover { background:var(--ink); }
+.cover-author { position:absolute; bottom:24px; font-size:12px; letter-spacing:1px; color:rgba(26,46,37,0.45); opacity:0; animation:up 0.7s 1.1s forwards; }
+.cover-copyright { position:absolute; bottom:8px; font-size:10px; letter-spacing:0.5px; color:rgba(26,46,37,0.3); opacity:0; animation:up 0.7s 1.2s forwards; }
+
+/* CONTENTS */
+.contents {
+  background:var(--white); padding:48px 28px; border-bottom:1px solid var(--sage-pale);
+  max-width:520px; margin:0 auto;
+}
+.contents-heading { font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:700; color:var(--ink); text-align:center; margin-bottom:24px; }
+.contents-list { list-style:none; }
+.contents-list li {
+  display:flex; align-items:center; gap:14px; padding:14px 0;
+  border-bottom:1px solid var(--sage-pale); font-size:14px; font-weight:300; color:var(--ink); line-height:1.5;
+  cursor:pointer; transition:color 0.2s;
+}
+.contents-list li:last-child { border-bottom:none; }
+.contents-list li:hover { color:var(--sage-dark); }
+.contents-num {
+  flex-shrink:0; width:32px; height:32px; border-radius:50%;
+  background:var(--sage-pale); color:var(--sage-dark); font-size:13px; font-weight:600;
+  display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif;
+}
+.contents-list li strong { font-weight:500; }
+
+/* PART HEADER */
+.part-header {
+  padding:48px 28px 32px; text-align:center; max-width:520px; margin:0 auto;
+}
+.part-badge {
+  display:inline-block; font-size:10px; font-weight:600; letter-spacing:2px; text-transform:uppercase;
+  padding:5px 14px; border-radius:20px; margin-bottom:14px;
+}
+.part-badge.red { background:var(--alert-pale); color:var(--alert); }
+.part-badge.green { background:var(--sage-pale); color:var(--sage-dark); }
+.part-badge.dark { background:var(--ink); color:var(--white); }
+
+.part-title { font-family:'Cormorant Garamond',serif; font-size:clamp(28px,8vw,42px); font-weight:700; color:var(--ink); line-height:1.15; margin-bottom:12px; }
+.part-desc { font-size:14px; font-weight:300; color:#3A5045; line-height:1.8; max-width:320px; margin:0 auto; }
+
+/* SHARED */
+.section-tag { font-size:10px; font-weight:500; letter-spacing:3px; text-transform:uppercase; color:var(--sage); margin-bottom:14px; }
+.section-heading { font-family:'Cormorant Garamond',serif; font-size:clamp(26px,7vw,38px); font-weight:700; color:var(--ink); line-height:1.2; margin-bottom:14px; }
+.section-text { font-size:14.5px; font-weight:300; color:#3A5045; line-height:1.8; max-width:340px; margin:0 auto; }
+
+/* DIVIDER */
+.part-divider { height:4px; background:linear-gradient(90deg,var(--sage-pale),var(--sage-light),var(--sage-pale)); margin:0; }
+
+/* TACTICS */
+.tactics-wrap { padding:0 24px 48px; max-width:520px; margin:0 auto; }
+.tabs { display:flex; gap:7px; flex-wrap:wrap; justify-content:center; margin-bottom:28px; padding-top:8px; }
+.tab { padding:8px 14px; font-size:12px; font-weight:500; border-radius:20px; border:1.5px solid var(--sage-light); background:var(--white); color:var(--muted); cursor:pointer; transition:all 0.22s; white-space:nowrap; }
+.tab.active { background:var(--sage); border-color:var(--sage); color:var(--white); }
+.tab.red-tab { border-color:#E8B4AA; }
+.tab.red-tab.active { background:var(--alert); border-color:var(--alert); }
+
+.tab-content { display:none; }
+.tab-content.active { display:block; }
+
+/* TACTIC CARD */
+.tactic-card {
+  background:var(--white); border-radius:14px; padding:22px 20px; margin-bottom:14px;
+  border-left:3px solid var(--alert); box-shadow:0 2px 12px rgba(192,81,58,0.07);
+  transition:transform 0.2s,box-shadow 0.2s;
+}
+.tactic-card:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(192,81,58,0.1); }
+.tactic-num { font-size:10px; font-weight:500; letter-spacing:2px; color:var(--alert); text-transform:uppercase; margin-bottom:6px; }
+.tactic-title { font-family:'Cormorant Garamond',serif; font-size:21px; font-weight:700; color:var(--ink); line-height:1.25; margin-bottom:10px; }
+.tactic-body { font-size:13.5px; font-weight:300; color:#3A5045; line-height:1.78; margin-bottom:10px; }
+.tactic-quote {
+  background:var(--alert-pale); border-radius:8px; padding:12px 14px;
+  font-size:13px; font-style:italic; color:#7A3025; line-height:1.7; margin-bottom:10px;
+}
+.tactic-divider { height:1px; background:var(--sage-pale); margin:10px 0; }
+.tactic-answer {
+  background:var(--sage-pale); border-radius:8px; padding:12px 14px;
+  font-size:13px; font-weight:300; color:#2A4035; line-height:1.75;
+}
+.tactic-answer strong { font-weight:600; color:var(--sage-dark); display:block; margin-bottom:4px; font-size:11px; letter-spacing:1px; text-transform:uppercase; }
+
+/* RULE CARD */
+.rules-wrap { padding:0 24px 48px; max-width:520px; margin:0 auto; }
+.rule-card {
+  background:var(--white); border-radius:14px; padding:22px 20px; margin-bottom:14px;
+  border-left:3px solid var(--sage); box-shadow:0 2px 12px rgba(61,107,85,0.07);
+  transition:transform 0.2s,box-shadow 0.2s;
+}
+.rule-card:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(61,107,85,0.12); }
+.rule-num { font-size:10px; font-weight:500; letter-spacing:2px; color:var(--sage); text-transform:uppercase; margin-bottom:6px; }
+.rule-title { font-family:'Cormorant Garamond',serif; font-size:21px; font-weight:700; color:var(--ink); line-height:1.25; margin-bottom:10px; }
+.rule-body { font-size:13.5px; font-weight:300; color:#3A5045; line-height:1.78; margin-bottom:12px; }
+.rule-divider { height:1px; background:var(--sage-pale); margin:10px 0; }
+.rule-example {
+  background:var(--sage-pale); border-radius:8px; padding:12px 14px;
+  font-size:13px; font-weight:300; color:#2A4035; line-height:1.75;
+}
+.rule-example strong { font-weight:600; color:var(--sage-dark); display:block; margin-bottom:4px; font-size:11px; letter-spacing:1px; text-transform:uppercase; }
+.rule-hint { font-size:12px; font-style:italic; color:var(--muted); margin-top:10px; line-height:1.6; }
+.card-link { display:inline-block; margin-top:10px; font-size:12.5px; font-weight:500; color:var(--sage-dark); border-bottom:1px solid var(--sage-light); text-decoration:none; transition:color 0.2s; }
+.card-link:hover { color:var(--ink); }
+
+/* WHY */
+.why-section { background:var(--sage-pale); padding:52px 28px; text-align:center; }
+.why-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; max-width:480px; margin:28px auto 0; }
+.why-item { background:var(--white); border-radius:10px; padding:18px 14px; border-top:2px solid var(--sage); }
+.why-icon { font-size:22px; margin-bottom:8px; }
+.why-label { font-size:12.5px; font-weight:300; color:var(--ink); line-height:1.5; }
+
+/* HOWTO */
+.howto-section { padding:48px 28px 52px; max-width:520px; margin:0 auto; }
+.step-card { display:flex; gap:16px; align-items:flex-start; margin-bottom:14px; background:var(--white); border-radius:12px; padding:20px 18px; box-shadow:0 2px 10px rgba(0,0,0,0.04); }
+.step-num { flex-shrink:0; width:36px; height:36px; border-radius:50%; background:var(--sage); color:var(--white); font-size:15px; font-weight:700; display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; }
+.step-text strong { display:block; font-size:14px; font-weight:500; color:var(--ink); margin-bottom:4px; }
+.step-text span { font-size:13px; font-weight:300; color:#3A5045; line-height:1.7; }
+.note-box { background:var(--sage-pale); border-radius:10px; padding:18px 20px; margin-top:8px; border-left:3px solid var(--sage); }
+.note-box p { font-size:13.5px; font-weight:300; color:#2A4035; line-height:1.75; }
+.note-box strong { font-weight:500; }
+
+/* PRINCIPLES */
+.principle-section { background:linear-gradient(155deg,#C2D8CC 0%,#9BBDAF 100%); padding:52px 28px; text-align:center; }
+.principle-list { list-style:none; max-width:360px; margin:24px auto 0; text-align:left; }
+.principle-list li { display:flex; gap:12px; align-items:flex-start; padding:12px 0; border-bottom:1px solid rgba(28,28,46,0.1); font-size:14px; font-weight:300; color:var(--ink); line-height:1.65; }
+.principle-list li:last-child { border-bottom:none; }
+.principle-list li::before { content:'✦'; color:var(--sage-dark); font-size:12px; flex-shrink:0; margin-top:3px; }
+
+/* COPYRIGHT FOOTER */
+.copyright-section { background:var(--ink); padding:32px 28px; text-align:center; }
+.copyright-section p { font-size:12px; color:rgba(255,255,255,0.35); letter-spacing:0.5px; line-height:1.8; }
+.copyright-section strong { color:rgba(255,255,255,0.55); font-weight:500; }
+
+/* ANIMATIONS */
+@keyframes up { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+.reveal { opacity:0; transform:translateY(20px); transition:opacity 0.6s,transform 0.6s; }
+.reveal.on { opacity:1; transform:translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<section class="cover">
+  <div class="cover-badge">Для семьи с подростком</div>
+  <h1 class="cover-title">Спокойный<br>родитель</h1>
+  <div class="cover-sub">30 правил для семьи с подростком</div>
+  <div class="cover-line"></div>
+  <div class="cover-stats">
+    <div class="stat"><div class="stat-num">7</div><div class="stat-label">тактик детей</div></div>
+    <div class="stat"><div class="stat-num">30</div><div class="stat-label">правил</div></div>
+    <div class="stat"><div class="stat-num">1</div><div class="stat-label">система</div></div>
+  </div>
+  <button class="cover-btn" onclick="document.getElementById('contents').scrollIntoView({behavior:'smooth'})">Начать</button>
+  <div class="cover-author">@bella.psychologist</div>
+  <div class="cover-copyright">© Полянинова Бэлла Леонидовна</div>
+</section>
+
+<!-- СОДЕРЖАНИЕ -->
+<section class="contents reveal" id="contents">
+  <h2 class="contents-heading">Что внутри</h2>
+  <ul class="contents-list">
+    <li onclick="document.getElementById('part1').scrollIntoView({behavior:'smooth'})">
+      <div class="contents-num">1</div>
+      <div><strong>Как дети сдвигают правила</strong><br>7 тактик подростков — и как на них отвечать</div>
+    </li>
+    <li onclick="document.getElementById('part2').scrollIntoView({behavior:'smooth'})">
+      <div class="contents-num">2</div>
+      <div><strong>30 правил для семьи с подростком</strong><br>По 6 темам, каждое с примером из жизни</div>
+    </li>
+    <li onclick="document.getElementById('part3').scrollIntoView({behavior:'smooth'})">
+      <div class="contents-num">3</div>
+      <div><strong>Система внедрения</strong><br>5 шагов и три принципа, которые держат всё вместе</div>
+    </li>
+  </ul>
+</section>
+
+<div class="part-divider"></div>
+
+<!-- ЧАСТЬ 1 -->
+<div class="part-header reveal" id="part1">
+  <div class="part-badge red">Часть первая</div>
+  <h2 class="part-title">Как дети<br>сдвигают правила</h2>
+  <p class="part-desc">Подросток редко нарушает правила напрямую. Чаще он их размывает — постепенно, умело, иногда неосознанно. Здесь — 7 тактик и конкретные ответы родителя.</p>
+</div>
+
+<div class="tactics-wrap">
+  <div class="tabs reveal">
+    <div class="tab red-tab active" onclick="switchTab('t1',this)">«Ещё 5 минут»</div>
+    <div class="tab red-tab" onclick="switchTab('t2',this)">«У Маши можно»</div>
+    <div class="tab red-tab" onclick="switchTab('t3',this)">Торг</div>
+    <div class="tab red-tab" onclick="switchTab('t4',this)">Слёзы</div>
+    <div class="tab red-tab" onclick="switchTab('t5',this)">«Ты сам говорил»</div>
+    <div class="tab red-tab" onclick="switchTab('t6',this)">Бойкот</div>
+    <div class="tab red-tab" onclick="switchTab('t7',this)">Размывание</div>
+  </div>
+
+  <div class="tab-content active" id="tab-t1">
+    <div class="tactic-card reveal">
+      <div class="tactic-num">Тактика 01</div>
+      <div class="tactic-title">«Ну ещё пять минут»</div>
+      <div class="tactic-body">Правило есть. Но каждый раз к нему добавляется «пять минут». Пять превращаются в двадцать, двадцать — в час. Правило формально не нарушено, но фактически не существует.</div>
+      <div class="tactic-quote">Ну мааам, я только дочитаю. Буквально пять минут.</div>
+      <div class="tactic-divider"></div>
+      <div class="tactic-answer"><strong>Как отвечать</strong>Правило не обсуждается в момент его выполнения. «Телефон в 22:00» значит в 22:00, а не в 22:05. Один раз мягко напоминаете — второй раз наступает последствие.</div>
+    </div>
+  </div>
+
+  <div class="tab-content" id="tab-t2">
+    <div class="tactic-card reveal">
+      <div class="tactic-num">Тактика 02</div>
+      <div class="tactic-title">«А вот у Маши можно»</div>
+      <div class="tactic-body">Классическое сравнение с другой семьёй. Цель — вызвать у родителя сомнение: «А вдруг я слишком строгий?» Родитель начинает оправдываться — и теряет позицию.</div>
+      <div class="tactic-quote">У всех в классе можно до часа ночи сидеть, только у меня нельзя.</div>
+      <div class="tactic-divider"></div>
+      <div class="tactic-answer"><strong>Как отвечать</strong>Спокойно и коротко: «У нас в семье другие правила. Я не управляю семьёй Маши.» Без оправданий. Вы не обязаны объяснять свои решения через чужие семьи.</div>
+    </div>
+  </div>
+
+  <div class="tab-content" id="tab-t3">
+    <div class="tactic-card reveal">
+      <div class="tactic-num">Тактика 03</div>
+      <div class="tactic-title">Торг и переговоры</div>
+      <div class="tactic-body">Подросток предлагает сделку. На первый взгляд — разумно. На деле — правило начинает зависеть от торга, а не от договорённости. Сегодня одна сделка, завтра другая.</div>
+      <div class="tactic-quote">Хорошо, я сделаю уроки, но тогда ты дашь мне телефон на час дольше.</div>
+      <div class="tactic-divider"></div>
+      <div class="tactic-answer"><strong>Как отвечать</strong>Уроки и телефон — разные вещи. Уроки — обязанность, не товар для обмена. «Уроки ты делаешь потому что это твоя ответственность, а не потому что я что-то даю взамен.»</div>
+    </div>
+  </div>
+
+  <div class="tab-content" id="tab-t4">
+    <div class="tactic-card reveal">
+      <div class="tactic-num">Тактика 04</div>
+      <div class="tactic-title">Эмоциональное давление</div>
+      <div class="tactic-body">Слёзы, обиды, «ты меня не любишь». Цель — вызвать у родителя вину настолько, чтобы он отступил от правила ради восстановления мира.</div>
+      <div class="tactic-quote">Ты самая жестокая мама. Я тебя ненавижу. Все нормальные родители бы разрешили.</div>
+      <div class="tactic-divider"></div>
+      <div class="tactic-answer"><strong>Как отвечать</strong>Признаёте чувство — не меняете решение. «Я слышу, что ты злишься. Правило остаётся.» Уйти из комнаты — нормально. Отменить правило из-за слёз — нет.</div>
+    </div>
+  </div>
+
+  <div class="tab-content" id="tab-t5">
+    <div class="tactic-card reveal">
+      <div class="tactic-num">Тактика 05</div>
+      <div class="tactic-title">«Ты же сам говорил»</div>
+      <div class="tactic-body">Подросток ссылается на якобы данное обещание или прецедент. Цель: сдвинуть правило, опираясь на прошлое исключение.</div>
+      <div class="tactic-quote">Но ты же сам сказал, что в пятницу можно позже. Вот я и остался.</div>
+      <div class="tactic-divider"></div>
+      <div class="tactic-answer"><strong>Как отвечать</strong>«Да, в прошлый раз я сделал исключение. Это было исключение, а не новое правило.» Исключение не отменяет правило — это важно проговорить прямо.</div>
+    </div>
+  </div>
+
+  <div class="tab-content" id="tab-t6">
+    <div class="tactic-card reveal">
+      <div class="tactic-num">Тактика 06</div>
+      <div class="tactic-title">Молчание и бойкот</div>
+      <div class="tactic-body">Не крик, не слёзы — тихое холодное игнорирование. Многие родители не выдерживают тишины и отступают.</div>
+      <div class="tactic-quote">— Как дела? — Нормально. — Что случилось? — Ничего.</div>
+      <div class="tactic-divider"></div>
+      <div class="tactic-answer"><strong>Как отвечать</strong>Не преследовать, не уговаривать, не отменять правило. «Я вижу, что ты обижен. Когда будешь готов поговорить — я здесь.» Бойкот работает только если родитель на него реагирует.</div>
+    </div>
+  </div>
+
+  <div class="tab-content" id="tab-t7">
+    <div class="tactic-card reveal">
+      <div class="tactic-num">Тактика 07</div>
+      <div class="tactic-title">Постепенное размывание</div>
+      <div class="tactic-body">Самая незаметная тактика. Правило не нарушается резко — оно нарушается чуть-чуть каждый раз. Через месяц родитель сам не помнит, какое было правило.</div>
+      <div class="tactic-quote">Ну мы же уже давно в 23:00 ложимся, что теперь снова менять?</div>
+      <div class="tactic-divider"></div>
+      <div class="tactic-answer"><strong>Как отвечать</strong>Замечать сдвиг сразу и возвращаться к исходному правилу без скандала. «Я вижу, что мы съехали. Возвращаемся к 22:00.» Раз в месяц — проверяйте, работает ли правило так, как договорились.</div>
+    </div>
+  </div>
+</div>
+
+<div class="part-divider"></div>
+
+<!-- ЧАСТЬ 2 -->
+<div class="part-header reveal" id="part2">
+  <div class="part-badge green">Часть вторая</div>
+  <h2 class="part-title">30 правил для семьи<br>с подростком</h2>
+  <p class="part-desc">Для детей 11–16 лет. Каждое правило — с формулировкой и примером из жизни.</p>
+</div>
+
+<div class="rules-wrap">
+  <div class="tabs reveal">
+    <div class="tab active" onclick="switchTab('r1',this)">💬 Общение</div>
+    <div class="tab" onclick="switchTab('r2',this)">📱 Гаджеты</div>
+    <div class="tab" onclick="switchTab('r3',this)">🏠 Быт</div>
+    <div class="tab" onclick="switchTab('r4',this)">📚 Учёба</div>
+    <div class="tab" onclick="switchTab('r5',this)">🤝 Доверие</div>
+    <div class="tab" onclick="switchTab('r6',this)">🌿 Свобода</div>
+  </div>
+
+  <!-- ОБЩЕНИЕ -->
+  <div class="tab-content active" id="tab-r1">
+    <div class="rule-card reveal">
+      <div class="rule-num">Правило 01</div>
+      <div class="rule-title">Уважительный тон — всегда</div>
+      <div class="rule-body">В семье можно злиться, спорить, быть недовольным. Но нельзя оскорблять, унижать, кричать в лицо. Эмоция — не повод терять уважение.</div>
+      <div class="rule-divider"></div>
+      <div class="rule-example"><strong>Пример</strong>Подросток кричит: «Ты меня не понимаешь!» Вместо ответного крика — спокойно: «Я слышу, что ты злишься. Когда успокоишься — поговорим.» И уходите. Без хлопания дверью.</div>
+    </div>
+    <div class="rule-card reveal">
+      <div class="rule-num">Правило 02</div>
+      <div class="rule-title">Пауза в конфликте — право каждого</div>
+      <div class="rule-body">Когда разговор заходит в крик, каждый имеет право взять паузу на 15–30 минут. После — вернуться к разговору без наказания молчанием.</div>
+      <div class="rule-divider"></div>
+      <div class="rule-example"><strong>Пример</strong>Ссора из-за оценки нарастает. Мама говорит: «Я беру паузу на 20 минут. Потом поговорим спокойно.» Через 20 минут возвращается — не с претензией, а с вопросом: «Что случилось с этой контрольной?»</div>
+    </div>
+    <div class="rule-card reveal">
+      <div class="rule-num">Правило 20</div>
+      <div class="rule-title">Правда — без истерики</div>
+      <div class="rule-body">За правду подростка не уничтожают криком. Обман разбирается жёстче — он разрушает доверие. Говорить правду должно быть безопаснее, чем скрывать.</div>
+      <div class="rule-divider"></div>
+      <div class="rule-example"><strong>Пример</strong>Сын сам признался, что прогулял урок. Вместо скандала: «Хорошо, что сказал сам. Теперь разберёмся, что делать дальше.» Если бы узнали от учителя — последствия были бы серьёзнее.</div>
+    </div>
+    <div class="rule-card reveal">
+      <div class="rule-num">Правило 21</div>
+      <div class="rule-title">Семейная настройка раз в неделю</div>
+      <div class="rule-body">Раз в неделю — короткий разговор: что в семье не работает. Не лекция на час, а нормальная настройка системы.</div>
+      <div class="rule-divider"></div>
+      <div class="rule-example"><strong>Пример</strong>Воскресный вечер, 10 минут за чаем. «Как неделя? Что раздражало? Что хотим изменить?» Без обвинений. Дочь говорит, что ей не нравится, когда её торопят утром. Договариваетесь вставать на 15 минут раньше.</div>
+    </div>
+    <div class="rule-card reveal">
+      <div class="rule-num">Правило 27</div>
+      <div class="rule-title">Тело не комментируют унизительно</div>
+      <div class="rule-body">Никто в семье не комментирует тело подростка унизительно: вес, кожу, рост, прыщи, фигуру. Обсуждать здоровье можно, стыдить — нельзя.</div>
+      <div class="rule-divider"></div>
+      <div class="rule-example"><strong>Пример</strong>Бабушка говорит за столом: «Ты поправилась.» Родитель вмешивается спокойно: «У нас в семье мы так не говорим.» Коротко, без скандала. Подросток видит: его защищают.</div>
+      <div class="rule-hint">Если тема внешности стала источником конфликтов — стоит поговорить со специалистом.</div>
+    </div>
+    <div class="rule-card reveal">
+      <div class="rule-num">Правило 30</div>
+      <div class="rule-title">После ссоры — возврат</div>
+      <div class="rule-body">После конфликта важно не делать вид, что ничего не было. Надо вернуться: «Мы поссорились, теперь давай разберём, что делаем дальше».</div>
+      <div class="rule-divider"></div>
+      <div class="rule-example"><strong>Пример</strong>Вчера был скандал из-за позднего возвращения. На следующий день мама говорит: «Вчера мы оба накричали. Хочу поговорить спокойно — что произошло и как договоримся на будущее.»</div>
+    </div>
+  </div>
+
+  <!-- ГАДЖЕТЫ -->
+  <div class="tab-content" id="tab-r2">
+    <div class="rule-card reveal">
+      <div class="rule-num">Правило 04</div>
+      <div class="rule-title">Гаджеты — не автоматическое право</div>
+      <div class="rule-body">Телефон, планшет, приставка — не становятся правом только потому что ребёнок ими пользуется. Базовые вещи родители обеспечивают. Всё остальное — решение семьи.</div>
+      <div class="rule-divider"></div>
+      <div class="rule-example"><strong>Пример</strong>Сын требует новый телефон «как у всех». «Телефон у тебя есть. Новый — не базовая необходимость. Если хочешь лучше — обсудим, как ты можешь участвовать в покупке.»</div>
+    </div>
+    <div class="rule-card reveal">
+      <div class="rule-num">Правило 05</div>
+      <div class="rule-title">Гаджеты — доверенный доступ</div>
+      <div class="rule-body">Телефон и компьютер — инструмент. Родители имеют право устанавливать время использования и забирать при нарушении правил. Чем надёжнее подросток — тем больше самостоятельности.</div>
+      <div class="rule-divider"></div>
+      <div class="rule-example"><strong>Пример</strong>Договорились: телефон до 22:00. Три дня подряд нарушение. На четвёртый забираете молча на сутки. Без крика: «Мы договорились. Правило нарушено — вот последствие.»</div>
+    </div>
+    <div class="rule-card reveal">
+      <div class="rule-num">Правило 06</div>
+      <div class="rule-title">Семейный ужин без экранов</div>
+      <div class="rule-body">Хотя бы несколько раз в неделю — за столом без телефонов. Правило для всех, включая родителей.</div>
+      <div class="rule-divider"></div>
+      <div class="rule-example"><strong>Пример</strong>Вторник и четверг — ужин без телефонов. Первые две недели неловко. На третьей сын сам начал рассказывать про школу. Правило работает не сразу — но работает.</div>
+    </div>
+    <div class="rule-card reveal">
+      <div class="rule-num">Правило 12</div>
+      <div class="rule-title">Крупные покупки — не на эмоциях</div>
+      <div class="rule-body">Дорогие вещи не покупаются по требованию. Сначала: цена, необходимость, вклад подростка, срок ожидания.</div>
+      <div class="rule-divider"></div>
+      <div class="rule-example"><strong>Пример</strong>Дочь хочет AirPods за 15 000. «Мы готовы дать половину на день рождения через два месяца. Вторую половину копишь сама.» Она копит — и ценит покупку в разы больше.</div>
+    </div>
+    <div class="rule-card reveal">
+      <div class="rule-num">Правило 16</div>
+      <div class="rule-title">Соцсети — с ответственностью</div>
+      <div class="rule-body">Нельзя выкладывать чужие фото, переписки, семейные сцены без разрешения. Это учит цифровой ответственности.</div>
+      <div class="rule-divider"></div>
+      <div class="rule-example"><strong>Пример</strong>Сын выложил видео с сестрой без её разрешения. «Она не давала согласия. В интернете это нарушение приватности. Это правило работает для всех.»</div>
+    </div>
+    <div class="rule-card reveal">
+      <div class="rule-num">Правило 28</div>
+      <div class="rule-title">Семья — не контент</div>
+      <div class="rule-body">То, что происходит дома, не выносится в чаты и сторис ради смеха. Семья не становится контентом без согласия.</div>
+      <div class="rule-divider"></div>
+      <div class="rule-example"><strong>Пример</strong>Дочь сфотографировала папу и хотела отправить подруге. «Ты бы хотела, чтобы тебя так сфотографировали без спроса?» Не запрет — вопрос. Она думает. Это и есть воспитание.</div>
+    </div>
+  </div>
+
+  <!-- БЫТ -->
+  <div class="tab-content" id="tab-r3">
+    <div class="rule-card reveal">
+      <div class="rule-num">Правило 03</div>
+      <div class="rule-title">Комната — не отдельное государство</div>
+      <div class="rule-body">Комната в доме родителей. Взрослые имеют право знать, что происходит, следить за порядком. Но не врываться без причины. Формула: своя зона порядка + ответственность за общий дом.</div>
+      <div class="rule-divider"></div>
+      <div class="rule-example"><strong>Пример</strong>Комната не убиралась две недели. «Я вижу беспорядок. До пятницы комната приводится в порядок — иначе я убираю сама и решаю сама, что остаётся.» Спокойно и конкретно.</div>
+    </div>
+    <div class="rule-card reveal">
+      <div class="rule-num">Правило 07</div>
+      <div class="rule-title">Домашние обязанности — вклад, не помощь</div>
+      <div class="rule-body">Мусор, посуда, порядок на столе — не «помощь по настроению», а постоянный вклад в жизнь семьи.</div>
+      <div class="rule-divider"></div>
+      <div class="rule-example"><strong>Пример</strong>У сына три обязанности: мусор каждый день, посуда после ужина, пылесос в субботу. Не обсуждается. Не сделал — нет Wi-Fi до выполнения. Без скандала: просто логика.</div>
+    </div>
+    <div class="rule-card reveal">
+      <div class="rule-num">Правило 15</div>
+      <div class="rule-title">Друзья дома — по правилам семьи</div>
+      <div class="rule-body">Друзей можно приглашать, но заранее. В доме действуют семейные правила: уважительный тон, порядок, понятное время ухода.</div>
+      <div class="rule-divider"></div>
+      <div class="rule-example"><strong>Пример</strong>Дочь привела подругу без предупреждения. В следующий раз: «Рада видеть твоих друзей. Но предупреждай за день — мне нужно знать, что у нас гости.»</div>
+    </div>
+    <div class="rule-card reveal">
+      <div class="rule-num">Правило 17</div>
+      <div class="rule-title">Личная гигиена — не обсуждается</div>
+      <div class="rule-body">Душ, чистая одежда, зубы — это не «хочу или не хочу». Это часть уважения к себе и людям рядом.</div>
+      <div class="rule-divider"></div>
+      <div class="rule-example"><strong>Пример</strong>Сын перестал мыться регулярно. Говорите один раз, без аудитории: «Душ — каждый день. Это не обсуждается.»</div>
+      <div class="rule-hint">Резкое изменение в гигиене у подростка иногда сигнал о внутреннем состоянии. Стоит поговорить или обратиться к специалисту.</div>
+    </div>
+    <div class="rule-card reveal">
+      <div class="rule-num">Правило 25</div>
+      <div class="rule-title">Внешний вид — по ситуации</div>
+      <div class="rule-body">Дома можно проще. На важные встречи — соответствующий вид. Это не про подавление вкуса, а про социальный интеллект.</div>
+      <div class="rule-divider"></div>
+      <div class="rule-example"><strong>Пример</strong>Сын хочет пойти на собеседование в рваных джинсах. «Дома — как хочешь. На собеседовании первое впечатление создаётся за секунды. Это не про тебя — это про правила той среды.»</div>
+    </div>
+  </div>
+
+  <!-- УЧЁБА -->
+  <div class="tab-content" id="tab-r4">
+    <div class="rule-card reveal">
+      <div class="rule-num">Правило 08</div>
+      <div class="rule-title">Свой рюкзак — своя ответственность</div>
+      <div class="rule-body">Рюкзак, форма, учебники и дедлайны — сначала зона подростка. Родитель напоминает, но не становится личным ассистентом.</div>
+      <div class="rule-divider"></div>
+      <div class="rule-example"><strong>Пример</strong>Дочь забыла форму и просит отвезти. «Это твоя ответственность. В следующий раз — собирай рюкзак с вечера.» Один раз получила двойку — больше не забывает.</div>
+    </div>
+    <div class="rule-card reveal">
+      <div class="rule-num">Правило 18</div>
+      <div class="rule-title">Учёба без родительского рабства</div>
+      <div class="rule-body">Родитель помогает разобраться, но не делает задания вместо подростка. Задача — учить думать, а не тащить школу на себе.</div>
+      <div class="rule-divider"></div>
+      <div class="rule-example"><strong>Пример</strong>Сын требует «просто ответ» по физике. «Покажи, что ты уже попробовал. С этого и начнём.» Если ничего не пробовал — «Попробуй сам, потом разберём вместе.»</div>
+    </div>
+    <div class="rule-card reveal">
+      <div class="rule-num">Правило 19</div>
+      <div class="rule-title">Ошибку разбирают, не унижают</div>
+      <div class="rule-body">За ошибку не стыдят. Три вопроса: что произошло, где решение было слабым, что в следующий раз сделать иначе.</div>
+      <div class="rule-divider"></div>
+      <div class="rule-example"><strong>Пример</strong>Дочь провалила важный тест. Вместо «ну я же говорила» — «Что пошло не так? Что сделала бы иначе? Что тебе нужно сейчас?» После такого разговора подросток готов пробовать снова.</div>
+    </div>
+    <div class="rule-card reveal">
+      <div class="rule-num">Правило 23</div>
+      <div class="rule-title">Родитель — не служба срочной помощи</div>
+      <div class="rule-body">Родитель не обязан бросать всё в последнюю минуту, потому что подросток забыл про проект или подарок другу.</div>
+      <div class="rule-divider"></div>
+      <div class="rule-example"><strong>Пример</strong>Вечером в воскресенье сын вспомнил про проект на завтра. «Я не могу помочь сейчас. В следующий раз предупреждай заранее.» Сдал сам. Запомнил.</div>
+    </div>
+    <div class="rule-card reveal">
+      <div class="rule-num">Правило 29</div>
+      <div class="rule-title">Попытка — перед словом «не могу»</div>
+      <div class="rule-body">Перед тем как сказать «я не могу», подросток должен показать хотя бы одну попытку. Это учит самостоятельности, а не беспомощности.</div>
+      <div class="rule-divider"></div>
+      <div class="rule-example"><strong>Пример</strong>«Я не могу решить задачу.» — «Покажи, что уже попробовал.» — «Я просто не понимаю.» — «Запиши, что именно не понимаешь — первый шаг. Потом поговорим.»</div>
+    </div>
+  </div>
+
+  <!-- ДОВЕРИЕ -->
+  <div class="tab-content" id="tab-r5">
+    <div class="rule-card reveal">
+      <div class="rule-num">Правило 09</div>
+      <div class="rule-title">Одно предупреждение — потом последствие</div>
+      <div class="rule-body">Родитель предупреждает один раз спокойно. Дальше — заранее понятное последствие. Без десяти повторов и торгов.</div>
+      <div class="rule-divider"></div>
+      <div class="rule-example"><strong>Пример</strong>«Если телефон снова будет на столе во время ужина — заберу до завтра.» Телефон появился. Забираете молча. Без лекции. Подросток злится — но понимает: слова не расходятся с делом.</div>
+    </div>
+    <div class="rule-card reveal">
+      <div class="rule-num">Правило 10</div>
+      <div class="rule-title">Последствие связано с поступком</div>
+      <div class="rule-body">Не сделал уроки — сначала уроки, потом развлечения. Разбил доверие — временно меньше самостоятельности. Последствие — не месть, а логика.</div>
+      <div class="rule-divider"></div>
+      <div class="rule-example"><strong>Пример</strong>Сын сказал, что идёт к другу, а поехал в другой район. Узнали. Следующие две недели — маршрут согласовывается заранее. «Не потому что ты плохой. А потому что доверие восстанавливается постепенно.»</div>
+    </div>
+    <div class="rule-card reveal">
+      <div class="rule-num">Правило 13</div>
+      <div class="rule-title">Родители знают, где ты</div>
+      <div class="rule-body">Родители знают, где подросток, с кем, во сколько возвращается. Это не тотальный контроль — это базовая безопасность.</div>
+      <div class="rule-divider"></div>
+      <div class="rule-example"><strong>Пример</strong>Дочь уходит к подруге. Правило: «Напиши адрес, с кем, во сколько вернёшься. Задержишься — предупреди за 30 минут.» Чем надёжнее выполняет — тем больше свободы.</div>
+    </div>
+    <div class="rule-card reveal">
+      <div class="rule-num">Правило 14</div>
+      <div class="rule-title">«Я влип» — сначала помощь</div>
+      <div class="rule-body">Подросток может сказать «я влип» — и сначала получает помощь. Разговор о последствиях — потом.</div>
+      <div class="rule-divider"></div>
+      <div class="rule-example"><strong>Пример</strong>Сын позвонил в 23:00: «Я в незнакомом месте, денег нет.» Едете и забираете. Дома — горячий чай. Разговор — на следующий день. Подросток, который знает, что его не бросят, позвонит снова.</div>
+      <div class="rule-hint">Если подросток попал в серьёзную ситуацию и вы не знаете как справиться — можно обратиться к специалисту.</div>
+    </div>
+    <div class="rule-card reveal">
+      <div class="rule-num">Правило 24</div>
+      <div class="rule-title">Помочь можно, заменить взрослого — нельзя</div>
+      <div class="rule-body">Подросток участвует в жизни семьи, но не становится вторым родителем. Помочь — норма. Нести взрослую ответственность — нет.</div>
+      <div class="rule-divider"></div>
+      <div class="rule-example"><strong>Пример</strong>Старшая дочь постоянно сидит с младшим вместо родителей. «Ты помогаешь нам — и мы это ценим. Но ответственность за Мишу — на нас, не на тебе.»</div>
+    </div>
+  </div>
+
+  <!-- СВОБОДА -->
+  <div class="tab-content" id="tab-r6">
+    <div class="rule-card reveal">
+      <div class="rule-num">Правило 11</div>
+      <div class="rule-title">Карманные деньги — и право на ошибку</div>
+      <div class="rule-body">У подростка есть сумма, которой он распоряжается сам. Ошибки в тратах обсуждаются, но родители не спасают каждый раз от плохого выбора.</div>
+      <div class="rule-divider"></div>
+      <div class="rule-example"><strong>Пример</strong>Дали 1 000 рублей на неделю. 100 рублей в день — на проезд или еду, итого 500 за пять дней. Остаток — его решение: потратить, отложить или вложить. Потратил всё в первый день? Его опыт. Обсудите — но не выдавайте добавку.</div>
+    </div>
+    <div class="rule-card reveal">
+      <div class="rule-num">Правило 22</div>
+      <div class="rule-title">Личное время — не роскошь</div>
+      <div class="rule-body">У подростка должно быть время, когда его не дёргают. Ребёнок не обязан быть постоянно удобным.</div>
+      <div class="rule-divider"></div>
+      <div class="rule-example"><strong>Пример</strong>Дочь два часа слушает музыку и ничего не делает. Договоритесь: есть время обязанностей — и есть личное время. Оба блока неприкосновенны.</div>
+    </div>
+    <div class="rule-card reveal">
+      <div class="rule-num">Правило 26</div>
+      <div class="rule-title">Свободы больше — когда ответственности больше</div>
+      <div class="rule-body">Свободы становится больше, когда подросток показывает, что умеет выдерживать договорённости. Не возраст даёт свободу, а уровень ответственности.</div>
+      <div class="rule-divider"></div>
+      <div class="rule-example"><strong>Пример</strong>Сын три месяца возвращался вовремя и выполнял обязанности. Говорите: «Я вижу, что ты держишь договорённости. Теперь можешь возвращаться на час позже.» Свобода — заработанное доверие.</div>
+    </div>
+  </div>
+</div>
+
+<div class="part-divider"></div>
+
+<!-- ЧАСТЬ 3 -->
+<div class="part-header reveal" id="part3">
+  <div class="part-badge dark">Часть третья</div>
+  <h2 class="part-title">Система внедрения</h2>
+  <p class="part-desc">Как правило входит в семью и остаётся в ней. 5 шагов и три принципа.</p>
+</div>
+
+<section class="why-section">
+  <div class="reveal">
+    <div class="section-tag" style="text-align:center">Почему это работает</div>
+    <h2 class="section-heading" style="text-align:center">Правила — это не про контроль</h2>
+    <p class="section-text" style="text-align:center">Подросток проверяет границы не потому что он трудный. Он проверяет — есть ли рядом взрослый, которого не сдвинуть.</p>
+  </div>
+  <div class="why-grid reveal">
+    <div class="why-item"><div class="why-icon">🧭</div><div class="why-label">Даёт ориентиры в хаосе взросления</div></div>
+    <div class="why-item"><div class="why-icon">🔒</div><div class="why-label">Создаёт ощущение безопасности</div></div>
+    <div class="why-item"><div class="why-icon">💬</div><div class="why-label">Убирает постоянные переговоры</div></div>
+    <div class="why-item"><div class="why-icon">🌱</div><div class="why-label">Учит ответственности через практику</div></div>
+  </div>
+</section>
+
+<section class="howto-section">
+  <div class="reveal">
+    <div class="section-tag" style="text-align:center">5 шагов</div>
+    <h2 class="section-heading" style="text-align:center">Как ввести правило<br>и удержать его</h2>
+    <p class="section-text" style="text-align:center;margin-bottom:32px">Без скандалов и уговоров.</p>
+  </div>
+  <div class="step-card reveal">
+    <div class="step-num">1</div>
+    <div class="step-text"><strong>Объясните смысл — один раз</strong><span>Не «потому что я сказал», а «это правило для того, чтобы…» Подросток не обязан соглашаться — но должен понять зачем.</span></div>
+  </div>
+  <div class="step-card reveal">
+    <div class="step-num">2</div>
+    <div class="step-text"><strong>Вводите одно правило — не все сразу</strong><span>Две недели на одно правило. Мозг не принимает много изменений одновременно — ни детский, ни взрослый.</span></div>
+  </div>
+  <div class="step-card reveal">
+    <div class="step-num">3</div>
+    <div class="step-text"><strong>Держите правило спокойно</strong><span>Подросток будет проверять — это нормально. Каждый раз, когда вы спокойно удерживаете правило, оно укрепляется. Каждый раз, когда оно меняется от давления — разрушается.</span></div>
+  </div>
+  <div class="step-card reveal">
+    <div class="step-num">4</div>
+    <div class="step-text"><strong>Последствие — без эмоций</strong><span>«У нас правило. Ты его нарушил. Вот что происходит дальше.» Не крик, не лекция. Просто логика.</span></div>
+  </div>
+  <div class="step-card reveal">
+    <div class="step-num">5</div>
+    <div class="step-text"><strong>Правила пересматриваются — но не под давлением</strong><span>Раз в месяц — что работает, что нет, что изменить. В спокойное время, не в момент конфликта.</span></div>
+  </div>
+  <div class="note-box reveal">
+    <p><strong>Главное:</strong> правило работает не потому что ребёнок согласился. Оно работает потому что вы спокойно и последовательно его держите. Ваше спокойствие — это и есть система.</p>
+  </div>
+</section>
+
+<section class="principle-section">
+  <div class="reveal">
+    <div class="section-tag" style="text-align:center">Три принципа</div>
+    <h2 class="section-heading" style="text-align:center">На чём держится<br>вся система</h2>
+    <p class="section-text" style="text-align:center">Без этих трёх оснований правила превращаются в контроль.</p>
+  </div>
+  <ul class="principle-list reveal">
+    <li>Правило объясняется один раз — понятно, без унижения. Подросток имеет право знать, зачем оно существует.</li>
+    <li>Правило одинаково для всех ситуаций. Если оно меняется от настроения или громкости — это уже не правило.</li>
+    <li>Правило можно пересмотреть — только в спокойный момент и по реальной причине, а не потому что ребёнок устроил скандал.</li>
+  </ul>
+</section>
+
+<!-- COPYRIGHT FOOTER -->
+<section class="copyright-section">
+  <p>
+    <strong>© Полянинова Бэлла Леонидовна, 2024–2025</strong><br>
+    Все права защищены. Копирование, распространение и использование материалов<br>
+    без письменного разрешения автора запрещено.<br>
+    @bella.psychologist
+  </p>
+</section>
+
+<script>
+function switchTab(name, el) {
+  const prefix = name.startsWith('t') && !name.startsWith('r') ? 't' : 'r';
+  // find sibling tabs
+  const allTabs = el.closest('.tabs').querySelectorAll('.tab');
+  const allContents = el.closest('.tabs').parentElement.querySelectorAll('.tab-content');
+  allTabs.forEach(t => t.classList.remove('active'));
+  allContents.forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  el.classList.add('active');
+  document.querySelectorAll('#tab-' + name + ' .reveal').forEach(e => e.classList.add('on'));
+}
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
