@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Снова Вместе | Полянинова Бэлла Леонидовна</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #FDF9F4;
+  --warm: #F5EDE0;
+  --sand: #D4B896;
+  --terra: #C4845A;
+  --deep: #6B4C35;
+  --ink: #2E1F0F;
+  --rose: #E8A882;
+  --sage: #8FA882;
+  --gold: #C9965A;
+  --light: #FAF5EE;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { background:var(--bg); color:var(--ink); font-family:'Jost',sans-serif; font-weight:300; overflow-x:hidden; }
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);} }
+@keyframes fadeIn { from{opacity:0;}to{opacity:1;} }
+
+/* ===== HERO ===== */
+.hero {
+  min-height:100vh;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  padding:64px 28px 80px;
+  text-align:center;
+  background:
+    radial-gradient(ellipse at 15% 30%, rgba(196,132,90,0.13) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 70%, rgba(143,168,130,0.10) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 100%, rgba(232,168,130,0.08) 0%, transparent 40%);
+  position:relative;
+}
+
+.hero-author {
+  font-size:10px; letter-spacing:5px; text-transform:uppercase;
+  color:var(--terra); margin-bottom:28px;
+  opacity:0; animation:fadeUp 0.8s ease forwards 0.2s;
+}
+
+.hero-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(64px,16vw,112px);
+  font-weight:300; line-height:0.88;
+  color:var(--ink); margin-bottom:8px;
+  opacity:0; animation:fadeUp 0.9s ease forwards 0.35s;
+}
+.hero-title em { font-style:italic; color:var(--terra); display:block; }
+
+.hero-ornament {
+  width:40px; height:1px; background:var(--sand);
+  margin:28px auto; opacity:0; animation:fadeIn 0.8s ease forwards 0.55s;
+}
+
+.hero-tagline {
+  font-size:15px; line-height:1.8; color:var(--deep);
+  max-width:340px; margin:0 auto 52px;
+  opacity:0; animation:fadeUp 0.8s ease forwards 0.65s;
+}
+
+.hero-start {
+  opacity:0; animation:fadeUp 0.8s ease forwards 0.85s;
+  width:100%; max-width:320px;
+}
+
+.btn-start {
+  display:block; width:100%;
+  padding:20px 24px;
+  background:var(--terra); color:white;
+  font-family:'Jost',sans-serif; font-size:11px;
+  font-weight:500; letter-spacing:3px; text-transform:uppercase;
+  border:none; cursor:pointer; transition:all 0.3s ease;
+  margin-bottom:14px;
+}
+.btn-start:hover { background:var(--deep); }
+
+.hero-hint {
+  font-size:12px; color:var(--sand); letter-spacing:0.5px; line-height:1.6;
+}
+
+.hero-quote {
+  position:absolute; bottom:28px;
+  font-family:'Cormorant Garamond',serif; font-style:italic;
+  font-size:13px; color:var(--sand);
+  opacity:0; animation:fadeIn 1s ease forwards 1.1s;
+}
+
+/* ===== GUIDE PAGE ===== */
+.guide-page { display:none; min-height:100vh; padding-bottom:80px; }
+.guide-page.active { display:block; }
+
+/* Floating top bar */
+.top-bar {
+  padding:20px 24px 0; margin-bottom:24px;
+  display:flex; align-items:center; gap:12px;
+}
+.back-btn {
+  background:none; border:none; cursor:pointer;
+  font-family:'Jost',sans-serif; font-size:11px;
+  letter-spacing:2px; text-transform:uppercase; color:var(--terra); padding:6px 0;
+}
+.back-btn:hover { color:var(--deep); }
+
+/* Page header */
+.page-head {
+  text-align:center; padding:0 28px 36px;
+  border-bottom:1px solid var(--warm); margin-bottom:44px;
+}
+.page-label {
+  font-size:10px; letter-spacing:4px; text-transform:uppercase;
+  color:var(--terra); margin-bottom:14px;
+}
+.page-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(36px,9vw,54px); font-weight:300; line-height:1.05; color:var(--ink);
+}
+.page-title em { font-style:italic; color:var(--terra); }
+
+/* Content */
+.content { padding:0 24px; max-width:620px; margin:0 auto; }
+
+.intro-text {
+  font-size:16px; line-height:1.95; color:var(--deep);
+  margin-bottom:48px; padding-bottom:40px;
+  border-bottom:1px solid var(--warm);
+}
+
+/* Section */
+.section { margin-bottom:52px; }
+.section-label { font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--sand); margin-bottom:10px; }
+.section-title { font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:400; color:var(--ink); margin-bottom:18px; line-height:1.2; }
+.section-body { font-size:15px; line-height:1.88; color:var(--deep); }
+.section-body p { margin-bottom:14px; }
+.section-body strong { color:var(--ink); font-weight:500; }
+.section-body em { font-style:italic; }
+
+/* Path cards */
+.path-row { display:flex; flex-direction:column; gap:14px; margin:22px 0; }
+.path-card {
+  border:1.5px solid var(--warm); padding:24px 20px;
+  background:white; transition:border-color 0.3s ease;
+  border-radius:2px;
+}
+.path-card:hover { border-color:var(--terra); }
+.path-card-tag { font-size:9px; letter-spacing:3px; text-transform:uppercase; color:var(--terra); margin-bottom:8px; }
+.path-card-title { font-family:'Cormorant Garamond',serif; font-size:21px; font-weight:400; color:var(--ink); margin-bottom:8px; }
+.path-card-desc { font-size:13px; line-height:1.7; color:var(--deep); }
+
+/* Quote block */
+.quote-block {
+  border-left:2px solid var(--rose);
+  padding:14px 18px; margin:12px 0;
+  background:rgba(232,168,130,0.07);
+  font-family:'Cormorant Garamond',serif; font-style:italic;
+  font-size:17px; line-height:1.65; color:var(--deep);
+}
+
+.qlabel {
+  font-size:10px; letter-spacing:3px; text-transform:uppercase;
+  color:var(--sand); margin:20px 0 10px; display:block;
+}
+
+/* Action cards */
+.action-row { display:flex; flex-direction:column; gap:12px; margin:18px 0; }
+.action-card { display:flex; gap:16px; padding:20px 18px; background:var(--warm); border-radius:2px; }
+.action-n { font-family:'Cormorant Garamond',serif; font-size:36px; color:var(--terra); line-height:1; min-width:28px; }
+.action-title { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--ink); margin-bottom:7px; font-weight:500; }
+.action-text { font-size:14px; line-height:1.78; color:var(--deep); }
+.action-text em { font-style:italic; }
+.action-text strong { color:var(--ink); font-weight:500; }
+
+/* Phrase list */
+.phrase-list { display:flex; flex-direction:column; gap:9px; margin:16px 0; }
+.phrase-item {
+  display:flex; gap:12px; align-items:flex-start;
+  padding:13px 16px; border:1px solid var(--warm); background:white;
+  font-family:'Cormorant Garamond',serif; font-style:italic;
+  font-size:15.5px; line-height:1.5; color:var(--deep);
+}
+.phrase-item::before { content:'✦'; color:var(--gold); font-style:normal; font-size:10px; margin-top:4px; flex-shrink:0; }
+
+/* CTA end block */
+.cta-block {
+  background: linear-gradient(135deg, #F5EDE0 0%, #EDD9C4 100%);
+  padding:40px 28px; margin:48px 0 0;
+  text-align:center; border-top:2px solid var(--sand);
+}
+.cta-eyebrow { font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--terra); margin-bottom:14px; }
+.cta-title { font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:300; color:var(--ink); margin-bottom:16px; line-height:1.2; }
+.cta-title em { font-style:italic; color:var(--terra); }
+.cta-text { font-size:14px; line-height:1.8; color:var(--deep); margin-bottom:28px; max-width:320px; margin-left:auto; margin-right:auto; }
+.cta-teaser { display:flex; flex-direction:column; gap:8px; margin-bottom:28px; text-align:left; }
+.cta-item { display:flex; gap:10px; font-size:13px; line-height:1.6; color:var(--deep); }
+.cta-item::before { content:'→'; color:var(--terra); flex-shrink:0; }
+.cta-btn {
+  display:inline-block; padding:18px 36px;
+  background:var(--ink); color:white;
+  font-family:'Jost',sans-serif; font-size:11px;
+  font-weight:500; letter-spacing:3px; text-transform:uppercase;
+  border:none; cursor:pointer; transition:all 0.3s ease; width:100%;
+}
+.cta-btn:hover { background:var(--terra); }
+
+/* Footer */
+.guide-footer { text-align:center; padding:36px 24px 24px; }
+.guide-footer p { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:13px; color:var(--sand); }
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<div id="hero" class="hero">
+  <p class="hero-author">Полянинова Бэлла Леонидовна</p>
+  <h1 class="hero-title">Снова<em>Вместе</em></h1>
+  <div class="hero-ornament"></div>
+  <p class="hero-tagline">Как перестать говорить только о быте — и вернуть живой разговор между двумя людьми.</p>
+  <div class="hero-start">
+    <button class="btn-start" onclick="openGuide()">Начать читать</button>
+    <p class="hero-hint">Бесплатный гайд · Займёт 5 минут</p>
+  </div>
+  <p class="hero-quote">"Близость возвращается с одного маленького шага"</p>
+</div>
+
+<!-- ===== GUIDE ===== -->
+<div id="guide" class="guide-page">
+  <div class="top-bar">
+    <button class="back-btn" onclick="backToHero()">← Назад</button>
+  </div>
+
+  <div class="page-head">
+    <p class="page-label">Бэлла Леонидовна</p>
+    <h2 class="page-title">Как выйти <em>из быта</em></h2>
+  </div>
+
+  <div class="content">
+
+    <p class="intro-text">
+      Быт — это не враг. Быт держит семью. Дети, деньги, ремонт, чья очередь готовить — всё это реально и важно. Но когда эти темы занимают 100% разговоров — пара незаметно перестаёт быть парой. Они становятся хорошими соседями. Надёжными. Усталыми. Параллельными.<br><br>
+      Вы не разлюбили друг друга. Вы просто перестали разговаривать о чём-то кроме общего хозяйства.<br><br>
+      Этот гайд — первый шаг назад друг к другу. Не нужно ждать подходящего момента. Нужно просто начать.
+    </p>
+
+    <!-- ПУТЬ -->
+    <div class="section">
+      <p class="section-label">Шаг первый</p>
+      <h3 class="section-title">Выберите свой путь</h3>
+      <div class="section-body"><p>Эта программа работает в двух режимах. Они разные — но ведут в одно место.</p></div>
+      <div class="path-row">
+        <div class="path-card">
+          <p class="path-card-tag">Путь А</p>
+          <p class="path-card-title">Вы оба здесь</p>
+          <p class="path-card-desc">Оба чувствуют что хочется чего-то большего. Оба готовы начать. Один честный разговор — и дальше вместе.</p>
+        </div>
+        <div class="path-card">
+          <p class="path-card-tag">Путь Б</p>
+          <p class="path-card-title">Вы один / одна</p>
+          <p class="path-card-desc">Партнёр пока не готов или не знает что вы здесь. Начните тихо — маленькими действиями. Тепло чувствуется раньше чем понимается.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ПУТЬ А -->
+    <div class="section">
+      <p class="section-label">Путь А</p>
+      <h3 class="section-title">Вы оба здесь</h3>
+      <div class="section-body">
+        <p>Вы оба открыли эту программу. Возможно вместе, возможно каждый со своего телефона. Это уже важно — значит оба чувствуют что хочется чего-то большего.</p>
+        <p>Прежде чем переходить к действиям — один честный разговор. Не завтра. Сейчас.</p>
+      </div>
+      <div class="quote-block">"Мне кажется, мы давно не говорили просто так. Не о детях, не о деньгах, не о том кто что должен сделать. Просто — о нас. Я хочу это изменить."</div>
+      <div class="section-body" style="margin-top:14px;"><p>Этого достаточно чтобы начать. Просто сказать — и услышать друг друга.</p></div>
+      <span class="qlabel">Три вопроса — задайте по очереди, спокойно, просто слушайте</span>
+      <div class="quote-block">"Когда мы последний раз говорили о чём-то кроме детей, работы и быта — и ты помнишь о чём?"</div>
+      <div class="quote-block">"Что я делаю — или делал раньше — что тебе приятно, но я, возможно, не знаю об этом?"</div>
+      <div class="quote-block">"Что одно маленькое я мог бы делать каждый день — и это имело бы значение для тебя?"</div>
+      <div class="section-body" style="margin-top:14px;"><p>Ответы на эти три вопроса дадут вам больше чем месяц догадок.</p></div>
+    </div>
+
+    <!-- ПУТЬ Б -->
+    <div class="section">
+      <p class="section-label">Путь Б</p>
+      <h3 class="section-title">Вы один / одна</h3>
+      <div class="section-body">
+        <p>Ваш партнёр не знает что вы здесь. Или знает — но пока не готов открыться. Или вы пробовали говорить — и разговор не получился.</p>
+        <p>Это не значит что ничего не изменится. Один человек в паре почти всегда чувствует необходимость изменений раньше. Это не слабость. Это чуткость. И именно она способна сдвинуть всё.</p>
+        <p>Не нужно объяснять партнёру что вы делаете и зачем. Просто начните — и наблюдайте. Люди чувствуют тепло раньше чем понимают откуда оно.</p>
+      </div>
+      <span class="qlabel">Три вопроса — тихо, вечером, рядом, между делом</span>
+      <div class="quote-block">"Помнишь, как мы тогда... Мне сейчас вдруг вспомнилось."</div>
+      <div class="quote-block">"Слушай, а давай на выходных куда-нибудь выберемся? Просто так, без повода."</div>
+      <div class="quote-block">"Что у тебя сегодня было хорошего? Хоть что-то маленькое."</div>
+      <div class="section-body" style="margin-top:14px;"><p>Это не терапия. Это просто разговор. Но именно такие разговоры размораживают то, что замёрзло.</p></div>
+    </div>
+
+    <!-- ТРИ ДЕЙСТВИЯ -->
+    <div class="section">
+      <p class="section-label">Для обоих путей</p>
+      <h3 class="section-title">Три первых действия</h3>
+      <div class="section-body"><p>Неважно каким путём вы идёте. Эти три действия меняют температуру в доме быстрее чем любой серьёзный разговор.</p></div>
+      <div class="action-row">
+        <div class="action-card">
+          <div class="action-n">1</div>
+          <div>
+            <p class="action-title">Знак что вы помните</p>
+            <p class="action-text">Когда возвращаетесь домой — принесите что-то. Не подарок. Знак. Шоколадка, один цветок, мандарин из магазина по дороге. Даже просто — <em>"я шёл и думал о тебе"</em>.<br><br>Это про одно послание: <strong>пока меня не было рядом — ты была у меня в голове.</strong></p>
+          </div>
+        </div>
+        <div class="action-card">
+          <div class="action-n">2</div>
+          <div>
+            <p class="action-title">Один момент вслух</p>
+            <p class="action-text">Каждый вечер — одно наблюдение. Маленькое, живое. Не о детях, не о счетах. О чём-то что произошло с вами сегодня.<br><br><em>"Я видел закат по дороге и почему-то подумал о тебе."<br>"Сегодня случилось кое-что смешное, хочу рассказать."</em></p>
+          </div>
+        </div>
+        <div class="action-card">
+          <div class="action-n">3</div>
+          <div>
+            <p class="action-title">Один вопрос вместо молчания</p>
+            <p class="action-text">Когда не знаете с чего начать — задайте один вопрос. Не про работу, не про детей. Свой или из программы.<br><br>Вопрос это мост. Один вопрос вечером лучше чем час молчания рядом.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- КАК ГОВОРИТЬ -->
+    <div class="section">
+      <p class="section-label">Как говорить чтобы вас слышали</p>
+      <h3 class="section-title">Не обвинение — а приглашение</h3>
+      <div class="section-body">
+        <p>Есть два способа сказать одно и то же — и они дают совершенно разный результат.</p>
+        <p>Когда вы говорите <strong>"ты никогда не замечаешь меня"</strong> — партнёр слышит нападение. Он закрывается. Разговора не получается.</p>
+        <p>Когда вы говорите <strong>"мне важно когда ты замечаешь как я выгляжу"</strong> — партнёр слышит вашу потребность. Он понимает что именно вам нужно — и хочет это дать.</p>
+        <p>Говорите от себя. Начинайте с <strong>"мне"</strong>, <strong>"я чувствую"</strong>, <strong>"для меня важно"</strong>. Не с "ты всегда", "ты никогда", "ты опять".</p>
+      </div>
+      <span class="qlabel" style="margin-top:20px;">Примеры — вместо комплиментов внешности</span>
+      <div class="phrase-list">
+        <div class="phrase-item">"Мне повезло что ты так чувствуешь людей — ты всегда понимаешь когда мне плохо."</div>
+        <div class="phrase-item">"Я восхищаюсь тем как ты держишься когда всё идёт не так."</div>
+        <div class="phrase-item">"Мне спокойно когда ты за рулём — я тебе доверяю."</div>
+        <div class="phrase-item">"Я рада что именно ты отец моих детей — я вижу как ты с ними."</div>
+        <div class="phrase-item">"Мне приятно когда ты приходишь домой и обнимаешь меня первым делом."</div>
+      </div>
+      <div class="section-body" style="margin-top:14px;"><p>Это не про внешность. Это про то что вы видите человека — его поступки, его характер, его присутствие в вашей жизни. Именно это люди хотят слышать.</p></div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-block">
+      <p class="cta-eyebrow">Следующий шаг</p>
+      <h3 class="cta-title"><em>Близость</em></h3>
+      <p class="cta-text">Вы уже увидели что это про вас. И теперь есть решение — программа которая идёт вам в помощь.</p>
+      <p style="font-size:14px;color:#4A2E10;margin-bottom:16px;text-align:left;">Внутри вы найдёте:</p>
+      <div class="cta-teaser">
+        <div class="cta-item">Стратегию совместной жизни — ритуалы и традиции которые держат пару</div>
+        <div class="cta-item">20 правил близости с живыми примерами — как говорить, замечать и быть рядом</div>
+        <div class="cta-item">100 вопросов по 5 темам — о прошлом, о мечтах, о том что хотите создать вместе</div>
+        <div class="cta-item">Чек-лист на 4 недели — маленькие шаги которые меняют температуру в доме</div>
+      </div>
+      <button class="cta-btn" onclick="window.open('https://app.lava.top/products/9c4ccc86-a0e4-4e09-aba2-f8db7e21b28b', '_blank')">Получить за 990 ₽</button>
+    </div>
+
+    <div class="guide-footer">
+      <p>© Полянинова Бэлла Леонидовна · Копирование запрещено</p>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function openGuide() {
+  document.getElementById('hero').style.display = 'none';
+  document.getElementById('guide').classList.add('active');
+  window.scrollTo(0, 0);
+}
+function backToHero() {
+  document.getElementById('guide').classList.remove('active');
+  document.getElementById('hero').style.display = 'flex';
+  window.scrollTo(0, 0);
+}
+</script>
+</body>
+</html>
