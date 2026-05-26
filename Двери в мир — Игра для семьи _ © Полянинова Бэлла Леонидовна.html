@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<!-- saved from url=(0032)https://dveri-v-mir.netlify.app/ -->
+<html lang="ru"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>body {transition: opacity ease-in 0.2s; } 
+body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relative; } 
+</style>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Двери в мир — Игра для семьи | © Полянинова Бэлла Леонидовна</title>
+    <meta name="author" content="Полянинова Бэлла Леонидовна">
+    <meta name="copyright" content="© Полянинова Бэлла Леонидовна, 2023. Все права защищены.">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --imagination: #5DADE2; --emotions: #F8B4D9; --self-esteem: #82E0AA;
+            --strategy: #F9E79F; --philosophy: #D7BDE2; --social: #85C1E9;
+            --body: #FAD7A0; --ethics: #F5B041; --fairytale: #76D7C4;
+            --trust: #A3E4D7; --text: #2C3E50; --card-bg: #FFFFFF;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh; color: var(--text); line-height: 1.6;
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        header { text-align: center; padding: 40px 20px; color: white; }
+        h1 { font-size: 2.5em; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .subtitle { font-size: 1.2em; opacity: 0.9; margin-bottom: 20px; }
+        .age-badge {
+            display: inline-block; background: rgba(255,255,255,0.2);
+            padding: 8px 20px; border-radius: 20px; font-size: 0.9em;
+        }
+        .author-info {
+            margin-top: 15px; padding: 10px 20px;
+            background: rgba(255,255,255,0.15); border-radius: 15px;
+            display: inline-block; font-size: 0.85em;
+        }
+        .nav-tabs {
+            display: flex; justify-content: center; gap: 10px;
+            margin-bottom: 30px; flex-wrap: wrap;
+        }
+        .nav-btn {
+            padding: 12px 24px; border: none; border-radius: 25px;
+            background: rgba(255,255,255,0.9); color: var(--text);
+            font-size: 1em; cursor: pointer; transition: all 0.3s; font-weight: 600;
+        }
+        .nav-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .nav-btn.active { background: #FFD700; color: #2C3E50; }
+        .section { display: none; animation: fadeIn 0.5s; }
+        .section.active { display: block; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .card-container {
+            background: var(--card-bg); border-radius: 20px; padding: 40px;
+            margin-bottom: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            position: relative; overflow: hidden;
+        }
+        .card-container::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0;
+            height: 8px; background: var(--category-color, #667eea);
+        }
+        .category-label {
+            display: inline-block; padding: 6px 16px; border-radius: 15px;
+            font-size: 0.85em; font-weight: 600; margin-bottom: 20px;
+            color: white; background: var(--category-color);
+        }
+        .question-text { font-size: 1.5em; line-height: 1.5; margin-bottom: 25px; color: #2C3E50; }
+        .age-selector { display: flex; gap: 10px; margin-bottom: 25px; flex-wrap: wrap; }
+        .age-btn {
+            padding: 8px 16px; border: 2px solid #ddd; border-radius: 20px;
+            background: white; cursor: pointer; transition: all 0.3s; font-size: 0.9em;
+        }
+        .age-btn:hover { border-color: #667eea; color: #667eea; }
+        .age-btn.active { background: #667eea; color: white; border-color: #667eea; }
+        .action-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 30px; }
+        .btn-primary {
+            padding: 15px 40px; border: none; border-radius: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; font-size: 1.1em; cursor: pointer; transition: all 0.3s;
+            font-weight: 600; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6); }
+        .btn-secondary {
+            padding: 12px 30px; border: 2px solid #667eea; border-radius: 25px;
+            background: white; color: #667eea; font-size: 1em; cursor: pointer; transition: all 0.3s;
+        }
+        .btn-secondary:hover { background: #667eea; color: white; }
+        .categories-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px; margin-top: 30px;
+        }
+        .category-card {
+            background: white; border-radius: 15px; padding: 25px; cursor: pointer;
+            transition: all 0.3s; border-left: 5px solid var(--color);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .category-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
+        .category-card h3 { color: var(--color); margin-bottom: 10px; font-size: 1.2em; }
+        .category-card p { color: #666; font-size: 0.9em; }
+        .category-card .count {
+            display: inline-block; margin-top: 10px; padding: 4px 12px;
+            background: var(--color); color: white; border-radius: 12px;
+            font-size: 0.8em; font-weight: 600;
+        }
+        .guide-content {
+            background: white; border-radius: 20px; padding: 40px; line-height: 1.8;
+        }
+        .guide-content h2 { color: #667eea; margin: 30px 0 15px 0; font-size: 1.4em; }
+        .guide-content h3 { color: #764ba2; margin: 25px 0 10px 0; font-size: 1.2em; }
+        .guide-content p { margin-bottom: 15px; color: #444; }
+        .tip-box {
+            background: #FFF9E6; border-left: 4px solid #FFD700;
+            padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0;
+        }
+        .example-box {
+            background: #E8F6F3; border-left: 4px solid #1ABC9C;
+            padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; font-style: italic;
+        }
+        .progress-bar { background: #E0E0E0; height: 8px; border-radius: 4px; margin: 20px 0; overflow: hidden; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, #667eea, #764ba2); border-radius: 4px; transition: width 0.5s; }
+        .stats {
+            display: flex; justify-content: space-around; background: white;
+            padding: 20px; border-radius: 15px; margin-bottom: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .stat-item { text-align: center; }
+        .stat-number { font-size: 2em; font-weight: bold; color: #667eea; }
+        .stat-label { color: #666; font-size: 0.9em; }
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8em; } .card-container { padding: 25px; }
+            .question-text { font-size: 1.2em; } .nav-btn { padding: 10px 16px; font-size: 0.9em; }
+            .categories-grid { grid-template-columns: 1fr; }
+        }
+        .card-enter { animation: cardEnter 0.5s ease-out; }
+        @keyframes cardEnter {
+            0% { opacity: 0; transform: scale(0.9) rotateY(10deg); }
+            100% { opacity: 1; transform: scale(1) rotateY(0); }
+        }
+        .history-item {
+            background: white; padding: 15px; margin-bottom: 10px;
+            border-radius: 10px; border-left: 4px solid var(--color);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .history-question { font-weight: 600; color: #2C3E50; margin-bottom: 5px; }
+        .clear-history {
+            background: #E74C3C; color: white; border: none;
+            padding: 10px 20px; border-radius: 20px; cursor: pointer; margin-top: 20px;
+        }
+        footer {
+            text-align: center; padding: 30px 20px; color: white;
+            opacity: 0.9; margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.2);
+        }
+        .footer-author { font-size: 1.1em; font-weight: 600; margin-bottom: 10px; }
+        .footer-copyright { font-size: 0.85em; opacity: 0.8; }
+        .footer-year {
+            display: inline-block; background: rgba(255,255,255,0.2);
+            padding: 4px 12px; border-radius: 12px; margin-top: 10px; font-size: 0.8em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧠 Двери в мир</h1>
+            <p class="subtitle">150 вопросов для развития мышления, эмпатии и творчества</p>
+            <div class="age-badge">Для детей 5–13 лет и их родителей</div>
+            <div class="author-info">
+                <div>Автор программы: <strong>Полянинова Бэлла Леонидовна</strong></div>
+                <div class="copyright">© 2023 Все права защищены</div>
+            </div>
+        </header>
+        <nav class="nav-tabs">
+            <button class="nav-btn active" onclick="showSection(&#39;game&#39;)">🎲 Играть</button>
+            <button class="nav-btn" onclick="showSection(&#39;categories&#39;)">🎨 По темам</button>
+            <button class="nav-btn" onclick="showSection(&#39;guide&#39;)">📖 Как играть</button>
+            <button class="nav-btn" onclick="showSection(&#39;progress&#39;)">📊 Прогресс</button>
+        </nav>
+        
+        <div id="game" class="section active">
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number" id="total-answered">0</div>
+                    <div class="stat-label">Вопросов пройдено</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="total-questions">150</div>
+                    <div class="stat-label">Всего вопросов</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="current-streak">0</div>
+                    <div class="stat-label">Серия дней</div>
+                </div>
+            </div>
+            
+            <div class="card-container card-enter" id="card-container" style="--category-color: #D7BDE2;">
+                <span class="category-label" id="category-label" style="background: rgb(215, 189, 226);">Философские и мировоззренческие вопросы</span>
+                
+                <div class="age-selector">
+                    <button class="age-btn" onclick="setAge(&#39;5-7&#39;)">5–7 лет</button>
+                    <button class="age-btn active" onclick="setAge(&#39;8-10&#39;)">8–10 лет</button>
+                    <button class="age-btn" onclick="setAge(&#39;11-13&#39;)">11–13 лет</button>
+                </div>
+                
+                <div class="question-text" id="question-text">Где живут мысли, пока их не сказали?</div>
+                
+                <div class="action-buttons">
+                    <button class="btn-primary" onclick="nextQuestion()">🎲 Следующий вопрос</button>
+                    <button class="btn-secondary" onclick="markAsAnswered()">✓ Ответили</button>
+                </div>
+            </div>
+            
+            <div style="text-align: center; color: white; opacity: 0.9;">
+                <p>💡 <strong>Совет:</strong> Нет правильных ответов! Фантазируйте, обсуждайте, удивляйтесь.</p>
+            </div>
+        </div>
+            <div id="categories" class="section">
+            <div class="categories-grid" id="categories-grid"><div class="category-card" style="--color: #5DADE2;">
+                    <h3>Воображение и абстрактное мышление</h3>
+                    <p>Развивает гибкость ума, метафорическое и образное мышление</p>
+                    <span class="count">15 вопросов</span>
+                </div><div class="category-card" style="--color: #F8B4D9;">
+                    <h3>Эмоциональный интеллект и эмпатия</h3>
+                    <p>Учит замечать чувства, называть их, сопереживать</p>
+                    <span class="count">15 вопросов</span>
+                </div><div class="category-card" style="--color: #82E0AA;">
+                    <h3>Самооценка и осознание сильных сторон</h3>
+                    <p>Помогает осознать свою уникальность и внутренние ресурсы</p>
+                    <span class="count">15 вопросов</span>
+                </div><div class="category-card" style="--color: #F9E79F;">
+                    <h3>Мета-позиция и стратегическое мышление</h3>
+                    <p>Развивает способность смотреть на себя со стороны</p>
+                    <span class="count">15 вопросов</span>
+                </div><div class="category-card" style="--color: #76D7C4;">
+                    <h3>Мышление через сказку и сюжет</h3>
+                    <p>Учимся строить сюжет, менять перспективы</p>
+                    <span class="count">15 вопросов</span>
+                </div><div class="category-card" style="--color: #A3E4D7;">
+                    <h3>Доверие к себе и принятие решений</h3>
+                    <p>Учит слушать себя, чувствовать границы</p>
+                    <span class="count">15 вопросов</span>
+                </div><div class="category-card" style="--color: #D7BDE2;">
+                    <h3>Философские и мировоззренческие вопросы</h3>
+                    <p>Помогают задуматься о жизни, времени, ценностях</p>
+                    <span class="count">15 вопросов</span>
+                </div><div class="category-card" style="--color: #85C1E9;">
+                    <h3>Социальные роли и поведение в обществе</h3>
+                    <p>Формирует умение быть собой в группе</p>
+                    <span class="count">15 вопросов</span>
+                </div><div class="category-card" style="--color: #FAD7A0;">
+                    <h3>Мышление через тело и ощущения</h3>
+                    <p>Развивает телесную осознанность</p>
+                    <span class="count">15 вопросов</span>
+                </div><div class="category-card" style="--color: #F5B041;">
+                    <h3>Формирование ценностей и этики</h3>
+                    <p>Учит размышлять о правильном и сложном</p>
+                    <span class="count">15 вопросов</span>
+                </div></div>
+        </div>
+        
+        <div id="guide" class="section">
+            <div class="guide-content">
+                <h2>🎯 Как использовать "Двери в мир"</h2>
+                
+                <h3>1. Это не допрос, а приключение</h3>
+                <p>Эти вопросы не про проверку знаний. Они — для удивления, размышлений, новых взглядов.</p>
+                
+                <div class="example-box">
+                    <strong>Пример:</strong><br>
+                    — Какой формы была бы грусть?<br>
+                    — Не знаю. Может, как лужа... тёплая, но мешает ходить.
+                </div>
+                
+                <h3>2. Когда спрашивать</h3>
+                <p>Лучшие моменты: в дороге, перед сном, на прогулке, за едой, в очереди.</p>
+                
+                <div class="tip-box">
+                    <strong>💡 Подсказка:</strong> Просто достаньте телефон и задайте вопрос, как будто выдвигаете волшебный ящик.
+                </div>
+                
+                <h3>3. Как реагировать на ответы</h3>
+                <p>Слушайте с интересом, не перебивайте. Не говорите: "Это ерунда", "Нет, подумай ещё".</p>
+                
+                <div class="example-box">
+                    <strong>Лучше сказать:</strong><br>
+                    — Ого. Никогда не думала об этом.<br>
+                    — А если бы ты это нарисовал?
+                </div>
+                
+                <h3>4. Игра по цветам</h3>
+                <ul style="margin-left: 20px;">
+                    <li>🟦 <strong>Голубой</strong> — Воображение</li>
+                    <li>🩷 <strong>Розовый</strong> — Эмоции</li>
+                    <li>🟢 <strong>Зелёный</strong> — Самооценка</li>
+                    <li>🟡 <strong>Жёлтый</strong> — Стратегическое мышление</li>
+                    <li>🟣 <strong>Фиолетовый</strong> — Философия</li>
+                    <li>🔵 <strong>Синий</strong> — Социальные роли</li>
+                    <li>🟠 <strong>Персиковый</strong> — Телесные ощущения</li>
+                    <li>🟧 <strong>Оранжевый</strong> — Этика и ценности</li>
+                    <li>🩵 <strong>Бирюзовый</strong> — Сказки и сюжеты</li>
+                    <li>🩴 <strong>Мятный</strong> — Доверие к себе</li>
+                </ul>
+                
+                <div class="tip-box" style="margin-top: 30px;">
+                    <strong>🌟 Главное правило:</strong> Нет неправильных ответов. Цель — почувствовать и понять друг друга.
+                </div>
+                
+                <h2>💝 Доброе слово родителям</h2>
+                <p>Вы держите в руках не просто вопросы. Это ключи к сердцу вашего ребёнка.</p>
+                <p><strong>Пусть в вашем доме будут вопросы, а не только ответы.</strong></p>
+                
+                <div style="margin-top: 40px; padding: 20px; background: #F8F9FA; border-radius: 15px; text-align: center;">
+                    <p style="margin: 0; color: #666;">Автор методики и программы</p>
+                    <p style="margin: 5px 0 0 0; font-size: 1.2em; color: #667eea; font-weight: 600;">Полянинова Бэлла Леонидовна</p>
+                    <p style="margin: 5px 0 0 0; font-size: 0.9em; color: #999;">© 2023 Все права защищены</p>
+                </div>
+            </div>
+        </div>
+            <div id="progress" class="section">
+            <div class="card-container">
+                <h2 style="margin-bottom: 20px; color: #667eea;">📊 Ваш прогресс</h2>
+                
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+                </div>
+                <p style="text-align: center; margin-bottom: 30px;">
+                    Пройдено <span id="progress-text">0</span> из 150 вопросов
+                </p>
+                
+                <h3 style="margin-bottom: 15px; color: #764ba2;">История ответов:</h3>
+                <div id="history-list"><p style="color: #999; text-align: center; padding: 40px;">Пока нет отвеченных вопросов. Начните игру!</p></div>
+                
+                <button class="clear-history" onclick="clearHistory()" style="display: none;" id="clear-btn">
+                    🗑 Очистить историю
+                </button>
+            </div>
+        </div>
+        
+        <footer>
+            <div class="footer-author">Автор программы: Полянинова Бэлла Леонидовна</div>
+            <div class="footer-copyright">© 2023 Все права защищены. Использование программы с 2023 года.</div>
+            <div class="footer-year">Программа действует с 2023 г.</div>
+        </footer>
+    </div>
+
+    <script>
+         const questions = {
+            imagination: {
+                title: "Воображение и абстрактное мышление",
+                color: "#5DADE2",
+                description: "Развивает гибкость ума, метафорическое и образное мышление",
+                questions: {
+                    "5-7": [
+                        "Что было бы, если бы облака могли падать на землю?",
+                        "Как звучит лень, если её перевести в музыку?",
+                        "Как выглядел бы мир, если бы он был нарисован карандашом?",
+                        "Что может быть невидимым, но важным?",
+                        "Если бы буквы ходили в школу, у кого были бы пятёрки?"
+                    ],
+                    "8-10": [
+                        "Как выглядела бы тень, если бы у неё был характер?",
+                        "Что было бы, если бы дерево могло рассказывать истории?",
+                        "Если бы ветер был живым, чем бы он занимался?",
+                        "Какой формы была бы грусть?",
+                        "Могут ли звуки жить в домах? Какие у них соседи?"
+                    ],
+                    "11-13": [
+                        "Что, если бы числа могли дружить? Кто с кем и почему?",
+                        "Что можно было бы построить из света?",
+                        "Как бы выглядел квадратный апельсин?",
+                        "Что делает ночь, пока мы спим?",
+                        "Что бы делала радуга, если бы у неё был выходной?"
+                    ]
+                }
+            },
+            emotions: {
+                title: "Эмоциональный интеллект и эмпатия",
+                color: "#F8B4D9",
+                description: "Учит замечать чувства, называть их, сопереживать",
+                questions: {
+                    "5-7": [
+                        "Что чувствует карандаш, когда его ломают?",
+                        "Что бы сказала игрушка, если бы её забыли на лето?",
+                        "Что бы сделала грусть, если бы хотела стать доброй?",
+                        "Какой у скуки характер?",
+                        "Что может быть невидимым, но важным?"
+                    ],
+                    "8-10": [
+                        "Если бы у страха был голос, как бы он говорил?",
+                        "Как утешить обиду, если она села в угол и молчит?",
+                        "Что может сказать глаз ушам, когда они ссорятся?",
+                        "Что бы сказала тишина, если бы ей надоело молчать?",
+                        "Что чувствует конфета, которую никто не выбрал?"
+                    ],
+                    "11-13": [
+                        "Как объяснить радость тому, кто её никогда не испытывал?",
+                        "Как себя чувствует хлеб, если его оставили черстветь?",
+                        "Как объяснить злость, не ругаясь?",
+                        "Как понять друга, если он молчит?",
+                        "Что бы сказал смех, если бы его разбудили ночью?"
+                    ]
+                }
+            },
+            selfEsteem: {
+                title: "Самооценка и осознание сильных сторон",
+                color: "#82E0AA",
+                description: "Помогает осознать свою уникальность и внутренние ресурсы",
+                questions: {
+                    "5-7": [
+                        "За что ты себя любишь?",
+                        "Какой комплимент тебе приятно слышать?",
+                        "Как ты помогаешь другим, даже если тебя не просят?",
+                        "Какой ты, когда никто не смотрит?",
+                        "Когда ты гордишься собой?"
+                    ],
+                    "8-10": [
+                        "Что у тебя получается особенно хорошо?",
+                        "Что бы о тебе сказала вода, если бы наблюдала за тобой каждый день?",
+                        "За что тебя могут вспомнить через 20 лет?",
+                        "Что бы ты сказал о себе, если хотел бы быть честным, но добрым?",
+                        "Кто бы захотел быть на тебя похожим — и за что?"
+                    ],
+                    "11-13": [
+                        "Если бы ты был героем, в чём заключалась бы твоя суперсила?",
+                        "В чём ты отличаешься от других — и почему это хорошо?",
+                        "Какую твою черту другие не замечают, а она важна?",
+                        "Что в себе ты бы не хотел менять?",
+                        "Какая у тебя «внутренняя фишка», которую никто не видит?"
+                    ]
+                }
+            },
+              strategy: {
+                title: "Мета-позиция и стратегическое мышление",
+                color: "#F9E79F",
+                description: "Развивает способность смотреть на себя со стороны",
+                questions: {
+                    "5-7": [
+                        "Что бы ты сделал, если бы стал взрослым на день?",
+                        "Как бы ты учил родителей, если бы был их учителем?",
+                        "Как бы выглядел твой день, если бы ты снимал про него фильм?",
+                        "Как бы выглядел твой дом, если бы он умел разговаривать?",
+                        "Что можно узнать о человеке по его комнате?"
+                    ],
+                    "8-10": [
+                        "Как бы ты объяснил ребёнку, что такое уважение?",
+                        "Что бы сказала твоя тень про твои поступки?",
+                        "Если бы ты был героем книги — о чём она была бы?",
+                        "Как бы ты объяснил свои ошибки, если бы был адвокатом?",
+                        "Что бы ты сказал себе, если бы увидел себя со стороны?"
+                    ],
+                    "11-13": [
+                        "Что бы ты изменил в школе, если бы стал директором?",
+                        "Что бы ты посоветовал самому себе из будущего?",
+                        "Что бы сказали твои вещи, если бы могли обсуждать тебя?",
+                        "Если бы ты был советником мэра, что бы ты предложил городу?",
+                        "Как объяснить «заботу», не используя слово «любовь»?"
+                    ]
+                }
+            },
+            fairytale: {
+                title: "Мышление через сказку и сюжет",
+                color: "#76D7C4",
+                description: "Учимся строить сюжет, менять перспективы",
+                questions: {
+                    "5-7": [
+                        "Что было бы, если бы у Золушки был характер, как у волка?",
+                        "Что бы произошло, если бы герои сказки поменялись ролями?",
+                        "Какая была бы сказка, если бы её сочинили сами злодеи?",
+                        "Что если бы сказка продолжалась ещё 10 лет?",
+                        "Если бы сказка была математической задачей — какой?"
+                    ],
+                    "8-10": [
+                        "Если бы в сказке «Колобок» были три Колобка — что бы изменилось?",
+                        "Если бы добрый герой устал быть добрым — что бы он сделал?",
+                        "Что бы сказал волшебник, если бы его заклинания больше не работали?",
+                        "Как сказка звучала бы от имени дерева, рядом с которым всё происходило?",
+                        "Что бы было, если бы сказка была с открытым финалом?"
+                    ],
+                    "11-13": [
+                        "Какую историю рассказал бы волк, если бы писал дневник?",
+                        "Что было бы, если бы в «Красной Шапочке» была бабушка-фокусница?",
+                        "Как звучит «конец сказки», если его не писать?",
+                        "Что если бы у сказки был адвокат?",
+                        "Если бы ты был автором сказок, какую бы написал первым делом?"
+                    ]
+                }
+            },
+            trust: {
+                title: "Доверие к себе и принятие решений",
+                color: "#A3E4D7",
+                description: "Учит слушать себя, чувствовать границы",
+                questions: {
+                    "5-7": [
+                        "Как ты понимаешь, что сделал правильно?",
+                        "Если бы внутри был компас — как он выглядел бы?",
+                        "Как ты понимаешь, что тебе что-то не подходит?",
+                        "Что ты точно не стал бы делать — и почему?",
+                        "Что ты сделал сам — и потом гордился этим?"
+                    ],
+                    "8-10": [
+                        "Что помогает тебе выбрать, если два варианта нравятся?",
+                        "Когда ты слушаешь других, а когда — себя?",
+                        "Если бы у тебя был советник внутри — что бы он сказал сейчас?",
+                        "Что важнее — быть понятным другим или честным с собой?",
+                        "Как ты понимаешь, что тебя пытаются сбить с твоего решения?"
+                    ],
+                    "11-13": [
+                        "Что ты чувствуешь, когда сам принимаешь решение?",
+                        "Как звучит твой «внутренний голос»?",
+                        "Что для тебя — «твоя правда»?",
+                        "В какой ситуации ты бы хотел принять решение сам?",
+                        "Как ты восстанавливаешь себя, если ошибся?"
+                    ]
+                }
+            },
+            philosophy: {
+                title: "Философские и мировоззренческие вопросы",
+                color: "#D7BDE2",
+                description: "Помогают задуматься о жизни, времени, ценностях",
+                questions: {
+                    "5-7": [
+                        "Почему что-то становится важным, а что-то нет?",
+                        "Что делает вещь красивой — она сама или наш взгляд?",
+                        "Как понять, что ты живёшь «свою жизнь»?",
+                        "Можно ли ошибаться и быть мудрым?",
+                        "Почему иногда молчание говорит больше слов?"
+                    ],
+                    "8-10": [
+                        "Зачем человеку прошлое, если оно прошло?",
+                        "Почему время нельзя остановить?",
+                        "Почему люди боятся правды?",
+                        "Как понять, что ты стал старше?",
+                        "Где живут мысли, пока их не сказали?"
+                    ],
+                    "11-13": [
+                        "Где заканчивается «я» и начинается «другие»?",
+                        "Что значит быть хорошим человеком?",
+                        "Что важнее — понимать или чувствовать?",
+                        "Что такое свобода для тебя?",
+                        "Можно ли быть счастливым и грустить одновременно?"
+                    ]
+                }
+            },
+                social: {
+                title: "Социальные роли и поведение в обществе",
+                color: "#85C1E9",
+                description: "Формирует умение быть собой в группе",
+                questions: {
+                    "5-7": [
+                        "Что ты делаешь, когда хочешь, чтобы тебя уважали?",
+                        "Кто в классе делает всех сильнее — и почему?",
+                        "Как ты выбираешь, к кому присоединиться?",
+                        "Что ты чувствуешь, когда кого-то дразнят?",
+                        "Что ты делаешь, чтобы тебя приняли?"
+                    ],
+                    "8-10": [
+                        "Что ты чувствуешь, когда помогаешь другим?",
+                        "Как не потерять себя, если все думают по-другому?",
+                        "Что ты думаешь, если кто-то делает глупость в группе?",
+                        "Как ты поступишь, если увидишь несправедливость?",
+                        "Что ты умеешь лучше всех в команде?"
+                    ],
+                    "11-13": [
+                        "Как понять, что тебе можно доверять?",
+                        "Что ты делаешь, если не согласен с другом?",
+                        "Как понять, что пора остановить ссору?",
+                        "Что можешь сказать, чтобы защитить другого?",
+                        "Что бы ты сказал себе, если почувствовал одиночество среди других?"
+                    ]
+                }
+            },
+            body: {
+                title: "Мышление через тело и ощущения",
+                color: "#FAD7A0",
+                description: "Развивает телесную осознанность",
+                questions: {
+                    "5-7": [
+                        "Как тело подсказывает тебе, что ты волнуешься?",
+                        "Что делает тело, когда чувствует опасность?",
+                        "Что расскажут твои руки о дне?",
+                        "Какие звуки делают тебе хорошо?",
+                        "Где в теле ты чувствуешь вдохновение?"
+                    ],
+                    "8-10": [
+                        "Где в теле живёт радость?",
+                        "Что помогает тебе расслабиться?",
+                        "Как пахнет утро?",
+                        "Что ты любишь ощущать на коже?",
+                        "Как тело реагирует, когда ты злишься, но не говоришь об этом?"
+                    ],
+                    "11-13": [
+                        "Как чувствуется усталость — на что она похожа?",
+                        "Какая часть тела первая чувствует страх?",
+                        "Что ты слышишь в полной тишине?",
+                        "Что делает твоя спина, когда тебе не хочется идти вперёд?",
+                        "Как ты понимаешь, что тебе пора отдохнуть?"
+                    ]
+                }
+            },
+            ethics: {
+                title: "Формирование ценностей и этики",
+                color: "#F5B041",
+                description: "Учит размышлять о правильном и сложном",
+                questions: {
+                    "5-7": [
+                        "Что важнее — быть честным или добрым?",
+                        "Когда можно нарушить правило?",
+                        "Поможешь одному или сохранишь силы для всех?",
+                        "Что такое уважение — и как оно ощущается?",
+                        "Где граница между щедростью и глупостью?"
+                    ],
+                    "8-10": [
+                        "Как понять, что ты поступаешь правильно?",
+                        "Что делает человека хорошим другом?",
+                        "Когда справедливость становится жестокой?",
+                        "Что делать, если у тебя просят слишком много?",
+                        "Как отличить силу от жестокости?"
+                    ],
+                    "11-13": [
+                        "Что ты не стал бы делать — даже если никто не узнает?",
+                        "Почему важно извиниться — даже если ты не виноват?",
+                        "Что делает поступок красивым?",
+                        "Как быть добрым, но не позволять себя использовать?",
+                        "Когда ты чувствовал гордость за свой выбор?"
+                    ]
+                }
+            }
+        };
+
+        let currentCategory = 'imagination';
+        let currentAge = '5-7';
+        let answeredQuestions = JSON.parse(localStorage.getItem('answeredQuestions') || '[]');
+        let currentQuestionIndex = 0;
+
+        function init() {
+            renderCategories();
+            updateStats();
+            renderHistory();
+            nextQuestion();
+        }
+
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        function setAge(age) {
+            currentAge = age;
+            document.querySelectorAll('.age-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            showCurrentQuestion();
+        }
+        function showCurrentQuestion() {
+            const category = questions[currentCategory];
+            const question = category.questions[currentAge][currentQuestionIndex % category.questions[currentAge].length];
+            
+            document.getElementById('question-text').textContent = question;
+            document.getElementById('category-label').textContent = category.title;
+            document.getElementById('card-container').style.setProperty('--category-color', category.color);
+            document.getElementById('category-label').style.background = category.color;
+            
+            const card = document.getElementById('card-container');
+            card.classList.remove('card-enter');
+            void card.offsetWidth;
+            card.classList.add('card-enter');
+        }
+
+        function nextQuestion() {
+            const categories = Object.keys(questions);
+            currentCategory = categories[Math.floor(Math.random() * categories.length)];
+            const ages = Object.keys(questions[currentCategory].questions);
+            currentAge = ages[Math.floor(Math.random() * ages.length)];
+            currentQuestionIndex = Math.floor(Math.random() * questions[currentCategory].questions[currentAge].length);
+            
+            document.querySelectorAll('.age-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.includes(currentAge.replace('-', '–'))) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            showCurrentQuestion();
+        }
+
+        function markAsAnswered() {
+            const category = questions[currentCategory];
+            const question = category.questions[currentAge][currentQuestionIndex % category.questions[currentAge].length];
+            
+            const entry = {
+                question: question,
+                category: category.title,
+                color: category.color,
+                age: currentAge,
+                date: new Date().toLocaleDateString('ru-RU')
+            };
+            
+            answeredQuestions.unshift(entry);
+            localStorage.setItem('answeredQuestions', JSON.stringify(answeredQuestions));
+            
+            updateStats();
+            renderHistory();
+            
+            const btn = event.target;
+            const originalText = btn.textContent;
+            btn.textContent = '✓ Сохранено!';
+            btn.style.background = '#82E0AA';
+            btn.style.color = 'white';
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.style.background = '';
+                btn.style.color = '';
+            }, 1500);
+        }
+
+        function updateStats() {
+            document.getElementById('total-answered').textContent = answeredQuestions.length;
+            
+            const dates = [...new Set(answeredQuestions.map(q => q.date))];
+            document.getElementById('current-streak').textContent = dates.length;
+            
+            const progress = Math.min((answeredQuestions.length / 150) * 100, 100);
+            document.getElementById('progress-fill').style.width = progress + '%';
+            document.getElementById('progress-text').textContent = answeredQuestions.length;
+        }
+
+        function renderCategories() {
+            const grid = document.getElementById('categories-grid');
+            grid.innerHTML = '';
+            
+            Object.entries(questions).forEach(([key, category]) => {
+                const totalQuestions = Object.values(category.questions).flat().length;
+                const card = document.createElement('div');
+                card.className = 'category-card';
+                card.style.setProperty('--color', category.color);
+                card.innerHTML = `
+                    <h3>${category.title}</h3>
+                    <p>${category.description}</p>
+                    <span class="count">${totalQuestions} вопросов</span>
+                `;
+                card.onclick = () => selectCategory(key);
+                grid.appendChild(card);
+            });
+        }
+
+        function selectCategory(categoryKey) {
+            currentCategory = categoryKey;
+            showSection('game');
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.nav-btn')[0].classList.add('active');
+            nextQuestion();
+        }
+
+        function renderHistory() {
+            const list = document.getElementById('history-list');
+            const clearBtn = document.getElementById('clear-btn');
+            
+            if (answeredQuestions.length === 0) {
+                list.innerHTML = '<p style="color: #999; text-align: center; padding: 40px;">Пока нет отвеченных вопросов. Начните игру!</p>';
+                clearBtn.style.display = 'none';
+                return;
+            }
+            
+            clearBtn.style.display = 'block';
+            list.innerHTML = answeredQuestions.map(q => `
+                <div class="history-item" style="--color: ${q.color}">
+                    <div class="history-question">${q.question}</div>
+                    <div style="font-size: 0.85em; color: #666; margin-top: 5px;">
+                        ${q.category} • ${q.age.replace('-', '–')} лет • ${q.date}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function clearHistory() {
+            if (confirm('Вы уверены, что хотите удалить всю историю?')) {
+                answeredQuestions = [];
+                localStorage.removeItem('answeredQuestions');
+                updateStats();
+                renderHistory();
+            }
+        }
+
+        init();
+    </script>
+
+<veepn-lock-screen><template shadowrootmode="open"><style>html{box-sizing:border-box;text-size-adjust:100%;word-break:normal;tab-size:4}*,:before,:after{background-repeat:no-repeat;box-sizing:border-box}:before,:after{text-decoration:inherit;vertical-align:inherit}*{padding:0;margin:0}hr{overflow:visible;height:0;color:inherit;border:0;border-top:1px solid}details,main{display:block}summary{display:list-item}small{font-size:80%}[hidden]{display:none!important}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}a{background-color:transparent}a:active,a:hover{outline-width:0}code,kbd,pre,samp{font-family:monospace}pre{font-size:1em}b,strong{font-weight:bolder}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{border-color:inherit;text-indent:0}iframe{border-style:none}input{border-radius:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{appearance:none}textarea{overflow:auto;resize:vertical}button,input,optgroup,select,textarea{font:inherit;color:inherit}optgroup{font-weight:700}button{overflow:visible}button,select{text-transform:none}button,[type=button],[type=reset],[type=submit],[role=button]{cursor:pointer}button::-moz-focus-inner,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{border-style:none;padding:0}button,html [type=button],[type=reset],[type=submit]{appearance:auto}button,input,select,textarea{background-color:transparent;border-style:none}button:-moz-focusring,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{outline:1px dotted ButtonText}select{appearance:none}a:focus,button:focus,input:focus,select:focus,textarea:focus{outline-width:0}select::-ms-expand{display:none}select::-ms-value{color:currentcolor}legend{border:0;color:inherit;display:table;white-space:normal;max-width:100%}::-webkit-file-upload-button{appearance:auto;color:inherit;font:inherit}[disabled]{cursor:default}img{border-style:none}progress{vertical-align:baseline}[aria-busy=true]{cursor:progress}[aria-controls]{cursor:pointer}[aria-disabled=true]{cursor:default}ul,ol{list-style-type:none}figure{margin:0}@keyframes slide-in{0%{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}.gradient-blue{background:radial-gradient(106.41% 128.47% at 50.15% 128.47%,#23abff,#3066ff)}.gradient-green{background:radial-gradient(92.26% 118.88% at 50.15% .13%,#00c3c3,#00aab3)}.gradient-purple{background:radial-gradient(165.12% 115.56% at 50.15% .13%,#a15aff,#00a0eb)}.bg-blue{background-color:#f2f5ff}.bg-purple{background-color:#f7f0ff}.bg-green{background-color:#ebffed}.lock-screen{font-family:FigtreeVF,sans-serif;letter-spacing:normal;position:fixed;z-index:2147483638;right:24px;bottom:24px;width:327px;border-radius:24px;overflow:hidden;box-shadow:0 24px 32px #00000014;animation:slide-in .3s ease-in-out forwards}.lock-screen__content{position:relative;padding:24px 24px 64px}.lock-screen__close{position:absolute;top:16px;right:16px;width:24px;height:24px;display:flex;align-items:center;justify-content:center;opacity:.5}.lock-screen__label{height:26px;width:fit-content;border-radius:50px;background-color:#fff3;padding-inline:16px;display:flex;align-items:center;justify-content:center;gap:8px;color:#fff;font-size:12px;line-height:18px;margin:-8px auto 16px}.lock-screen__title{color:#fff;text-align:center;font-size:20px;line-height:28px;font-weight:600;margin-bottom:8px}.lock-screen__description{color:#f5f6f7;text-align:center;font-size:14px;line-height:20px}.lock-screen__description b{font-weight:600}.lock-screen__card{position:relative;z-index:1;margin-top:-44px;background-color:#fff;border-radius:24px;padding:32px 20px 20px}.lock-screen__inner{margin-bottom:24px}.lock-screen__submit{display:flex;align-items:center;justify-content:center;gap:10px;font-weight:700;font-size:16px;height:40px;width:100%;border-radius:12px;padding-inline:16px;background-color:#f70;color:#fff;margin-bottom:16px}.lock-screen__skip{display:flex;align-items:center;justify-content:center;font-size:14px;line-height:20px;color:#82829c;margin-inline:auto}.price-card{border:1px solid #f2f2fc;background:linear-gradient(254.14deg,#fafbff .04%,#f5f8ff 100.04%);border-radius:24px;padding:24px 28px}.price-card__label{color:#4a5764;text-align:center;font-size:14px;line-height:20px;text-transform:uppercase;margin-bottom:16px}.price-card__price{display:flex;justify-content:center;align-items:flex-start;column-gap:2px;margin-bottom:12px}.price-card__currency{color:#515478;font-size:18px;line-height:28px}.price-card__number{color:#14142a;text-align:center;font-size:64px;line-height:54px}.price-card__wrap{display:flex;flex-direction:column}.price-card__decimal{color:#515478;font-size:18px;line-height:28px;font-weight:600}.price-card__period{color:#515478;font-size:14px;line-height:20px;margin-top:-6px}.price-card__discount{position:relative;display:flex;align-items:center;justify-content:center;margin-bottom:12px}.price-card__discount-divider{position:absolute;z-index:0;top:50%;left:0;width:100%;height:1px;background-color:#dbe2f9;transform:translateY(-50%)}.price-card__discount-icon{position:absolute;z-index:1;top:50%;left:50%;transform:translate(-50%,-50%)}.price-card__discount-text{position:relative;z-index:2;color:#fff;font-size:12px;font-weight:600;line-height:18px}.price-card__features{display:flex;align-items:center;justify-content:center;column-gap:16px}.price-card__feature{color:#222e3a;font-size:14px;line-height:20px;display:flex;align-items:center;gap:6px}.price-card__feature:before{content:"";display:block;width:4px;height:4px;background-color:#20df9e;border-radius:50%;flex-shrink:0}.features-list{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.features-list__item{display:flex;flex-direction:column;align-items:center;gap:6px}.features-list__icon{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center}.features-list__text{color:#293a53;text-align:center;font-size:16px;line-height:24px;letter-spacing:-.1px}</style></template><style>@font-face{font-family:FigtreeVF;src:url(chrome-extension://majdfhpaihoncoakbjgbdhglocklcgno/fonts/FigtreeVF.woff2) format("woff2 supports variations"),url(chrome-extension://majdfhpaihoncoakbjgbdhglocklcgno/fonts/FigtreeVF.woff2) format("woff2-variations");font-weight:100 1000;font-display:swap}</style></veepn-lock-screen></body></html>
