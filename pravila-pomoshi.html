@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Я выбираю себя</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F5F7FC;
+    --surface: #FFFFFF;
+    --surface2: #EEF2FB;
+    --blue-light: #D8E6F5;
+    --blue: #89AECF;
+    --blue-deep: #5A87B0;
+    --lavender: #C5C9E8;
+    --mint: #B8DDD4;
+    --rose: #F2B8C0;
+    --rose-deep: #D98A96;
+    --yellow: #F7E4A0;
+    --text: #3A4260;
+    --muted: #8A93B5;
+    --border: #DCE4F2;
+    --dark-header: #3A4260;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .header {
+    background: linear-gradient(135deg, #5A87B0 0%, #7B9ED4 50%, #9BB5E0 100%);
+    padding: 40px 24px 32px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -30px; right: -30px;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -20px; left: -20px;
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    background: rgba(242,184,192,0.2);
+  }
+  .header-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 12px;
+  }
+  .header-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 300;
+    color: #FFFFFF;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  .header-sub {
+    font-size: 13px;
+    color: rgba(255,255,255,0.75);
+    font-weight: 300;
+  }
+
+  .nav {
+    display: flex;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 2px 8px rgba(90,135,176,0.08);
+  }
+  .nav-tab {
+    flex: 1;
+    padding: 14px 8px;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s;
+  }
+  .nav-tab.active {
+    color: var(--blue-deep);
+    border-bottom-color: var(--blue-deep);
+  }
+
+  .section { display: none; animation: fadeIn 0.4s ease; }
+  .section.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* CHECKLIST */
+  .intro-box {
+    padding: 24px 20px 18px;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+  }
+  .intro-box p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text);
+    font-weight: 300;
+  }
+  .intro-box em {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--blue-deep);
+  }
+
+  .checklist-item {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+    background: var(--surface);
+  }
+  .checklist-item:nth-child(even) { background: var(--bg); }
+  .checklist-item:active { background: var(--blue-light); }
+
+  .check-box {
+    width: 22px; height: 22px;
+    border: 1.5px solid var(--blue);
+    border-radius: 6px;
+    flex-shrink: 0;
+    margin-top: 1px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    background: var(--surface);
+  }
+  .checklist-item.checked .check-box {
+    background: var(--blue-deep);
+    border-color: var(--blue-deep);
+  }
+  .checklist-item.checked .check-box::after {
+    content: '✓';
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .check-text {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text);
+    font-weight: 300;
+    flex: 1;
+  }
+  .checklist-item.checked .check-text { color: var(--muted); }
+
+  .checklist-result {
+    margin: 20px;
+    padding: 22px 20px;
+    background: linear-gradient(135deg, #5A87B0, #7B9ED4);
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(90,135,176,0.25);
+  }
+  .result-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 46px;
+    color: #FFFFFF;
+    font-weight: 300;
+    line-height: 1;
+  }
+  .result-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    margin: 6px 0 12px;
+  }
+  .result-text {
+    font-size: 13px;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.6;
+  }
+
+  /* RULES */
+  .rule-card {
+    margin: 10px 16px;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(90,135,176,0.10);
+  }
+  .rule-header {
+    background: var(--surface);
+    padding: 16px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .rule-header:active { background: var(--blue-light); }
+  .rule-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: var(--blue-deep);
+    font-weight: 400;
+    min-width: 28px;
+  }
+  .rule-title {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1.5;
+    flex: 1;
+  }
+  .rule-arrow {
+    color: var(--blue);
+    font-size: 18px;
+    transition: transform 0.3s;
+  }
+  .rule-card.open .rule-arrow { transform: rotate(180deg); }
+
+  .rule-body {
+    display: none;
+    background: var(--surface2);
+    border-top: 1px solid var(--border);
+  }
+  .rule-card.open .rule-body { display: block; }
+
+  .rule-statement {
+    padding: 16px 18px 12px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-style: italic;
+    color: var(--blue-deep);
+    line-height: 1.5;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .examples-label {
+    padding: 12px 18px 6px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .example-item {
+    padding: 10px 18px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .example-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--rose-deep);
+    margin-top: 7px;
+    flex-shrink: 0;
+  }
+  .example-text {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text);
+    font-weight: 300;
+  }
+  .example-item:last-child { padding-bottom: 16px; }
+
+  /* DIARY */
+  .diary-week { padding: 16px 16px 0; }
+  .week-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+    padding: 0 4px;
+  }
+
+  .diary-rule {
+    background: var(--surface);
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 8px;
+    box-shadow: 0 1px 6px rgba(90,135,176,0.07);
+    border-left: 3px solid var(--blue-light);
+  }
+  .diary-rule-text {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.5;
+    font-weight: 400;
+    margin-bottom: 12px;
+  }
+  .diary-toggles { display: flex; gap: 8px; }
+  .toggle-btn {
+    flex: 1;
+    padding: 9px 6px;
+    border-radius: 8px;
+    border: 1.5px solid var(--border);
+    background: transparent;
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.5px;
+  }
+  .toggle-btn.yes.active {
+    background: var(--mint);
+    border-color: #7BBFB2;
+    color: #2E6B60;
+  }
+  .toggle-btn.no.active {
+    background: var(--yellow);
+    border-color: #D4BC5A;
+    color: #7A6020;
+  }
+
+  .diary-stats {
+    margin: 16px 16px 24px;
+    padding: 20px;
+    background: linear-gradient(135deg, #5A87B0, #7B9ED4);
+    border-radius: 14px;
+    box-shadow: 0 4px 16px rgba(90,135,176,0.2);
+  }
+  .stats-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .stats-label { font-size: 12px; color: rgba(255,255,255,0.7); letter-spacing: 1px; text-transform: uppercase; }
+  .stats-bar-wrap {
+    flex: 1; margin: 0 12px; height: 4px;
+    background: rgba(255,255,255,0.2); border-radius: 2px; overflow: hidden;
+  }
+  .stats-bar { height: 100%; background: var(--yellow); border-radius: 2px; transition: width 0.5s ease; }
+  .stats-num { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: #FFFFFF; min-width: 28px; text-align: right; }
+  .stats-message {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: rgba(255,255,255,0.9);
+    line-height: 1.6;
+    margin-top: 4px;
+  }
+
+  .signature {
+    text-align: center;
+    padding: 20px 20px 40px;
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+  .signature-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    color: var(--blue-deep);
+    font-style: italic;
+    display: block;
+    margin-bottom: 4px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-label">Авторская методика</div>
+  <div class="header-title">Я выбираю<br>себя</div>
+  <div class="header-sub">Бэлла Леонидовна Полянинова</div>
+</div>
+
+<div class="nav">
+  <div class="nav-tab active" onclick="showSection('checklist', this)">Чек-лист</div>
+  <div class="nav-tab" onclick="showSection('rules', this)">Правила</div>
+  <div class="nav-tab" onclick="showSection('diary', this)">Дневник</div>
+</div>
+
+<!-- CHECKLIST -->
+<div class="section active" id="checklist">
+  <div class="intro-box">
+    <p>Отметьте то, что узнаёте в себе. Без оценки, без диагноза — <em>просто честный взгляд.</em></p>
+  </div>
+  <div id="checklist-items">
+    <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-text">Когда муж возвращается домой в плохом настроении, я автоматически ищу свою вину</div></div>
+    <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-text">Я не могу спокойно отдыхать, пока в доме есть незавершённые дела</div></div>
+    <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-text">Чужая красивая фотография вызывает у меня тревогу, а не интерес</div></div>
+    <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-text">Мне важно, чтобы мужчина заметил мои усилия — иначе кажется, что я делаю что-то не так</div></div>
+    <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-text">Я стараюсь не показывать усталость, чтобы не казаться слабой или неудобной</div></div>
+    <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-text">Увидев молодую ухоженную женщину рядом с мужем, я чувствую внутреннюю тревогу</div></div>
+    <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-text">Я продолжаю делать что-то для других, даже когда очень устала — потому что боюсь разочаровать</div></div>
+    <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-text">Похвала от других значит для меня больше, чем собственная оценка</div></div>
+    <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-text">Мне трудно попросить о помощи — кажется, что должна справляться сама</div></div>
+    <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-text">Когда мужчина молчит или холоден, я начинаю думать: «Что я сделала не так?»</div></div>
+    <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-text">Я слежу за тем, на кого смотрит мой мужчина в компании</div></div>
+    <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-text">Ощущение своей ценности зависит от того, как ко мне относятся окружающие в этот день</div></div>
+    <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-text">Я думаю о своём возрасте как о чём-то, что меня уже немного «обесценивает»</div></div>
+    <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-text">Мне сложно сказать «нет» близким, даже когда это важно для меня</div></div>
+    <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-text">Иногда я ловлю себя на мысли: «Если я расслаблюсь — меня заменят»</div></div>
+  </div>
+  <div class="checklist-result">
+    <div class="result-num" id="check-count">0</div>
+    <div class="result-label">из 17 отмечено</div>
+    <div class="result-text" id="check-message">Отметьте утверждения, которые узнаёте в себе</div>
+  </div>
+  <div class="signature"><span class="signature-name">Бэлла Леонидовна</span>bella-psychologist.com</div>
+</div>
+
+<!-- RULES -->
+<div class="section" id="rules">
+  <div class="intro-box">
+    <p>Каждое правило — это маленькое бытовое действие. Не установка «быть лучше», а <em>возврат к себе.</em></p>
+  </div>
+  <div style="padding-bottom: 24px;">
+
+    <div class="rule-card" onclick="toggleRule(this)">
+      <div class="rule-header"><span class="rule-num">01</span><span class="rule-title">Я не несу ответственность за настроение мужа</span><span class="rule-arrow">▾</span></div>
+      <div class="rule-body">
+        <div class="rule-statement">«Его настроение — это его внутреннее состояние. Оно зависит от него, не от меня»</div>
+        <div class="examples-label">Как это выглядит в жизни</div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Муж вернулся раздражённым. Вы замечаете привычный импульс — срочно «починить» его настроение. Вы его замечаете и не идёте за ним. Ужин на столе, вы занимаетесь своим.</div></div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Он молчит весь вечер. Вместо вопроса «Я что-то сделала не так?» вы задаёте себе другой: «Как я сейчас себя чувствую?» И возвращаете внимание к себе.</div></div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Его обида или плохое настроение — это не счёт, который вы обязаны оплатить. Вы можете быть рядом, но не обязаны растворяться в его состоянии.</div></div>
+      </div>
+    </div>
+
+    <div class="rule-card" onclick="toggleRule(this)">
+      <div class="rule-header"><span class="rule-num">02</span><span class="rule-title">Я хорошая женщина — потому что позаботилась о себе</span><span class="rule-arrow">▾</span></div>
+      <div class="rule-body">
+        <div class="rule-statement">«Моя ценность не в том, сколько я сделала для других. А в том, что я пришла к людям в ресурсе»</div>
+        <div class="examples-label">Как это выглядит в жизни</div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Вы легли отдохнуть днём, пока можно было. Не приготовили третье блюдо. Ужин простой, но вы спокойны — и это ценнее, чем идеальный стол.</div></div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Вы отказались от лишнего дела вечером и пошли гулять или читать. Потому что завтра вам нужны силы — для себя и для близких.</div></div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Вы сказали себе: «Сегодня я не сделала всё идеально, но я была собой — живой, настоящей, не на износ».</div></div>
+      </div>
+    </div>
+
+    <div class="rule-card" onclick="toggleRule(this)">
+      <div class="rule-header"><span class="rule-num">03</span><span class="rule-title">Я не сравниваю свою нагрузку с чужой витриной</span><span class="rule-arrow">▾</span></div>
+      <div class="rule-body">
+        <div class="rule-statement">«Та женщина в Instagram живёт в других условиях. Я сравниваю несравнимое»</div>
+        <div class="examples-label">Как это выглядит в жизни</div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Вы увидели чужое красивое фото и почувствовали тревогу. Вы называете это вслух: «Я сравниваю её витрину со своей нагрузкой. Это не честное сравнение».</div></div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Вместо того чтобы разглядывать её фигуру или возраст — вы задаёте себе вопрос: «Что я сейчас делаю со своей ценностью?»</div></div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Вы вспоминаете: у неё, скорее всего, тоже есть страхи. Просто она их не публикует. Как и вы.</div></div>
+      </div>
+    </div>
+
+    <div class="rule-card" onclick="toggleRule(this)">
+      <div class="rule-header"><span class="rule-num">04</span><span class="rule-title">Моя усталость — это не слабость</span><span class="rule-arrow">▾</span></div>
+      <div class="rule-body">
+        <div class="rule-statement">«Устать — это нормально. Это не означает, что я плохая жена, мать или женщина»</div>
+        <div class="examples-label">Как это выглядит в жизни</div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Вы говорите вслух: «Я устала» — без извинений и оправданий. Просто факт.</div></div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Вместо того чтобы скрывать усталость и «держать марку» — вы просите о помощи с конкретным делом.</div></div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Вы разрешаете себе провести вечер тихо, не объясняя никому почему. Ваше состояние — не чья-то проблема.</div></div>
+      </div>
+    </div>
+
+    <div class="rule-card" onclick="toggleRule(this)">
+      <div class="rule-header"><span class="rule-num">05</span><span class="rule-title">Мне не нужно заслуживать право на отдых</span><span class="rule-arrow">▾</span></div>
+      <div class="rule-body">
+        <div class="rule-statement">«Отдых — это не награда за выполненные дела. Это моя потребность»</div>
+        <div class="examples-label">Как это выглядит в жизни</div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Дела не сделаны до конца, но вы садитесь читать. Вы не оправдываете это перед собой и не откладываете до «потом».</div></div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Вы берёте час только для себя в середине дня — без чувства вины. Не «если успею», а потому что запланировали.</div></div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Когда внутри звучит «ещё не заслужила» — вы замечаете эту мысль и не следуете ей. Это старое правило, не правда.</div></div>
+      </div>
+    </div>
+
+    <div class="rule-card" onclick="toggleRule(this)">
+      <div class="rule-header"><span class="rule-num">06</span><span class="rule-title">Я не несу ответственность за настроение всех в доме</span><span class="rule-arrow">▾</span></div>
+      <div class="rule-body">
+        <div class="rule-statement">«Моя задача — не устранять чужое недовольство. Моя задача — оставаться в своём состоянии»</div>
+        <div class="examples-label">Как это выглядит в жизни</div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Ребёнок недоволен ужином. Муж молчит. Вы замечаете желание всех срочно «починить» — и остаётесь за столом спокойно.</div></div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Кто-то дома в плохом настроении. Вы не подстраиваете свой тон, голос и поведение под чужое состояние.</div></div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Вместо того чтобы спрашивать «Что я сделала не так?» — вы задаёте другой вопрос: «Как я себя сейчас чувствую?»</div></div>
+      </div>
+    </div>
+
+    <div class="rule-card" onclick="toggleRule(this)">
+      <div class="rule-header"><span class="rule-num">07</span><span class="rule-title">Молчание мужчины — это не угроза</span><span class="rule-arrow">▾</span></div>
+      <div class="rule-body">
+        <div class="rule-statement">«Мужчина молчит — это его способ восстановиться. Это не сигнал, что я что-то сделала не так»</div>
+        <div class="examples-label">Как это выглядит в жизни</div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Он сидит тихо после работы. Вы не задаёте вопросов каждые 10 минут. Вы занимаетесь своим делом рядом.</div></div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Он не отвечает активно на разговор. Вы замечаете тревогу внутри и называете её: «Это моя реакция, не его оценка меня».</div></div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Вместо «Ты меня игнорируешь?» — вы даёте ему час и потом спокойно предлагаете поговорить, если хочет.</div></div>
+      </div>
+    </div>
+
+    <div class="rule-card" onclick="toggleRule(this)">
+      <div class="rule-header"><span class="rule-num">08</span><span class="rule-title">Я не обязана быть удобной всегда</span><span class="rule-arrow">▾</span></div>
+      <div class="rule-body">
+        <div class="rule-statement">«Удобная женщина — это не та, которую любят. Это та, которую используют»</div>
+        <div class="examples-label">Как это выглядит в жизни</div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Вас попросили о чём-то в неподходящий момент. Вы говорите: «Сейчас не могу, сделаю позже» — без длинных объяснений.</div></div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Вам не хочется куда-то идти. Вы говорите об этом прямо, не придумывая «уважительную причину».</div></div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Вы замечаете момент, когда соглашаетесь из страха, а не из желания — и делаете паузу перед ответом.</div></div>
+      </div>
+    </div>
+
+    <div class="rule-card" onclick="toggleRule(this)">
+      <div class="rule-header"><span class="rule-num">09</span><span class="rule-title">Мой возраст — это не конкуренция</span><span class="rule-arrow">▾</span></div>
+      <div class="rule-body">
+        <div class="rule-statement">«Я не соревнуюсь с молодой. У неё другая жизнь, другой опыт, другая нагрузка»</div>
+        <div class="examples-label">Как это выглядит в жизни</div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Вы видите молодую ухоженную женщину и чувствуете знакомую тревогу. Вы называете её: «Я снова в кастинге». И выходите из него.</div></div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Вместо «Мне уже столько лет» — вы говорите себе: «Мне столько опыта, столько прожитого, столько силы».</div></div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Вы делаете что-то приятное для своего тела и внешности — не чтобы конкурировать, а потому что вам нравится себя чувствовать хорошо.</div></div>
+      </div>
+    </div>
+
+    <div class="rule-card" onclick="toggleRule(this)">
+      <div class="rule-header"><span class="rule-num">10</span><span class="rule-title">Я возвращаю внимание к себе</span><span class="rule-arrow">▾</span></div>
+      <div class="rule-body">
+        <div class="rule-statement">«Когда я слежу за другими — я теряю себя. Мой вопрос: что я сейчас делаю со своей ценностью?»</div>
+        <div class="examples-label">Как это выглядит в жизни</div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Вы поймали себя на просмотре чужих страниц с тревогой. Вы закрываете приложение и делаете одно маленькое действие для себя.</div></div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Вместо «Почему у неё всё так красиво?» — вы задаёте вопрос: «Что мне сейчас нужно для себя?»</div></div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Вы замечаете момент, когда уходите в сравнение — и физически переключаетесь: встаёте, идёте на кухню, выходите подышать.</div></div>
+      </div>
+    </div>
+
+    <div class="rule-card" onclick="toggleRule(this)">
+      <div class="rule-header"><span class="rule-num">11</span><span class="rule-title">Я прошу о помощи — это не слабость</span><span class="rule-arrow">▾</span></div>
+      <div class="rule-body">
+        <div class="rule-statement">«Просить помощи — значит знать, что мне нужно. Это признак зрелости, не беспомощности»</div>
+        <div class="examples-label">Как это выглядит в жизни</div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Вы говорите мужу конкретно: «Мне нужно сегодня два часа без домашних задач. Возьми на себя детей». Не намекаете — говорите.</div></div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Вы просите подругу о разговоре, потому что вам нужно выговориться — не потому что «нет других вариантов».</div></div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Вы замечаете импульс «справлюсь сама» и спрашиваете себя: «Это моя сила или моё правило быть удобной?»</div></div>
+      </div>
+    </div>
+
+    <div class="rule-card" onclick="toggleRule(this)">
+      <div class="rule-header"><span class="rule-num">12</span><span class="rule-title">Близость строится не на кастинге</span><span class="rule-arrow">▾</span></div>
+      <div class="rule-body">
+        <div class="rule-statement">«Зрелый мужчина остаётся не потому, что рядом никогда не устают. А потому что рядом есть тепло и настоящая жизнь»</div>
+        <div class="examples-label">Как это выглядит в жизни</div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Вместо того чтобы «держать форму» из страха — вы позволяете себе быть живой: смеяться, злиться, уставать, восстанавливаться.</div></div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Вы перестаёте проверять телефон мужа или следить за его взглядами — и возвращаете эту энергию себе.</div></div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Вы делаете что-то вместе не «чтобы удержать», а потому что вам самой это приятно.</div></div>
+      </div>
+    </div>
+
+    <div class="rule-card" onclick="toggleRule(this)">
+      <div class="rule-header"><span class="rule-num">13</span><span class="rule-title">Одной мысли недостаточно — мне нужно действие</span><span class="rule-arrow">▾</span></div>
+      <div class="rule-body">
+        <div class="rule-statement">«Нельзя убедить себя фразой. Можно изменить поведение в конкретный момент»</div>
+        <div class="examples-label">Как это выглядит в жизни</div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Тревога включилась. Вы не говорите себе «успокойся» — вы делаете конкретное маленькое действие: выходите из комнаты, умываетесь, пьёте воду.</div></div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Вы снова начали сравнивать. Вы не боретесь с мыслью — вы физически переключаетесь на другое занятие.</div></div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Вы замечаете старое поведение в реальном времени — и делаете другой выбор. Даже маленький. Этого достаточно.</div></div>
+      </div>
+    </div>
+
+    <div class="rule-card" onclick="toggleRule(this)">
+      <div class="rule-header"><span class="rule-num">14</span><span class="rule-title">Я не объясняю своё «нет»</span><span class="rule-arrow">▾</span></div>
+      <div class="rule-body">
+        <div class="rule-statement">«"Нет" — это законченное предложение. Мне не нужно его обосновывать»</div>
+        <div class="examples-label">Как это выглядит в жизни</div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Вас попросили о чём-то, чего вы не хотите. Вы говорите «нет, сейчас не могу» — без трёх предложений объяснений.</div></div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">После «нет» возникло чувство вины. Вы замечаете его, называете — и не идёте сразу исправлять своё решение.</div></div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Вы практикуете паузу перед ответом: одна секунда, чтобы спросить себя — я соглашаюсь из желания или из страха?</div></div>
+      </div>
+    </div>
+
+    <div class="rule-card" onclick="toggleRule(this)">
+      <div class="rule-header"><span class="rule-num">15</span><span class="rule-title">Я не участвую в кастинге на право быть любимой</span><span class="rule-arrow">▾</span></div>
+      <div class="rule-body">
+        <div class="rule-statement">«Я не сдаю внутренний экзамен каждый день. Я выстраиваю состояние, в котором меня можно любить и уважать»</div>
+        <div class="examples-label">Как это выглядит в жизни</div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Вы замечаете момент, когда начинаете «сдавать экзамен» — и называете его: «Я снова в кастинге». Это уже победа.</div></div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Вместо вопроса «Достаточно ли я хороша?» — вы задаёте другой: «Что мне сейчас нужно для спокойствия?»</div></div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Вы делаете одно действие в свою пользу сегодня — не для того чтобы нравиться, а потому что вы этого заслуживаете без условий.</div></div>
+      </div>
+    </div>
+
+    <div class="rule-card" onclick="toggleRule(this)">
+      <div class="rule-header"><span class="rule-num">16</span><span class="rule-title">Моя ценность существует независимо от того, как ко мне относятся сегодня</span><span class="rule-arrow">▾</span></div>
+      <div class="rule-body">
+        <div class="rule-statement">«Я не становлюсь хуже, если меня не заметили, не похвалили или не выбрали сегодня»</div>
+        <div class="examples-label">Как это выглядит в жизни</div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Муж не сказал ничего приятного весь день. Внутри пошёл отсчёт: «Значит, я что-то не так». Вы останавливаете его. Его молчание — не оценка вашей ценности.</div></div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Вас не отметили, не похвалили, не заметили. Вы делаете одно действие для себя — не чтобы заслужить внимание, а просто потому что вы есть.</div></div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Вы спрашиваете себя: «Я сейчас ищу подтверждение снаружи или опираюсь на себя?» Этот вопрос возвращает вас к себе.</div></div>
+      </div>
+    </div>
+
+    <div class="rule-card" onclick="toggleRule(this)">
+      <div class="rule-header"><span class="rule-num">17</span><span class="rule-title">Я умею выходить из сравнения в моменте</span><span class="rule-arrow">▾</span></div>
+      <div class="rule-body">
+        <div class="rule-statement">«Когда тревога включилась — это не сигнал бежать исправляться. Это сигнал вернуться к себе»</div>
+        <div class="examples-label">Как это выглядит в жизни</div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Вы увидели чужое фото и почувствовали знакомое сжатие внутри. Вы закрываете телефон и называете то, что произошло: «Я сейчас сравнила. Это старое правило, не правда».</div></div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Вы в компании, и муж улыбнулся другой женщине. Тревога включилась мгновенно. Вы не анализируете его улыбку — вы переводите внимание на своё тело, своё дыхание, свой разговор.</div></div>
+        <div class="example-item"><div class="example-dot"></div><div class="example-text">Вы поймали себя на мысли «она лучше меня». Вы не спорите с этой мыслью. Вы просто добавляете: «И при этом я — это я. Со своей жизнью, своей нагрузкой и своей ценностью».</div></div>
+      </div>
+    </div>
+
+  </div>
+  <div class="signature"><span class="signature-name">Бэлла Леонидовна</span>bella-psychologist.com</div>
+</div>
+
+<!-- DIARY -->
+<div class="section" id="diary">
+  <div class="intro-box">
+    <p>Отмечайте каждый день — удалось применить правило или нет. Без самокритики. <em>Только наблюдение.</em></p>
+  </div>
+  <div class="diary-week">
+    <div class="week-label">Отметьте сегодня</div>
+    <div id="diary-items"></div>
+  </div>
+  <div class="diary-stats">
+    <div class="stats-row">
+      <span class="stats-label">Удалось</span>
+      <div class="stats-bar-wrap"><div class="stats-bar" id="stats-bar" style="width:0%"></div></div>
+      <span class="stats-num" id="stats-yes">0</span>
+    </div>
+    <div class="stats-message" id="stats-msg">Начните отмечать правила — посмотрим вместе, что получается</div>
+  </div>
+  <div class="signature"><span class="signature-name">Бэлла Леонидовна</span>bella-psychologist.com</div>
+</div>
+
+<script>
+  const rules = [
+    "Я не несу ответственность за настроение мужа",
+    "Я хорошая женщина — потому что позаботилась о себе",
+    "Я не сравниваю свою нагрузку с чужой витриной",
+    "Моя усталость — это не слабость",
+    "Мне не нужно заслуживать право на отдых",
+    "Я не несу ответственность за настроение всех в доме",
+    "Молчание мужчины — это не угроза",
+    "Я не обязана быть удобной всегда",
+    "Мой возраст — это не конкуренция",
+    "Я возвращаю внимание к себе",
+    "Я прошу о помощи — это не слабость",
+    "Близость строится не на кастинге",
+    "Одной мысли недостаточно — мне нужно действие",
+    "Я не объясняю своё «нет»",
+    "Я не участвую в кастинге на право быть любимой",
+    "Моя ценность существует независимо от того, как ко мне относятся сегодня",
+    "Я умею выходить из сравнения в моменте"
+  ];
+
+  let diaryState = JSON.parse(localStorage.getItem('pravila_diary') || '{}');
+
+  function buildDiary() {
+    const container = document.getElementById('diary-items');
+    container.innerHTML = '';
+    rules.forEach((rule, i) => {
+      const state = diaryState[i] || null;
+      const div = document.createElement('div');
+      div.className = 'diary-rule';
+      div.innerHTML = `
+        <div class="diary-rule-text"><strong>${i+1}.</strong> ${rule}</div>
+        <div class="diary-toggles">
+          <button class="toggle-btn yes ${state === 'yes' ? 'active' : ''}" onclick="setDiary(${i}, 'yes')">✓ Удалось</button>
+          <button class="toggle-btn no ${state === 'no' ? 'active' : ''}" onclick="setDiary(${i}, 'no')">Пока нет</button>
+        </div>
+      `;
+      container.appendChild(div);
+    });
+    updateStats();
+  }
+
+  function setDiary(i, val) {
+    diaryState[i] = diaryState[i] === val ? null : val;
+    localStorage.setItem('pravila_diary', JSON.stringify(diaryState));
+    buildDiary();
+  }
+
+  function updateStats() {
+    const yes = Object.values(diaryState).filter(v => v === 'yes').length;
+    const total = Object.values(diaryState).filter(v => v !== null).length;
+    document.getElementById('stats-yes').textContent = yes;
+    const pct = total > 0 ? Math.round(yes / total * 100) : 0;
+    document.getElementById('stats-bar').style.width = pct + '%';
+    let msg = 'Начните отмечать правила — посмотрим вместе, что получается';
+    if (total > 0 && yes === 0) msg = 'Честный взгляд — это уже первый шаг';
+    else if (yes >= 1 && yes <= 4) msg = 'Начало положено. Даже одно правило меняет день';
+    else if (yes >= 5 && yes <= 9) msg = 'Вы работаете с собой. Это требует настоящей силы';
+    else if (yes >= 10 && yes <= 13) msg = 'Ваша внутренняя опора становится устойчивее';
+    else if (yes >= 14) msg = 'Вы живёте по своим правилам. Это и есть свобода';
+    document.getElementById('stats-msg').textContent = msg;
+  }
+
+  function toggleCheck(item) {
+    item.classList.toggle('checked');
+    updateCheckResult();
+  }
+
+  function updateCheckResult() {
+    const total = document.querySelectorAll('.checklist-item.checked').length;
+    document.getElementById('check-count').textContent = total;
+    let msg = 'Отметьте утверждения, которые узнаёте в себе';
+    if (total >= 1 && total <= 5) msg = 'Вы знаете себя. Эти паттерны поддаются изменению';
+    else if (total >= 6 && total <= 11) msg = 'Много знакомого — значит, правила глубоко укоренились. Именно для этого создан этот практикум';
+    else if (total >= 12) msg = 'Внутренний кастинг работает очень активно. Правила помощи — ваш следующий шаг';
+    document.getElementById('check-message').textContent = msg;
+  }
+
+  function toggleRule(card) { card.classList.toggle('open'); }
+
+  function showSection(id, tab) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    tab.classList.add('active');
+  }
+
+  buildDiary();
+</script>
+
+<!-- STICKY CTA -->
+<div style="
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: #FFFFFF;
+  border-top: 1px solid #DCE4F2;
+  padding: 12px 16px 24px;
+  box-shadow: 0 -4px 20px rgba(90,135,176,0.15);
+  z-index: 100;
+">
+  <div style="
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #8A93B5;
+    text-align: center;
+    margin-bottom: 10px;
+  ">Разобрать свою ситуацию с Бэллой Леонидовной</div>
+  <div style="display: flex; gap: 10px;">
+    <a href="https://wa.me/79880051025" style="
+      flex: 1;
+      display: flex; align-items: center; justify-content: center; gap: 7px;
+      background: #1DAFEF;
+      color: white;
+      text-decoration: none;
+      font-family: 'Jost', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      padding: 13px 10px;
+      border-radius: 12px;
+    ">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+    <a href="https://t.me/Bella_psychologist" style="
+      flex: 1;
+      display: flex; align-items: center; justify-content: center; gap: 7px;
+      background: #1DAFEF;
+      color: white;
+      text-decoration: none;
+      font-family: 'Jost', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      padding: 13px 10px;
+      border-radius: 12px;
+    ">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+      Telegram
+    </a>
+  </div>
+</div>
+
+<!-- Padding so content doesn't hide behind sticky bar -->
+<div style="height: 100px;"></div>
+
+</body>
+</html>
