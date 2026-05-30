@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Семейная правда</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fff8f3;
+    --peach: #e8946a;
+    --peach-light: #f5d0b8;
+    --peach-pale: #fff1e8;
+    --rose: #d4728a;
+    --rose-light: #f5c8d4;
+    --rose-pale: #fff0f4;
+    --cream: #f9efe6;
+    --yellow: #e8b84b;
+    --yellow-pale: #fef6e4;
+    --text: #3d2e26;
+    --text-soft: #6e5248;
+    --text-dim: #a87d6e;
+    --border: #ecd5c4;
+    --white: #ffffff;
+    --blue: #6a9ec4;
+    --blue-light: #cce0f0;
+    --blue-pale: #f0f7fd;
+    --blue-dark: #2e5f84;
+    --blue-bg: #f0f7fd;
+    --green: #5a9e6a;
+    --green-pale: #edf7ef;
+    --green-border: #a8d8b0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    line-height: 1.75;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    background: linear-gradient(160deg, #fde0cc 0%, #fce8f0 55%, #fef4dc 100%);
+    padding: 72px 28px 64px;
+    text-align: center;
+  }
+  .hero-inner { max-width: 640px; margin: 0 auto; }
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--peach);
+    margin-bottom: 22px;
+    font-weight: 700;
+  }
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(38px, 7vw, 58px);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--text);
+    margin-bottom: 22px;
+  }
+  h1 em { font-style: italic; color: var(--rose); }
+  .hero-desc {
+    font-size: 17px;
+    color: var(--text-soft);
+    max-width: 500px;
+    margin: 0 auto 40px;
+    line-height: 1.85;
+  }
+  .steps-row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    max-width: 260px;
+    margin: 0 auto;
+  }
+  .step {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 16px;
+    color: var(--text-soft);
+    font-weight: 600;
+  }
+  .step-dot {
+    width: 34px; height: 34px;
+    background: var(--white);
+    border: 2px solid var(--peach);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; color: var(--peach); font-weight: 700;
+    flex-shrink: 0;
+  }
+  .step-arrow { display: none; }
+
+  /* ===== SECTION WRAPPER ===== */
+  .section { max-width: 780px; margin: 0 auto; padding: 60px 28px; }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 20px;
+    line-height: 1.25;
+  }
+  .section-title em { font-style: italic; color: var(--rose); }
+  .body-text { font-size: 16px; color: var(--text-soft); line-height: 1.9; margin-bottom: 18px; }
+
+  /* ===== INTRO CARDS ===== */
+  .intro-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 16px;
+    margin-top: 32px;
+  }
+  .intro-card {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: 18px;
+    padding: 24px 22px;
+  }
+  .intro-card-icon { font-size: 32px; margin-bottom: 14px; }
+  .intro-card-title { font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+  .intro-card-desc { font-size: 16px; color: var(--text-soft); line-height: 1.75; }
+
+  /* ===== ORIGINS BLOCK ===== */
+  .origins-wrap {
+    background: linear-gradient(135deg, #fff0f4 0%, #fff6ee 100%);
+    border-top: 1px solid var(--rose-light);
+    border-bottom: 1px solid var(--rose-light);
+    padding: 60px 28px;
+  }
+  .origins-inner { max-width: 780px; margin: 0 auto; }
+  .origin-items { display: flex; flex-direction: column; gap: 16px; margin-top: 28px; }
+  .origin-item {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 24px;
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+  }
+  .origin-icon { font-size: 26px; flex-shrink: 0; margin-top: 2px; }
+  .origin-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+  .origin-desc { font-size: 15px; color: var(--text-soft); line-height: 1.7; }
+
+  /* ===== TEST ===== */
+  .test-wrap {
+    background: var(--blue-bg);
+    border-top: 1px solid var(--blue-light);
+    border-bottom: 1px solid var(--blue-light);
+    padding: 60px 28px;
+  }
+  .test-inner { max-width: 720px; margin: 0 auto; }
+  .test-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px; font-weight: 400;
+    color: var(--blue-dark); margin-bottom: 10px;
+  }
+  .test-sub { font-size: 16px; color: var(--blue); margin-bottom: 36px; line-height: 1.75; }
+  .test-question {
+    background: var(--white);
+    border: 1.5px solid var(--blue-light);
+    border-radius: 16px;
+    padding: 24px 26px;
+    margin-bottom: 16px;
+    transition: border-color 0.2s;
+  }
+  .test-question.answered { border-color: var(--blue); }
+  .q-text { font-size: 16px; color: var(--text); margin-bottom: 16px; font-weight: 600; line-height: 1.6; }
+  .q-options { display: flex; flex-direction: column; gap: 10px; }
+  .q-option {
+    display: flex; align-items: flex-start; gap: 12px;
+    cursor: pointer; padding: 10px 14px;
+    border-radius: 12px; transition: background 0.15s;
+    font-size: 15px; color: var(--text-soft);
+    border: 1.5px solid transparent; line-height: 1.6;
+  }
+  .q-option:hover { background: var(--blue-light); }
+  .q-option.selected { background: var(--blue-light); border-color: var(--blue); color: var(--blue-dark); font-weight: 600; }
+  .q-dot {
+    width: 22px; height: 22px; border: 2px solid var(--blue-light);
+    border-radius: 50%; flex-shrink: 0; margin-top: 1px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s;
+  }
+  .q-option.selected .q-dot { background: var(--blue); border-color: var(--blue); }
+  .q-dot::after { content: ''; width: 8px; height: 8px; background: white; border-radius: 50%; opacity: 0; transition: opacity 0.15s; }
+  .q-option.selected .q-dot::after { opacity: 1; }
+  .test-btn {
+    margin-top: 28px;
+    background: var(--blue);
+    color: white; border: none;
+    padding: 16px 40px; border-radius: 100px;
+    font-size: 16px; font-weight: 700;
+    cursor: pointer; font-family: 'Nunito', sans-serif;
+    transition: background 0.2s, transform 0.1s; display: block;
+  }
+  .test-btn:hover { background: var(--blue-dark); transform: translateY(-1px); }
+  .test-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+  .test-result {
+    display: none; background: var(--white);
+    border: 2px solid var(--blue); border-radius: 18px;
+    padding: 30px; margin-top: 24px;
+  }
+  .test-result.show { display: block; }
+  .result-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; color: var(--blue-dark); margin-bottom: 12px; }
+  .result-text { font-size: 16px; color: var(--text-soft); line-height: 1.85; }
+  .result-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .result-tag { background: var(--blue-light); color: var(--blue-dark); padding: 7px 16px; border-radius: 100px; font-size: 14px; font-weight: 700; }
+  .result-cta { margin-top: 20px; font-size: 16px; color: var(--blue-dark); font-weight: 700; }
+
+  /* ===== THREE UNIVERSAL PHRASES ===== */
+  .universal-wrap {
+    background: linear-gradient(135deg, #fef6ee 0%, #fdf0f5 100%);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 60px 28px;
+  }
+  .universal-inner { max-width: 780px; margin: 0 auto; }
+  .phrase-cards { display: flex; flex-direction: column; gap: 16px; margin-top: 28px; }
+  .phrase-card {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    padding: 24px 26px;
+    display: flex; gap: 20px; align-items: flex-start;
+  }
+  .phrase-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px; color: var(--peach);
+    font-weight: 300; line-height: 1;
+    flex-shrink: 0; min-width: 36px;
+  }
+  .phrase-content {}
+  .phrase-quote {
+    font-size: 17px; font-weight: 700; color: var(--text);
+    margin-bottom: 8px; line-height: 1.5;
+    font-style: italic;
+  }
+  .phrase-explain { font-size: 15px; color: var(--text-soft); line-height: 1.75; }
+
+  /* ===== CARDS ===== */
+  .cards-section { max-width: 780px; margin: 0 auto; padding: 60px 28px 40px; }
+  .cards-title { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-weight: 400; color: var(--text); margin-bottom: 8px; }
+  .cards-sub { font-size: 16px; color: var(--text-dim); margin-bottom: 36px; }
+  .card-list { display: flex; flex-direction: column; gap: 12px; }
+  .manip-card {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: 18px; overflow: hidden;
+    transition: box-shadow 0.25s, border-color 0.25s;
+  }
+  .manip-card:hover { box-shadow: 0 4px 24px rgba(232,148,106,0.12); }
+  .manip-card.open { border-color: var(--peach); box-shadow: 0 6px 32px rgba(232,148,106,0.16); }
+  .card-header {
+    display: flex; align-items: center;
+    padding: 24px 28px; cursor: pointer; gap: 18px; user-select: none;
+  }
+  .card-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px; color: var(--peach);
+    min-width: 44px; font-weight: 300; line-height: 1;
+    opacity: 0.45; transition: opacity 0.2s;
+  }
+  .manip-card.open .card-num { opacity: 1; }
+  .card-titles { flex: 1; }
+  .card-name { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 400; color: var(--text); line-height: 1.2; margin-bottom: 4px; }
+  .card-tag { font-size: 14px; color: var(--text-dim); }
+  .card-arrow { font-size: 24px; color: var(--peach); transition: transform 0.3s; opacity: 0.5; line-height: 1; }
+  .manip-card.open .card-arrow { transform: rotate(90deg); opacity: 1; }
+  .card-body { display: none; padding: 0 28px 32px; border-top: 1px solid var(--border); }
+  .manip-card.open .card-body { display: block; }
+
+  /* Inner */
+  .block { margin-top: 24px; }
+  .block-label {
+    font-size: 11px; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--text-dim);
+    margin-bottom: 12px; font-weight: 700;
+  }
+  .phrases { display: flex; flex-direction: column; gap: 8px; }
+  .phrase-item {
+    background: var(--rose-pale);
+    border-left: 3px solid var(--rose-light);
+    padding: 12px 16px; border-radius: 0 10px 10px 0;
+    font-size: 15px; color: var(--text-soft);
+    font-style: italic; line-height: 1.6;
+  }
+  .feeling-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--yellow-pale); border: 1.5px solid var(--yellow);
+    padding: 10px 20px; border-radius: 100px;
+    font-size: 15px; color: #7a5a10; font-weight: 600;
+  }
+  .rule-box {
+    border-radius: 14px; padding: 18px 20px;
+    font-size: 15px; line-height: 1.8;
+  }
+  .rule-old { background: var(--peach-pale); border: 1.5px solid var(--peach-light); color: var(--text-soft); }
+  .rule-new { background: var(--green-pale); border: 1.5px solid var(--green-border); color: #2d5e38; font-weight: 600; margin-top: 10px; }
+  .answer-box {
+    background: var(--cream); border: 1.5px solid var(--peach-light);
+    border-radius: 14px; padding: 18px 20px;
+    font-size: 15px; color: var(--text); line-height: 1.85;
+  }
+  .answer-variant {
+    padding: 12px 16px; border-radius: 10px;
+    background: var(--white); border: 1px solid var(--border);
+    font-size: 15px; color: var(--text-soft);
+    line-height: 1.7; margin-bottom: 8px;
+    font-style: italic;
+  }
+  .answer-variant:last-child { margin-bottom: 0; }
+  .answer-note { font-size: 14px; color: var(--text-dim); margin-top: 10px; line-height: 1.7; }
+  .divider { height: 1px; background: var(--border); margin: 20px 0 0; }
+
+  /* ===== DIARY ===== */
+  .diary-block { margin-top: 24px; }
+  .diary-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 10px; font-weight: 700; }
+  .diary-area {
+    width: 100%; min-height: 90px;
+    border: 1.5px solid var(--border); border-radius: 12px;
+    padding: 14px 16px; font-family: 'Nunito', sans-serif;
+    font-size: 15px; color: var(--text); background: var(--white);
+    resize: vertical; outline: none; line-height: 1.6;
+    transition: border-color 0.2s;
+  }
+  .diary-area:focus { border-color: var(--peach); }
+  .diary-area::placeholder { color: var(--text-dim); }
+
+  /* ===== SYSTEMIC BLOCK ===== */
+  .systemic-wrap { background: var(--cream); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 60px 28px; }
+  .systemic-inner { max-width: 780px; margin: 0 auto; }
+  .systemic-steps { display: flex; flex-direction: column; gap: 20px; margin-top: 32px; }
+  .sys-step {
+    background: var(--white); border: 1.5px solid var(--border);
+    border-radius: 16px; padding: 24px 26px;
+    display: flex; gap: 20px; align-items: flex-start;
+  }
+  .sys-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px; color: var(--peach);
+    font-weight: 300; line-height: 1; flex-shrink: 0; min-width: 34px;
+  }
+  .sys-title { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+  .sys-desc { font-size: 15px; color: var(--text-soft); line-height: 1.75; }
+
+  /* ===== BELLA QUOTE ===== */
+  .quote-wrap {
+    background: linear-gradient(135deg, #fde0cc 0%, #fce8f0 100%);
+    padding: 60px 28px; text-align: center;
+  }
+  .quote-inner { max-width: 620px; margin: 0 auto; }
+  .quote-mark { font-family: 'Cormorant Garamond', serif; font-size: 72px; color: var(--rose-light); line-height: 0.6; margin-bottom: 20px; }
+  .quote-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px; font-style: italic; font-weight: 400;
+    color: var(--text); line-height: 1.5; margin-bottom: 24px;
+  }
+  .quote-author { font-size: 15px; color: var(--text-dim); font-weight: 600; letter-spacing: 1px; }
+
+  /* ===== FOOTER ===== */
+  .footer { background: linear-gradient(135deg, #fce4ee 0%, #fde8d8 100%); text-align: center; padding: 56px 28px; }
+  .footer p { font-size: 16px; color: var(--text-soft); max-width: 480px; margin: 0 auto 20px; line-height: 1.85; }
+  .footer-name { font-family: 'Cormorant Garamond', serif; font-size: 26px; color: var(--rose); font-style: italic; }
+
+  .sys-step-highlight {
+    background: linear-gradient(135deg, #fff6ee 0%, #fdf0f5 100%);
+    border-color: var(--peach);
+  }
+  .sys-step-highlight .sys-title { color: var(--peach); }
+  .sys-step-highlight .sys-desc em { font-style: italic; color: var(--text); font-weight: 700; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .manip-card { animation: fadeUp 0.4s ease both; }
+  .manip-card:nth-child(1){animation-delay:.05s}.manip-card:nth-child(2){animation-delay:.1s}
+  .manip-card:nth-child(3){animation-delay:.15s}.manip-card:nth-child(4){animation-delay:.2s}
+  .manip-card:nth-child(5){animation-delay:.25s}.manip-card:nth-child(6){animation-delay:.3s}
+  .manip-card:nth-child(7){animation-delay:.35s}.manip-card:nth-child(8){animation-delay:.4s}
+  .manip-card:nth-child(9){animation-delay:.45s}
+
+  @media(max-width:600px){
+    .hero{padding:48px 20px 44px;}
+    .card-header{padding:20px 20px;}
+    .card-body{padding:0 20px 24px;}
+    .section{padding:48px 20px;}
+    .steps-row{gap:5px;}
+    .step{font-size:12px; gap:6px;}
+    .step-dot{width:26px; height:26px; font-size:12px;}
+  }
+
+  /* ===== FOOTER COPYRIGHT ===== */
+  .footer-copy {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 16px;
+    line-height: 1.7;
+  }
+
+  /* ===== FLOATING CTA ===== */
+  .float-cta {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: var(--white);
+    border-top: 1px solid var(--border);
+    padding: 12px 20px 20px;
+    z-index: 1000;
+    box-shadow: 0 -4px 24px rgba(61,46,38,0.10);
+  }
+  .float-label {
+    font-size: 12px;
+    color: var(--text-dim);
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .float-btns {
+    display: flex;
+    gap: 10px;
+  }
+  .float-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 13px 10px;
+    border-radius: 14px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform 0.15s, opacity 0.15s;
+  }
+  .float-btn:active { transform: scale(0.97); opacity: 0.9; }
+  .float-wa {
+    background: #25D366;
+    color: white;
+  }
+  .float-tg {
+    background: #2AABEE;
+    color: white;
+  }
+  /* Push page content above floating bar */
+  body { padding-bottom: 110px; }
+
+  /* ===== DIARY ===== */
+  .diary-block { margin-top: 24px; border-top: 1px solid var(--border); padding-top: 20px; }
+  .diary-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 16px; font-weight: 700; }
+  .diary-inner { display: flex; flex-direction: column; gap: 18px; }
+  .diary-row {}
+  .diary-q { font-size: 14px; color: var(--text-soft); font-weight: 600; margin-bottom: 10px; }
+  .diary-opts { display: flex; flex-wrap: wrap; gap: 8px; }
+  .diary-opt {
+    padding: 8px 14px; border-radius: 100px;
+    border: 1.5px solid var(--border);
+    background: var(--white); cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    font-size: 13px; color: var(--text-soft);
+    transition: all 0.15s; font-weight: 500;
+  }
+  .diary-opt:hover { border-color: var(--peach); color: var(--peach); }
+  .diary-opt.active { background: var(--peach-pale); border-color: var(--peach); color: var(--peach); font-weight: 700; }
+  .diary-area {
+    width: 100%; min-height: 80px;
+    border: 1.5px solid var(--border); border-radius: 12px;
+    padding: 14px 16px; font-family: 'Nunito', sans-serif;
+    font-size: 15px; color: var(--text); background: var(--white);
+    resize: vertical; outline: none; line-height: 1.6;
+    transition: border-color 0.2s;
+  }
+  .diary-area:focus { border-color: var(--peach); }
+  .diary-area::placeholder { color: var(--text-dim); }
+
+  /* ===== FULL DIARY PAGE ===== */
+  .diary-page {
+    max-width: 780px; margin: 0 auto; padding: 60px 28px 40px;
+  }
+  .diary-page-title { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-weight: 400; color: var(--text); margin-bottom: 8px; }
+  .diary-page-title em { font-style: italic; color: var(--rose); }
+  .diary-page-sub { font-size: 16px; color: var(--text-dim); margin-bottom: 36px; line-height: 1.75; }
+  .diary-manip-block {
+    background: var(--white); border: 1.5px solid var(--border);
+    border-radius: 18px; padding: 24px 26px; margin-bottom: 12px;
+  }
+  .diary-manip-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--text); margin-bottom: 4px; }
+  .diary-manip-week { font-size: 13px; color: var(--text-dim); margin-bottom: 16px; font-weight: 600; letter-spacing: 0.5px; }
+  .diary-week-row { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+  .diary-day {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 6px; min-width: 36px;
+  }
+  .diary-day-label { font-size: 11px; color: var(--text-dim); font-weight: 700; }
+  .diary-day-dot {
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 1.5px solid var(--border); background: var(--white);
+    cursor: pointer; transition: all 0.15s;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+  }
+  .diary-day-dot:hover { border-color: var(--peach); }
+  .diary-day-dot.marked-yes { background: var(--peach); border-color: var(--peach); }
+  .diary-day-dot.marked-no { background: var(--green-pale); border-color: var(--green-border); }
+  .diary-legend { display: flex; gap: 16px; margin-top: 8px; margin-bottom: 14px; }
+  .diary-legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-dim); }
+  .diary-legend-dot { width: 14px; height: 14px; border-radius: 50%; }
+
+  /* ===== PROGRESS DIARY ===== */
+  .progress-tabs {
+    display: flex; gap: 8px; flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .ptab {
+    width: 40px; height: 40px; border-radius: 50%;
+    border: 1.5px solid var(--border);
+    background: var(--white); cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    font-size: 13px; font-weight: 700;
+    color: var(--text-dim); transition: all 0.15s;
+  }
+  .ptab:hover { border-color: var(--peach); color: var(--peach); }
+  .ptab.active { background: var(--peach); border-color: var(--peach); color: white; }
+
+  .progress-manip-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px; color: var(--text);
+    margin-bottom: 20px; font-weight: 400;
+    min-height: 32px;
+  }
+
+  .progress-days { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+
+  .progress-day {
+    background: var(--white); border: 1.5px solid var(--border);
+    border-radius: 14px; overflow: hidden;
+  }
+  .progress-day-header {
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 18px; cursor: pointer;
+  }
+  .progress-day-name {
+    font-size: 14px; font-weight: 700; color: var(--text);
+    min-width: 100px;
+  }
+  .progress-day-status {
+    display: flex; gap: 6px;
+  }
+  .pstatus-btn {
+    padding: 5px 12px; border-radius: 100px;
+    border: 1.5px solid var(--border);
+    background: var(--white); cursor: pointer;
+    font-size: 12px; font-weight: 700;
+    color: var(--text-dim); transition: all 0.15s;
+    font-family: 'Nunito', sans-serif;
+  }
+  .pstatus-btn.s-was { background: var(--peach-pale); border-color: var(--peach); color: var(--peach); }
+  .pstatus-btn.s-held { background: var(--green-pale); border-color: var(--green-border); color: var(--green); }
+  .pstatus-btn.s-noticed { background: var(--yellow-pale); border-color: var(--yellow); color: #8a6010; }
+
+  .progress-day-body { display: none; padding: 0 18px 16px; }
+  .progress-day.open .progress-day-body { display: block; }
+  .progress-day.open { border-color: var(--peach); }
+
+  .pday-q { font-size: 13px; color: var(--text-dim); font-weight: 700; margin: 12px 0 6px; letter-spacing: 0.5px; text-transform: uppercase; }
+  .pday-input {
+    width: 100%; border: 1.5px solid var(--border); border-radius: 10px;
+    padding: 10px 14px; font-family: 'Nunito', sans-serif;
+    font-size: 14px; color: var(--text); background: var(--white);
+    outline: none; line-height: 1.6; resize: none; min-height: 64px;
+    transition: border-color 0.2s;
+  }
+  .pday-input:focus { border-color: var(--peach); }
+  .pday-input::placeholder { color: var(--text-dim); }
+
+  /* Summary */
+  .progress-week-summary {
+    background: var(--white); border: 1.5px solid var(--border);
+    border-radius: 16px; padding: 22px;
+  }
+  .progress-summary-label {
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--text-dim); margin-bottom: 16px; font-weight: 700;
+  }
+  .progress-summary-grid {
+    display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 4px;
+  }
+  .summary-day-pill {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 4px;
+  }
+  .summary-day-label { font-size: 11px; color: var(--text-dim); font-weight: 700; }
+  .summary-day-icon {
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 1.5px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; background: var(--white);
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Белла Леонидовна · Психология отношений</div>
+    <h1>Семейная правда:<br><em>правило, которое всё меняет</em></h1>
+    <p class="hero-desc">Манипуляция работает не потому что человек плохой — и не потому что вы слабая. Она работает потому что внутри вас есть правило, которое её пропускает. Здесь вы его найдёте — и замените.</p>
+    <div class="steps-row">
+      <div class="step"><div class="step-dot">1</div> Пройдите тест</div>
+      <div class="step"><div class="step-dot">2</div> Узнайте манипуляцию</div>
+      <div class="step"><div class="step-dot">3</div> Измените правило</div>
+      <div class="step"><div class="step-dot">4</div> Дневник прогресса</div>
+    </div>
+  </div>
+</div>
+
+<!-- INTRO -->
+<div class="section">
+  <div class="section-title">Что такое <em>бытовая манипуляция</em></div>
+  <p class="body-text">Большинство женщин не замечают манипуляцию в тот момент, когда она происходит. Кажется, что это просто обычная просьба, обычная обида или обычный разговор. Именно поэтому они так хорошо работают.</p>
+  <p class="body-text">Бытовая манипуляция — это когда вас двигают не силой, а чувством. Вы идёте делать то, что не хотите — не потому что решили, а потому что стало стыдно, страшно или неловко отказать.</p>
+  <div class="intro-grid">
+    <div class="intro-card">
+      <div class="intro-card-icon">🎭</div>
+      <div class="intro-card-title">Манипуляция — это не крик</div>
+      <div class="intro-card-desc">Чаще всего это мягкий упрёк, обиженное молчание или неожиданная похвала. Всё выглядит невинно.</div>
+    </div>
+    <div class="intro-card">
+      <div class="intro-card-icon">🪞</div>
+      <div class="intro-card-title">Она работает через ваше правило</div>
+      <div class="intro-card-desc">Внутри вас есть убеждение — «хорошая жена должна...». Именно в него и целит манипуляция.</div>
+    </div>
+    <div class="intro-card">
+      <div class="intro-card-icon">🔑</div>
+      <div class="intro-card-title">Увидеть — значит обезвредить</div>
+      <div class="intro-card-desc">Как только вы называете манипуляцию своим именем — она теряет силу. Это и есть первый шаг.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ORIGINS -->
+<div class="origins-wrap">
+  <div class="origins-inner">
+    <div class="section-title">Откуда это <em>взялось</em></div>
+    <p class="body-text">Мы не рождаемся с правилом «хорошая девочка не отказывает». Нас этому учили — часто из самых добрых побуждений.</p>
+    <div class="origin-items">
+      <div class="origin-item">
+        <div class="origin-icon">👩‍👧</div>
+        <div>
+          <div class="origin-title">Мамина модель</div>
+          <div class="origin-desc">Вы видели, как мама уступала, молчала, не отказывала. Это стало нормой — так делают женщины в семье.</div>
+        </div>
+      </div>
+      <div class="origin-item">
+        <div class="origin-icon">🎀</div>
+        <div>
+          <div class="origin-title">Воспитание «хорошей девочки»</div>
+          <div class="origin-desc">«Не груби», «будь вежливой», «старших надо слушаться» — это были правила выживания в детстве. Во взрослой жизни они превратились в уязвимости.</div>
+        </div>
+      </div>
+      <div class="origin-item">
+        <div class="origin-icon">💬</div>
+        <div>
+          <div class="origin-title">Фраза, которую повторяли</div>
+          <div class="origin-desc">«Хорошие жёны так не делают», «в нашей семье принято», «что люди скажут» — чужие слова, которые стали вашими убеждениями.</div>
+        </div>
+      </div>
+      <div class="origin-item">
+        <div class="origin-icon">💡</div>
+        <div>
+          <div class="origin-title">Это не ваша вина — но ваша работа</div>
+          <div class="origin-desc">Правила, заложенные в детстве, не выбирались осознанно. Но именно вы можете их увидеть и изменить. Это и есть взрослость.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TEST -->
+<div class="test-wrap">
+  <div class="test-inner">
+    <div class="test-title">Тест на самоопределение</div>
+    <p class="test-sub">Отвечайте честно — так, как есть в вашей жизни прямо сейчас, а не как «правильно». Тест покажет, с какими манипуляциями вы сталкиваетесь чаще всего.</p>
+    <div id="testQuestions"></div>
+    <button class="test-btn" id="testBtn" disabled onclick="showResult()">Посмотреть результат</button>
+    <div class="test-result" id="testResult">
+      <div class="result-title" id="resultTitle"></div>
+      <div class="result-text" id="resultText"></div>
+      <div class="result-tags" id="resultTags"></div>
+      <div class="result-cta" id="resultCta"></div>
+    </div>
+  </div>
+</div>
+
+<!-- THREE UNIVERSAL PHRASES -->
+<div class="universal-wrap">
+  <div class="universal-inner">
+    <div class="section-title">Три фразы <em>на любую манипуляцию</em></div>
+    <p class="body-text">Прежде чем изучать каждый вид — запомните три универсальных ответа. Они работают почти всегда, независимо от того, кто манипулирует и как.</p>
+    <div class="phrase-cards">
+      <div class="phrase-card">
+        <div class="phrase-num">1</div>
+        <div class="phrase-content">
+          <div class="phrase-quote">«Для чего ты мне это говоришь?»</div>
+          <div class="phrase-explain">Произносите медленно, с паузой после. Попробуйте переставить ударение на каждое слово по очереди — смысл каждый раз меняется. Человек ждёт, что вы начнёте оправдываться. Вопрос ломает этот механизм — он вынужден отвечать за свои слова.</div>
+        </div>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-num">2</div>
+        <div class="phrase-content">
+          <div class="phrase-quote">«Я вижу, что происходит. Мне это неприемлемо.»</div>
+          <div class="phrase-explain">Называние манипуляции вслух лишает её силы. Не нужно кричать и обвинять — достаточно спокойно обозначить факт. Манипуляция живёт в тени. На свету она разрушается.</div>
+        </div>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-num">3</div>
+        <div class="phrase-content">
+          <div class="phrase-quote">«Я слышу тебя. И я приму решение сама.»</div>
+          <div class="phrase-explain">Без объяснений, без оправданий. Вы не обязаны доказывать своё право на решение. Объяснение всегда открывает дверь для следующего раунда давления.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CARDS -->
+<div class="cards-section">
+  <div class="cards-title">9 бытовых манипуляций</div>
+  <p class="cards-sub">Раскройте каждую — найдите своё правило и измените его</p>
+  <div class="card-list" id="cardList"></div>
+</div>
+
+<!-- SYSTEMIC -->
+<div class="systemic-wrap">
+  <div class="systemic-inner">
+    <div class="section-title">Что делать, если это <em>уже давно</em></div>
+    <p class="body-text">Одна фраза — это не то же самое, что системная манипуляция, которая длится годами. Если вы узнали себя во многих карточках — это сигнал не паниковать, а действовать иначе.</p>
+    <div class="systemic-steps">
+      <div class="sys-step">
+        <div class="sys-num">1</div>
+        <div>
+          <div class="sys-title">Не пытайтесь изменить всё сразу</div>
+          <div class="sys-desc">Система формировалась годами. Один громкий разговор её не изменит — и может только усилить давление. Начните с одного маленького «нет» в неделю. Без объяснений.</div>
+        </div>
+      </div>
+      <div class="sys-step">
+        <div class="sys-num">2</div>
+        <div>
+          <div class="sys-title">Зафиксируйте свои наблюдения</div>
+          <div class="sys-desc">Используйте поля для записей в карточках выше. Когда вы видите паттерн на бумаге — он перестаёт казаться нормой. Это первый шаг к пересмотру договорённостей в паре.</div>
+        </div>
+      </div>
+      <div class="sys-step">
+        <div class="sys-num">3</div>
+        <div>
+          <div class="sys-title">Пересмотрите договорённости — без жалости к себе</div>
+          <div class="sys-desc">Жалеть себя — не выход. Выход — конкретный разговор о том, как устроен быт, кто за что отвечает, что вас устраивает, а что нет. Не «ты плохой», а «нам нужно договориться по-другому».</div>
+        </div>
+      </div>
+      <div class="sys-step sys-step-highlight">
+        <div class="sys-num">4</div>
+        <div>
+          <div class="sys-title">Выпишите правила, которые вам навязывают</div>
+          <div class="sys-desc">Возьмите листок и напишите всё, что вам говорят про вас. «У хорошей матери дети всегда послушные». «Хорошая жена готовит каждый день». «Хорошая дочь навещает маму каждую неделю». Рядом с каждой фразой напишите своё правило — то, которое вы выбираете сами. Например: <em>«У меня есть свой метод воспитания, и я его придерживаюсь»</em>. Написанное перестаёт быть туманным давлением — оно становится конкретным. А конкретное можно изменить.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- FULL DIARY PAGE -->
+<div style="background: linear-gradient(135deg, #fff6ee 0%, #fdf0f5 100%); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+<div class="diary-page">
+  <div class="diary-page-title">Дневник <em>прогресса</em></div>
+  <p class="diary-page-sub">Записывайте каждый день — что произошло, как вы ответили, что заметили. В конце недели подводите итог. Паттерн виден только в динамике.</p>
+
+  <div class="progress-tabs">
+    <button class="ptab active" onclick="switchManip(0)">01</button>
+    <button class="ptab" onclick="switchManip(1)">02</button>
+    <button class="ptab" onclick="switchManip(2)">03</button>
+    <button class="ptab" onclick="switchManip(3)">04</button>
+    <button class="ptab" onclick="switchManip(4)">05</button>
+    <button class="ptab" onclick="switchManip(5)">06</button>
+    <button class="ptab" onclick="switchManip(6)">07</button>
+    <button class="ptab" onclick="switchManip(7)">08</button>
+    <button class="ptab" onclick="switchManip(8)">09</button>
+  </div>
+
+  <div class="progress-manip-name" id="progressManipName"></div>
+
+  <div class="progress-days" id="progressDays"></div>
+
+  <div class="progress-week-summary">
+    <div class="progress-summary-label">Итоги недели</div>
+    <div class="progress-summary-grid" id="progressSummary"></div>
+    <textarea class="diary-area" id="weekNote" placeholder="Что изменилось за неделю? Стало легче замечать? Удалось ответить иначе?..." style="margin-top:16px;"></textarea>
+  </div>
+</div>
+</div>
+
+<!-- BELLA QUOTE -->
+<div class="quote-wrap">
+  <div class="quote-inner">
+    <div class="quote-mark">"</div>
+    <div class="quote-text">Манипуляция — это не про того, кто манипулирует. Это про правило внутри вас, которое говорит: «так можно со мной». Измените правило — и манипуляция потеряет точку опоры.</div>
+    <div class="quote-author">Полянинова Бэлла Леонидовна, психолог</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>Это только бытовые манипуляции — первый уровень. Существуют скрытые и сложные манипуляции: газлайтинг, манипуляция через интригу, давление на работе. Они разбираются отдельно.</p>
+  <div class="footer-name">Полянинова Бэлла Леонидовна</div>
+  <div class="footer-copy">&copy; 2025 Полянинова Бэлла Леонидовна. Все права защищены.<br>Копирование и распространение материалов без разрешения автора запрещено.</div>
+</div>
+
+<script>
+const questions = [
+  {
+    text: "Муж или кто-то близкий говорит: «Если бы ты меня любила — ты бы...». Что вы чувствуете?",
+    options: [
+      { text: "Вину — и иду делать то, о чём просят", tags: ["Ложная вина через роль"] },
+      { text: "Раздражение, но всё равно иду", tags: ["Ложная вина через роль"] },
+      { text: "Понимаю, что это давление — и не реагирую", tags: [] }
+    ]
+  },
+  {
+    text: "Вас хвалят: «Только ты такая рачительная / умная». Что происходит дальше?",
+    options: [
+      { text: "Хочу оправдать похвалу и соглашаюсь", tags: ["Манипуляция лучшести"] },
+      { text: "Приятно, но чувствую — сейчас что-то попросят", tags: ["Манипуляция лучшести"] },
+      { text: "Принимаю комплимент и решаю сама", tags: [] }
+    ]
+  },
+  {
+    text: "Свекровь говорит: «У хорошей хозяйки в доме всегда чисто». Вы:",
+    options: [
+      { text: "Начинаю оправдываться или убирать", tags: ["Ложная вина через роль", "Групповое давление"] },
+      { text: "Чувствую стыд, но молчу", tags: ["Ложная вина через роль"] },
+      { text: "Спокойно отвечаю без оправданий", tags: [] }
+    ]
+  },
+  {
+    text: "Муж замолчал, закрылся, не разговаривает. Вы:",
+    options: [
+      { text: "Начинаю выяснять, что не так — сразу", tags: ["Молчание и игнор"] },
+      { text: "Чувствую тревогу, жду и всё равно иду мириться", tags: ["Молчание и игнор"] },
+      { text: "Занимаюсь своими делами — поговорим когда готовы", tags: [] }
+    ]
+  },
+  {
+    text: "Вам говорят: «Все нормальные жёны давно бы уже...» Вы:",
+    options: [
+      { text: "Чувствую себя хуже других и пытаюсь исправиться", tags: ["Сравнение"] },
+      { text: "Обижаюсь, но молчу", tags: ["Сравнение"] },
+      { text: "Напоминаю, что мы живём не как «все»", tags: [] }
+    ]
+  },
+  {
+    text: "Вы устали и легли. Муж пришёл и сказал «я голоден». Вы:",
+    options: [
+      { text: "Встаю и иду готовить, хотя мне плохо", tags: ["Ложная вина через роль", "Обесценивание"] },
+      { text: "Предлагаю вариант, но чувствую себя виноватой", tags: ["Ложная вина через роль"] },
+      { text: "Спокойно предлагаю решение без вины", tags: [] }
+    ]
+  },
+  {
+    text: "«Зачем тебе к косметологу — ты и так красивая». Вы:",
+    options: [
+      { text: "Соглашаюсь — раз он так считает, значит не нужно", tags: ["Лесть как контроль"] },
+      { text: "Чувствую, что что-то не так, но всё равно не иду", tags: ["Лесть как контроль"] },
+      { text: "Иду, если хочу — это моё решение", tags: [] }
+    ]
+  },
+  {
+    text: "«Не знаю, зачем мы вместе» или «Ещё раз так — я уйду». Вы:",
+    options: [
+      { text: "Пугаюсь и начинаю уступать", tags: ["Угроза через будущее"] },
+      { text: "Обижаюсь, но боюсь потерять", tags: ["Угроза через будущее"] },
+      { text: "Понимаю, что это давление — не реагирую немедленно", tags: [] }
+    ]
+  }
+];
+
+let answers = {};
+
+function buildTest() {
+  const container = document.getElementById('testQuestions');
+  questions.forEach((q, qi) => {
+    const div = document.createElement('div');
+    div.className = 'test-question';
+    div.id = 'q' + qi;
+    div.innerHTML = `<div class="q-text">${qi+1}. ${q.text}</div><div class="q-options">` +
+      q.options.map((o, oi) => `
+        <label class="q-option" id="q${qi}o${oi}" onclick="selectOption(${qi},${oi})">
+          <div class="q-dot"></div>
+          <span>${o.text}</span>
+        </label>`).join('') + '</div>';
+    container.appendChild(div);
+  });
+}
+
+function selectOption(qi, oi) {
+  questions[qi].options.forEach((_, i) => document.getElementById('q'+qi+'o'+i)?.classList.remove('selected'));
+  document.getElementById('q'+qi+'o'+oi)?.classList.add('selected');
+  document.getElementById('q'+qi)?.classList.add('answered');
+  answers[qi] = oi;
+  if (Object.keys(answers).length >= questions.length) document.getElementById('testBtn').disabled = false;
+}
+
+function showResult() {
+  const tagCounts = {};
+  Object.entries(answers).forEach(([qi, oi]) => {
+    questions[qi].options[oi].tags.forEach(t => { tagCounts[t] = (tagCounts[t]||0)+1; });
+  });
+  const found = Object.keys(tagCounts);
+  const r = document.getElementById('testResult');
+  document.getElementById('resultTitle').textContent = found.length === 0
+    ? 'Вы хорошо чувствуете манипуляции'
+    : found.length <= 2 ? 'Есть зоны, которые стоит изучить'
+    : 'Манипуляции — часть вашего быта';
+  document.getElementById('resultText').textContent = found.length === 0
+    ? 'Судя по ответам, вы умеете замечать попытки давления. Карточки ниже помогут закрепить это и найти нюансы.'
+    : found.length <= 2 ? 'Вы замечаете многое — но в нескольких точках манипуляция всё же проходит. Найдите эти карточки ниже.'
+    : 'Несколько видов манипуляций влияют на ваши решения регулярно. Это не значит, что вы слабая — это значит, что у вас есть правила, которые стоит пересмотреть.';
+  document.getElementById('resultTags').innerHTML = found.map(t=>`<div class="result-tag">${t}</div>`).join('');
+  document.getElementById('resultCta').textContent = found.length > 0 ? '↓ Найдите свои манипуляции в карточках ниже' : '↓ Изучите все карточки — знание защищает';
+  r.classList.add('show');
+  r.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+const cards = [
+  {
+    name: "Ложная вина через роль",
+    tag: "«Хорошая жена / мать / хозяйка так не делает»",
+    phrases: ["«Нормальная любящая жена мужа полуфабрикатами не кормит»","«Хорошая мать всегда знает, что с ребёнком»","«У хорошей хозяйки в доме пыли нет»","«Если бы ты меня любила — ты бы так не поступала»"],
+    feeling: "Вина и страх оказаться «плохой»",
+    oldRule: "Я должна соответствовать образу хорошей жены / матери / дочери — иначе я недостаточно хороша как человек.",
+    newRule: "Моя ценность не определяется чужими стандартами роли. Я могу быть усталой — и при этом оставаться хорошей женой. Это не противоречие.",
+    answers: [
+      "«Для чего ты мне это говоришь?» — пауза. Человек ждёт оправданий. Вопрос ломает механизм.",
+      "«Я вижу, что ты пытаешься вызвать у меня чувство вины. Мне это неприемлемо.»",
+      "«Я слышу тебя. И я приму решение сама.» — без объяснений.",
+      "«Я понимаю, что ты хочешь добиться своего. Мне это не нравится.»"
+    ],
+    note: "Не объясняйте, почему вы устали. Объяснение открывает дверь для следующего раунда."
+  },
+  {
+    name: "Манипуляция лучшести",
+    tag: "«Только ты такая / только на тебя надеюсь»",
+    phrases: ["«Ты же у меня такая рачительная, не то что другие»","«Только на тебя могу положиться»","«Ты же умная женщина, ты понимаешь»","«Не то что моя бывшая — та транжира, а ты совсем другая»"],
+    feeling: "Гордость и желание не упасть в грязь лицом",
+    oldRule: "Когда меня хвалят — я должна это заслужить делом. Иначе окажется, что я не такая, какой меня считают.",
+    newRule: "Комплимент — это приятно. Но он не обязывает меня делать то, что мне невыгодно. Я могу принять похвалу и при этом сказать нет.",
+    answers: [
+      "«Спасибо. И всё же — нет.» — без объяснений.",
+      "«Я слышу, что ты ценишь меня. И я приму решение сама.»",
+      "«Я вижу, что здесь есть манипуляция через похвалу. Мне это неприемлемо.»",
+      "«Я рада, что ты так думаешь. Моё решение от этого не изменится.»"
+    ],
+    note: "Объяснение своего «нет» снова открывает поле для манипуляции. Просто «нет»."
+  },
+  {
+    name: "Манипуляция жертвой",
+    tag: "«Я же для тебя всё / я так устал»",
+    phrases: ["«Я же для тебя живу, а ты...»","«Я тебя растила — и вот благодарность»","«Я пришёл с работы, у меня работа тяжелее»","«Я так стараюсь для семьи — никто не замечает»"],
+    feeling: "Стыд, жалость и ощущение долга",
+    oldRule: "Если кто-то жертвует ради меня — я в долгу. Его усталость важнее моей, потому что он об этом говорит громче.",
+    newRule: "Усталость не измеряется сравнением. Жертва — это личный выбор человека, не мой долг. Я не обязана платить за чужие решения.",
+    answers: [
+      "«Я слышу, что ты устал. И я устала тоже.» — точка.",
+      "«Я вижу твои усилия. И я вижу свои тоже.»",
+      "«Я слышу, что тебе сейчас тяжело. Это не значит, что мне легко.»",
+      "«Я вижу, что ты хочешь, чтобы я почувствовала вину. Мне это неприемлемо.»"
+    ],
+    note: "Не вступайте в соревнование «кто устал больше» — это заранее проигранная игра."
+  },
+  {
+    name: "Сравнение",
+    tag: "«Все нормальные / у других иначе»",
+    phrases: ["«Все нормальные жёны давно бы уже...»","«Вот у Тани муж — и то помогает»","«Моя бывшая хотя бы готовила»","«Что люди скажут, глядя на тебя?»"],
+    feeling: "Стыд и ощущение собственной неполноценности",
+    oldRule: "Существует правильный стандарт жены, и я должна ему соответствовать. Если другие лучше — значит, я недотягиваю.",
+    newRule: "«Все» — не аргумент. Я не конкурирую с чужими жёнами и бывшими. У меня своя жизнь и свои договорённости.",
+    answers: [
+      "«Мы с тобой живём не так, как все. Давай говорить про нас.»",
+      "«Я вижу, что ты сравниваешь меня с другими. Для меня это неприемлемо.»",
+      "«Меня не интересует, как у Тани. Меня интересует, как у нас.»",
+      "«Я слышу тебя. И я приму решение сама, без оглядки на других.»"
+    ],
+    note: "Переводите разговор с абстрактного «нормального» на конкретное — про вас двоих."
+  },
+  {
+    name: "Обесценивание",
+    tag: "«Ты преувеличиваешь / подумаешь»",
+    phrases: ["«Подумаешь, устала — все устают»","«Ты вечно всё драматизируешь»","«Да ладно, ничего страшного не случилось»","«У других проблемы похуже, а ты из-за ерунды»"],
+    feeling: "Сомнение в себе и ощущение «я слишком много требую»",
+    oldRule: "Мои чувства важны только если они достаточно серьёзны по чужим меркам. Если другим хуже — я не имею права жаловаться.",
+    newRule: "Мои чувства не нуждаются в сравнении и одобрении. То, что мне плохо — уже достаточная причина.",
+    answers: [
+      "«Для меня это важно. И этого достаточно.»",
+      "«Я вижу, что мои чувства сейчас обесцениваются. Мне это неприемлемо.»",
+      "«Я не прошу тебя соглашаться. Я говорю тебе, что чувствую.»",
+      "«Я слышу тебя. Моё ощущение от этого не изменилось.»"
+    ],
+    note: "Не спорьте о масштабе — говорите о своём праве на реакцию."
+  },
+  {
+    name: "Групповое давление",
+    tag: "«Мы же семья / так принято / что люди скажут»",
+    phrases: ["«Мы же семья, надо помочь»","«Так у нас всегда было принято»","«На огород надо, все едут, а ты отлыниваешь»","«Что свекровь подумает, если ты не придёшь?»"],
+    feeling: "Страх осуждения и вина перед «коллективом»",
+    oldRule: "Интересы группы — семьи, традиции, «что люди скажут» — важнее моих личных границ и планов.",
+    newRule: "Я часть семьи — и при этом отдельный человек. Моё участие в семейных делах — это выбор, а не обязанность.",
+    answers: [
+      "«Я понимаю, что это важно для семьи. В этот раз я не смогу.»",
+      "«Я вижу, что на меня давит коллективное мнение. Я приму решение сама.»",
+      "«Мне важна семья. И мне важно моё самочувствие тоже.»",
+      "«Я слышу тебя. Моё решение — нет.» — без объяснений."
+    ],
+    note: "Объяснение своего «нет» превращается в переговоры. Краткость — ваш инструмент."
+  },
+  {
+    name: "Лесть как контроль",
+    tag: "«Ты и так красивая / тебе это не нужно»",
+    phrases: ["«Зачем тебе косметолог — ты и так красивая»","«Ты же естественная, не то что с накачанными губами»","«Тебе не идут каблуки, ты лучше в простом»","«Зачем тебе подруги — у тебя есть я»"],
+    feeling: "Приятность от похвалы — и незаметное ограничение следом",
+    oldRule: "Если он говорит, что мне что-то не нужно — значит, так и есть. Любовь означает, что он лучше знает, что для меня хорошо.",
+    newRule: "Никто не решает за меня, что мне нужно для себя. Комплимент хорош — но он не заменяет мои желания.",
+    answers: [
+      "«Спасибо. Я всё равно запишусь.» — информация, не запрос на разрешение.",
+      "«Я вижу, что похвала здесь используется, чтобы мной управлять. Мне это неприемлемо.»",
+      "«Мне приятно это слышать. И я всё равно приму решение сама.»",
+      "«Я слышу тебя. Я иду, потому что хочу.»"
+    ],
+    note: "Ничего не объясняйте. Просто делайте то, что хотите."
+  },
+  {
+    name: "Молчание и игнор",
+    tag: "Демонстративная обида без слов",
+    phrases: ["Закрытая дверь. Подчёркнутое молчание.","Односложные ответы и отвёрнутая спина.","«Всё нормально» — тоном, который говорит обратное.","Театральные вздохи и уход из комнаты."],
+    feeling: "Тревога и желание немедленно помириться, взяв вину на себя",
+    oldRule: "Если близкий молчит и обижен — это моя вина. Я должна сделать всё, чтобы восстановить мир.",
+    newRule: "Молчание — это выбор человека, а не приговор для меня. Я не обязана угадывать и бежать мириться. Разговор возможен, когда оба готовы.",
+    answers: [
+      "«Когда будешь готов поговорить — я здесь.» — и уходите заниматься своими делами.",
+      "«Я вижу, что ты молчишь намеренно. Я готова поговорить, когда ты будешь готов.»",
+      "«Я не буду угадывать. Скажи мне, когда захочешь поговорить.»",
+      "«Я здесь. Разговор — когда оба готовы.»"
+    ],
+    note: "Не преследуйте, не уговаривайте — это усиливает манипуляцию."
+  },
+  {
+    name: "Угроза через будущее",
+    tag: "«Будешь так — посмотрим что будет»",
+    phrases: ["«Будешь так себя вести — посмотрим»","«Я не знаю тогда, зачем мы вместе»","«Ещё раз так сделаешь — я уйду»","«Смотри, как бы потом не пожалела»"],
+    feeling: "Страх потери и страх быть брошенной",
+    oldRule: "Угроза разрыва означает, что я сделала что-то критически неправильное. Нужно немедленно исправиться, чтобы не потерять отношения.",
+    newRule: "Угроза — не аргумент и не оценка моих действий. Человек, который регулярно угрожает уйти, управляет мной через страх. Здоровые отношения строятся не на страхе.",
+    answers: [
+      "«Я слышу, что тебе сейчас плохо. Давай поговорим, когда оба успокоимся.»",
+      "«Я вижу, что ты используешь угрозу, чтобы я изменила решение. Мне это неприемлемо.»",
+      "«Я слышу тебя. Моё решение остаётся прежним.»",
+      "«Это твой выбор. Я не принимаю решения из страха.»"
+    ],
+    note: "Не реагируйте немедленно — первая реакция в панике закрепляет этот инструмент."
+  }
+];
+
+function buildCards() {
+  const list = document.getElementById('cardList');
+  cards.forEach((c, i) => {
+    const div = document.createElement('div');
+    div.className = 'manip-card';
+    div.innerHTML = `
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-num">${String(i+1).padStart(2,'0')}</div>
+        <div class="card-titles">
+          <div class="card-name">${c.name}</div>
+          <div class="card-tag">${c.tag}</div>
+        </div>
+        <div class="card-arrow">›</div>
+      </div>
+      <div class="card-body">
+        <div class="block">
+          <div class="block-label">Как это звучит</div>
+          <div class="phrases">${c.phrases.map(p=>`<div class="phrase-item">${p}</div>`).join('')}</div>
+        </div>
+        <div class="divider"></div>
+        <div class="block">
+          <div class="block-label">Какое чувство вызывает</div>
+          <div class="feeling-pill">✦ ${c.feeling}</div>
+        </div>
+        <div class="divider"></div>
+        <div class="block">
+          <div class="block-label">Ваше правило, которое это пропускает</div>
+          <div class="rule-box rule-old">${c.oldRule}</div>
+          <div class="block-label" style="margin-top:12px;">Новое правило</div>
+          <div class="rule-box rule-new">${c.newRule}</div>
+        </div>
+        <div class="divider"></div>
+        <div class="block">
+          <div class="block-label">Что сказать в ответ</div>
+          <div class="answer-box">
+            ${c.answers.map(a=>`<div class="answer-variant">${a}</div>`).join('')}
+            <div class="answer-note">${c.note}</div>
+          </div>
+        </div>
+        <div class="diary-block">
+          <div class="diary-label">Дневник наблюдений</div>
+          <div class="diary-inner">
+            <div class="diary-row">
+              <div class="diary-q">Как часто это происходит?</div>
+              <div class="diary-opts" data-type="freq">
+                <button class="diary-opt" onclick="pickOpt(this)">Каждый день</button>
+                <button class="diary-opt" onclick="pickOpt(this)">Через день</button>
+                <button class="diary-opt" onclick="pickOpt(this)">Раз в неделю</button>
+                <button class="diary-opt" onclick="pickOpt(this)">Редко</button>
+              </div>
+            </div>
+            <div class="diary-row">
+              <div class="diary-q">Удаётся ли вам это замечать в момент?</div>
+              <div class="diary-opts" data-type="notice">
+                <button class="diary-opt" onclick="pickOpt(this)">Да, сразу</button>
+                <button class="diary-opt" onclick="pickOpt(this)">Иногда</button>
+                <button class="diary-opt" onclick="pickOpt(this)">Только потом</button>
+                <button class="diary-opt" onclick="pickOpt(this)">Пока нет</button>
+              </div>
+            </div>
+            <div class="diary-row">
+              <div class="diary-q">Удаётся ли противостоять?</div>
+              <div class="diary-opts" data-type="resist">
+                <button class="diary-opt" onclick="pickOpt(this)">Да, отвечаю спокойно</button>
+                <button class="diary-opt" onclick="pickOpt(this)">Иногда</button>
+                <button class="diary-opt" onclick="pickOpt(this)">Поддаюсь, но вижу это</button>
+                <button class="diary-opt" onclick="pickOpt(this)">Пока поддаюсь</button>
+              </div>
+            </div>
+            <div class="diary-row">
+              <div class="diary-q">Моё наблюдение за неделю</div>
+              <textarea class="diary-area" placeholder="Что заметили? Одна фраза — для себя..."></textarea>
+            </div>
+          </div>
+        </div>
+      </div>`;
+    list.appendChild(div);
+  });
+}
+
+function toggleCard(header) {
+  const card = header.parentElement;
+  const wasOpen = card.classList.contains('open');
+  document.querySelectorAll('.manip-card.open').forEach(c=>c.classList.remove('open'));
+  if (!wasOpen) card.classList.add('open');
+}
+
+buildTest();
+buildCards();
+
+// ===== DIARY =====
+function pickOpt(btn) {
+  const group = btn.closest('.diary-opts');
+  group.querySelectorAll('.diary-opt').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+const diaryManips = [
+  "Ложная вина через роль",
+  "Манипуляция лучшести",
+  "Манипуляция жертвой",
+  "Сравнение",
+  "Обесценивание",
+  "Групповое давление",
+  "Лесть как контроль",
+  "Молчание и игнор",
+  "Угроза через будущее"
+];
+
+const days = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
+
+function buildFullDiary() {
+  const list = document.getElementById('fullDiaryList');
+  if (!list) return;
+  diaryManips.forEach((name, mi) => {
+    const block = document.createElement('div');
+    block.className = 'diary-manip-block';
+    block.innerHTML = `
+      <div class="diary-manip-name">${mi+1}. ${name}</div>
+      <div class="diary-manip-week">Отметьте каждый день недели</div>
+      <div class="diary-week-row">
+        ${days.map((d,di) => `
+          <div class="diary-day">
+            <div class="diary-day-label">${d}</div>
+            <div class="diary-day-dot" onclick="toggleDay(this)" title="Нажмите: первый раз — была манипуляция, второй раз — устояла, третий — сбросить"></div>
+          </div>`).join('')}
+      </div>
+      <div class="diary-opts" style="margin-top:4px;">
+        <button class="diary-opt" onclick="pickOpt(this)">Замечаю сразу</button>
+        <button class="diary-opt" onclick="pickOpt(this)">Замечаю потом</button>
+        <button class="diary-opt" onclick="pickOpt(this)">Устояла</button>
+        <button class="diary-opt" onclick="pickOpt(this)">Поддалась, но вижу</button>
+      </div>
+      <textarea class="diary-area" style="margin-top:12px;" placeholder="Что именно было сказано? Как вы ответили?..."></textarea>
+    `;
+    list.appendChild(block);
+  });
+}
+
+function toggleDay(dot) {
+  if (dot.classList.contains('marked-yes')) {
+    dot.classList.remove('marked-yes');
+    dot.classList.add('marked-no');
+    dot.textContent = '✓';
+  } else if (dot.classList.contains('marked-no')) {
+    dot.classList.remove('marked-no');
+    dot.textContent = '';
+  } else {
+    dot.classList.add('marked-yes');
+    dot.textContent = '·';
+  }
+}
+
+
+// ===== PROGRESS DIARY =====
+const manipNames = [
+  "Ложная вина через роль",
+  "Манипуляция лучшести",
+  "Манипуляция жертвой",
+  "Сравнение",
+  "Обесценивание",
+  "Групповое давление",
+  "Лесть как контроль",
+  "Молчание и игнор",
+  "Угроза через будущее"
+];
+
+const dayNames = ['Понедельник','Вторник','Среда','Четверг','Пятница','Суббота','Воскресенье'];
+const dayShort = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
+
+let currentManip = 0;
+// state[manipIdx][dayIdx] = { status: '', what: '', how: '', note: '' }
+const diaryState = Array.from({length:9}, () => Array.from({length:7}, () => ({status:'', what:'', how:'', note:''})));
+
+function switchManip(idx) {
+  saveDayInputs();
+  currentManip = idx;
+  document.querySelectorAll('.ptab').forEach((t,i) => t.classList.toggle('active', i===idx));
+  document.getElementById('progressManipName').textContent = (idx+1<10?'0'+(idx+1):idx+1) + '. ' + manipNames[idx];
+  renderDays();
+  renderSummary();
+}
+
+function renderDays() {
+  const container = document.getElementById('progressDays');
+  container.innerHTML = '';
+  dayNames.forEach((day, di) => {
+    const s = diaryState[currentManip][di];
+    const div = document.createElement('div');
+    div.className = 'progress-day';
+    div.id = 'pday-' + di;
+    div.innerHTML = `
+      <div class="progress-day-header" onclick="toggleDay(${di})">
+        <div class="progress-day-name">${day}</div>
+        <div class="progress-day-status">
+          <button class="pstatus-btn${s.status==='was'?' s-was':''}" onclick="setStatus(event,${di},'was')">Была</button>
+          <button class="pstatus-btn${s.status==='noticed'?' s-noticed':''}" onclick="setStatus(event,${di},'noticed')">Заметила</button>
+          <button class="pstatus-btn${s.status==='held'?' s-held':''}" onclick="setStatus(event,${di},'held')">Устояла</button>
+        </div>
+      </div>
+      <div class="progress-day-body">
+        <div class="pday-q">Что именно было сказано?</div>
+        <textarea class="pday-input" id="what-${di}" placeholder="Фраза или ситуация..." onchange="saveDayInput(${di})">${s.what}</textarea>
+        <div class="pday-q">Как вы ответили?</div>
+        <textarea class="pday-input" id="how-${di}" placeholder="Что сказали или сделали..." onchange="saveDayInput(${di})">${s.how}</textarea>
+        <div class="pday-q">Заметка</div>
+        <textarea class="pday-input" id="note-${di}" placeholder="Что почувствовали? Что хотели бы ответить иначе?" onchange="saveDayInput(${di})">${s.note}</textarea>
+      </div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+function toggleDay(di) {
+  const el = document.getElementById('pday-' + di);
+  el.classList.toggle('open');
+}
+
+function setStatus(e, di, status) {
+  e.stopPropagation();
+  diaryState[currentManip][di].status = diaryState[currentManip][di].status === status ? '' : status;
+  renderDays();
+  renderSummary();
+}
+
+function saveDayInput(di) {
+  const w = document.getElementById('what-'+di);
+  const h = document.getElementById('how-'+di);
+  const n = document.getElementById('note-'+di);
+  if (w) diaryState[currentManip][di].what = w.value;
+  if (h) diaryState[currentManip][di].how = h.value;
+  if (n) diaryState[currentManip][di].note = n.value;
+}
+
+function saveDayInputs() {
+  dayNames.forEach((_,di) => saveDayInput(di));
+}
+
+function renderSummary() {
+  const grid = document.getElementById('progressSummary');
+  if (!grid) return;
+  const icons = { was: '🟠', noticed: '🟡', held: '🟢', '': '⬜' };
+  grid.innerHTML = dayShort.map((d,di) => `
+    <div class="summary-day-pill">
+      <div class="summary-day-label">${d}</div>
+      <div class="summary-day-icon">${icons[diaryState[currentManip][di].status]||'⬜'}</div>
+    </div>`).join('');
+}
+
+// Init
+document.getElementById('progressManipName').textContent = '01. ' + manipNames[0];
+renderDays();
+renderSummary();
+
+
+</script>
+
+<!-- FLOATING CTA -->
+<div class="float-cta">
+  <div class="float-label">Экспресс-разбор вашей ситуации — 60 минут</div>
+  <div class="float-btns">
+    <a class="float-btn float-wa" href="https://wa.me/79880051025" target="_blank">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+    <a class="float-btn float-tg" href="https://t.me/Bella_psychologist" target="_blank">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+      Telegram
+    </a>
+  </div>
+</div>
+</body>
+</html>
