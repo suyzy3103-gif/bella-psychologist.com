@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Тест: ваш муж отвечает за семью или за маму?</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f2ec;
+    --bg2: #f0e8de;
+    --white: #fffdf9;
+    --ivory: #f5f0e8;
+    --vanilla: #f9f4ea;
+    --latte: #c8a882;
+    --latte-light: #e8d8c4;
+    --latte-pale: #f5ede0;
+    --cocoa: #8b6a48;
+    --cocoa-dark: #5c4428;
+    --cocoa-light: #d4b896;
+    --text: #2a1f14;
+    --text-soft: #5c4428;
+    --text-dim: #9a7a5a;
+    --border: #ddd0bc;
+    --green: #5a8a5a;
+    --green-pale: #edf5ed;
+    --green-border: #b8d4b8;
+    --red: #8a4a4a;
+    --red-pale: #f5edea;
+    --red-border: #d4b8b8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    line-height: 1.75;
+    padding-bottom: 80px;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    background: linear-gradient(160deg, #c8a882 0%, #d4b896 50%, #e8d4bc 100%);
+    padding: 68px 28px 56px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .hero-inner { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; }
+
+  .eyebrow {
+    font-size: 11px; letter-spacing: 4px;
+    text-transform: uppercase; color: var(--cocoa-dark);
+    margin-bottom: 20px; font-weight: 700;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: var(--white);
+    border: 1.5px solid var(--latte);
+    border-radius: 100px;
+    padding: 6px 20px;
+    font-size: 12px; font-weight: 700;
+    color: var(--cocoa); letter-spacing: 1px;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(30px, 6vw, 50px);
+    font-weight: 600; line-height: 1.2;
+    color: var(--cocoa-dark); margin-bottom: 18px;
+  }
+
+  .hero-desc {
+    font-size: 16px; color: var(--cocoa-dark);
+    max-width: 480px; margin: 0 auto;
+    line-height: 1.85; font-weight: 400;
+    opacity: 0.85;
+  }
+
+  /* ===== SECTION ===== */
+  .section { max-width: 720px; margin: 0 auto; padding: 52px 24px 0; }
+
+  .section-eyebrow {
+    font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--text-dim); margin-bottom: 8px; font-weight: 700;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px; font-weight: 600; color: var(--text);
+    margin-bottom: 8px; line-height: 1.3;
+  }
+
+  .section-sub {
+    font-size: 15px; color: var(--text-soft);
+    margin-bottom: 32px; line-height: 1.8;
+  }
+
+  /* ===== TEST QUESTIONS ===== */
+  .test-question {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    padding: 22px 24px;
+    margin-bottom: 14px;
+    transition: border-color 0.2s;
+  }
+
+  .test-question.answered { border-color: var(--latte); }
+
+  .q-text {
+    font-size: 15px; color: var(--text);
+    margin-bottom: 14px; font-weight: 600;
+    line-height: 1.6;
+  }
+
+  .q-options { display: flex; flex-direction: column; gap: 8px; }
+
+  .q-option {
+    display: flex; align-items: flex-start; gap: 12px;
+    cursor: pointer; padding: 10px 14px;
+    border-radius: 10px; transition: background 0.15s;
+    font-size: 14px; color: var(--text-soft);
+    border: 1.5px solid transparent; line-height: 1.6;
+  }
+
+  .q-option:hover { background: var(--latte-pale); }
+  .q-option.selected { background: var(--latte-pale); border-color: var(--latte); color: var(--cocoa-dark); font-weight: 600; }
+
+  .q-dot {
+    width: 20px; height: 20px; border: 2px solid var(--border);
+    border-radius: 50%; flex-shrink: 0; margin-top: 2px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s;
+  }
+
+  .q-option.selected .q-dot { background: var(--latte); border-color: var(--latte); }
+  .q-dot::after { content: ''; width: 8px; height: 8px; background: white; border-radius: 50%; opacity: 0; transition: opacity 0.15s; }
+  .q-option.selected .q-dot::after { opacity: 1; }
+
+  /* ===== SELF-DIAG ===== */
+  .diag-intro {
+    font-size: 15px; color: var(--text-soft);
+    line-height: 1.85; margin-bottom: 24px;
+  }
+
+  .diag-item {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin-bottom: 10px;
+    display: flex; gap: 14px; align-items: flex-start;
+    cursor: pointer; transition: all 0.15s;
+    user-select: none;
+  }
+
+  .diag-item:hover { border-color: var(--latte-light); background: var(--vanilla); }
+  .diag-item.checked { background: var(--latte-pale); border-color: var(--latte); }
+
+  .diag-box {
+    width: 22px; height: 22px; flex-shrink: 0; margin-top: 1px;
+    border: 2px solid var(--border); border-radius: 6px;
+    background: var(--white); transition: all 0.15s;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .diag-item.checked .diag-box { background: var(--latte); border-color: var(--latte); }
+  .diag-item.checked .diag-box::after { content: '✓'; color: white; font-size: 13px; font-weight: 700; }
+
+  .diag-text { font-size: 15px; color: var(--text-soft); line-height: 1.65; }
+  .diag-item.checked .diag-text { color: var(--text); }
+
+  /* ===== RESULT ===== */
+  .result-bar {
+    background: var(--white); border: 1.5px solid var(--border);
+    border-radius: 16px; padding: 28px 24px;
+    margin-top: 28px; transition: all 0.3s;
+  }
+
+  .result-bar.show-low { border-color: var(--green-border); background: var(--green-pale); }
+  .result-bar.show-mid { border-color: var(--latte); background: var(--latte-pale); }
+  .result-bar.show-high { border-color: var(--red-border); background: var(--red-pale); }
+
+  .result-label {
+    font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--text-dim); margin-bottom: 12px; font-weight: 700;
+  }
+
+  .result-title { font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+  .result-desc { font-size: 15px; color: var(--text-soft); line-height: 1.85; }
+
+  .progress-track {
+    height: 5px; background: var(--border); border-radius: 100px;
+    margin: 14px 0 6px; overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%; background: var(--latte);
+    border-radius: 100px; transition: width 0.4s ease; width: 0%;
+  }
+  .result-bar.show-low .progress-fill { background: var(--green); }
+  .result-bar.show-high .progress-fill { background: var(--red); }
+
+  /* ===== BTN ===== */
+  .test-btn {
+    margin-top: 28px;
+    background: var(--latte);
+    color: white; border: none;
+    padding: 16px 40px; border-radius: 100px;
+    font-size: 16px; font-weight: 700;
+    cursor: pointer; font-family: 'Nunito', sans-serif;
+    transition: background 0.2s, transform 0.1s; display: block;
+  }
+  .test-btn:hover { background: var(--cocoa); transform: translateY(-1px); }
+  .test-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+  /* ===== DIVIDER ===== */
+  .block-divider {
+    display: flex; align-items: center; gap: 16px;
+    margin: 48px 0 0;
+  }
+  .block-divider-line { flex: 1; height: 1px; background: var(--border); }
+  .block-divider-text {
+    font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--text-dim); font-weight: 700; white-space: nowrap;
+  }
+
+  /* ===== CTA ===== */
+  .cta-wrap {
+    background: linear-gradient(135deg, #e8d4bc 0%, #f0e0cc 100%);
+    border-radius: 20px; padding: 36px 28px;
+    text-align: center; margin-top: 48px;
+  }
+
+  .cta-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px; font-weight: 600; color: var(--cocoa-dark);
+    margin-bottom: 12px; line-height: 1.3;
+  }
+
+  .cta-desc {
+    font-size: 15px; color: var(--text-soft);
+    margin-bottom: 24px; line-height: 1.85;
+    max-width: 440px; margin-left: auto; margin-right: auto;
+  }
+
+  .cta-features { display: flex; flex-direction: column; gap: 8px; max-width: 380px; margin: 0 auto 28px; text-align: left; }
+
+  .cta-feature {
+    display: flex; gap: 10px; align-items: flex-start;
+    font-size: 14px; color: var(--text-soft);
+  }
+
+  .cta-feature-dot {
+    width: 20px; height: 20px; border-radius: 50%;
+    background: var(--latte); color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; flex-shrink: 0; margin-top: 1px; font-weight: 700;
+  }
+
+  .cta-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px; color: var(--cocoa); font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  .cta-price span { font-size: 18px; color: var(--text-dim); font-family: 'Nunito', sans-serif; font-weight: 400; }
+
+  .cta-btn-buy {
+    display: inline-block;
+    background: var(--cocoa);
+    color: white; border: none;
+    padding: 16px 36px; border-radius: 14px;
+    font-size: 16px; font-weight: 700;
+    cursor: pointer; font-family: 'Nunito', sans-serif;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.1s;
+  }
+
+  .cta-btn-buy:hover { background: var(--cocoa-dark); transform: translateY(-1px); }
+
+  /* ===== FOOTER ===== */
+  .footer-note {
+    text-align: center; padding: 40px 28px 20px;
+    max-width: 480px; margin: 0 auto;
+  }
+
+  .footer-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; color: var(--latte); font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .footer-copy { font-size: 12px; color: var(--text-dim); line-height: 1.7; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .test-question { animation: fadeUp 0.3s ease both; }
+  .test-question:nth-child(1){animation-delay:.04s}.test-question:nth-child(2){animation-delay:.08s}
+  .test-question:nth-child(3){animation-delay:.12s}.test-question:nth-child(4){animation-delay:.16s}
+  .test-question:nth-child(5){animation-delay:.20s}.test-question:nth-child(6){animation-delay:.24s}
+  .test-question:nth-child(7){animation-delay:.28s}.test-question:nth-child(8){animation-delay:.32s}
+
+  @media(max-width:600px){
+    .hero{padding:48px 20px 44px;}
+    .section{padding:40px 18px 0;}
+    .cta-wrap{border-radius:0; margin:48px -18px 0;}
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Полянинова Бэлла Леонидовна · Психология отношений</div>
+    <div class="hero-badge">Бесплатная диагностика</div>
+    <h1>Ваш муж отвечает за семью — или за маму?</h1>
+    <p class="hero-desc">Два теста. Без правильных ответов. Просто прочитайте — и вы сами всё поймёте про свою ситуацию.</p>
+  </div>
+</div>
+
+<!-- TEST 1 -->
+<div class="section">
+  <div class="section-eyebrow">Тест первый</div>
+  <div class="section-title">Ваш муж и его мама</div>
+  <p class="section-sub">Отвечайте так, как есть в вашей жизни прямо сейчас — не как должно быть.</p>
+  <div id="test1Questions"></div>
+  <button class="test-btn" id="test1Btn" disabled onclick="showTest1Result()">Посмотреть результат</button>
+  <div class="result-bar" id="test1Result">
+    <div class="result-label">Ваш результат</div>
+    <div class="progress-track"><div class="progress-fill" id="t1fill"></div></div>
+    <div class="result-title" id="t1title">Отвечайте на вопросы выше</div>
+    <div class="result-desc" id="t1desc"></div>
+  </div>
+</div>
+
+<!-- TEST 2 -->
+<div class="section">
+  <div class="block-divider"><div class="block-divider-line"></div><div class="block-divider-text">Тест второй</div><div class="block-divider-line"></div></div>
+  <div class="section-title" style="margin-top:24px;">Соревнуетесь ли вы со свекровью?</div>
+  <p class="section-sub">Отмечайте то, что узнаёте в своей жизни. Это не про вину — это про понимание.</p>
+  <div class="diag-intro">Соревнование со свекровью — это не всегда открытый конфликт. Чаще это тихое напряжение, которое живёт внутри. Посмотрите — есть ли оно у вас.</div>
+  <div id="diagItems"></div>
+  <div class="result-bar" id="diagResult" style="margin-top:24px;">
+    <div class="result-label">Ваш результат</div>
+    <div class="progress-track"><div class="progress-fill" id="d1fill"></div></div>
+    <div class="result-title" id="d1title">Отмечайте пункты выше</div>
+    <div class="result-desc" id="d1desc"></div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="section">
+  <div class="cta-wrap">
+    <div style="font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--cocoa); margin-bottom: 12px; font-weight: 700;">Продукт</div>
+    <div style="font-family: 'Cormorant Garamond', serif; font-size: clamp(24px, 5vw, 36px); font-weight: 600; color: var(--cocoa-dark); margin-bottom: 6px; line-height: 1.2;">Семья без вмешательства</div>
+    <div class="cta-title" style="font-size: 18px; font-weight: 400; margin-bottom: 16px;">Мой муж или мамин сын?</div>
+    <p class="cta-desc">Чтобы вы умели заботиться о себе — и всегда чувствовали себя в безопасности рядом с теми, кто пытается вмешаться в вашу семью.</p>
+    <div class="cta-features">
+      <div class="cta-feature"><div class="cta-feature-dot">✓</div> 7 правил семьи которые защищают от вмешательства</div>
+      <div class="cta-feature"><div class="cta-feature-dot">✓</div> 15 ситуаций: муж между мамой и семьёй</div>
+      <div class="cta-feature"><div class="cta-feature-dot">✓</div> 15 ситуаций: свекровь и невестка</div>
+      <div class="cta-feature"><div class="cta-feature-dot">✓</div> Конкретные фразы для каждой ситуации</div>
+      <div class="cta-feature"><div class="cta-feature-dot">✓</div> Почему женщине больно — и как изменить правило</div>
+    </div>
+    <div class="cta-price">690 ₽ <span>— доступ навсегда</span></div>
+    <a class="cta-btn-buy" href="https://app.lava.top/products/06728fbd-2357-4c6c-9d72-b45d3beb202d" target="_blank">Получить продукт за 690 ₽</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer-note">
+  <div class="footer-name">Полянинова Бэлла Леонидовна</div>
+  <div class="footer-copy">© 2025 Полянинова Бэлла Леонидовна. Все права защищены.<br>Копирование без разрешения автора запрещено.</div>
+</div>
+
+<script>
+// TEST 1
+const t1questions = [
+  {
+    text: "Мама звонит мужу — он берёт трубку в любое время, даже за столом с семьёй. Что происходит?",
+    options: [
+      { text: "Всегда берёт и разговаривает столько сколько мама хочет", score: 2 },
+      { text: "Берёт, но иногда говорит что перезвонит", score: 1 },
+      { text: "Спокойно говорит «я сейчас с семьёй, перезвоню»", score: 0 }
+    ]
+  },
+  {
+    text: "Вы приняли важное решение вместе. Муж потом звонит маме — за одобрением. Как часто это бывает?",
+    options: [
+      { text: "Почти всегда — ему важно что мама думает", score: 2 },
+      { text: "Иногда — просто рассказывает", score: 1 },
+      { text: "Нет — решения остаются нашими", score: 0 }
+    ]
+  },
+  {
+    text: "Мама критикует вас при муже. Что он делает?",
+    options: [
+      { text: "Молчит или поддакивает маме", score: 2 },
+      { text: "Говорит «мам, ну хватит» и меняет тему", score: 1 },
+      { text: "Говорит маме что это не тема для обсуждения", score: 0 }
+    ]
+  },
+  {
+    text: "Мама назначила выходные — дача, огород. Ваших планов никто не спросил. Муж:",
+    options: [
+      { text: "Говорит «ладно мам» и едет", score: 2 },
+      { text: "Едет, но немного сопротивляется", score: 1 },
+      { text: "Сначала смотрит наши планы, потом отвечает маме", score: 0 }
+    ]
+  },
+  {
+    text: "Мама обиделась и перестала звонить. Муж:",
+    options: [
+      { text: "Паникует и давит на вас — надо ехать мириться", score: 2 },
+      { text: "Переживает, но ждёт", score: 1 },
+      { text: "Говорит маме — готов говорить когда она будет готова", score: 0 }
+    ]
+  },
+  {
+    text: "Свекровь пришла без звонка. Муж:",
+    options: [
+      { text: "Улыбается и говорит «мам, проходи»", score: 2 },
+      { text: "Рад, но потом говорит ей что лучше звонить", score: 1 },
+      { text: "Сразу говорит что приходить нужно по договорённости", score: 0 }
+    ]
+  },
+  {
+    text: "Мама говорит мужу что вы ему не подходите. Муж:",
+    options: [
+      { text: "Молчит или говорит «мам, ну хватит»", score: 2 },
+      { text: "Защищает вас, но мягко и неубедительно", score: 1 },
+      { text: "Говорит чётко что это не тема и он вас выбрал", score: 0 }
+    ]
+  },
+  {
+    text: "Когда у мужа проблема или стресс — кому он звонит первой?",
+    options: [
+      { text: "Маме — она всегда первая", score: 2 },
+      { text: "По-разному — маме или мне", score: 1 },
+      { text: "Мне — я его партнёр", score: 0 }
+    ]
+  }
+];
+
+let t1answers = {};
+
+function buildTest1() {
+  const container = document.getElementById('test1Questions');
+  t1questions.forEach((q, qi) => {
+    const div = document.createElement('div');
+    div.className = 'test-question';
+    div.id = 'tq'+qi;
+    div.innerHTML = `<div class="q-text">${qi+1}. ${q.text}</div><div class="q-options">` +
+      q.options.map((o,oi) => `
+        <label class="q-option" id="tq${qi}o${oi}" onclick="selectT1(${qi},${oi})">
+          <div class="q-dot"></div><span>${o.text}</span>
+        </label>`).join('') + '</div>';
+    container.appendChild(div);
+  });
+}
+
+function selectT1(qi, oi) {
+  t1questions[qi].options.forEach((_,i) => document.getElementById('tq'+qi+'o'+i)?.classList.remove('selected'));
+  document.getElementById('tq'+qi+'o'+oi)?.classList.add('selected');
+  document.getElementById('tq'+qi)?.classList.add('answered');
+  t1answers[qi] = oi;
+  if (Object.keys(t1answers).length >= t1questions.length) document.getElementById('test1Btn').disabled = false;
+}
+
+function showTest1Result() {
+  const total = Object.entries(t1answers).reduce((sum,[qi,oi]) => sum + t1questions[qi].options[oi].score, 0);
+  const max = t1questions.length * 2;
+  const pct = Math.round((total/max)*100);
+  const r = document.getElementById('test1Result');
+  const fill = document.getElementById('t1fill');
+  fill.style.width = pct + '%';
+  r.classList.remove('show-low','show-mid','show-high');
+
+  if (total <= 4) {
+    r.classList.add('show-low');
+    document.getElementById('t1title').textContent = 'Ваш муж строит взрослую семью';
+    document.getElementById('t1desc').textContent = 'Судя по ответам, муж умеет расставлять приоритеты. Он любит маму — и при этом защищает вашу семью. Это не всегда легко, но он это делает.';
+  } else if (total <= 10) {
+    r.classList.add('show-mid');
+    document.getElementById('t1title').textContent = 'Есть зоны где мамино мнение важнее вашего';
+    document.getElementById('t1desc').textContent = 'Муж в целом на вашей стороне, но в ряде ситуаций мамино одобрение для него важнее вашего комфорта. Это не злой умысел — это привычка. Её можно менять.';
+  } else {
+    r.classList.add('show-high');
+    document.getElementById('t1title').textContent = 'Муж пока остаётся в роли сына — не партнёра';
+    document.getElementById('t1desc').textContent = 'Мамино мнение, одобрение и настроение регулярно становятся важнее вашей семьи. Вы это чувствуете — и это правильное ощущение. Это не про плохого мужа. Это про роль, из которой он пока не вышел.';
+  }
+  r.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// SELF-DIAG
+const diagItems = [
+  "Когда свекровь хвалит мужа — вы чувствуете лёгкое раздражение",
+  "Вы стараетесь готовить лучше, убирать чище — особенно когда знаете что приедет свекровь",
+  "Когда муж говорит о маме тепло — вам неприятно, хотя вы не можете объяснить почему",
+  "Вы замечаете что сравниваете себя со свекровью — кто лучше готовит, кто красивее, кто важнее для мужа",
+  "Когда свекровь критикует вас — вы думаете не «она не права» а «надо стараться больше»",
+  "Вы чувствуете что вам нужно доказать что вы лучше его мамы — или хотя бы не хуже",
+  "Когда муж проводит время с мамой — вы чувствуете что теряете что-то своё",
+  "Вы иногда думаете: «если бы не его мама — всё было бы иначе»"
+];
+
+let diagChecked = 0;
+
+function buildDiag() {
+  const container = document.getElementById('diagItems');
+  diagItems.forEach((text, i) => {
+    const div = document.createElement('div');
+    div.className = 'diag-item';
+    div.onclick = () => toggleDiag(div);
+    div.innerHTML = `<div class="diag-box"></div><div class="diag-text">${text}</div>`;
+    container.appendChild(div);
+  });
+}
+
+function toggleDiag(el) {
+  const wasChecked = el.classList.contains('checked');
+  el.classList.toggle('checked');
+  diagChecked += wasChecked ? -1 : 1;
+  updateDiagResult();
+}
+
+function updateDiagResult() {
+  const r = document.getElementById('diagResult');
+  const fill = document.getElementById('d1fill');
+  fill.style.width = Math.min(100, (diagChecked/diagItems.length)*100) + '%';
+  r.classList.remove('show-low','show-mid','show-high');
+
+  if (diagChecked === 0) {
+    document.getElementById('d1title').textContent = 'Отмечайте пункты выше';
+    document.getElementById('d1desc').textContent = '';
+    return;
+  }
+
+  if (diagChecked <= 2) {
+    r.classList.add('show-low');
+    document.getElementById('d1title').textContent = 'Соревнование почти не присутствует';
+    document.getElementById('d1desc').textContent = 'Вы в целом держите фокус на себе и своей семье. Есть небольшие точки напряжения — но они не управляют вашей жизнью.';
+  } else if (diagChecked <= 5) {
+    r.classList.add('show-mid');
+    document.getElementById('d1title').textContent = 'Соревнование есть — и оно забирает энергию';
+    document.getElementById('d1desc').textContent = 'Вы тратите силы на то чтобы быть лучше свекрови — вместо того чтобы просто быть собой. Это проигрышная стратегия не потому что вы слабая — а потому что в этом соревновании нет финиша.';
+  } else {
+    r.classList.add('show-high');
+    document.getElementById('d1title').textContent = 'Соревнование занимает много места в вашей жизни';
+    document.getElementById('d1desc').textContent = 'Значительная часть вашей энергии уходит на конкуренцию — осознанную или нет. Вам не нужно выигрывать это соревнование. Вам нужно выйти из него. Это и есть настоящая победа.';
+  }
+}
+
+buildTest1();
+buildDiag();
+</script>
+</body>
+</html>
