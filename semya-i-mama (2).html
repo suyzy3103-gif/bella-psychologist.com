@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Семья без вмешательства</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f2ec;
+    --white: #fffdf9;
+    --ivory: #f5f0e8;
+    --vanilla: #f9f4ea;
+    --latte: #c8a882;
+    --latte-light: #e8d8c4;
+    --latte-pale: #f5ede0;
+    --cocoa: #8b6a48;
+    --cocoa-dark: #5c4428;
+    --cocoa-light: #d4b896;
+    --text: #2a1f14;
+    --text-soft: #5c4428;
+    --text-dim: #9a7a5a;
+    --border: #ddd0bc;
+    --green: #5a8a5a;
+    --green-pale: #edf5ed;
+    --green-border: #b8d4b8;
+    --green-text: #2d5c2d;
+    --red: #8a4a4a;
+    --red-pale: #f7efed;
+    --red-border: #d4b8b8;
+    --red-text: #6a3030;
+    --blue-box: #f0f4f8;
+    --blue-border: #c8d8e8;
+    --blue-text: #2c4a62;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    line-height: 1.75;
+    padding-bottom: 80px;
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(160deg, #c8a882 0%, #d4b896 50%, #e8d4bc 100%);
+    padding: 72px 28px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-inner { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
+  .eyebrow {
+    font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--cocoa-dark); margin-bottom: 20px; font-weight: 700;
+  }
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 6vw, 52px);
+    font-weight: 600; line-height: 1.2;
+    color: var(--cocoa-dark); margin-bottom: 18px;
+  }
+  .hero-desc {
+    font-size: 16px; color: var(--cocoa-dark);
+    max-width: 500px; margin: 0 auto 32px;
+    line-height: 1.85; font-weight: 400; opacity: 0.85;
+  }
+  .hero-parts { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .hero-part {
+    background: rgba(255,255,255,0.5);
+    border: 1px solid rgba(92,68,40,0.2);
+    border-radius: 100px; padding: 7px 18px;
+    font-size: 13px; color: var(--cocoa-dark); font-weight: 600;
+  }
+
+  /* MAIN QUESTION */
+  .main-q-wrap {
+    background: var(--cocoa-dark);
+    padding: 52px 28px;
+    text-align: center;
+  }
+  .main-q-inner { max-width: 640px; margin: 0 auto; }
+  .main-q-label {
+    font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--latte-light); margin-bottom: 20px; font-weight: 700;
+  }
+  .main-q-not {
+    font-size: 17px; color: rgba(255,255,255,0.5);
+    margin-bottom: 8px; font-weight: 400;
+  }
+  .main-q-wrong {
+    font-size: 19px; color: rgba(255,255,255,0.6);
+    margin-bottom: 28px; font-weight: 400;
+    padding: 14px 20px;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 12px;
+    display: inline-block;
+  }
+  .main-q-but {
+    font-size: 17px; color: var(--latte-light);
+    margin-bottom: 8px; font-weight: 400;
+  }
+  .main-q-right {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(20px, 4vw, 28px);
+    color: #ffffff; font-weight: 600;
+    line-height: 1.4;
+    padding: 18px 24px;
+    border: 1.5px solid var(--latte);
+    border-radius: 14px;
+    display: inline-block;
+    margin-top: 4px;
+  }
+
+  /* RULES */
+  .rules-wrap {
+    background: var(--vanilla);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 56px 28px;
+  }
+  .rules-inner { max-width: 720px; margin: 0 auto; }
+  .rules-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px; font-weight: 600; color: var(--text);
+    margin-bottom: 8px;
+  }
+  .rules-sub {
+    font-size: 15px; color: var(--text-soft);
+    margin-bottom: 36px; line-height: 1.8;
+  }
+  .rules-grid { display: flex; flex-direction: column; gap: 12px; }
+  .rule-item {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 22px;
+    display: flex; gap: 16px; align-items: flex-start;
+  }
+  .rule-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px; color: var(--latte);
+    font-weight: 500; line-height: 1; flex-shrink: 0;
+    min-width: 28px;
+  }
+  .rule-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 5px; }
+  .rule-desc { font-size: 14px; color: var(--text-soft); line-height: 1.7; }
+
+  /* PART HEADER */
+  .part-header {
+    background: linear-gradient(135deg, #8b6a48 0%, #a07850 100%);
+    padding: 40px 28px 36px;
+    text-align: center;
+  }
+  .part-num {
+    font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--latte-light); margin-bottom: 10px; font-weight: 700;
+  }
+  .part-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 4vw, 32px);
+    font-weight: 600; color: #ffffff; line-height: 1.3;
+  }
+
+  /* SITUATIONS */
+  .situations { max-width: 780px; margin: 0 auto; padding: 36px 22px; }
+
+  .situation {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+    animation: fadeUp 0.35s ease both;
+  }
+  .situation:hover { box-shadow: 0 4px 20px rgba(200,168,130,0.15); }
+  .situation.open { border-color: var(--latte); box-shadow: 0 6px 28px rgba(200,168,130,0.2); }
+
+  .sit-header {
+    display: flex; align-items: center;
+    padding: 20px 22px; cursor: pointer; gap: 14px;
+    user-select: none; transition: background 0.15s;
+  }
+  .sit-header:hover { background: var(--vanilla); }
+  .situation.open .sit-header { background: var(--vanilla); }
+
+  .sit-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px; color: var(--latte-light);
+    min-width: 34px; font-weight: 500; line-height: 1;
+    transition: color 0.2s;
+  }
+  .situation.open .sit-num { color: var(--latte); }
+
+  .sit-title { flex: 1; font-size: 15px; font-weight: 700; color: var(--text); line-height: 1.3; }
+
+  .sit-arrow { font-size: 26px; color: var(--latte); font-weight: 700; transition: transform 0.3s, color 0.2s; background: var(--latte-pale); width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 1.5px solid var(--latte-light); }
+  .situation.open .sit-arrow { transform: rotate(90deg); color: var(--cocoa); background: var(--latte-light); border-color: var(--latte); }
+
+  .sit-body { display: none; padding: 0 22px 24px; border-top: 1px solid var(--border); }
+  .situation.open .sit-body { display: block; }
+
+  .scene {
+    background: var(--latte-pale);
+    border-left: 3px solid var(--latte-light);
+    border-radius: 0 10px 10px 0;
+    padding: 14px 16px;
+    margin-top: 18px;
+    font-size: 15px; color: var(--text-soft);
+    line-height: 1.8;
+  }
+
+  .block { margin-top: 16px; }
+  .block-label {
+    font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--text-dim); margin-bottom: 8px; font-weight: 700;
+  }
+
+  .red-box {
+    background: var(--red-pale); border: 1px solid var(--red-border);
+    border-radius: 10px; padding: 13px 15px;
+    font-size: 14px; color: var(--red-text); line-height: 1.7;
+  }
+  .green-box {
+    background: var(--green-pale); border: 1px solid var(--green-border);
+    border-radius: 10px; padding: 13px 15px;
+    font-size: 14px; color: var(--green-text); line-height: 1.7; font-weight: 600;
+  }
+  .speech-box {
+    background: var(--white); border: 1.5px solid var(--latte);
+    border-radius: 10px; padding: 13px 15px;
+    font-size: 14px; color: var(--cocoa-dark); line-height: 1.7;
+  }
+  .heart-box {
+    background: #faf5f0; border: 1px solid var(--latte-light);
+    border-radius: 10px; padding: 13px 15px;
+    font-size: 14px; color: var(--text-soft); line-height: 1.7;
+  }
+
+  /* FINAL */
+  .final-wrap {
+    background: var(--cocoa-dark);
+    padding: 60px 28px;
+    text-align: center;
+  }
+  .final-inner { max-width: 600px; margin: 0 auto; }
+  .final-label {
+    font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--latte-light); margin-bottom: 28px; font-weight: 700;
+  }
+  .rule-block {
+    border-radius: 14px; padding: 22px 24px;
+    margin-bottom: 16px; text-align: left;
+  }
+  .rule-old {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+  }
+  .rule-new {
+    background: rgba(200,168,130,0.15);
+    border: 1.5px solid var(--latte);
+  }
+  .rule-block-label {
+    font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--latte-light); margin-bottom: 10px; font-weight: 700;
+  }
+  .rule-block-text {
+    font-size: 16px; color: #ffffff; line-height: 1.75; font-weight: 400;
+  }
+  .rule-new .rule-block-text { color: var(--latte-light); font-weight: 600; }
+
+  /* FOOTER */
+  .footer {
+    background: #3a2810;
+    text-align: center; padding: 44px 28px;
+  }
+  .footer-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; color: var(--latte); font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .footer-copy { font-size: 12px; color: rgba(255,255,255,0.3); line-height: 1.7; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+  @media(max-width:600px){
+    .hero{padding:52px 20px 48px;}
+    .main-q-wrap{padding:44px 20px;}
+    .rules-wrap{padding:44px 20px;}
+    .sit-header{padding:16px 16px;}
+    .sit-body{padding:0 16px 20px;}
+    .situations{padding:28px 14px;}
+    .final-wrap{padding:48px 20px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Полянинова Бэлла Леонидовна · Психология отношений</div>
+    <h1>Семья без вмешательства</h1>
+    <div style="font-family: 'Cormorant Garamond', serif; font-size: clamp(22px, 5vw, 34px); font-weight: 600; color: var(--cocoa-dark); margin-bottom: 16px; line-height: 1.3;">Мой муж или мамин сын?</div>
+    <p class="hero-desc">30 бытовых ситуаций — как поступает мужчина который защищает свою семью, и что говорит женщина которая держит фокус на себе.</p>
+    <div class="hero-parts">
+      <div class="hero-part">Часть 1 · Главный вопрос</div>
+      <div class="hero-part">Часть 2 · 7 правил семьи</div>
+      <div class="hero-part">Часть 3 · Муж и его мама · 15 ситуаций</div>
+      <div class="hero-part">Часть 4 · Свекровь и невестка · 15 ситуаций</div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN QUESTION -->
+<div class="main-q-wrap">
+  <div class="main-q-inner">
+    <div class="main-q-label">Главный вопрос который стоит задать себе</div>
+    <div class="main-q-not">Не:</div>
+    <div class="main-q-wrong">«Как избавиться от свекрови?»</div>
+    <div class="main-q-but">А:</div>
+    <div class="main-q-right">«Способен ли мой муж защищать границы своей семьи — без скандала и чувства вины?»</div>
+  </div>
+</div>
+
+<!-- 7 RULES -->
+<div class="rules-wrap">
+  <div class="rules-inner">
+    <div class="rules-title">7 правил семьи</div>
+    <p class="rules-sub">которые защищают её от внешнего вмешательства</p>
+    <div class="rules-grid" id="rulesGrid"></div>
+  </div>
+</div>
+
+<!-- PART 1 -->
+<div class="part-header">
+  <div class="part-num">Часть первая</div>
+  <div class="part-title">Муж между мамой и своей семьёй</div>
+</div>
+<div class="situations" id="part1"></div>
+
+<!-- PART 2 -->
+<div class="part-header">
+  <div class="part-num">Часть вторая</div>
+  <div class="part-title">Свекровь и невестка: как держать фокус</div>
+</div>
+<div class="situations" id="part2"></div>
+
+<!-- FINAL -->
+<div class="final-wrap">
+  <div class="final-inner">
+    <div class="final-label">Финал</div>
+    <div class="rule-block rule-old">
+      <div class="rule-block-label">Старое правило</div>
+      <div class="rule-block-text">«Я должна доказать, что важнее его матери»</div>
+    </div>
+    <div class="rule-block rule-new">
+      <div class="rule-block-label">Новое правило</div>
+      <div class="rule-block-text">«Мне не нужно выигрывать соревнование. Мне важно понимать — способен ли мой партнёр строить взрослую семью»</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- WHY BLOCK -->
+<div style="background: var(--vanilla); border-top: 1px solid var(--border); padding: 56px 28px;">
+  <div style="max-width: 680px; margin: 0 auto;">
+    <div style="font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 16px; font-weight: 700;">Почему это происходит</div>
+    <div style="font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 600; color: var(--text); margin-bottom: 24px; line-height: 1.3;">Каждой женщине важно, чтобы её выбирали</div>
+    <div style="background: var(--white); border: 1.5px solid var(--border); border-radius: 16px; padding: 26px 24px; margin-bottom: 14px;">
+      <div style="font-size: 15px; color: var(--text-soft); line-height: 1.85;">Для женщины одна из самых глубоких потребностей — чтобы мужчина выбирал её. Не один раз на свадьбе. А каждый день. Своим вниманием, своим временем, своими решениями.</div>
+    </div>
+    <div style="background: var(--white); border: 1.5px solid var(--border); border-radius: 16px; padding: 26px 24px; margin-bottom: 14px;">
+      <div style="font-size: 15px; color: var(--text-soft); line-height: 1.85;">Та же потребность есть у матери. Она тоже хочет быть важной, нужной, выбранной. Только она путает роли. Её должен выбирать её муж — мужчина её поколения, её партнёр. Сын не может и не должен закрывать эту потребность.</div>
+    </div>
+    <div style="background: var(--latte-pale); border: 1.5px solid var(--latte-light); border-radius: 16px; padding: 26px 24px;">
+      <div style="font-size: 15px; color: var(--cocoa-dark); line-height: 1.85; font-weight: 600;">Сын выбирает свою жену. Маму выбирает её муж. Когда каждый стоит на своём месте — в семье есть покой. Когда роли путаются — начинается борьба, в которой не бывает победителей.</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-name">Полянинова Бэлла Леонидовна</div>
+  <div class="footer-copy">© 2025 Полянинова Бэлла Леонидовна. Все права защищены.<br>Копирование без разрешения автора запрещено.</div>
+</div>
+
+<script>
+const rules = [
+  { title: "Решения принимаются внутри семьи", desc: "Любое важное решение — о детях, деньгах, переезде, отдыхе — обсуждается только между мужем и женой. Родители могут знать о решении, но не участвовать в его принятии." },
+  { title: "Дом — закрытая территория", desc: "Приход в дом — только по приглашению и по договорённости. Ключи у посторонних — только для экстренных случаев." },
+  { title: "Семейное не выносится наружу", desc: "Конфликты, финансы, сложности в отношениях — не обсуждаются с родителями, друзьями, родственниками. Это не секрет. Это уважение к своей семье." },
+  { title: "Дети воспитываются по правилам родителей", desc: "Бабушки и дедушки могут любить внуков. Но методы воспитания, режим, запреты и разрешения — устанавливают только родители." },
+  { title: "Время семьи планируется семьёй", desc: "Выходные, праздники, отпуск — сначала договорённости внутри семьи, потом всё остальное. Внешние запросы не имеют приоритета над совместными планами." },
+  { title: "Каждый отвечает за своих родителей сам", desc: "Муж выстраивает границы со своей мамой. Жена — со своей. Никто не должен воевать с чужими родителями. Каждый говорит сам — за свою семью." },
+  { title: "Помощь принимается без обязательств", desc: "Если родители помогают — деньгами, временем, трудом — это подарок, а не инвестиция с правом контроля. Помощь с условиями — это не помощь." }
+];
+
+const part1data = [
+  { title: "Мама приходит без звонка", scene: "Суббота, вы только позавтракали. Звонок в дверь — мама мужа. Без предупреждения, без вопроса удобно ли. «Я мимо шла, дай думаю зайду».", red: "Муж открывает дверь, улыбается: «Мам, проходи». На ваш взгляд не реагирует.", green: "Муж говорит маме у двери: «Мам, мы рады тебя видеть. Но приходи, пожалуйста, предупредив заранее — нам важно планировать время».", speech: "«Мама, мы всегда рады вас видеть. Договоримся так: звоните накануне — тогда встретим вас как следует».", heart: "Она хочет чтобы её дом был её домом. Когда муж молчит — она чувствует что границ нет и защиты нет." },
+  { title: "Мама открывает дверь своим ключом", scene: "Вы дома одна с ребёнком. Слышите как поворачивается замок. Входит свекровь. «Я же свои, чего звонить».", red: "Муж узнав об этом: «Ну мам, она же не чужая, что ты».", green: "Муж говорит маме: «Мам, ключ был на экстренный случай. Пожалуйста, без звонка не входи — это наш дом».", speech: "«Нам важно чувствовать себя дома в безопасности. Давайте договоримся — всегда звонок перед приходом».", heart: "Дом — это единственное место где она должна чувствовать себя в безопасности. Когда туда входят без разрешения — этой безопасности нет." },
+  { title: "Мама назначает выходные без спроса", scene: "«В субботу к восьми заезжай, едем на дачу. Там полить, вскопать, теплицу посмотреть». Ваших планов никто не спросил.", red: "Муж: «Ладно мам, приеду». Вам потом: «Ну что, я же должен помогать».", green: "Муж: «Мам, я сначала посмотрю как у нас планы на выходные. Отвечу тебе завтра».", speech: "«У нас в субботу свои планы. Если Андрей сможет приехать — он вам сам напишет».", heart: "Она хочет чтобы муж защищал их совместное время так же как он защищает мамины планы." },
+  { title: "Мама звонит когда муж с семьёй", scene: "Воскресный обед. Муж берёт трубку — мама. Разговор на 40 минут. Еда стынет, ребёнок ждёт папу.", red: "Муж говорит маме всё подробно, потом извиняется перед вами: «Ну ты же понимаешь».", green: "Муж говорит маме: «Мам, я сейчас с семьёй за столом. Перезвоню через час».", speech: "«Сейчас неудобно говорить, мы за столом. Андрей перезвонит позже».", heart: "Она видит что мамин звонок важнее совместного времени. И чувствует себя на втором месте." },
+  { title: "Мама советует как воспитывать детей", scene: "«Ты зря его так балуешь. В наше время дети были построже. Вот мой Андрей — никогда не капризничал».", red: "Муж молчит или поддакивает маме.", green: "Муж говорит: «Мам, мы с женой решаем как воспитывать наших детей. У нас свой подход».", speech: "«Это был ваш метод воспитания. У нас с мужем другой. Когда нам потребуется ваше мнение — мы его спросим».", heart: "Она вкладывает всё в детей, и когда это обесценивают — это удар по самому важному." },
+  { title: "Муж звонит маме за одобрением после разговора с женой", scene: "Вы с мужем обсудили важное решение. Он согласился. Через час вы слышите как он звонит маме и спрашивает — «мам, я правильно сделал?»", red: "Мама говорит «нет» — и муж возвращается к вам с новой позицией.", green: "Муж говорит маме: «Мам, мы с женой уже решили. Я просто рассказываю, не за советом».", speech: "«Когда мы приняли решение вместе — мне важно что оно остаётся нашим. Не маминым».", heart: "Она чувствует что её мнение — черновик, а мамино — финальная версия." },
+  { title: "Мама критикует жену при муже", scene: "«Посмотри на неё — осунулась, побледнела. Ухаживать за собой надо». Муж сидит рядом.", red: "Муж смотрит в телефон. Или говорит: «Мам, ну хватит». И всё.", green: "Муж говорит сразу: «Мама, внешность моей жены — не тема для обсуждения».", speech: "«Я слышу вас. Решения о своей внешности я принимаю сама».", heart: "Она ждала что муж защитит. Он не защитил. Это больнее любого слова свекрови." },
+  { title: "Мама обижается и замолкает", scene: "Муж что-то не выполнил или отказал маме. Она перестала звонить. Прошла неделя. Муж начинает нервничать и давить на жену.", red: "Муж: «Съездим к маме, она обиделась. Ты же понимаешь как ей важно».", green: "Муж выжидает и говорит маме: «Мам, когда будешь готова поговорить — я здесь. Я тебя люблю».", speech: "«Когда свекровь будет готова — мы рады общению. Мы не будем ехать мириться за то что обозначили свои границы».", heart: "Она не должна нести ответственность за мамины обиды. Иначе любая граница становится поводом для наказания." },
+  { title: "Мама приезжает на праздник и берёт управление", scene: "Ваш день рождения. Свекровь приезжает и начинает командовать на кухне, переставлять, указывать. Вы стоите лишней в своём доме.", red: "Муж: «Мам, ну помоги, тебе же не сложно». Жена лишняя.", green: "Муж говорит маме мягко: «Мам, сегодня хозяйка — жена. Садись, отдыхай».", speech: "«Сегодня я справлюсь сама. Присаживайтесь, всё готово».", heart: "В свой праздник она стала гостьей в собственном доме." },
+  { title: "Мама требует сына когда ей плохо", scene: "«Мне плохо, приедь». Муж срывается в любое время — ночью, в выходной, в день рождения жены. Врачи говорят что всё в норме.", red: "Муж едет всегда и немедленно. Потом объясняет: «Это же мама».", green: "Муж сначала уточняет ситуацию. Если не экстренно — говорит: «Мам, утром позвоню врачу и приеду когда смогу».", speech: "«Если экстренно — вызывайте скорую. Андрей приедет как только сможет».", heart: "Она видит что её время и их планы — не в приоритете. Всегда найдётся причина важнее неё." },
+  { title: "Мама обсуждает семью с родственниками", scene: "На семейном застолье выясняется что все знают о вашей ссоре, о деньгах, о проблемах. Муж всё рассказывает маме — мама рассказывает всем.", red: "Муж: «Ну мам, ты зачем. Ладно, не обращай внимания».", green: "Муж говорит маме наедине: «Мам, то что происходит в нашей семье — остаётся в нашей семье. Я больше не буду рассказывать если это идёт дальше».", speech: "«Для чего вы пересказываете нашу жизнь чужим людям? Впредь мы не будем делиться с вами в той мере в которой было до этого».", heart: "Она чувствует себя беззащитной. Её жизнь — чужое обсуждение." },
+  { title: "Мама шантажирует здоровьем", scene: "«Если не приедете — у меня давление поднимется». Или молчание, слёзы, «я вижу что я вам не нужна».", red: "Муж паникует и едет. Или давит на жену: «Ну видишь как маме плохо».", green: "Муж говорит спокойно: «Мам, если плохо — вызывай скорую. Я приеду когда смогу. Я тебя люблю».", speech: "«Если вам плохо — пожалуйста вызовите врача. Мы приедем при первой возможности».", heart: "Её семья становится заложником чужого настроения. И она виновата просто за то что хочет нормальной жизни." },
+  { title: "Мама даёт деньги и требует контроля", scene: "Свекровь даёт деньги «на ремонт». А потом регулярно спрашивает — куда потратили, почему так, она бы по-другому.", red: "Муж: «Мам, ну она же помогает, надо отчитаться».", green: "Муж говорит маме: «Мам, спасибо за помощь. Но как мы тратим — это наше решение».", speech: "«Мы благодарны за помощь. Решения о тратах мы принимаем сами».", heart: "Деньги превратились в поводок. Она не хотела подарка — она хотела одолжение с условиями." },
+  { title: "Мама против решения о детях", scene: "Вы решили отдать ребёнка в определённую школу. Свекровь против и звонит сыну требуя пересмотреть.", red: "Муж: «Мам, ну может она права, давай пересмотрим».", green: "Муж говорит маме: «Мы с женой это решение уже приняли. Оно остаётся в силе».", speech: "«Мы с мужем обсудили и решили. Спасибо за мнение».", heart: "Одно слово свекрови отменяет их совместное решение. Значит её голос — не равный." },
+  { title: "Мама говорит что жена ему не подходит", scene: "Наедине или при людях: «Ты мог бы найти лучше». «Она не твоего уровня». «Я всегда знала что это ненадолго».", red: "Муж молчит. Или: «Мам, ну хватит». И всё.", green: "Муж говорит чётко: «Мама, это моя жена и моя семья. Я эту женщину выбрал, я её люблю — и эту тему я больше не обсуждаю».", speech: "«Мы выбрали друг друга и живём друг с другом. Эту жизнь проживаем мы — не вы».", heart: "Она хочет одного — чтобы муж выбрал её. Вслух. При маме." }
+];
+
+const part2data = [
+  { title: "Свекровь приходит и проверяет чистоту", scene: "Заходит, проводит пальцем по полке, заглядывает на кухню. «Ну здесь у вас конечно... Я вот всегда держала дом в порядке».", heart: "Это не про пыль. Это сигнал — ты недостаточно хороша для моего сына.", speech: "«У нас свои стандарты чистоты. Нам так комфортно»." },
+  { title: "Свекровь учит как готовить", scene: "«Андрей любит борщ вот так. Ты не так режешь. Я всегда делала иначе». Говорит это на вашей кухне.", heart: "Она приходит в ваш дом и делает вас ученицей в собственном доме.", speech: "«Я готовлю не только для Андрея. Для нас»." },
+  { title: "Свекровь говорит что невестка мало уделяет внимания сыну", scene: "«Посмотри на себя — когда ты последний раз красиво оделась для него? Мужчину надо удерживать».", heart: "Она говорит что вы недостаточны. И намекает что муж может уйти — это прямая угроза безопасности.", speech: "«Наши отношения с мужем — это между нами. Мы справляемся»." },
+  { title: "Свекровь рассказывает о бывших девушках сына", scene: "«Вот его первая любовь — такая была девочка. Умница, красавица. Интересно как она сейчас». И смотрит на реакцию.", heart: "Это намеренное сравнение. Цель — пошатнуть уверенность.", speech: "«Мне неинтересно обсуждать прошлое мужа. У нас есть своё настоящее»." },
+  { title: "Свекровь даёт советы по воспитанию детей без спроса", scene: "«Ты его балуешь. В наше время дети были другими. Вот Андрей никогда так не делал».", heart: "Она обесценивает то во что вы вкладываете всё — материнство.", speech: "«Это был ваш метод воспитания. У нас с мужем другой. Когда нам потребуется ваше мнение — мы его спросим»." },
+  { title: "Свекровь жалуется на невестку сыну", scene: "Вы узнаёте что свекровь регулярно звонит мужу и рассказывает что вы сделали не так — интонация, слова, решения.", heart: "Вы живёте под наблюдением. Каждый ваш шаг оценивается и докладывается.", speech: "«Я хотела бы узнать — для чего вы обсуждаете меня в моё отсутствие? Ваше мнение обо мне может быть каким угодно. Но для нашей семьи ваша оценочная позиция неприемлема. Впредь прошу этого не делать»." },
+  { title: "Свекровь делает подарки детям в обход родителей", scene: "Покупает то что вы запретили, даёт деньги тайно, говорит «это только между нами». Дети начинают играть на противоречиях.", heart: "Она намеренно строит отдельные отношения с детьми в обход вас. Это подрыв авторитета.", speech: "«Подарки детям — пожалуйста согласовывайте с нами. У нас есть свои правила»." },
+  { title: "Свекровь говорит невестке что та не заслуживает сына", scene: "«Ты не понимаешь какой он человек». «Ты не ценишь что тебе досталось». «На твоём месте я бы...»", heart: "Это прямая атака на самооценку. Цель — сделать вас благодарной приживалкой а не равным партнёром.", speech: "«Я вижу что вы пытаетесь настроить мужа против меня. Если ваша цель — сделать жизнь вашего сына несчастной — продолжайте»." },
+  { title: "Свекровь приходит когда мужа нет дома", scene: "Знает что сына нет — и приходит именно тогда. Проверить, поговорить, посмотреть.", heart: "Вы одна, без мужа, и должны принимать человека который вас не уважает. Это некомфортно и небезопасно эмоционально.", speech: "«Когда Андрея нет дома — мне неудобно принимать гостей. Приходите когда он дома»." },
+  { title: "Свекровь обсуждает невестку с родственниками", scene: "На семейном застолье вы слышите что все знают подробности вашей жизни — ваши слова, решения, конфликты.", heart: "Ваша жизнь стала чужим развлечением. Вы не можете контролировать что о вас говорят.", speech: "«Для чего вы пересказываете нашу жизнь чужим людям? Впредь мы не будем делиться с вами в той мере в которой было до этого»." },
+  { title: "Свекровь говорит что невестка плохо влияет на сына", scene: "«Раньше он был другим. Ты его изменила. И не в лучшую сторону».", heart: "Она обвиняет вас в том что муж стал самостоятельным. Это её боль — но направлена она на вас.", speech: "«Люди меняются. Андрей взрослый человек и сам отвечает за свои решения»." },
+  { title: "Свекровь требует участия в праздниках по своим правилам", scene: "«Новый год всегда у нас. Это традиция». «На день рождения все собираются здесь». Ваши желания не обсуждаются.", heart: "У вас нет права на свои традиции. Ваша семья — приложение к чужой.", speech: "«У нас есть свои планы на праздники. Мы рады видеть вас — давайте найдём удобное для всех время»." },
+  { title: "Свекровь лезет в финансы", scene: "«Сколько вы платите за квартиру? Зачем столько тратить? Я бы по-другому». Или даёт деньги и контролирует каждую трату.", heart: "Деньги — это власть. Тот кто контролирует финансы — контролирует жизнь.", speech: "«Наш бюджет — это наше с мужем дело. Мы справляемся»." },
+  { title: "Свекровь говорит что невестка должна быть благодарна", scene: "«Я вырастила тебе такого мужа». «Ты должна ценить что он такой». «Другие бы на твоём месте...»", heart: "Вас ставят в позицию должницы. Как будто муж — это подарок за который надо вечно платить благодарностью.", speech: "«Мы с мужем благодарны друг другу. Это между нами»." },
+  { title: "Свекровь говорит что без неё семья рассыплется", scene: "«Если бы не я — вы бы давно разошлись». «Я держу эту семью». «Вы сами не справитесь».", heart: "Она присваивает вашу семью. Как будто вы не партнёры а дети которых кто-то держит за руку.", speech: "«Нашу семью держим мы — я и мой муж. Это наша ответственность и наш выбор»." }
+];
+
+// Build rules
+const rulesGrid = document.getElementById('rulesGrid');
+rules.forEach((r, i) => {
+  const div = document.createElement('div');
+  div.className = 'rule-item';
+  div.innerHTML = `<div class="rule-num">${i+1}</div><div><div class="rule-title">${r.title}</div><div class="rule-desc">${r.desc}</div></div>`;
+  rulesGrid.appendChild(div);
+});
+
+// Build situations
+function buildPart(data, containerId, isPart1) {
+  const container = document.getElementById(containerId);
+  data.forEach((item, i) => {
+    const div = document.createElement('div');
+    div.className = 'situation';
+    div.style.animationDelay = (i * 0.04) + 's';
+
+    let bodyHTML = `<div class="scene">${item.scene}</div>`;
+
+    if (isPart1) {
+      bodyHTML += `
+        <div class="block"><div class="block-label">🔴 Как поступает мужчина которому нужно мамино одобрение</div><div class="red-box">${item.red}</div></div>
+        <div class="block"><div class="block-label">🟢 Как поступает мужчина который отвечает за семью</div><div class="green-box">${item.green}</div></div>
+        <div class="block"><div class="block-label">💬 Что сказать свекрови</div><div class="speech-box">${item.speech}</div></div>
+        <div class="block"><div class="block-label">💔 Почему женщине больно</div><div class="heart-box">${item.heart}</div></div>`;
+    } else {
+      bodyHTML += `
+        <div class="block"><div class="block-label">💔 Почему больно</div><div class="heart-box">${item.heart}</div></div>
+        <div class="block"><div class="block-label">💬 Что сказать свекрови</div><div class="speech-box">${item.speech}</div></div>`;
+    }
+
+    div.innerHTML = `
+      <div class="sit-header" onclick="toggle(this)">
+        <div class="sit-num">${String(i+1).padStart(2,'0')}</div>
+        <div class="sit-title">${item.title}</div>
+        <div class="sit-arrow">›</div>
+      </div>
+      <div class="sit-body">${bodyHTML}</div>`;
+    container.appendChild(div);
+  });
+}
+
+function toggle(header) {
+  const card = header.parentElement;
+  const wasOpen = card.classList.contains('open');
+  document.querySelectorAll('.situation.open').forEach(c => c.classList.remove('open'));
+  if (!wasOpen) card.classList.add('open');
+}
+
+buildPart(part1data, 'part1', true);
+buildPart(part2data, 'part2', false);
+</script>
+</body>
+</html>
