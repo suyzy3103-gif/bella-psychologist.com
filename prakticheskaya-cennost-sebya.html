@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Практическая ценность себя — Бэлла Леонидовна</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rose:        #F2C4CE;
+    --rose-light:  #FDF0F3;
+    --rose-dark:   #C9848F;
+    --rose-med:    #E8A0AD;
+    --warm-dark:   #4A2E35;
+    --warm-mid:    #7A4A52;
+    --gray-text:   #5C4045;
+    --white:       #FFFFFF;
+    --stripe:      #FBE8EC;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--rose-light);
+    color: var(--gray-text);
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  .hero {
+    background: linear-gradient(160deg, var(--rose) 0%, var(--rose-light) 60%);
+    padding: 60px 24px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background: rgba(242,196,206,0.5);
+    top: -60px; right: -60px;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    background: rgba(245,208,216,0.6);
+    bottom: -40px; left: -30px;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: var(--warm-dark);
+    color: var(--rose-light);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(38px, 9vw, 56px);
+    font-weight: 700;
+    color: var(--warm-dark);
+    line-height: 1.1;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-divider {
+    width: 60px;
+    height: 2px;
+    background: var(--rose-dark);
+    margin: 0 auto 20px;
+  }
+  .hero-sub {
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--warm-dark);
+    line-height: 1.5;
+    margin-bottom: 12px;
+    position: relative; z-index: 1;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+  }
+  .hero-sub2 {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--warm-mid);
+    line-height: 1.65;
+    margin-bottom: 28px;
+    position: relative; z-index: 1;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero-price {
+    display: inline-block;
+    background: var(--warm-dark);
+    color: var(--rose-light);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 600;
+    padding: 12px 36px;
+    border-radius: 50px;
+    margin-bottom: 24px;
+    position: relative; z-index: 1;
+  }
+  .hero-author {
+    font-size: 13px;
+    color: var(--warm-mid);
+    font-weight: 400;
+    position: relative; z-index: 1;
+  }
+  .hero-author strong {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--warm-dark);
+    margin-bottom: 4px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+  }
+
+  /* ── INTRO ── */
+  .intro {
+    background: var(--white);
+    margin: 0 16px 16px;
+    border-radius: 20px;
+    padding: 28px 24px;
+    box-shadow: 0 2px 20px rgba(74,46,53,0.06);
+  }
+  .intro h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    color: var(--warm-dark);
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+  .intro p {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--gray-text);
+    margin-bottom: 14px;
+    font-weight: 300;
+  }
+  .intro p:last-child { margin-bottom: 0; }
+  .intro .highlight {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--rose-dark);
+    border-left: 3px solid var(--rose-med);
+    padding-left: 16px;
+    margin: 20px 0;
+  }
+  .how-to {
+    background: var(--stripe);
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-top: 20px;
+  }
+  .how-to h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    color: var(--warm-dark);
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  .how-to p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--warm-mid);
+    margin-bottom: 8px;
+    font-weight: 400;
+  }
+  .how-to p:last-child { margin-bottom: 0; }
+
+  /* ── SECTION TITLE ── */
+  .section-title {
+    text-align: center;
+    padding: 32px 24px 16px;
+  }
+  .section-title h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px;
+    color: var(--warm-dark);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .section-title p {
+    font-size: 13px;
+    color: var(--warm-mid);
+    font-weight: 300;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── ACCORDION ── */
+  .rules-list {
+    padding: 0 16px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .rule-card {
+    background: var(--white);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(74,46,53,0.07);
+    transition: box-shadow 0.3s ease;
+  }
+  .rule-card.open {
+    box-shadow: 0 4px 28px rgba(74,46,53,0.12);
+  }
+
+  .rule-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 20px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: background 0.2s;
+  }
+  .rule-header:active {
+    background: var(--stripe);
+  }
+
+  .rule-num {
+    flex-shrink: 0;
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    background: var(--rose);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--warm-dark);
+  }
+
+  .rule-header-text {
+    flex: 1;
+  }
+  .rule-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--rose-dark);
+    margin-bottom: 4px;
+  }
+  .rule-title-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--warm-dark);
+    line-height: 1.3;
+  }
+
+  .rule-arrow {
+    flex-shrink: 0;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--rose-light);
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.35s cubic-bezier(.4,0,.2,1), background 0.2s;
+  }
+  .rule-arrow svg {
+    width: 14px; height: 14px;
+    stroke: var(--rose-dark);
+    stroke-width: 2.5;
+    fill: none;
+  }
+  .rule-card.open .rule-arrow {
+    transform: rotate(180deg);
+    background: var(--rose);
+  }
+
+  /* Accordion body */
+  .rule-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(.4,0,.2,1);
+  }
+  .rule-card.open .rule-body {
+    max-height: 2000px;
+  }
+
+  .rule-content {
+    padding: 0 20px 24px;
+    border-top: 1px solid var(--stripe);
+  }
+
+  .rule-paras {
+    padding-top: 18px;
+    margin-bottom: 20px;
+  }
+  .rule-paras p {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--gray-text);
+    margin-bottom: 12px;
+    font-weight: 300;
+  }
+  .rule-paras p:last-child { margin-bottom: 0; }
+  .rule-paras .bold-para {
+    font-weight: 600;
+    color: var(--warm-dark);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-style: italic;
+  }
+
+  .sub-block {
+    background: var(--stripe);
+    border-radius: 14px;
+    padding: 16px 18px;
+    margin-bottom: 12px;
+  }
+  .sub-block:last-child { margin-bottom: 0; }
+  .sub-block h4 {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--rose-dark);
+    margin-bottom: 12px;
+  }
+  .sub-block p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--gray-text);
+    margin-bottom: 10px;
+    font-weight: 300;
+  }
+  .sub-block p:last-child { margin-bottom: 0; }
+
+  .questions-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .questions-list li {
+    display: flex;
+    gap: 10px;
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--gray-text);
+    font-weight: 300;
+  }
+  .questions-list li::before {
+    content: '';
+    flex-shrink: 0;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--rose-dark);
+    margin-top: 7px;
+  }
+
+  /* ── SCRIPT SECTION ── */
+  .script-section {
+    margin: 0 16px 16px;
+    background: var(--white);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 2px 20px rgba(74,46,53,0.06);
+  }
+  .script-header {
+    background: linear-gradient(135deg, var(--warm-dark), var(--warm-mid));
+    padding: 28px 24px;
+    text-align: center;
+  }
+  .script-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    color: var(--rose-light);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .script-header p {
+    font-size: 13px;
+    color: var(--rose-med);
+    font-style: italic;
+    font-weight: 300;
+  }
+  .script-body {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .script-item h3 {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--rose-dark);
+    margin-bottom: 10px;
+  }
+  .script-item p {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--gray-text);
+    margin-bottom: 10px;
+    font-weight: 300;
+  }
+  .script-item p:last-child { margin-bottom: 0; }
+  .script-quote {
+    background: var(--stripe);
+    border-left: 3px solid var(--rose-dark);
+    border-radius: 0 10px 10px 0;
+    padding: 14px 16px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--warm-dark);
+    line-height: 1.65;
+    margin: 10px 0;
+  }
+
+  /* ── DIARY SECTION ── */
+  .diary-section {
+    margin: 0 16px 16px;
+  }
+  .diary-header {
+    text-align: center;
+    padding: 24px 0 16px;
+  }
+  .diary-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px;
+    color: var(--warm-dark);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .diary-header p {
+    font-size: 13px;
+    color: var(--warm-mid);
+    font-weight: 300;
+  }
+
+  /* Scale */
+  .scale-block {
+    background: var(--white);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(74,46,53,0.07);
+    margin-bottom: 16px;
+  }
+  .scale-title {
+    background: var(--stripe);
+    padding: 14px 20px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--rose-dark);
+  }
+  .scale-row {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--stripe);
+    padding: 14px 20px;
+    gap: 16px;
+  }
+  .scale-row:last-child { border-bottom: none; }
+  .scale-score {
+    flex-shrink: 0;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--rose);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--warm-dark);
+  }
+  .scale-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--gray-text);
+    font-weight: 300;
+  }
+
+  /* Day accordion */
+  .days-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .day-card {
+    background: var(--white);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(74,46,53,0.07);
+    transition: box-shadow 0.3s;
+  }
+  .day-card.open {
+    box-shadow: 0 4px 28px rgba(74,46,53,0.12);
+  }
+
+  .day-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 20px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .day-header:active { background: var(--stripe); }
+
+  .day-num {
+    flex-shrink: 0;
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    background: var(--warm-dark);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--rose-light);
+  }
+  .day-name {
+    flex: 1;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--warm-dark);
+  }
+  .day-arrow {
+    flex-shrink: 0;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--rose-light);
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.35s cubic-bezier(.4,0,.2,1), background 0.2s;
+  }
+  .day-arrow svg {
+    width: 14px; height: 14px;
+    stroke: var(--rose-dark);
+    stroke-width: 2.5;
+    fill: none;
+  }
+  .day-card.open .day-arrow {
+    transform: rotate(180deg);
+    background: var(--warm-dark);
+  }
+  .day-card.open .day-arrow svg {
+    stroke: var(--rose-light);
+  }
+
+  .day-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(.4,0,.2,1);
+  }
+  .day-card.open .day-body {
+    max-height: 1400px;
+  }
+
+  .day-content {
+    padding: 4px 20px 24px;
+    border-top: 1px solid var(--stripe);
+  }
+
+  .diary-field {
+    margin-top: 18px;
+  }
+  .diary-field label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--rose-dark);
+    margin-bottom: 8px;
+  }
+  .diary-field textarea {
+    width: 100%;
+    background: var(--stripe);
+    border: 1.5px solid var(--rose-med);
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--warm-dark);
+    resize: vertical;
+    min-height: 60px;
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+  .diary-field textarea:focus {
+    border-color: var(--rose-dark);
+    background: var(--white);
+  }
+  .diary-field textarea::placeholder {
+    color: var(--rose-med);
+  }
+
+  .score-picker {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+  .score-btn {
+    padding: 10px 20px;
+    border-radius: 50px;
+    border: 2px solid var(--rose-med);
+    background: var(--white);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--warm-mid);
+    cursor: pointer;
+    transition: all 0.2s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .score-btn:active, .score-btn.selected {
+    background: var(--warm-dark);
+    border-color: var(--warm-dark);
+    color: var(--rose-light);
+    transform: scale(1.05);
+  }
+
+  .save-btn {
+    width: 100%;
+    margin-top: 20px;
+    padding: 16px;
+    background: linear-gradient(135deg, var(--warm-dark), var(--warm-mid));
+    color: var(--rose-light);
+    border: none;
+    border-radius: 14px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.2s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .save-btn:active { opacity: 0.85; transform: scale(0.98); }
+
+  .saved-msg {
+    display: none;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--rose-dark);
+    font-style: italic;
+  }
+  .saved-msg.show { display: block; }
+
+  /* ── WEEK SUMMARY ── */
+  .week-section {
+    margin: 0 16px 32px;
+    background: var(--white);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 2px 20px rgba(74,46,53,0.06);
+  }
+  .week-header {
+    background: linear-gradient(135deg, var(--rose), var(--rose-med));
+    padding: 24px;
+    text-align: center;
+  }
+  .week-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    color: var(--warm-dark);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .week-header p {
+    font-size: 13px;
+    color: var(--warm-mid);
+    font-weight: 300;
+  }
+  .week-body { padding: 24px; }
+
+  .week-result {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .week-result-row {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .week-score-badge {
+    flex-shrink: 0;
+    min-width: 60px;
+    padding: 8px 10px;
+    background: var(--rose);
+    border-radius: 10px;
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--warm-dark);
+  }
+  .week-result-text {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--gray-text);
+    font-weight: 300;
+    padding-top: 8px;
+  }
+
+  .week-question {
+    background: var(--stripe);
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin-bottom: 16px;
+  }
+  .week-question h3 {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--rose-dark);
+    margin-bottom: 10px;
+  }
+  .week-question p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-style: italic;
+    color: var(--warm-dark);
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+  .week-question textarea {
+    width: 100%;
+    background: var(--white);
+    border: 1.5px solid var(--rose-med);
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--warm-dark);
+    resize: vertical;
+    min-height: 100px;
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+  .week-question textarea:focus { border-color: var(--rose-dark); }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    padding: 32px 24px 48px;
+    border-top: 1px solid var(--rose-med);
+    margin: 0 16px;
+  }
+  .footer p {
+    font-size: 13px;
+    color: var(--warm-mid);
+    font-weight: 300;
+    line-height: 1.8;
+  }
+  .footer strong {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--warm-dark);
+    display: block;
+    margin-bottom: 6px;
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Практическая<br>ценность себя</h1>
+  <div class="hero-divider"></div>
+  <p class="hero-sub">Для тех, кто делает всё — и остаётся невидимой</p>
+  <p class="hero-sub2">Вы много делаете для семьи — но вас не ценят. Этот практикум поможет вернуть себе значимость без скандалов и ультиматумов.</p>
+  <div class="hero-author">
+    <strong>Полянинова Бэлла Леонидовна</strong>
+    Психолог · специалист по межличностным отношениям · 18 лет практики
+  </div>
+</div>
+
+<!-- INTRO -->
+<div class="intro">
+  <h2>Вступление</h2>
+  <p>Вы не жалуетесь. Вы просто делаете.</p>
+  <p>Готовите, везёте, объясняете, ищете, напоминаете, перепроверяете. Без просьбы. Почти всегда — без благодарности. И в какой-то момент задаёте себе вопрос: почему меня не ценят, хотя я столько делаю.</p>
+  <div class="highlight">Ответ неудобный.</div>
+  <p>Окружающие не обязаны ценить то, о чём их не просили. То, что приходит само — воспринимается как само собой разумеющееся. Чем больше вы делаете — тем меньше это замечают.</p>
+  <p>Это не про чёрствость близких. Это про правила, по которым работает ваша семья прямо сейчас.</p>
+  <p>Правила можно изменить.</p>
+  <div class="how-to">
+    <h3>Как пользоваться практикумом</h3>
+    <p>Нажмите на любое правило — оно раскроется. Внутри вы найдёте бытовой пример, инструкцию по внедрению и три вопроса самоконтроля.</p>
+    <p>Внедряйте по одному правилу в день или объявите семье о всех изменениях сразу. В конце — скрипт разговора с семьёй и дневник результатов.</p>
+  </div>
+</div>
+
+<!-- RULES -->
+<div class="section-title">
+  <h2>15 правил</h2>
+  <p>Нажмите на правило, чтобы раскрыть</p>
+</div>
+
+<div class="rules-list" id="rulesList"></div>
+
+<!-- SCRIPT -->
+<div class="script-section">
+  <div class="script-header">
+    <h2>Как объявить семье о новых правилах</h2>
+    <p>Этот разговор нужно провести один раз. Спокойно. Без претензий и без извинений.</p>
+  </div>
+  <div class="script-body">
+    <div class="script-item">
+      <h3>Когда проводить</h3>
+      <p>Не в момент конфликта. Не после скандала. Не на бегу. Выберите спокойный вечер — лучше всего выходной день. Скажите заранее: в субботу вечером я хочу поговорить с вами о том, как мы живём дома.</p>
+    </div>
+    <div class="script-item">
+      <h3>Как начать</h3>
+      <div class="script-quote">«Я хочу сказать вам кое-что важное. Последнее время я делаю очень много — и чувствую, что делаю это в одиночку. Я не говорю, что вы плохие люди. Я говорю, что так больше не может продолжаться. Не потому что я не люблю вас. А потому что я устала и мне нужна помощь.»</div>
+      <p>Пауза. Не заполняйте её. Дайте словам осесть.</p>
+    </div>
+    <div class="script-item">
+      <h3>Как говорить о последствиях</h3>
+      <p>Без угроз. Просто факты.</p>
+      <div class="script-quote">«Если вещи не сложены в корзину для стирки — они не будут постираны. Это не наказание. Это просто то, как теперь работает наш дом.»</div>
+      <div class="script-quote">«Если уроки не сделаны до половины девятого — телефона и мультфильмов в этот вечер нет. Не потому что я злюсь. Потому что мы так договорились.»</div>
+    </div>
+    <div class="script-item">
+      <h3>Как закончить разговор</h3>
+      <div class="script-quote">«Я люблю вас. Именно поэтому я говорю вам об этом честно. Мне важно, чтобы дома было хорошо всем — в том числе мне.»</div>
+      <p>Не ждите аплодисментов. Дети могут надуться. Муж может промолчать. Это нормально. Вы сказали. Это главное.</p>
+    </div>
+    <div class="script-item">
+      <h3>Что будет после разговора</h3>
+      <p>Первые три дня — проверка на прочность. Семья будет делать то, что делала всегда — и смотреть, изменится ли ваша реакция.</p>
+      <p>Просто держаться правил молча. Один раз сказали — этого достаточно. Повторение превращает правило в просьбу.</p>
+    </div>
+  </div>
+</div>
+
+<!-- DIARY -->
+<div class="diary-section">
+  <div class="diary-header">
+    <h2>Дневник результатов</h2>
+    <p>Заполняется каждый вечер · три минуты</p>
+  </div>
+
+  <div class="scale-block">
+    <div class="scale-title">Шкала оценки</div>
+    <div class="scale-row">
+      <div class="scale-score">10</div>
+      <div class="scale-desc">Не вмешалась, не подсказала, не сделала за другого. Держалась полностью.</div>
+    </div>
+    <div class="scale-row">
+      <div class="scale-score">5</div>
+      <div class="scale-desc">Частично удержалась. Вмешалась один раз, но поймала себя и остановилась.</div>
+    </div>
+    <div class="scale-row">
+      <div class="scale-score">0</div>
+      <div class="scale-desc">Сделала сама. Не удержалась.</div>
+    </div>
+    <div class="scale-row">
+      <div class="scale-score">—</div>
+      <div class="scale-desc">Произнесла «дайте сюда, я сама» или бросилась делать без какого-либо запроса.</div>
+    </div>
+  </div>
+
+  <div class="days-list" id="daysList"></div>
+</div>
+
+<!-- WEEK SUMMARY -->
+<div class="week-section">
+  <div class="week-header">
+    <h2>Итог недели</h2>
+    <p>Сложите все оценки за семь дней и разделите на количество дней</p>
+  </div>
+  <div class="week-body">
+    <div class="week-result">
+      <div class="week-result-row">
+        <div class="week-score-badge">8–10</div>
+        <div class="week-result-text">Вы держитесь. Это сильное решение — особенно в первые недели.</div>
+      </div>
+      <div class="week-result-row">
+        <div class="week-score-badge">5–7</div>
+        <div class="week-result-text">Вы в процессе. Срывы — часть пути, не повод останавливаться.</div>
+      </div>
+      <div class="week-result-row">
+        <div class="week-score-badge">Ниже 5</div>
+        <div class="week-result-text">Что-то мешает. Вернитесь к правилу, которое даётся труднее всего, и начните только с него.</div>
+      </div>
+    </div>
+    <div class="week-question">
+      <h3>Вопрос недели</h3>
+      <p>Какое правило далось мне труднее всего — и почему именно оно.</p>
+      <textarea placeholder="Напишите здесь ваши наблюдения..."></textarea>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>
+    <strong>Полянинова Бэлла Леонидовна</strong>
+    Психолог · специалист по межличностным отношениям<br>
+    Instagram: @bella_psychologist<br>
+    Telegram: t.me/bella_psychologist · WhatsApp: +7 988 005 10 25
+  </p>
+</div>
+
+<script>
+const RULES = [
+  {
+    num: 1,
+    title: 'Не делайте за взрослого человека то, что он может сделать самостоятельно.',
+    body: [
+      {text: 'Муж не знает, где его носки. Он спрашивает вас. Вы знаете где. Рука уже тянется показать, объяснить, принести.', bold: false},
+      {text: 'Остановитесь.', bold: true},
+      {text: 'Взрослый человек способен найти носки самостоятельно. Если он не ищет — значит, нет смысла искать, потому что вы всегда найдёте за него. Каждый раз, когда вы отвечаете на этот вопрос, вы подтверждаете: я отвечаю за твои носки. И он это принимает.', bold: false},
+    ],
+    how: ['В первый день это будет странно — и для вас, и для него. Он спросит. Вы промолчите или скажете спокойно: не знаю, посмотри сам. Он найдёт. Или не найдёт и наденет другие. Это его задача, не ваша.', 'Первый день — трудно молчать. Второй — немного легче. К третьему дню вопрос про носки может исчезнуть совсем.'],
+    questions: ['Он действительно не справится без меня — или просто справится иначе.', 'Что произойдёт, если я не вмешаюсь.', 'Чья это зона ответственности.'],
+  },
+  {
+    num: 2,
+    title: 'Не предлагайте помощь раньше, чем о ней попросили.',
+    body: [
+      {text: 'Вы сварили суп. Осталась половина кастрюли. Первая мысль — отвезти сестре, она не любит готовить.', bold: false},
+      {text: 'Подождите.', bold: true},
+      {text: 'Сестра не просила. Она взрослый человек. Если она не любит готовить — это её выбор и её задача. Кулинария, доставка, муж, который готовит — её варианты. Не ваши.', bold: false},
+      {text: 'Когда вы привозите еду без просьбы — вы берёте на себя ответственность за её питание. И однажды она перестаёт это замечать. А в тот день, когда вы не привезёте — она удивится. Или обидится. Вы сами создали это ожидание.', bold: false},
+    ],
+    how: ['Просто не везите. Не звоните с предложением. Если она позвонит и скажет, что нечего есть — это не ваш вопрос для решения. Можно ответить тепло: сочувствую, у меня тоже был сложный день.', 'Первая реакция с её стороны может быть удивлённой. Возможно — обиженной. Это нормально. Человек перестраивается.'],
+    questions: ['Меня об этом просили.', 'Что случится, если я этого не сделаю.', 'Кто будет недоволен — и моя ли это забота.'],
+  },
+  {
+    num: 3,
+    title: 'Не переделывайте и не рекомендуйте, если задача в целом решена.',
+    body: [
+      {text: 'Муж приготовил ужин. Не так посолил. Лук порезан крупнее, чем вы бы порезали. Сковорода не та.', bold: false},
+      {text: 'Вы молчите. Ужин готов. Семья поела. Задача выполнена.', bold: true},
+      {text: 'Как только вы начинаете исправлять, комментировать или переделывать — вы посылаете сигнал: ты сделал недостаточно хорошо. В следующий раз он не возьмётся. Зачем, если всё равно будет не так.', bold: false},
+      {text: 'Иногда контраст работает лучше любых слов. Пусть семья попробует без вашего участия. Это само по себе покажет, чего стоит ваш вклад — без единого упрёка с вашей стороны.', bold: false},
+    ],
+    how: ['Когда захочется сказать «ты неправильно солишь» — сделайте паузу. Задайте себе вопрос: еда съедобна. Все живы. Этого достаточно.', 'Если совсем невыносимо молчать — выйдите из кухни на время готовки. Физически. Это не трусость, это самоконтроль.'],
+    questions: ['Задача решена — или мне важно, чтобы она была решена именно моим способом.', 'Если я промолчу сейчас — он возьмётся за это снова.', 'Что важнее: идеальный результат или его участие.'],
+  },
+  {
+    num: 4,
+    title: 'Не берите на себя чужие последствия и чужую забывчивость.',
+    body: [
+      {text: 'Ребёнок забыл дома сменную обувь. Муж не взял на работу документы, которые вы ему напоминали собрать три раза. Сестра не купила продукты и звонит вам в семь вечера.', bold: false},
+      {text: 'Вы не едете. Вы не везёте. Вы не решаете.', bold: true},
+      {text: 'Это их забывчивость. Значит, это их последствия.', bold: false},
+      {text: 'Когда вы каждый раз исправляете чужую забывчивость — вы забираете у человека единственный способ научиться. Он не забудет в следующий раз не потому что повзрослел, а потому что знает: вы приедете.', bold: false},
+    ],
+    how: ['Ребёнок позвонил из школы — обувь дома. Не едете. Скажите спокойно: это твоя ответственность, сегодня справишься без сменки. Один раз без сменки — и он запомнит.', 'Муж забыл документы. Не везёте. Он взрослый человек и найдёт решение самостоятельно.', 'Будет неприятно. Один раз. Потом — реже.'],
+    questions: ['Это моя забывчивость или чужая.', 'Что случится, если я не приеду и не привезу.', 'Чему научит человека моё участие в этой ситуации.'],
+  },
+  {
+    num: 5,
+    title: 'Каждый член семьи отвечает за свои личные вещи самостоятельно.',
+    body: [
+      {text: 'Где мой телефон. Где моя куртка. Мама, ты не видела мой рюкзак.', bold: false},
+      {text: 'Вы видели. Вы знаете. Вы помните, куда он положил, потому что вы за этим следите.', bold: false},
+      {text: 'Остановитесь.', bold: true},
+      {text: 'Вы не камера хранения и не навигатор по чужим вещам. Каждый человек в семье способен помнить, куда положил свои вещи. Если не помнит — пусть ищет. Это единственный способ выработать привычку.', bold: false},
+    ],
+    how: ['Когда звучит вопрос «ты не видела» — ответ один: нет, не видела. Даже если видели. Особенно если видели.', 'Введите простое правило для всей семьи: у каждой вещи есть своё место. Телефон — на полке. Ключи — на крючке. Рюкзак — у двери.'],
+    questions: ['Это моя вещь или чужая.', 'Я ищу потому что хочу помочь — или потому что не могу вынести чужую растерянность.', 'Что будет, если человек найдёт сам.'],
+  },
+  {
+    num: 6,
+    title: 'Домашние обязанности распределяются заранее — не по принципу «мама всё успеет».',
+    body: [
+      {text: 'Стихийное распределение выглядит так: кто первым увидел — тот и сделал. Кто громче попросил — тот и получил. Кто молча терпит — тот и тянет всё.', bold: false},
+      {text: 'Это не система. Это хаос, в котором всегда проигрывает один и тот же человек.', bold: true},
+      {text: 'Распределение обязанностей — это разговор. Один раз, спокойно, за столом. Кто выносит мусор. Кто моет посуду. Кто убирает в своей комнате. Без исключений и без «ну сегодня я устал».', bold: false},
+    ],
+    how: ['Предупредите семью за три дня. Скажите спокойно: я хочу поговорить о том, как мы распределим обязанности по дому. Не с сегодняшнего дня — с субботы.', 'На разговоре — список. Конкретный. Имя напротив каждого пункта. Не «все вместе убираем», а конкретный человек — конкретное действие.', 'Договорённость нарушена — последствия наступают автоматически. Без напоминаний, без скандала.'],
+    questions: ['Это моя обязанность по договорённости — или я просто взяла, потому что никто не сделал.', 'Я напоминаю второй раз — или это уже третий.', 'Что будет, если я не сделаю это за них сегодня.'],
+  },
+  {
+    num: 7,
+    title: 'Тот, кто первым заметил проблему, не обязан автоматически её решать.',
+    body: [
+      {text: 'Вы заметили, что закончился хлеб. Вы заметили, что у ребёнка дырка на куртке. Вы заметили, что свекровь обиделась.', bold: false},
+      {text: 'И автоматически — пошли решать.', bold: true},
+      {text: 'Но заметить и решить — это два разных действия. Первое не обязывает ко второму.', bold: false},
+      {text: 'Хлеб заметили — скажите об этом вслух за ужином. Пусть тот, кто завтра идёт мимо магазина, купит. Куртка — скажите ребёнку. Свекровь — это отношения мужа с его матерью.', bold: false},
+    ],
+    how: ['Когда замечаете проблему — сделайте паузу перед действием. Задайте себе вопрос: это моя проблема для решения или я просто первой её увидела.', 'Если чужая — назовите её вслух и отойдите. Не контролируйте, решили или нет. Не проверяйте. Не доделывайте.'],
+    questions: ['Кому принадлежит эта проблема.', 'Меня просили её решить.', 'Что случится, если я только скажу — и не сделаю.'],
+  },
+  {
+    num: 8,
+    title: 'Вопрос «Где мои вещи» не делает вас ответственной за их поиск.',
+    body: [
+      {text: 'Этот вопрос звучит в каждой семье по несколько раз в день. И каждый раз вы отвечаете. Или идёте искать. Или помните, где лежит.', bold: false},
+      {text: 'Это не забота. Это обслуживание.', bold: true},
+      {text: 'Пока вы отвечаете — он не запоминает. Смысла запоминать нет.', bold: false},
+    ],
+    how: ['Ответ на вопрос «где мои вещи» — один: не знаю, я за твоими вещами не слежу.', 'Спокойно. Без раздражения. Без объяснений.', 'Первые несколько дней будет непривычно — и вам, и ему. Держитесь. Человек найдёт. Или не найдёт и в следующий раз положит на место.'],
+    questions: ['Я слежу за его вещами — или он сам за ними следит.', 'Сколько раз я уже ответила на этот вопрос.', 'Что изменится, если я не отвечу сегодня.'],
+  },
+  {
+    num: 9,
+    title: 'Ребёнку сначала предлагается подумать самостоятельно — и только потом обращаться за помощью.',
+    body: [
+      {text: 'Мама, я не понимаю задачу. Мама, я не знаю как. Мама, объясни.', bold: false},
+      {text: 'И вы объясняете. Сразу. Потому что быстрее, потому что жалко, потому что он расстроится.', bold: false},
+      {text: 'Но ребёнок, которому всегда объясняют сразу, перестаёт пробовать думать самостоятельно. Зачем напрягаться, если мама рядом и всё объяснит.', bold: false},
+      {text: 'Введите паузу. Подумай десять минут сам. Потом приходи.', bold: true},
+    ],
+    how: ['Договоритесь заранее: сначала десять минут самостоятельно. Можно посмотреть в учебник, перечитать условие, попробовать хотя бы один вариант. Только после этого — вопрос к вам.', 'У ребёнка есть время с 20:30 до 21:00 для телефона или мультфильмов. Чем быстрее он сделал уроки сам — тем больше у него этого времени. Не сделал до 20:30 — телефона нет. Это не наказание. Это связь между усилием и результатом.'],
+    questions: ['Он действительно не может — или просто не пробовал.', 'Я объясняю потому что ему нужна помощь — или потому что мне проще сделать самой.', 'Что он приобретёт, если справится без меня.'],
+  },
+  {
+    num: 10,
+    title: 'Если ребёнок говорит «я не понимаю» — сначала уточняется, что именно непонятно.',
+    body: [
+      {text: '«Я не понимаю» — это не запрос на объяснение всего с начала. Это сигнал, что где-то есть конкретная точка непонимания.', bold: false},
+      {text: 'Когда вы начинаете объяснять всё заново — вы берёте на себя его работу по поиску этой точки. А он привыкает, что достаточно сказать «не понимаю» — и мама всё расскажет сама.', bold: false},
+      {text: 'Остановитесь и спросите: что именно тебе непонятно. Пусть он сформулирует. Это уже половина решения.', bold: true},
+    ],
+    how: ['Когда звучит «не понимаю» — не начинайте объяснять. Задайте один вопрос: покажи мне, где именно ты застрял.', 'Если он не может этого сформулировать — значит, он ещё не попробовал думать. Отправьте его попробовать.'],
+    questions: ['Он объяснил, что именно непонятно — или просто сказал что непонятно.', 'Я начинаю объяснять потому что он попросил — или потому что не могу видеть его растерянность.', 'Что будет, если я задам вопрос вместо того чтобы объяснять.'],
+  },
+  {
+    num: 11,
+    title: 'Родитель направляет и задаёт вопросы — но не выполняет за ребёнка его работу.',
+    body: [
+      {text: 'Есть разница между помощью и подменой.', bold: false},
+      {text: 'Помощь — это когда вы рядом, задаёте наводящие вопросы и даёте ребёнку прийти к ответу самому. Подмена — это когда вы берёте ручку и пишете за него, потому что уже поздно и надо быстрее.', bold: false},
+      {text: 'Подмена удобна сегодня. Но завтра ребёнок снова не умеет делать это сам.', bold: true},
+      {text: 'Ваша задача — не решить задачу. Ваша задача — помочь ему научиться решать задачи.', bold: false},
+    ],
+    how: ['Когда тянется рука взять ручку и написать — остановитесь. Задайте вопрос: как ты думаешь, что здесь нужно сделать первым. Пусть он отвечает. Пусть ошибается. Пусть пробует снова.', 'Ребёнок, который сам дошёл до ответа, запомнит его. Тот, за кого написали — нет.'],
+    questions: ['Я помогаю ему думать — или думаю вместо него.', 'Если я сделаю это за него сегодня — что произойдёт завтра.', 'Чему он научится, если я промолчу и только направлю.'],
+  },
+  {
+    num: 12,
+    title: 'Болезнь и усталость дают право сократить нагрузку — без чувства вины.',
+    body: [
+      {text: 'Вы пьёте таблетку и идёте готовить. Вы не выспались и всё равно встаёте раньше всех. Вы валитесь с ног — и всё равно не просите о помощи.', bold: false},
+      {text: 'А потом удивляетесь, почему никто не предлагает помочь.', bold: false},
+      {text: 'Никто не предлагает, потому что вы показываете: я справляюсь. Вам верят.', bold: true},
+      {text: 'Когда вам плохо — лягте. Скажите вслух: я сегодня не готовлю, мне нездоровится. Не объясняйте подробно. Не извиняйтесь. Просто скажите.', bold: false},
+      {text: 'Семья поест иначе. Закажут доставку. Сделают бутерброды. Это не катастрофа — это один вечер.', bold: false},
+    ],
+    how: ['Начните с малого. Один раз скажите: я устала, сегодня ужин без меня. И не выходите на кухню. Совсем.', 'Первый раз будет некомфортно. Вы будете слышать звуки на кухне и сдерживать себя. Не идите.', 'Посмотрите, что произойдёт. Скорее всего — ничего страшного.'],
+    questions: ['Я делаю это потому что необходимо — или потому что не могу позволить себе не делать.', 'Что случится с семьёй, если я сегодня не приготовлю.', 'Когда я последний раз позволила себе просто лежать и ничего не делать.'],
+  },
+  {
+    num: 13,
+    title: 'Забота о семье не должна происходить за счёт собственного здоровья.',
+    body: [
+      {text: 'Это не красивая фраза. Это практическое правило.', bold: false},
+      {text: 'Женщина, которая игнорирует своё здоровье ради семьи, рано или поздно выходит из строя полностью. И тогда семья остаётся без неё не на один вечер, а на недели.', bold: false},
+      {text: 'Поход к врачу — это не каприз. Это обслуживание механизма, на котором держится вся система.', bold: true},
+      {text: 'Запись к врачу, которую вы откладываете три месяца — это ваша прямая обязанность перед семьёй. Не подвиг. Обязанность.', bold: false},
+    ],
+    how: ['Составьте список того, что вы откладываете ради семьи. Врач, стрижка, час тишины, нормальный сон. Выберите один пункт. Поставьте в календарь на ближайшие семь дней.', 'Не обсуждайте это с семьёй как просьбу о разрешении. Просто скажите: в среду в три часа я у врача.'],
+    questions: ['Я откладываю это потому что некогда — или потому что ставлю чужие потребности выше своих.', 'Что произойдёт с семьёй, если я серьёзно заболею.', 'Когда я последний раз делала что-то только для своего здоровья.'],
+  },
+  {
+    num: 14,
+    title: 'Перед тем как помочь — задайте себе вопрос: без меня человек справится или нет.',
+    body: [
+      {text: 'Мама обмолвилась, что на даче сохнут цветы. Она плохо себя чувствует. Она не просила вас ехать — она просто сказала.', bold: false},
+      {text: 'Вы уже мысленно составляете маршрут.', bold: false},
+      {text: 'Остановитесь.', bold: true},
+      {text: 'Без вас цветы погибнут — или мама найдёт другое решение. Попросит соседку. Попросит мужа. Приедет сама через день. Или цветы завянут — и это будет её опыт, не ваша ответственность.', bold: false},
+      {text: 'Манипуляция через жалость работает только тогда, когда вы позволяете ей работать. Не потому что вы чёрствая. А потому что вы научились реагировать автоматически.', bold: false},
+    ],
+    how: ['Когда чувствуете привычный импульс броситься помогать — сделайте паузу. Буквально физически остановитесь. Задайте себе три вопроса ниже. Ответьте честно. Потом решайте.'],
+    questions: ['Меня об этом просили прямо — или я сама додумала что нужна.', 'Без меня человек действительно не справится — или справится иначе.', 'Моя поездка, моё время и мой отдых стоят этих цветов.'],
+  },
+  {
+    num: 15,
+    title: 'Каждую неделю семья делает хотя бы одно действие, которое облегчает жизнь вам.',
+    body: [
+      {text: 'Это правило не про то, чтобы требовать благодарности. Это про то, чтобы создать в семье привычку замечать друг друга.', bold: false},
+      {text: 'Одно действие в неделю. Муж забрал ребёнка сам. Дочь помыла посуду без напоминания. Сын приготовил завтрак в воскресенье.', bold: false},
+      {text: 'Это не подвиг с их стороны. Это норма, которую нужно сформировать.', bold: true},
+      {text: 'Она не формируется сама. Её создаёте вы — один раз сказав об этом вслух и обозначив ожидание.', bold: false},
+    ],
+    how: ['На семейном разговоре скажите прямо: я хочу, чтобы каждую неделю кто-то из вас делал что-то, что облегчает мою жизнь. Не по праздникам. Каждую неделю.', 'Не благодарите за это избыточно. Просто скажите: заметила, спасибо. Коротко и спокойно. Это тоже формирует привычку.'],
+    questions: ['Было ли на этой неделе что-то, что кто-то сделал для меня.', 'Я это заметила и назвала вслух.', 'Что я могу попросить на следующей неделе.'],
+  },
+];
+
+const DAYS = ['Понедельник','Вторник','Среда','Четверг','Пятница','Суббота','Воскресенье'];
+const ARROW_SVG = `<svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>`;
+
+// Build rules
+const rulesList = document.getElementById('rulesList');
+RULES.forEach(rule => {
+  const card = document.createElement('div');
+  card.className = 'rule-card';
+
+  const bodyHTML = rule.body.map(p =>
+    `<p class="${p.bold ? 'bold-para' : ''}">${p.text}</p>`
+  ).join('');
+
+  const howHTML = rule.how.map(p => `<p>${p}</p>`).join('');
+
+  const questionsHTML = rule.questions.map(q => `<li>${q}</li>`).join('');
+
+  card.innerHTML = `
+    <div class="rule-header">
+      <div class="rule-num">${rule.num}</div>
+      <div class="rule-header-text">
+        <div class="rule-label">Правило ${rule.num}</div>
+        <div class="rule-title-text">${rule.title}</div>
+      </div>
+      <div class="rule-arrow">${ARROW_SVG}</div>
+    </div>
+    <div class="rule-body">
+      <div class="rule-content">
+        <div class="rule-paras">${bodyHTML}</div>
+        <div class="sub-block">
+          <h4>Как внедрить</h4>
+          ${howHTML}
+        </div>
+        <div class="sub-block">
+          <h4>Три вопроса перед тем как действовать</h4>
+          <ul class="questions-list">${questionsHTML}</ul>
+        </div>
+      </div>
+    </div>
+  `;
+
+  card.querySelector('.rule-header').addEventListener('click', () => {
+    const isOpen = card.classList.contains('open');
+    card.classList.toggle('open', !isOpen);
+  });
+
+  rulesList.appendChild(card);
+});
+
+// Build diary days
+const daysList = document.getElementById('daysList');
+DAYS.forEach((day, i) => {
+  const card = document.createElement('div');
+  card.className = 'day-card';
+  const storageKey = `diary_day_${i}`;
+
+  card.innerHTML = `
+    <div class="day-header">
+      <div class="day-num">${i+1}</div>
+      <div class="day-name">${day}</div>
+      <div class="day-arrow">${ARROW_SVG}</div>
+    </div>
+    <div class="day-body">
+      <div class="day-content">
+        <div class="diary-field">
+          <label>Дата</label>
+          <textarea rows="1" placeholder="Напишите дату..." data-field="date"></textarea>
+        </div>
+        <div class="diary-field">
+          <label>Правило, с которым работала сегодня</label>
+          <textarea rows="2" placeholder="Например: Правило 3 — не переделывать..." data-field="rule"></textarea>
+        </div>
+        <div class="diary-field">
+          <label>Ситуация, которая возникла</label>
+          <textarea rows="3" placeholder="Опишите ситуацию..." data-field="situation"></textarea>
+        </div>
+        <div class="diary-field">
+          <label>Что я сделала</label>
+          <textarea rows="3" placeholder="Опишите своё действие..." data-field="action"></textarea>
+        </div>
+        <div class="diary-field">
+          <label>Моя оценка</label>
+          <div class="score-picker">
+            <button class="score-btn" data-score="10">10</button>
+            <button class="score-btn" data-score="5">5</button>
+            <button class="score-btn" data-score="0">0</button>
+            <button class="score-btn" data-score="-">—</button>
+          </div>
+        </div>
+        <div class="diary-field">
+          <label>Что было труднее всего удержать</label>
+          <textarea rows="3" placeholder="Что давалось сложнее всего..." data-field="hard"></textarea>
+        </div>
+        <div class="diary-field">
+          <label>Что я сделаю иначе завтра</label>
+          <textarea rows="3" placeholder="Ваш план на завтра..." data-field="tomorrow"></textarea>
+        </div>
+        <button class="save-btn">Сохранить запись</button>
+        <div class="saved-msg">Запись сохранена ✓</div>
+      </div>
+    </div>
+  `;
+
+  // Toggle
+  card.querySelector('.day-header').addEventListener('click', () => {
+    card.classList.toggle('open');
+  });
+
+  // Score buttons
+  card.querySelectorAll('.score-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      card.querySelectorAll('.score-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+    });
+  });
+
+  // Load saved data
+  try {
+    const saved = JSON.parse(localStorage.getItem(storageKey) || '{}');
+    card.querySelectorAll('textarea[data-field]').forEach(ta => {
+      if (saved[ta.dataset.field]) ta.value = saved[ta.dataset.field];
+    });
+    if (saved.score) {
+      card.querySelectorAll('.score-btn').forEach(btn => {
+        if (btn.dataset.score === saved.score) btn.classList.add('selected');
+      });
+    }
+  } catch(e) {}
+
+  // Save
+  card.querySelector('.save-btn').addEventListener('click', (e) => {
+    e.stopPropagation();
+    const data = {};
+    card.querySelectorAll('textarea[data-field]').forEach(ta => {
+      data[ta.dataset.field] = ta.value;
+    });
+    const selected = card.querySelector('.score-btn.selected');
+    if (selected) data.score = selected.dataset.score;
+    try { localStorage.setItem(storageKey, JSON.stringify(data)); } catch(e) {}
+    const msg = card.querySelector('.saved-msg');
+    msg.classList.add('show');
+    setTimeout(() => msg.classList.remove('show'), 2500);
+  });
+
+  daysList.appendChild(card);
+});
+</script>
+</body>
+</html>
