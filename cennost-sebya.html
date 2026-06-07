@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ценность себя — Полянинова Бэлла Леонидовна</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rose:       #F2C4CE;
+    --rose-light: #FDF0F3;
+    --rose-dark:  #C9848F;
+    --rose-med:   #E8A0AD;
+    --warm-dark:  #4A2E35;
+    --warm-mid:   #7A4A52;
+    --gray-text:  #5C4045;
+    --white:      #FFFFFF;
+    --stripe:     #FBE8EC;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--rose-light);
+    color: var(--gray-text);
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(160deg, var(--rose) 0%, var(--rose-light) 65%);
+    padding: 56px 24px 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(242,196,206,0.45);
+    top: -50px; right: -50px;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 130px; height: 130px;
+    border-radius: 50%;
+    background: rgba(245,208,216,0.5);
+    bottom: -35px; left: -25px;
+  }
+  .hero-tag {
+    display: inline-block;
+    border: 1.5px solid var(--rose-dark);
+    color: var(--rose-dark);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 16px;
+    border-radius: 20px;
+    margin-bottom: 22px;
+    position: relative; z-index: 1;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(42px, 10vw, 60px);
+    font-weight: 700;
+    color: var(--warm-dark);
+    line-height: 1.1;
+    margin-bottom: 10px;
+    position: relative; z-index: 1;
+  }
+  .hero-divider {
+    width: 50px; height: 2px;
+    background: var(--rose-dark);
+    margin: 14px auto 18px;
+  }
+  .hero-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-style: italic;
+    color: var(--warm-mid);
+    margin-bottom: 10px;
+    position: relative; z-index: 1;
+  }
+  .hero-desc {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--warm-mid);
+    line-height: 1.7;
+    max-width: 320px;
+    margin: 0 auto 28px;
+    position: relative; z-index: 1;
+  }
+  .hero-free {
+    display: inline-block;
+    background: var(--warm-dark);
+    color: var(--rose-light);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 8px 24px;
+    border-radius: 30px;
+    margin-bottom: 24px;
+    position: relative; z-index: 1;
+  }
+  .hero-author {
+    font-size: 12px;
+    color: var(--warm-mid);
+    font-weight: 300;
+    position: relative; z-index: 1;
+  }
+  .hero-author strong {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 600;
+    font-style: italic;
+    color: var(--warm-dark);
+    margin-bottom: 3px;
+  }
+
+  /* ── CARD ── */
+  .card {
+    background: var(--white);
+    margin: 0 16px 16px;
+    border-radius: 20px;
+    padding: 28px 22px;
+    box-shadow: 0 2px 20px rgba(74,46,53,0.07);
+  }
+  .card h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--warm-dark);
+    margin-bottom: 16px;
+  }
+  .card p {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--gray-text);
+    font-weight: 300;
+    margin-bottom: 12px;
+  }
+  .card p:last-child { margin-bottom: 0; }
+
+  /* ── ДИАГНОСТИКА ── */
+  .section-title {
+    text-align: center;
+    padding: 28px 24px 14px;
+  }
+  .section-title h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    color: var(--warm-dark);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .section-title p {
+    font-size: 13px;
+    color: var(--warm-mid);
+    font-weight: 300;
+  }
+
+  .diag-list {
+    padding: 0 16px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .diag-item {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 16px 18px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    box-shadow: 0 1px 12px rgba(74,46,53,0.06);
+    cursor: pointer;
+    transition: background 0.2s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .diag-item.checked {
+    background: var(--stripe);
+  }
+  .diag-num {
+    flex-shrink: 0;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--rose-light);
+    border: 1.5px solid var(--rose-med);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--rose-dark);
+    transition: all 0.2s;
+  }
+  .diag-item.checked .diag-num {
+    background: var(--warm-dark);
+    border-color: var(--warm-dark);
+    color: var(--rose-light);
+  }
+  .diag-text {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--gray-text);
+    font-weight: 300;
+    padding-top: 4px;
+  }
+
+  .diag-result {
+    margin: 16px 16px 0;
+    background: var(--warm-dark);
+    border-radius: 16px;
+    padding: 20px 22px;
+    text-align: center;
+    display: none;
+  }
+  .diag-result.show { display: block; }
+  .diag-result p {
+    color: var(--rose-light);
+    font-size: 15px;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+  .diag-result strong {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 8px;
+    color: var(--rose);
+  }
+  .diag-count {
+    text-align: center;
+    padding: 14px 16px 0;
+    font-size: 13px;
+    color: var(--warm-mid);
+    font-weight: 400;
+  }
+  .diag-count span {
+    font-weight: 600;
+    color: var(--rose-dark);
+  }
+
+  /* ── ПРАВИЛА ── */
+  .rules-list {
+    padding: 0 16px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .rule-card {
+    background: var(--white);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(74,46,53,0.08);
+  }
+  .rule-card.open {
+    box-shadow: 0 4px 28px rgba(74,46,53,0.13);
+  }
+  .rule-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 20px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+  .rule-header:active { background: var(--stripe); }
+  .rule-icon {
+    flex-shrink: 0;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--rose), var(--rose-med));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--warm-dark);
+  }
+  .rule-header-text { flex: 1; }
+  .rule-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--rose-dark);
+    margin-bottom: 4px;
+  }
+  .rule-title-preview {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--warm-dark);
+    line-height: 1.3;
+  }
+  .rule-arrow {
+    flex-shrink: 0;
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: var(--rose-light);
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.35s cubic-bezier(.4,0,.2,1), background 0.2s;
+  }
+  .rule-arrow svg {
+    width: 14px; height: 14px;
+    stroke: var(--rose-dark);
+    stroke-width: 2.5;
+    fill: none;
+  }
+  .rule-card.open .rule-arrow {
+    transform: rotate(180deg);
+    background: var(--rose);
+  }
+  .rule-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(.4,0,.2,1);
+  }
+  .rule-card.open .rule-body { max-height: 1800px; }
+  .rule-content {
+    padding: 0 20px 24px;
+    border-top: 1px solid var(--stripe);
+  }
+  .rule-paras { padding-top: 18px; margin-bottom: 18px; }
+  .rule-paras p {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--gray-text);
+    font-weight: 300;
+    margin-bottom: 12px;
+  }
+  .rule-paras p:last-child { margin-bottom: 0; }
+  .rule-paras .accent {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 600;
+    color: var(--warm-dark);
+  }
+
+  .result-block {
+    border-radius: 14px;
+    padding: 16px 18px;
+    margin-bottom: 12px;
+  }
+  .result-block.win {
+    background: var(--stripe);
+    border-left: 3px solid var(--rose-dark);
+  }
+  .result-block.lose {
+    background: #FFF0F0;
+    border-left: 3px solid #D4888F;
+  }
+  .result-block h4 {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .result-block.win h4 { color: var(--rose-dark); }
+  .result-block.lose h4 { color: #C07070; }
+  .result-block p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--gray-text);
+    font-weight: 300;
+  }
+
+  .action-block {
+    background: var(--warm-dark);
+    border-radius: 14px;
+    padding: 16px 18px;
+  }
+  .action-block h4 {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--rose-med);
+    margin-bottom: 8px;
+  }
+  .action-block p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--rose-light);
+    font-weight: 300;
+  }
+
+  /* ── ПРОДАЮЩИЙ БЛОК ── */
+  .promo-section {
+    margin: 16px 16px 32px;
+  }
+
+  .promo-teaser {
+    background: linear-gradient(135deg, var(--warm-dark) 0%, var(--warm-mid) 100%);
+    border-radius: 24px 24px 0 0;
+    padding: 36px 24px 28px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .promo-teaser::before {
+    content: '';
+    position: absolute;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+    top: -60px; right: -40px;
+  }
+  .promo-teaser::after {
+    content: '';
+    position: absolute;
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+    bottom: -30px; left: -20px;
+  }
+  .promo-teaser-tag {
+    display: inline-block;
+    border: 1px solid rgba(242,196,206,0.4);
+    color: var(--rose-med);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 16px;
+    border-radius: 20px;
+    margin-bottom: 18px;
+    position: relative; z-index: 1;
+  }
+  .promo-teaser h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--rose-light);
+    line-height: 1.15;
+    margin-bottom: 12px;
+    position: relative; z-index: 1;
+  }
+  .promo-teaser h2 em {
+    color: var(--rose);
+    font-style: italic;
+  }
+  .promo-teaser p {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(253,240,243,0.8);
+    line-height: 1.7;
+    margin-bottom: 0;
+    position: relative; z-index: 1;
+  }
+
+  .promo-body {
+    background: var(--white);
+    padding: 28px 22px;
+    border-radius: 0 0 24px 24px;
+    box-shadow: 0 8px 32px rgba(74,46,53,0.12);
+  }
+
+  .promo-what {
+    margin-bottom: 24px;
+  }
+  .promo-what-title {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--rose-dark);
+    margin-bottom: 14px;
+  }
+  .promo-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    margin-bottom: 14px;
+  }
+  .promo-item:last-child { margin-bottom: 0; }
+  .promo-item-icon {
+    flex-shrink: 0;
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    background: var(--stripe);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+  .promo-item-text { flex: 1; }
+  .promo-item-text strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--warm-dark);
+    margin-bottom: 2px;
+  }
+  .promo-item-text span {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--warm-mid);
+    line-height: 1.55;
+  }
+
+  .promo-divider {
+    height: 1px;
+    background: var(--stripe);
+    margin: 22px 0;
+  }
+
+  .promo-quote {
+    background: var(--stripe);
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin-bottom: 24px;
+  }
+  .promo-quote p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--warm-dark);
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  .promo-quote span {
+    font-size: 12px;
+    color: var(--rose-dark);
+    font-weight: 500;
+  }
+
+  .promo-cta {
+    display: block;
+    width: 100%;
+    background: linear-gradient(135deg, var(--warm-dark), var(--warm-mid));
+    color: var(--rose-light);
+    text-decoration: none;
+    text-align: center;
+    padding: 18px 24px;
+    border-radius: 16px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: opacity 0.2s, transform 0.2s;
+    -webkit-tap-highlight-color: transparent;
+    margin-bottom: 12px;
+  }
+  .promo-cta:active { opacity: 0.88; transform: scale(0.98); }
+  .promo-cta-sub {
+    text-align: center;
+    font-size: 12px;
+    color: var(--warm-mid);
+    font-weight: 300;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    padding: 28px 24px 44px;
+    border-top: 1px solid var(--rose-med);
+    margin: 0 16px;
+  }
+  .footer strong {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 600;
+    color: var(--warm-dark);
+    margin-bottom: 6px;
+  }
+  .footer p {
+    font-size: 12px;
+    color: var(--warm-mid);
+    font-weight: 300;
+    line-height: 1.8;
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">Бесплатный гайд</div>
+  <h1>Ценность<br>себя</h1>
+  <div class="hero-divider"></div>
+  <p class="hero-tagline">Для тех, кто делает всё —<br>и остаётся невидимой</p>
+  <p class="hero-desc">Вы много делаете для семьи — но вас не ценят. Этот гайд поможет понять почему — и что с этим делать.</p>
+  <div class="hero-free">Бесплатно</div>
+  <div class="hero-author">
+    <strong>Полянинова Бэлла Леонидовна</strong>
+    Психолог · специалист по межличностным отношениям · 18 лет практики
+  </div>
+</div>
+
+<!-- ВСТУПЛЕНИЕ -->
+<div class="card" style="margin-top: 16px;">
+  <h2>Почему вас не ценят</h2>
+  <p>Вы не жалуетесь. Вы просто делаете. Готовите, везёте, объясняете, ищете, напоминаете. Без просьбы. Почти всегда — без благодарности.</p>
+  <p>И в какой-то момент задаёте себе вопрос: почему меня не ценят, хотя я столько делаю.</p>
+  <p>Ответ кроется не в том, кто вас окружает. А в том, как устроена ситуация, которую вы сами же и создали. Пройдите диагностику ниже — и вы увидите это очень чётко.</p>
+</div>
+
+<!-- САМОДИАГНОСТИКА -->
+<div class="section-title">
+  <h2>Самодиагностика</h2>
+  <p>Отметьте всё, что про вас — и честно</p>
+</div>
+
+<div class="diag-list" id="diagList"></div>
+<div class="diag-count">Отмечено: <span id="diagCount">0</span> из 15</div>
+<div class="diag-result" id="diagResult">
+  <strong id="diagResultTitle"></strong>
+  <p id="diagResultText"></p>
+</div>
+
+<!-- ПРАВИЛА -->
+<div class="section-title" style="padding-top: 32px;">
+  <h2>Два правила</h2>
+  <p>Которые можно применить прямо сегодня</p>
+</div>
+
+<div class="rules-list" id="rulesList"></div>
+
+<!-- ПРОДАЮЩИЙ БЛОК -->
+<div class="promo-section">
+  <div class="promo-teaser">
+    <div class="promo-teaser-tag">Для тех, кто готов к следующему шагу</div>
+    <h2>Практическая<br><em>ценность себя</em></h2>
+    <p>Вы только что почувствовали, как работают эти два правила. За ними стоит целая система — из тринадцати таких же конкретных, бытовых, применимых прямо сегодня.</p>
+  </div>
+  <div class="promo-body">
+    <p style="font-size:15px;line-height:1.75;color:var(--gray-text);font-weight:300;margin-bottom:20px;">
+      Вы делаете всё. И при этом остаётесь невидимой. Этот продукт создан для того, чтобы вы перестали быть удобной для всех — и начали быть значимой для себя. Без скандалов. Без ультиматумов. Без чувства вины.
+    </p>
+
+    <div class="promo-what">
+      <div class="promo-what-title">Что внутри</div>
+      <div class="promo-item">
+        <div class="promo-item-icon">📋</div>
+        <div class="promo-item-text">
+          <strong>15 правил с бытовыми примерами</strong>
+          <span>Каждое правило — реальная ситуация, инструкция по внедрению и три вопроса самоконтроля</span>
+        </div>
+      </div>
+      <div class="promo-item">
+        <div class="promo-item-icon">💬</div>
+        <div class="promo-item-text">
+          <strong>Скрипт разговора с семьёй</strong>
+          <span>Дословно что сказать, когда сказать и как держаться после — без скандала и без чувства вины</span>
+        </div>
+      </div>
+      <div class="promo-item">
+        <div class="promo-item-icon">📓</div>
+        <div class="promo-item-text">
+          <strong>Дневник результатов на каждый день</strong>
+          <span>Шкала оценки, поля для записей, итог недели — всё прямо на телефоне</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="promo-divider"></div>
+
+    <div class="promo-quote">
+      <p>«Это не теория. Открываете — и узнаёте себя с первой страницы.»</p>
+      <span>Полянинова Бэлла Леонидовна · Психолог</span>
+    </div>
+
+    <a href="https://app.lava.top/products/b8eded4f-5bdb-403b-a01b-ed50be931329" class="promo-cta">
+      Практическая ценность себя — 990 руб. →
+    </a>
+    <p class="promo-cta-sub">Нажмите — и вы попадёте на страницу продукта</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <strong>Полянинова Бэлла Леонидовна</strong>
+  <p>
+    Психолог · специалист по межличностным отношениям<br>
+    Instagram: @bella.psychologist<br>
+    Telegram: t.me/bella_psychologist · WhatsApp: +7 988 005 10 25
+  </p>
+</div>
+
+<script>
+const DIAG = [
+  'Вы делаете что-то для близких, не дожидаясь просьбы.',
+  'Вы продолжаете вести хозяйство, даже когда плохо себя чувствуете.',
+  'Вы несёте чужие тяжёлые вещи, потому что неудобно не помочь.',
+  'Вы напоминаете мужу об одном и том же больше двух раз.',
+  'Вы объясняете ребёнку задачу, не дожидаясь пока он попробует сам.',
+  'Вы беспокоитесь о проблемах других людей больше, чем они сами.',
+  'Вы чините, прибиваете, двигаете — потому что больше некому.',
+  'Вы слушаете жалобы часами и ищете решения, хотя вас не просили.',
+  'Вы отказываете себе в отдыхе, потому что чувствуете себя виноватой.',
+  'Вы обижаетесь, но молчите — и продолжаете делать всё сами.',
+  'Вы берёте на себя чужие последствия, чтобы избежать конфликта.',
+  'Вы первой извиняетесь, даже когда не виноваты.',
+  'Вы чувствуете, что вас воспринимают как само собой разумеющееся.',
+  'Вы помогаете, даже когда это стоит вам здоровья или сил.',
+  'Вы ловите себя на мысли: почему никто не ценит то, что я делаю.',
+];
+
+const diagList = document.getElementById('diagList');
+const diagCount = document.getElementById('diagCount');
+const diagResult = document.getElementById('diagResult');
+const diagResultTitle = document.getElementById('diagResultTitle');
+const diagResultText = document.getElementById('diagResultText');
+
+let checked = 0;
+
+DIAG.forEach((text, i) => {
+  const item = document.createElement('div');
+  item.className = 'diag-item';
+  item.innerHTML = `
+    <div class="diag-num">${i+1}</div>
+    <div class="diag-text">${text}</div>
+  `;
+  item.addEventListener('click', () => {
+    item.classList.toggle('checked');
+    checked = document.querySelectorAll('.diag-item.checked').length;
+    diagCount.textContent = checked;
+    updateResult();
+  });
+  diagList.appendChild(item);
+});
+
+function updateResult() {
+  if (checked === 0) {
+    diagResult.classList.remove('show');
+    return;
+  }
+  diagResult.classList.add('show');
+  if (checked >= 10) {
+    diagResultTitle.textContent = checked + ' из 15 — это много.';
+    diagResultText.textContent = 'Вы систематически ставите чужие потребности выше своих. Это не добродетель — это привычка, которая стоит вам здоровья, сил и уважения. Два правила ниже — ваш первый шаг.';
+  } else if (checked >= 5) {
+    diagResultTitle.textContent = checked + ' из 15 — есть над чем работать.';
+    diagResultText.textContent = 'Вы уже чувствуете, что что-то не так. Два правила ниже помогут начать менять это прямо сегодня.';
+  } else {
+    diagResultTitle.textContent = checked + ' из 15 — вы замечаете это в себе.';
+    diagResultText.textContent = 'Даже один-два пункта — это сигнал. Прочитайте правила ниже и задайте себе честный вопрос.';
+  }
+}
+
+// RULES
+const RULES = [
+  {
+    num: 1,
+    title: 'Сначала спроси — потом действуй.',
+    paras: [
+      {text: 'Вы видите человека с тяжёлыми сумками. Внутри уже всё сжалось — надо помочь. Вы подхватываете сумки и тащите. Ваша спина, ваши силы, ваш выбор — которого никто не просил.', accent: false},
+      {text: 'Остановитесь. Задайте один вопрос: вам нужна помощь?', accent: true},
+      {text: 'Это меняет всё. Вы больше не бросаетесь помогать автоматически — вы спрашиваете разрешения. Человек сам решает, нужна ли ему помощь. И вы действуете только после того, как получили ответ.', accent: false},
+    ],
+    win: 'Вы перестаёте тратить силы туда, где вас не ждали. Вы начинаете замечать, что большинство людей справляются сами — и не нуждаются в вашей помощи так сильно, как вы думали.',
+    lose: 'Вы потащили чужую тяжёлую сумку — и сорвали спину. Теперь вы неделю лежите. Ваши близкие остались без вашей помощи. Вы потратили деньги на лечение. Один автоматический порыв — и вы наказали и себя, и тех, кто действительно в вас нуждается.',
+    action: 'В следующий раз когда захочется помочь — сделайте паузу в три секунды. Задайте вопрос. Потом решайте.',
+  },
+  {
+    num: 2,
+    title: 'Не решай проблему, пока тебя не попросили.',
+    paras: [
+      {text: 'Муж сказал за ужином: надо бы починить полку в шкафу. Внутри у вас уже включился режим: завтра найду мастера, позвоню, договорюсь, встречу, оплачу.', accent: false},
+      {text: 'Подождите. Он сказал — он и решает.', accent: true},
+      {text: 'Вы не обязаны подхватывать каждую брошенную фразу и превращать её в свою задачу. Пока вы подхватываете — у него нет ни причины, ни необходимости что-то делать самому.', accent: false},
+    ],
+    win: 'Вы освобождаете огромное количество энергии, которую тратите на чужие задачи. Муж начинает решать свои проблемы сам — потому что больше некому. И начинает замечать, когда вы всё-таки помогаете.',
+    lose: 'Вы нашли мастера, договорились, встретили, заплатили. Потратили день. Муж сказал спасибо — и через месяц снова бросил фразу за ужином. Потому что знает: вы подхватите. Круг замкнулся.',
+    action: 'Когда услышите фразу которая звучит как чужая задача — просто не реагируйте. Подождите. Посмотрите, что будет.',
+  },
+];
+
+const rulesList = document.getElementById('rulesList');
+const ARROW = `<svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>`;
+
+RULES.forEach(rule => {
+  const card = document.createElement('div');
+  card.className = 'rule-card';
+
+  const parasHTML = rule.paras.map(p =>
+    `<p class="${p.accent ? 'accent' : ''}">${p.text}</p>`
+  ).join('');
+
+  card.innerHTML = `
+    <div class="rule-header">
+      <div class="rule-icon">${rule.num}</div>
+      <div class="rule-header-text">
+        <div class="rule-label">Правило ${rule.num}</div>
+        <div class="rule-title-preview">${rule.title}</div>
+      </div>
+      <div class="rule-arrow">${ARROW}</div>
+    </div>
+    <div class="rule-body">
+      <div class="rule-content">
+        <div class="rule-paras">${parasHTML}</div>
+        <div class="result-block win">
+          <h4>Что вы выиграете</h4>
+          <p>${rule.win}</p>
+        </div>
+        <div class="result-block lose" style="margin-top:10px;">
+          <h4>Что вы потеряете, если не остановитесь</h4>
+          <p>${rule.lose}</p>
+        </div>
+        <div class="action-block" style="margin-top:10px;">
+          <h4>Одно действие сегодня</h4>
+          <p>${rule.action}</p>
+        </div>
+      </div>
+    </div>
+  `;
+
+  card.querySelector('.rule-header').addEventListener('click', () => {
+    card.classList.toggle('open');
+  });
+
+  rulesList.appendChild(card);
+});
+</script>
+</body>
+</html>
