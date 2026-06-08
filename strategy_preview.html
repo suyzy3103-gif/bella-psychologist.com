@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Семья в приоритете</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --blush: #f5e6e0;
+    --blush-deep: #d4a89a;
+    --rose: #b07870;
+    --rose-dark: #7a4f48;
+    --text: #2c1f1c;
+    --text-light: #6b4f4a;
+    --white: #fdfaf8;
+    --line: rgba(176, 120, 112, 0.25);
+  }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--white);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-size: 16px;
+  }
+
+  .screen {
+    display: none;
+    min-height: 100vh;
+    flex-direction: column;
+    animation: fadeIn 0.4s ease;
+  }
+  .screen.active { display: flex; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── INTRO ── */
+  #screen-intro {
+    background: linear-gradient(160deg, var(--blush) 0%, var(--white) 65%);
+    justify-content: center;
+    align-items: center;
+    padding: 52px 32px;
+    text-align: center;
+  }
+
+  .intro-eyebrow {
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rose);
+    font-weight: 300;
+    margin-bottom: 28px;
+  }
+
+  .intro-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 56px;
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+  .intro-title em { font-style: italic; color: var(--rose); }
+
+  .intro-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--text-light);
+    line-height: 1.55;
+    max-width: 310px;
+    margin: 0 auto 40px;
+  }
+
+  .divider { width: 40px; height: 1px; background: var(--blush-deep); margin: 0 auto 36px; }
+
+  .intro-body {
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.9;
+    color: var(--text-light);
+    max-width: 340px;
+    margin: 0 auto 44px;
+  }
+  .intro-body strong { color: var(--rose-dark); font-weight: 500; }
+
+  .btn-start {
+    background: var(--rose-dark);
+    color: var(--white);
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 18px 48px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .btn-start:hover { background: var(--rose); }
+
+  /* ── MENU ── */
+  #screen-menu {
+    background: linear-gradient(160deg, var(--blush) 0%, var(--white) 55%);
+    padding: 48px 28px 52px;
+    flex-direction: column;
+  }
+
+  .menu-eyebrow {
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rose);
+    font-weight: 300;
+    margin-bottom: 12px;
+  }
+
+  .menu-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px;
+    font-weight: 300;
+    color: var(--text);
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+
+  .menu-hint {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-light);
+    margin-bottom: 36px;
+    line-height: 1.6;
+  }
+
+  .step-card {
+    background: var(--white);
+    border: 1px solid var(--line);
+    padding: 20px 20px 20px 24px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    position: relative;
+  }
+  .step-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--blush-deep);
+    transition: background 0.25s;
+  }
+  .step-card:hover { border-color: var(--rose); background: var(--blush); }
+  .step-card:hover::before { background: var(--rose); }
+
+  .step-card-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 300;
+    color: var(--blush-deep);
+    line-height: 1;
+    flex-shrink: 0;
+    transition: color 0.25s;
+    min-width: 28px;
+  }
+  .step-card:hover .step-card-num { color: var(--rose); }
+
+  .step-card-info { flex: 1; }
+
+  .step-card-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--rose);
+    font-weight: 300;
+    margin-bottom: 4px;
+  }
+
+  .step-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1.2;
+  }
+
+  .step-card-desc {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--text-light);
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+
+  .step-card-arrow {
+    font-size: 20px;
+    color: var(--blush-deep);
+    flex-shrink: 0;
+    transition: color 0.25s, transform 0.25s;
+  }
+  .step-card:hover .step-card-arrow { color: var(--rose); transform: translateX(3px); }
+
+  /* ── STEP SCREENS ── */
+  .step-header {
+    background: var(--blush);
+    padding: 24px 28px 22px;
+    border-bottom: 1px solid var(--line);
+    flex-shrink: 0;
+  }
+
+  .step-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+  }
+
+  .btn-back {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--rose);
+    background: none;
+    border: none;
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.2s;
+  }
+  .btn-back:hover { color: var(--rose-dark); }
+
+  .btn-menu {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-light);
+    background: none;
+    border: 1px solid var(--line);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    cursor: pointer;
+    padding: 7px 14px;
+    transition: all 0.2s;
+  }
+  .btn-menu:hover { border-color: var(--rose); color: var(--rose); }
+
+  .step-lbl {
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--rose);
+    font-weight: 300;
+    margin-bottom: 6px;
+  }
+
+  .step-ttl {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1.15;
+  }
+
+  /* ── STEP BODY ── */
+  .step-body {
+    flex: 1;
+    padding: 30px 28px 44px;
+    overflow-y: auto;
+  }
+
+  .ctx {
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.85;
+    color: var(--text-light);
+    margin-bottom: 26px;
+    padding-left: 16px;
+    border-left: 2px solid var(--blush-deep);
+  }
+
+  .icard {
+    background: var(--blush);
+    padding: 22px;
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .icard::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--rose);
+  }
+
+  .icard-lbl {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--rose);
+    font-weight: 300;
+    margin-bottom: 10px;
+  }
+
+  .icard-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--text);
+  }
+
+  .phrase {
+    background: var(--white);
+    border: 1px solid var(--line);
+    padding: 14px 18px;
+    margin-top: 14px;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .phrase-lbl {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--rose);
+    font-weight: 300;
+    margin-bottom: 8px;
+  }
+
+  .note-lbl {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--rose);
+    font-weight: 300;
+    margin-bottom: 10px;
+  }
+
+  textarea {
+    width: 100%;
+    min-height: 88px;
+    padding: 14px 16px;
+    border: 1px solid var(--line);
+    background: var(--blush);
+    font-family: 'Jost', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--text);
+    resize: none;
+    outline: none;
+    line-height: 1.7;
+    transition: border-color 0.2s;
+    margin-bottom: 26px;
+  }
+  textarea::placeholder { color: var(--blush-deep); }
+  textarea:focus { border-color: var(--rose); }
+
+  .sep { width: 100%; height: 1px; background: var(--line); margin: 4px 0 24px; }
+
+  .sec-ttl {
+    font-size: 12px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--text-light);
+    font-weight: 300;
+    margin-bottom: 14px;
+  }
+
+  .rbtn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 18px;
+    border: 1px solid var(--line);
+    background: var(--white);
+    font-family: 'Jost', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--text);
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.25s;
+    margin-bottom: 10px;
+  }
+  .rbtn:hover { border-color: var(--rose); background: var(--blush); }
+  .rbtn.yes { border-left: 3px solid #7aab8a; }
+  .rbtn.no  { border-left: 3px solid var(--blush-deep); }
+  .rbtn-icon { font-size: 18px; flex-shrink: 0; }
+
+  .btn-next {
+    display: block;
+    width: 100%;
+    background: var(--rose-dark);
+    color: var(--white);
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 18px 24px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+    text-align: center;
+    margin-top: 6px;
+  }
+  .btn-next:hover { background: var(--rose); }
+
+  /* WA card */
+  .wa-card {
+    background: #f0f7f1;
+    border: 1px solid #c5dfc9;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  .wa-lbl { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #4a8a5a; font-weight: 300; margin-bottom: 10px; }
+  .wa-text { font-family: 'Cormorant Garamond', serif; font-size: 19px; font-style: italic; line-height: 1.6; color: var(--text); }
+  .wa-ex { background: white; border: 1px solid #c5dfc9; padding: 14px 18px; margin-top: 12px; font-size: 15px; font-weight: 300; line-height: 1.7; color: var(--text); }
+
+  /* RESULT */
+  #screen-result {
+    background: linear-gradient(160deg, var(--blush) 0%, var(--white) 60%);
+    justify-content: center;
+    align-items: center;
+    padding: 52px 32px;
+    text-align: center;
+  }
+  .res-icon { width: 68px; height: 68px; border-radius: 50%; background: var(--blush-deep); display: flex; align-items: center; justify-content: center; margin: 0 auto 28px; font-size: 24px; }
+  .res-title { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; line-height: 1.2; margin-bottom: 16px; }
+  .res-text { font-size: 15px; font-weight: 300; line-height: 1.9; color: var(--text-light); max-width: 320px; margin: 0 auto 36px; }
+  .author { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--rose); margin-top: 44px; font-weight: 300; }
+
+  /* ── STICKY BAR ── */
+  .sticky-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: var(--rose-dark);
+    z-index: 999;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    box-shadow: 0 -4px 24px rgba(44,31,28,0.2);
+  }
+  .sticky-text { flex: 1; }
+  .sticky-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 3px;
+  }
+  .sticky-sub {
+    font-size: 11px;
+    font-weight: 300;
+    color: rgba(253,250,248,0.7);
+    line-height: 1.4;
+  }
+  .sticky-btns { display: flex; gap: 8px; flex-shrink: 0; }
+  .sticky-btn {
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.2s;
+    flex-shrink: 0;
+  }
+  .sticky-btn:hover { opacity: 0.85; transform: scale(1.06); }
+  .sticky-btn.tg { background: #2AABEE; }
+  .sticky-btn.wa { background: #25D366; }
+  body { padding-bottom: 180px; }
+
+</style>
+</head>
+<body>
+
+<!-- ВВОДНЫЙ ЭКРАН -->
+<div id="screen-intro" class="screen active">
+  <p class="intro-eyebrow" style="margin-top:52px;">Стратегия поведения</p>
+  <h1 class="intro-title">Семья<br>в <em>приоритете</em></h1>
+  <p class="intro-sub">Для тех, кто хочет быть на первом месте в жизни собственного мужа</p>
+  <div class="divider"></div>
+  <p class="intro-body">
+    Он помогает всем — потому что там его <strong>видят и ценят</strong>.<br><br>
+    Дома всё воспринимается как само собой разумеющееся.<br><br>
+    Эта стратегия меняет именно это — шаг за шагом, без скандалов и ультиматумов.
+  </p>
+  <button class="btn-start" onclick="goTo('screen-menu')">Начать</button>
+</div>
+
+<!-- МЕНЮ ШАГОВ -->
+<div id="screen-menu" class="screen">
+  <div style="padding: 48px 28px 0;">
+    <p class="menu-eyebrow">Семья в приоритете</p>
+    <h2 class="menu-title">Выберите шаг</h2>
+    <p class="menu-hint">Начните с любого — хоть с первого, хоть с пятого.</p>
+  </div>
+  <div style="padding: 0 28px 52px; flex:1;">
+
+    <div class="step-card" onclick="goTo('screen-s1')">
+      <div class="step-card-num">1</div>
+      <div class="step-card-info">
+        <p class="step-card-label">Шаг первый</p>
+        <p class="step-card-title">Личный запрос</p>
+        <p class="step-card-desc">Одно дело — один срок — одно предложение</p>
+      </div>
+      <div class="step-card-arrow">›</div>
+    </div>
+
+    <div class="step-card" onclick="goTo('screen-s2')">
+      <div class="step-card-num">2</div>
+      <div class="step-card-info">
+        <p class="step-card-label">Шаг второй</p>
+        <p class="step-card-title">Другая подача</p>
+        <p class="step-card-desc">Другой момент, короче формулировка</p>
+      </div>
+      <div class="step-card-arrow">›</div>
+    </div>
+
+    <div class="step-card" onclick="goTo('screen-s3')">
+      <div class="step-card-num">3</div>
+      <div class="step-card-info">
+        <p class="step-card-label">Шаг третий</p>
+        <p class="step-card-title">Письменно</p>
+        <p class="step-card-desc">Сообщение в WhatsApp — без эмоций, с вопросом</p>
+      </div>
+      <div class="step-card-arrow">›</div>
+    </div>
+
+    <div class="step-card" onclick="goTo('screen-s4')">
+      <div class="step-card-num">4</div>
+      <div class="step-card-info">
+        <p class="step-card-label">Шаг четвёртый</p>
+        <p class="step-card-title">Среда признания</p>
+        <p class="step-card-desc">Называть его вклад вслух — без похвалы, как факт</p>
+      </div>
+      <div class="step-card-arrow">›</div>
+    </div>
+
+    <div class="step-card" onclick="goTo('screen-s5')">
+      <div class="step-card-num">5</div>
+      <div class="step-card-info">
+        <p class="step-card-label">Шаг пятый</p>
+        <p class="step-card-title">Разговор о приоритетах</p>
+        <p class="step-card-desc">Один вопрос в спокойный момент — и молчание</p>
+      </div>
+      <div class="step-card-arrow">›</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ШАГ 1 -->
+<div id="screen-s1" class="screen">
+  <div class="step-header">
+    <div class="step-nav">
+      <button class="btn-back" onclick="goTo('screen-menu')">← Все шаги</button>
+      <button class="btn-menu" onclick="goTo('screen-menu')">Меню</button>
+    </div>
+    <p class="step-lbl">Шаг первый</p>
+    <h2 class="step-ttl">Личный запрос</h2>
+  </div>
+  <div class="step-body">
+    <p class="ctx">Не «ты никогда», не «опять». Одно конкретное дело — один срок — одно предложение. Спокойный момент: не вечером после работы, не во время еды.</p>
+
+    <div class="icard">
+      <p class="icard-lbl">Как говорить</p>
+      <p class="icard-text">Конкретно. Без объяснений зачем. Без истории о том, как давно это висит.</p>
+      <div class="phrase"><span class="phrase-lbl">Пример фразы</span>«В субботу утром нужно прибить полку. Ты сделаешь?»</div>
+    </div>
+
+    <p class="note-lbl">Ваш запрос — запишите</p>
+    <textarea placeholder="Напишите здесь, о чём вы попросите..."></textarea>
+
+    <div class="sep"></div>
+    <p class="sec-ttl">Как он отреагировал?</p>
+    <button class="rbtn yes" onclick="goTo('screen-done')"><span class="rbtn-icon">✓</span><span>Сделал — всё получилось</span></button>
+    <button class="rbtn no"  onclick="goTo('screen-s2')"><span class="rbtn-icon">→</span><span>Не сделал — шаг второй</span></button>
+  </div>
+</div>
+
+<!-- ШАГ 2 -->
+<div id="screen-s2" class="screen">
+  <div class="step-header">
+    <div class="step-nav">
+      <button class="btn-back" onclick="goTo('screen-menu')">← Все шаги</button>
+      <button class="btn-menu" onclick="goTo('screen-menu')">Меню</button>
+    </div>
+    <p class="step-lbl">Шаг второй</p>
+    <h2 class="step-ttl">Другой момент,<br>другая подача</h2>
+  </div>
+  <div class="step-body">
+    <p class="ctx">Это не повтор и не напоминание. Он уже не слышит привычную просьбу — она идёт фоном. Нужна пересборка: другое время, другая интонация, короче формулировка.</p>
+
+    <div class="icard">
+      <p class="icard-lbl">Что изменить</p>
+      <p class="icard-text">Другое время суток. Короче формулировка. Одно предложение — почему это важно. Только одно.</p>
+      <div class="phrase"><span class="phrase-lbl">Пример фразы</span>«Полка нужна до конца недели. Это важно для меня.»</div>
+    </div>
+
+    <p class="note-lbl">Новая формулировка</p>
+    <textarea placeholder="Как скажете иначе..."></textarea>
+
+    <div class="sep"></div>
+    <p class="sec-ttl">Как он отреагировал?</p>
+    <button class="rbtn yes" onclick="goTo('screen-done')"><span class="rbtn-icon">✓</span><span>Сделал — всё получилось</span></button>
+    <button class="rbtn no"  onclick="goTo('screen-s3')"><span class="rbtn-icon">→</span><span>Не сделал — шаг третий</span></button>
+  </div>
+</div>
+
+<!-- ШАГ 3 -->
+<div id="screen-s3" class="screen">
+  <div class="step-header">
+    <div class="step-nav">
+      <button class="btn-back" onclick="goTo('screen-menu')">← Все шаги</button>
+      <button class="btn-menu" onclick="goTo('screen-menu')">Меню</button>
+    </div>
+    <p class="step-lbl">Шаг третий</p>
+    <h2 class="step-ttl">Письменно</h2>
+  </div>
+  <div class="step-body">
+    <p class="ctx">Устный запрос растворяется в воздухе. Письменный текст стоит на месте — его можно перечитать, он не уходит в фоновый шум дня.</p>
+
+    <div class="wa-card">
+      <p class="wa-lbl">Сообщение в WhatsApp</p>
+      <p class="wa-text">Без эмоций. Без истории. Только факт и просьба.</p>
+      <div class="wa-ex">«Полка до субботы — это важно. Договорились?»</div>
+    </div>
+
+    <div class="icard">
+      <p class="icard-lbl">Правило</p>
+      <p class="icard-text">Никаких объяснений почему пишете. Никаких упрёков. Вопрос в конце — обязателен: он требует ответа.</p>
+    </div>
+
+    <p class="note-lbl">Ваше сообщение</p>
+    <textarea placeholder="Текст сообщения..."></textarea>
+
+    <div class="sep"></div>
+    <p class="sec-ttl">Как он отреагировал?</p>
+    <button class="rbtn yes" onclick="goTo('screen-done')"><span class="rbtn-icon">✓</span><span>Ответил и сделал</span></button>
+    <button class="rbtn no"  onclick="goTo('screen-s4')"><span class="rbtn-icon">→</span><span>Не отреагировал — шаг четвёртый</span></button>
+  </div>
+</div>
+
+<!-- ШАГ 4 -->
+<div id="screen-s4" class="screen">
+  <div class="step-header">
+    <div class="step-nav">
+      <button class="btn-back" onclick="goTo('screen-menu')">← Все шаги</button>
+      <button class="btn-menu" onclick="goTo('screen-menu')">Меню</button>
+    </div>
+    <p class="step-lbl">Шаг четвёртый</p>
+    <h2 class="step-ttl">Среда признания</h2>
+  </div>
+  <div class="step-body">
+    <p class="ctx">Он ищет признание снаружи — потому что дома всё воспринимается как норма. Этот шаг меняет это — без давления и без манипуляции.</p>
+
+    <div class="icard">
+      <p class="icard-lbl">Что делать</p>
+      <p class="icard-text">Начните называть вслух то, что он уже делает. Любую мелочь. Не похвала — фиксация факта и его значение для вас.</p>
+      <div class="phrase">
+        <span class="phrase-lbl">Примеры</span>
+        «Купил картошку — ты облегчил мне вечер.»<br><br>
+        «Отвёз детей — у меня освободился час. Спасибо.»<br><br>
+        «Хорошо, что успел до закрытия. Это было важно.»
+      </div>
+    </div>
+
+    <div class="icard">
+      <p class="icard-lbl">Как не надо</p>
+      <p class="icard-text">Не «молодец», не «наконец-то», не «видишь, можешь же». Только нейтральная фиксация и её значение для вас.</p>
+    </div>
+
+    <div class="sep"></div>
+    <p class="sec-ttl">Что происходит дома?</p>
+    <button class="rbtn yes" onclick="goTo('screen-result')"><span class="rbtn-icon">✓</span><span>Он начал делать больше</span></button>
+    <button class="rbtn no"  onclick="goTo('screen-s5')"><span class="rbtn-icon">→</span><span>Пока ничего не изменилось — шаг пятый</span></button>
+  </div>
+</div>
+
+<!-- ШАГ 5 -->
+<div id="screen-s5" class="screen">
+  <div class="step-header">
+    <div class="step-nav">
+      <button class="btn-back" onclick="goTo('screen-menu')">← Все шаги</button>
+      <button class="btn-menu" onclick="goTo('screen-menu')">Меню</button>
+    </div>
+    <p class="step-lbl">Шаг пятый</p>
+    <h2 class="step-ttl">Разговор<br>о приоритетах</h2>
+  </div>
+  <div class="step-body">
+    <p class="ctx">Не в момент конфликта. Спокойный вечер, когда оба не заняты и не раздражены.</p>
+
+    <div class="icard">
+      <p class="icard-lbl">Один вопрос</p>
+      <p class="icard-text">Задайте его и замолчите. Не дополняйте, не объясняйте. Дайте ему время.</p>
+      <div class="phrase"><span class="phrase-lbl">Фраза</span>«Где в твоей жизни стоит наш дом?»</div>
+    </div>
+
+    <div class="icard">
+      <p class="icard-lbl">Что дальше</p>
+      <p class="icard-text">Это не претензия — это приглашение к договору. Что бы он ни ответил — вы слушаете.</p>
+    </div>
+
+    <p class="note-lbl">Что он ответил — запишите</p>
+    <textarea placeholder="Его ответ..."></textarea>
+
+    <button class="btn-next" onclick="goTo('screen-result')">Завершить стратегию →</button>
+  </div>
+</div>
+
+<!-- ЕСЛИ СДЕЛАЛ -->
+<div id="screen-done" class="screen">
+  <div class="step-header">
+    <div class="step-nav">
+      <button class="btn-back" onclick="goTo('screen-menu')">← Все шаги</button>
+      <button class="btn-menu" onclick="goTo('screen-menu')">Меню</button>
+    </div>
+    <p class="step-lbl">Он сделал</p>
+    <h2 class="step-ttl">Важно — что теперь</h2>
+  </div>
+  <div class="step-body">
+    <p class="ctx">Это не финал — это начало. Сейчас важно закрепить. Иначе через неделю всё вернётся.</p>
+
+    <div class="icard">
+      <p class="icard-lbl">Ваше действие</p>
+      <p class="icard-text">Назовите его вклад вслух. Не хвалите как ребёнка — фиксируйте как факт.</p>
+      <div class="phrase"><span class="phrase-lbl">Пример фразы</span>«Мне важно, что ты это сделал. Это облегчило мне день.»</div>
+    </div>
+
+    <p class="ctx" style="margin-top:0;">Одного предложения достаточно. Именно это он ищет снаружи — а вы только что дали ему это дома.</p>
+
+    <button class="btn-next" onclick="goTo('screen-s4')">Перейти к закреплению →</button>
+  </div>
+</div>
+
+<!-- ФИНАЛ -->
+<div id="screen-result" class="screen">
+  <div style="flex:1; display:flex; flex-direction:column; align-items:center; padding:52px 28px 56px; background:linear-gradient(160deg,var(--blush) 0%,var(--white) 60%);">
+
+    <!-- Завершение -->
+    <div style="text-align:center; margin-bottom:44px;">
+      <div class="res-icon">✦</div>
+      <h2 class="res-title">Это не про мусор<br>и не про <em style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--rose);">полку</em></h2>
+      <div class="divider" style="margin-top:16px;"></div>
+      <p class="res-text">Вы меняли не его привычку. Вы меняли среду, в которой он существует рядом с вами.<br><br>Когда дом становится местом, где его видят — он начинает ставить дом первым.</p>
+      <button class="btn-start" onclick="goTo('screen-menu')" style="font-size:12px; padding:14px 32px;">Вернуться к шагам</button>
+    </div>
+
+    <!-- Разделитель -->
+    <div style="width:100%; height:1px; background:var(--line); margin-bottom:40px;"></div>
+
+    <!-- Экспресс-разбор -->
+    <div style="width:100%; max-width:400px;">
+      <p style="font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--rose); font-weight:300; margin-bottom:16px; text-align:center;">Если стратегия не сдвинула ситуацию</p>
+
+      <div style="background:var(--blush); padding:28px 24px; position:relative; margin-bottom:28px;">
+        <div style="position:absolute; top:0; left:0; width:3px; height:100%; background:var(--rose);"></div>
+        <p style="font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:300; line-height:1.5; color:var(--text); margin-bottom:14px;">Это не значит, что метод не работает. Это значит, что в вашем случае есть своя причина.</p>
+        <p style="font-size:14px; font-weight:300; line-height:1.85; color:var(--text-light);">Семейный сценарий, детская история, соревнование — то, что не видно снаружи и не решается общей инструкцией. Именно это мы разбираем вместе.</p>
+      </div>
+
+      <div style="text-align:center; margin-bottom:28px;">
+        <p style="font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:400; color:var(--text); margin-bottom:6px;">Экспресс-разбор вашей ситуации</p>
+        <p style="font-size:13px; font-weight:300; color:var(--text-light); letter-spacing:1px;">60 минут с психологом</p>
+      </div>
+
+      <!-- Кнопки -->
+      <a href="https://t.me/bella_psychologist" target="_blank"
+         style="display:flex; align-items:center; justify-content:center; gap:12px; width:100%; padding:18px 24px; background:#2AABEE; color:white; font-family:'Jost',sans-serif; font-size:14px; font-weight:400; letter-spacing:1.5px; text-transform:uppercase; text-decoration:none; margin-bottom:12px; transition:opacity 0.2s;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.8 13.9l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.835.952l.013-.293z"/></svg>
+        Написать в Telegram
+      </a>
+
+      <a href="https://wa.me/79880051025" target="_blank"
+         style="display:flex; align-items:center; justify-content:center; gap:12px; width:100%; padding:18px 24px; background:#25D366; color:white; font-family:'Jost',sans-serif; font-size:14px; font-weight:400; letter-spacing:1.5px; text-transform:uppercase; text-decoration:none; transition:opacity 0.2s;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M12.031 0C5.384 0 .001 5.383.001 12.031c0 2.122.557 4.112 1.528 5.837L0 24l6.306-1.653A11.974 11.974 0 0012.031 24C18.678 24 24 18.617 24 11.969 24 5.322 18.678 0 12.031 0zm6.051 16.708c-.253.714-1.467 1.32-2.028 1.374-.521.05-1.01.247-3.402-.708-2.86-1.143-4.695-4.058-4.836-4.245-.14-.187-1.148-1.527-1.148-2.912s.727-2.059.985-2.34c.258-.28.562-.35.75-.35l.538.01c.173.007.405-.066.633.483.235.563.797 1.947.867 2.087.07.14.117.303.023.487-.094.184-.14.298-.28.46l-.422.49c-.14.14-.286.292-.123.573.163.28.724 1.194 1.554 1.933 1.067.952 1.967 1.246 2.247 1.386.28.14.443.117.607-.07.163-.187.7-.817.887-1.097.187-.28.374-.234.633-.14.258.093 1.644.775 1.924.915.28.14.467.21.537.327.07.117.07.677-.183 1.337z"/></svg>
+        Написать в WhatsApp
+      </a>
+
+      <p class="author" style="margin-top:36px; text-align:center;">Бэлла Леонидовна Полянинова</p>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function goTo(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo(0, 0);
+  }
+</script>
+
+<!-- ФИКСИРОВАННАЯ ПЛАШКА -->
+<div class="sticky-bar" id="sticky-cta">
+  <div style="width:100%;">
+    <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:12px; margin-bottom:12px;">
+      <div>
+        <p style="font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:400; color:#fdfaf8; line-height:1.2; margin-bottom:3px;">Экспресс-разбор ситуации</p>
+        <p style="font-size:12px; font-weight:300; color:rgba(253,250,248,0.6); letter-spacing:1.5px; text-transform:uppercase;">60 минут с психологом</p>
+      </div>
+      <div style="display:flex; gap:8px; flex-shrink:0; margin-top:2px;">
+        <a href="https://t.me/bella_psychologist" target="_blank" class="sticky-btn tg" title="Telegram">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.8 13.9l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.835.952l.013-.293z"/></svg>
+        </a>
+        <a href="https://wa.me/79880051025" target="_blank" class="sticky-btn wa" title="WhatsApp">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12.031 0C5.384 0 .001 5.383.001 12.031c0 2.122.557 4.112 1.528 5.837L0 24l6.306-1.653A11.974 11.974 0 0012.031 24C18.678 24 24 18.617 24 11.969 24 5.322 18.678 0 12.031 0zm6.051 16.708c-.253.714-1.467 1.32-2.028 1.374-.521.05-1.01.247-3.402-.708-2.86-1.143-4.695-4.058-4.836-4.245-.14-.187-1.148-1.527-1.148-2.912s.727-2.059.985-2.34c.258-.28.562-.35.75-.35l.538.01c.173.007.405-.066.633.483.235.563.797 1.947.867 2.087.07.14.117.303.023.487-.094.184-.14.298-.28.46l-.422.49c-.14.14-.286.292-.123.573.163.28.724 1.194 1.554 1.933 1.067.952 1.967 1.246 2.247 1.386.28.14.443.117.607-.07.163-.187.7-.817.887-1.097.187-.28.374-.234.633-.14.258.093 1.644.775 1.924.915.28.14.467.21.537.327.07.117.07.677-.183 1.337z"/></svg>
+        </a>
+      </div>
+    </div>
+    <p style="font-size:13px; font-weight:300; color:rgba(253,250,248,0.82); line-height:1.6;">Семейный сценарий, детская история, соревнование — то, что стоит за поведением и не решается общей инструкцией</p>
+    <div style="display:flex; gap:10px; margin-top:14px;">
+      <a href="https://t.me/bella_psychologist" target="_blank"
+         style="flex:1; display:flex; align-items:center; justify-content:center; gap:8px; padding:13px 10px; background:#2AABEE; color:white; font-family:'Jost',sans-serif; font-size:12px; font-weight:400; letter-spacing:1.5px; text-transform:uppercase; text-decoration:none; border-radius:2px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.8 13.9l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.835.952l.013-.293z"/></svg>
+        Telegram
+      </a>
+      <a href="https://wa.me/79880051025" target="_blank"
+         style="flex:1; display:flex; align-items:center; justify-content:center; gap:8px; padding:13px 10px; background:#25D366; color:white; font-family:'Jost',sans-serif; font-size:12px; font-weight:400; letter-spacing:1.5px; text-transform:uppercase; text-decoration:none; border-radius:2px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12.031 0C5.384 0 .001 5.383.001 12.031c0 2.122.557 4.112 1.528 5.837L0 24l6.306-1.653A11.974 11.974 0 0012.031 24C18.678 24 24 18.617 24 11.969 24 5.322 18.678 0 12.031 0zm6.051 16.708c-.253.714-1.467 1.32-2.028 1.374-.521.05-1.01.247-3.402-.708-2.86-1.143-4.695-4.058-4.836-4.245-.14-.187-1.148-1.527-1.148-2.912s.727-2.059.985-2.34c.258-.28.562-.35.75-.35l.538.01c.173.007.405-.066.633.483.235.563.797 1.947.867 2.087.07.14.117.303.023.487-.094.184-.14.298-.28.46l-.422.49c-.14.14-.286.292-.123.573.163.28.724 1.194 1.554 1.933 1.067.952 1.967 1.246 2.247 1.386.28.14.443.117.607-.07.163-.187.7-.817.887-1.097.187-.28.374-.234.633-.14.258.093 1.644.775 1.924.915.28.14.467.21.537.327.07.117.07.677-.183 1.337z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+  </div>
+</div>
+</body>
+</html>
