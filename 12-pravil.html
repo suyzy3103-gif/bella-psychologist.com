@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>12 правил влиять на ребёнка без критики — Бэлла Леонидовна</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#10243a;
+    --ink-soft:#2c4660;
+    --blue:#1f6fb2;
+    --blue-deep:#16548a;
+    --sky:#5aa9e6;
+    --sky-soft:#e8f3fb;
+    --bg:#f3f8fc;
+    --card:#ffffff;
+    --line:#d4e6f3;
+    --warn:#b4453a;
+    --warn-bg:#fbeeec;
+    --radius:18px;
+    --shadow:0 10px 34px rgba(22,84,138,.12);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Manrope',-apple-system,system-ui,sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    font-size:19px;
+    line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:0 20px;}
+
+  /* ОБЛОЖКА */
+  .hero{
+    background:linear-gradient(160deg,#1f6fb2 0%,#16548a 60%,#0f3f6b 100%);
+    color:#fff;
+    padding:64px 0 58px;
+    text-align:center;
+  }
+  .hero .wrap{padding:0 26px;}
+  .eyebrow{
+    display:inline-block;
+    font-size:15px;
+    font-weight:700;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:#bfe0f7;
+    margin-bottom:22px;
+    line-height:1.7;
+  }
+  .eyebrow-sub{
+    font-weight:600;
+    letter-spacing:2px;
+    opacity:.82;
+  }
+  .hero h1{
+    font-size:40px;
+    line-height:1.18;
+    font-weight:800;
+    letter-spacing:-.5px;
+    margin-bottom:20px;
+  }
+  .hero .sub{
+    font-size:21px;
+    font-weight:500;
+    color:#dceffb;
+    max-width:560px;
+    margin:0 auto;
+  }
+  .hero .meta{
+    margin-top:30px;
+    font-size:16px;
+    font-weight:600;
+    color:#a9d3f1;
+    letter-spacing:1px;
+  }
+
+  /* ВСТУПЛЕНИЕ */
+  .intro{padding:48px 0 8px;}
+  .intro p{margin-bottom:20px;color:var(--ink-soft);}
+  .intro .lead{
+    font-size:23px;
+    font-weight:700;
+    color:var(--ink);
+    line-height:1.45;
+  }
+  .intro .turn{
+    font-size:22px;
+    font-weight:700;
+    color:var(--blue-deep);
+  }
+  .znakomo{
+    font-size:22px;
+    font-weight:800;
+    color:var(--blue);
+    text-align:center;
+    margin:6px 0 24px;
+  }
+
+  /* СЕКЦИЯ-ЗАГОЛОВОК */
+  .section-head{
+    text-align:center;
+    padding:44px 0 8px;
+  }
+  .section-head .n{
+    font-size:15px;
+    font-weight:700;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--blue);
+  }
+  .section-head h2{
+    font-size:30px;
+    font-weight:800;
+    line-height:1.25;
+    margin-top:8px;
+    color:var(--ink);
+  }
+  .section-head .hint{
+    margin-top:10px;
+    font-size:17px;
+    color:var(--ink-soft);
+  }
+
+  /* КАРТОЧКИ-КНИЖКИ */
+  .ways{padding:18px 0 8px;}
+  .way{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    margin-bottom:16px;
+    overflow:hidden;
+  }
+  .way summary{
+    list-style:none;
+    cursor:pointer;
+    padding:24px 24px;
+    display:flex;
+    align-items:flex-start;
+    gap:18px;
+    user-select:none;
+  }
+  .way summary::-webkit-details-marker{display:none;}
+  .way .num{
+    flex:0 0 auto;
+    width:48px;height:48px;
+    border-radius:14px;
+    background:var(--sky-soft);
+    color:var(--blue-deep);
+    font-size:22px;
+    font-weight:800;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .way .title{
+    font-size:22px;
+    font-weight:800;
+    line-height:1.3;
+    color:var(--ink);
+    flex:1;
+  }
+  .way .chev{
+    flex:0 0 auto;
+    width:26px;height:26px;
+    margin-top:10px;
+    position:relative;
+    transition:transform .25s ease;
+  }
+  .way .chev::before,.way .chev::after{
+    content:"";position:absolute;top:11px;
+    width:14px;height:3px;border-radius:2px;background:var(--blue);
+  }
+  .way .chev::before{left:0;transform:rotate(45deg);}
+  .way .chev::after{right:0;transform:rotate(-45deg);}
+  .way[open] .chev{transform:rotate(180deg);}
+  .way .body{
+    padding:4px 24px 26px;
+    border-top:1px solid var(--line);
+    margin-top:-2px;
+  }
+  .block{margin-top:20px;}
+  .block .lbl{
+    font-size:14px;
+    font-weight:700;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:var(--blue);
+    margin-bottom:6px;
+  }
+  .block p{color:var(--ink-soft);}
+  .block.example{
+    background:var(--sky-soft);
+    border-radius:14px;
+    padding:18px 18px;
+  }
+  .block.example .lbl{color:var(--blue-deep);}
+  .block.example p{color:var(--ink);font-weight:500;}
+  .script{
+    background:#eef6fc;
+    border-left:4px solid var(--blue);
+    border-radius:8px;
+    padding:16px 18px;
+    margin-top:20px;
+  }
+  .script .lbl{color:var(--blue-deep);}
+  .script p{color:var(--ink);font-weight:600;font-size:19px;}
+  .block.cost{
+    background:var(--warn-bg);
+    border-radius:14px;
+    padding:18px 18px;
+  }
+  .block.cost .lbl{color:var(--warn);}
+  .block.cost p{color:#5c2622;font-weight:500;}
+
+  /* ДНЕВНИК */
+  .diary{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:30px 26px;
+    margin:30px 0;
+  }
+  .diary h3{font-size:24px;font-weight:800;margin-bottom:8px;}
+  .diary .q{color:var(--ink-soft);margin-bottom:20px;font-size:18px;}
+  .day{
+    display:flex;align-items:center;gap:14px;
+    padding:14px 0;border-bottom:1px solid var(--line);
+  }
+  .day:last-child{border-bottom:none;}
+  .day .d{
+    flex:0 0 auto;width:40px;height:40px;border-radius:50%;
+    background:var(--sky-soft);color:var(--blue-deep);
+    font-weight:800;display:flex;align-items:center;justify-content:center;
+  }
+  .day .line{
+    flex:1;height:0;border-bottom:2px dashed var(--line);
+  }
+
+  /* ПЕРЕХОД НА СПОКОЙНОГО РОДИТЕЛЯ */
+  .next{
+    background:linear-gradient(160deg,#16548a 0%,#0f3f6b 100%);
+    color:#fff;
+    padding:50px 0 56px;
+    margin-top:40px;
+  }
+  .next .wrap{padding:0 26px;}
+  .next .eyebrow{color:#9fcdee;}
+  .next h2{font-size:30px;font-weight:800;line-height:1.25;margin-bottom:18px;}
+  .next p{color:#dceffb;margin-bottom:16px;font-size:19px;}
+  .next .themes{
+    display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 26px;
+  }
+  .next .themes span{
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.22);
+    border-radius:20px;
+    padding:8px 16px;
+    font-size:16px;font-weight:600;
+  }
+  .cta{
+    display:block;
+    background:#fff;
+    color:var(--blue-deep);
+    text-align:center;
+    font-size:21px;
+    font-weight:800;
+    text-decoration:none;
+    padding:20px 24px;
+    border-radius:16px;
+    box-shadow:0 10px 30px rgba(0,0,0,.22);
+    transition:transform .15s ease;
+  }
+  .cta:active{transform:scale(.98);}
+  .cta .small{display:block;font-size:15px;font-weight:600;color:var(--blue);margin-top:4px;}
+  .next .note{margin-top:16px;font-size:15px;color:#a9d3f1;text-align:center;}
+
+  /* ПОДВАЛ */
+  footer{padding:40px 0 60px;text-align:center;}
+  footer .sign{font-size:19px;font-weight:700;color:var(--ink);}
+  footer .copy{margin-top:14px;font-size:14px;color:#8aa3ba;line-height:1.6;}
+  footer .nick{margin-top:10px;font-size:15px;font-weight:700;letter-spacing:1px;color:var(--blue);}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .hero h1{font-size:31px;}
+    .hero .sub{font-size:18px;}
+    .intro .lead{font-size:20px;}
+    .intro .turn{font-size:19px;}
+    .section-head h2{font-size:25px;}
+    .way .title{font-size:19px;}
+    .way summary{padding:20px 18px;gap:14px;}
+    .way .num{width:42px;height:42px;font-size:19px;}
+    .way .body{padding:4px 18px 22px;}
+    .next h2{font-size:25px;}
+    .script p{font-size:18px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ОБЛОЖКА -->
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Бэлла Леонидовна Полянинова<br><span class="eyebrow-sub">для родителей</span></span>
+    <h1>12 правил, как влиять на ребёнка без критики</h1>
+    <p class="sub">12 ситуаций, в которых родитель обычно срывается на критику — и 12 правил сказать иначе. С примерами и готовыми фразами.</p>
+  </div>
+</header>
+
+<!-- ВСТУПЛЕНИЕ -->
+<section class="intro">
+  <div class="wrap">
+    <p class="lead">Ваш сын приносит тройку. Или дочь снова не убрала комнату, вышла в мятом платье, не села вовремя за уроки. И внутри поднимается знакомое, почти против воли: «Посмотри на других. У людей дети как дети. Почему у тебя так?»</p>
+    <p>Кажется, что сейчас ребёнок устыдится, соберётся и станет лучше. И иногда он правда подтягивается — на два-три дня. А потом всё возвращается, и вы снова стоите на той же кухне с теми же словами.</p>
+    <p class="znakomo">Знакомо?</p>
+    <p>Я восемнадцать лет работаю с семьями и скажу прямо то, что редко говорят вслух. <b>Сравнение чинит поведение ребёнка на неделю — и ломает его уверенность на двадцать лет вперёд.</b> Ребёнок запоминает не задачу, которую надо было решить. Он запоминает одно: снова кто-то оказался лучше него. И постепенно перестаёт спрашивать себя «как мне справиться» — начинает спрашивать «почему я хуже».</p>
+    <p>Из мальчика, которого сравнивали, вырастает мужчина, который боится браться за сложное. Из девочки, которую сравнивали, вырастает женщина, которая всю жизнь доказывает, что достойна любви. А родитель однажды понимает, что ребёнок звонит по обязанности, а не потому что хочет. И это случилось не в один день — копилось по капле, в каждом «посмотри на Васю».</p>
+    <p class="turn">Девяносто девять родителей из ста думают про сегодняшнюю оценку. Этот продукт — для того сотого, который думает, каким человеком его ребёнок проснётся в 25–30 лет.</p>
+    <p>Ниже — двенадцать правил. Каждое можно развернуть: внутри живой пример, что сделать, почему это работает и чем платит ребёнок, если оставить как есть. Нажмите на правило, чтобы открыть его.</p>
+  </div>
+</section>
+
+<!-- СПОСОБЫ -->
+<section class="ways">
+  <div class="wrap">
+
+    <!-- 1 -->
+    <details class="way" open>
+      <summary>
+        <span class="num">1</span>
+        <span class="title">Смотрите на задачу, а не на ребёнка</span>
+        <span class="chev"></span>
+      </summary>
+      <div class="body">
+        <div class="block example">
+          <div class="lbl">Пример</div>
+          <p>Сын приносит тройку, дочь снова бросает вещи на стуле. Рука тянется сказать: «ты невнимательный», «ты неряха», «другие же могут».</p>
+        </div>
+        <div class="block">
+          <div class="lbl">Что сделать</div>
+          <p>Повернитесь не к ребёнку с обвинением, а к самой ситуации. Спросите, где именно стало трудно, и разберите это вместе, как союзник, а не как судья.</p>
+        </div>
+        <div class="script">
+          <div class="lbl">Скажите так</div>
+          <p>«Покажи мне, где именно стало трудно. Давай посмотрим вместе».</p>
+        </div>
+        <div class="block">
+          <div class="lbl">Почему так</div>
+          <p>Вы можете быть требовательной и всё равно стоять на стороне ребёнка против трудности, а не на стороне трудности против ребёнка. Тогда он идёт к решению, а не защищается от вас.</p>
+        </div>
+        <div class="block cost">
+          <div class="lbl">Что будет, если нет</div>
+          <p>Ребёнок, которого годами учили, что он «хуже других», вырастает во взрослого, который избегает всего сложного. Не потому что не может — потому что боится снова услышать, что проиграл.</p>
+        </div>
+      </div>
+    </details>
+
+    <!-- 2 -->
+    <details class="way">
+      <summary>
+        <span class="num">2</span>
+        <span class="title">Хвалите через себя, а не оценкой сверху</span>
+        <span class="chev"></span>
+      </summary>
+      <div class="body">
+        <div class="block example">
+          <div class="lbl">Пример</div>
+          <p>Ребёнок сам убрался или сделал уроки. Привычное «ты молодец» вырывается само. Звучит как похвала — а работает как оценка сверху.</p>
+        </div>
+        <div class="block">
+          <div class="lbl">Что сделать</div>
+          <p>Хвалите через своё чувство, через я-концепцию. Не «какой ты молодец», а «мне важно, что ты это сделал», «я рада, что ты научился сам».</p>
+        </div>
+        <div class="script">
+          <div class="lbl">Скажите так</div>
+          <p>«Я рада, что ты научился делать это сам. Для меня это важно».</p>
+        </div>
+        <div class="block">
+          <div class="lbl">Почему так</div>
+          <p>«Молодец» ставит вас судьёй, а ребёнка — экзаменуемым, и его ценность повисает на результате. Похвала через себя даёт тёплую связь с вами, которая не зависит от сегодняшней оценки.</p>
+        </div>
+        <div class="block cost">
+          <div class="lbl">Что будет, если нет</div>
+          <p>Ребёнок, выросший на «молодец» и «не молодец», всю жизнь добывает чужую оценку и не радуется ни одной победе — следующую уже надо заслужить заново.</p>
+        </div>
+      </div>
+    </details>
+
+    <!-- 3 -->
+    <details class="way">
+      <summary>
+        <span class="num">3</span>
+        <span class="title">Сравнивайте ребёнка только с ним вчерашним</span>
+        <span class="chev"></span>
+      </summary>
+      <div class="body">
+        <div class="block example">
+          <div class="lbl">Пример</div>
+          <p>«Вася решил быстрее», «у других дочки сами убираются». Кажется, что это подстегнёт. А ребёнок слышит только одно: ты проиграл.</p>
+        </div>
+        <div class="block">
+          <div class="lbl">Что сделать</div>
+          <p>Уберите чужого ребёнка из разговора совсем. Сравнивайте только с ним самим: где он был неделю назад и где сейчас.</p>
+        </div>
+        <div class="script">
+          <div class="lbl">Скажите так</div>
+          <p>«Смотри, ещё недавно это было совсем тяжело. А сейчас ты уже вот сколько делаешь сам».</p>
+        </div>
+        <div class="block">
+          <div class="lbl">Почему так</div>
+          <p>Сравнение с другим всегда не в пользу вашего ребёнка и рождает желание убрать соперника. Сравнение с собой вчерашним даёт чувство движения и собственного роста.</p>
+        </div>
+        <div class="block cost">
+          <div class="lbl">Что будет, если нет</div>
+          <p>Когда вы хвалите сына через Васю, у ребёнка возникает не желание подтянуться, а желание убрать Васю. Он учится не совершенствовать себя, а устранять конкурента — и потом переносит это в семью и в работу.</p>
+        </div>
+      </div>
+    </details>
+
+    <!-- 4 -->
+    <details class="way">
+      <summary>
+        <span class="num">4</span>
+        <span class="title">Спрашивайте «что поможет», а не «почему ты»</span>
+        <span class="chev"></span>
+      </summary>
+      <div class="body">
+        <div class="block example">
+          <div class="lbl">Пример</div>
+          <p>«Почему ты опять не сделал?», «почему у тебя вечно бардак?» Ответа на такой вопрос нет — есть только оправдание или угрюмое молчание.</p>
+        </div>
+        <div class="block">
+          <div class="lbl">Что сделать</div>
+          <p>Замените вопрос о вине на вопрос о решении. Не «почему так вышло», а «что поможет в следующий раз».</p>
+        </div>
+        <div class="script">
+          <div class="lbl">Скажите так</div>
+          <p>«Что тебе помогло бы сделать это в следующий раз легче?»</p>
+        </div>
+        <div class="block">
+          <div class="lbl">Почему так</div>
+          <p>«Почему ты» оставляет ребёнка наедине со стыдом. «Что поможет» ставит вас рядом с ним против проблемы и переключает его из обороны в поиск выхода.</p>
+        </div>
+        <div class="block cost">
+          <div class="lbl">Что будет, если нет</div>
+          <p>Тот, кого годами спрашивали «почему ты», при первой неудаче ищет, куда спрятаться. Тот, кого спрашивали «что поможет», ищет следующий шаг.</p>
+        </div>
+      </div>
+    </details>
+
+    <!-- 5 -->
+    <details class="way">
+      <summary>
+        <span class="num">5</span>
+        <span class="title">Разделяйте поступок и личность</span>
+        <span class="chev"></span>
+      </summary>
+      <div class="body">
+        <div class="block example">
+          <div class="lbl">Пример</div>
+          <p>«Ты неряха», «ты лентяй». Сказано про один невымытый пол — а приклеивается к человеку на годы.</p>
+        </div>
+        <div class="block">
+          <div class="lbl">Что сделать</div>
+          <p>Говорите про конкретное действие, а не про личность. И там, где можно, опирайтесь на правило — тогда это не ваша придирка, а общий порядок дома.</p>
+        </div>
+        <div class="script">
+          <div class="lbl">Скажите так</div>
+          <p>«Это нужно сделать — у нас есть правило» — вместо «ты вечно всё разбрасываешь».</p>
+        </div>
+        <div class="block">
+          <div class="lbl">Почему так</div>
+          <p>Ребёнок верит тому, как вы его называете. Указание на поступок оставляет личность нетронутой и оставляет место для роста. А когда действие закреплено правилом, оно перестаёт быть «помощью маме» — это просто его зона ответственности, как у всех в доме.</p>
+        </div>
+        <div class="block cost">
+          <div class="lbl">Что будет, если нет</div>
+          <p>Назовите ребёнка ленивым десять раз — и он перестанет даже пробовать. Зачем стараться, если ты уже ленивый? Ярлык, приклеенный в восемь лет, человек несёт на себе до сорока.</p>
+        </div>
+      </div>
+    </details>
+
+    <!-- 6 -->
+    <details class="way">
+      <summary>
+        <span class="num">6</span>
+        <span class="title">Дайте ребёнку быть правым хотя бы иногда</span>
+        <span class="chev"></span>
+      </summary>
+      <div class="body">
+        <div class="block example">
+          <div class="lbl">Пример</div>
+          <p>Ребёнок высказывает своё мнение, а вы привычно: «нет, ты не понимаешь». Каждый раз. И он перестаёт говорить — или начинает воевать.</p>
+        </div>
+        <div class="block">
+          <div class="lbl">Что сделать</div>
+          <p>Признайте его правоту там, где она действительно есть. Вслух. Не бойтесь, что потеряете авторитет — наоборот.</p>
+        </div>
+        <div class="script">
+          <div class="lbl">Скажите так</div>
+          <p>«А вот здесь ты прав. Я не подумала об этом так».</p>
+        </div>
+        <div class="block">
+          <div class="lbl">Почему так</div>
+          <p>Ребёнок, чьё мнение иногда принимают всерьёз, перестаёт драться за него и учится спокойно отстаивать позицию. Родитель, который всегда прав, растит того, кто всегда защищается.</p>
+        </div>
+        <div class="block cost">
+          <div class="lbl">Что будет, если нет</div>
+          <p>Ребёнок, которого ни разу не признали правым, вырастает либо в того, кто не умеет отстоять себя совсем, либо в того, кто отстаивает с кулаками по любому поводу.</p>
+        </div>
+      </div>
+    </details>
+
+    <!-- 7 -->
+    <details class="way">
+      <summary>
+        <span class="num">7</span>
+        <span class="title">Реагируйте на хорошее громче, чем на плохое</span>
+        <span class="chev"></span>
+      </summary>
+      <div class="body">
+        <div class="block example">
+          <div class="lbl">Пример</div>
+          <p>Сделал нормально — тишина. Сделал плохо — разговор на полчаса. Ребёнок быстро усваивает: внимание дают за провал.</p>
+        </div>
+        <div class="block">
+          <div class="lbl">Что сделать</div>
+          <p>Замечайте вслух хорошее, даже мелкое, и снова через себя. Не «наконец-то убрал», а «вижу, ты сам сложил вещи, мне приятно».</p>
+        </div>
+        <div class="script">
+          <div class="lbl">Скажите так</div>
+          <p>«Я заметила, что ты сам сел за уроки сегодня. Мне это приятно».</p>
+        </div>
+        <div class="block">
+          <div class="lbl">Почему так</div>
+          <p>То, что вы замечаете, ребёнок начинает повторять. Замечаете старание — он старается. Замечаете только провал — он даёт вам провалы.</p>
+        </div>
+        <div class="block cost">
+          <div class="lbl">Что будет, если нет</div>
+          <p>Вырастает человек, привыкший, что внимание и любовь надо добывать через проблему. И он будет создавать проблемы — в отношениях, на работе — просто чтобы его заметили.</p>
+        </div>
+      </div>
+    </details>
+
+    <!-- 8 -->
+    <details class="way">
+      <summary>
+        <span class="num">8</span>
+        <span class="title">Не вводите правила в споре — напоминайте о действии по правилу</span>
+        <span class="chev"></span>
+      </summary>
+      <div class="body">
+        <div class="block example">
+          <div class="lbl">Пример</div>
+          <p>Каждый вечер заново: «убери комнату» — «почему я?» — «потому что я так сказала» — и понеслось. Спор о том, что давно решено.</p>
+        </div>
+        <div class="block">
+          <div class="lbl">Что сделать</div>
+          <p>Правила в доме уже есть, они не обсуждаются каждый раз заново. Обсуждается не само правило, а действие по нему. Вы не спорите — вы спокойно напоминаете.</p>
+        </div>
+        <div class="script">
+          <div class="lbl">Скажите так</div>
+          <p>«У нас есть правило. Я не приказываю — я напоминаю тебе о нём».</p>
+        </div>
+        <div class="block">
+          <div class="lbl">Почему так</div>
+          <p>Когда правило — это общее устройство дома, а не ваша сиюминутная воля, ребёнку незачем его отвоёвывать. Приказ «потому что я сказала» рождает либо покорность, либо бунт.</p>
+        </div>
+        <div class="block cost">
+          <div class="lbl">Что будет, если нет</div>
+          <p>Ребёнок, выросший на «потому что я так сказала», во взрослой жизни либо прогибается под любого, кто давит, либо бунтует против всего подряд. Держать договорённости он не умеет.</p>
+        </div>
+      </div>
+    </details>
+
+    <!-- 9 -->
+    <details class="way">
+      <summary>
+        <span class="num">9</span>
+        <span class="title">Позвольте ошибке случиться</span>
+        <span class="chev"></span>
+      </summary>
+      <div class="body">
+        <div class="block example">
+          <div class="lbl">Пример</div>
+          <p>Сын забыл собрать портфель, дочь не повесила платье и оно мятое. Рука тянется всё исправить за них, чтобы не позориться.</p>
+        </div>
+        <div class="block">
+          <div class="lbl">Что сделать</div>
+          <p>Дайте маленькой ошибке случиться, пока её цена копеечная. И разберите последствие рядом, без «я же говорила».</p>
+        </div>
+        <div class="script">
+          <div class="lbl">Скажите так</div>
+          <p>«Ты решил сделать так. Давай посмотрим, что из этого вышло, и подумаем вместе».</p>
+        </div>
+        <div class="block">
+          <div class="lbl">Почему так</div>
+          <p>Уверенность держится на опыте пережитых ошибок. Маленькая ошибка сегодня — это прививка от большого страха завтра.</p>
+        </div>
+        <div class="block cost">
+          <div class="lbl">Что будет, если нет</div>
+          <p>Тот, кому не давали ошибаться, вырастает во взрослого, который панически боится промаха — а значит, скрывает и врёт, лишь бы не оказаться неправым.</p>
+        </div>
+      </div>
+    </details>
+
+    <!-- 10 -->
+    <details class="way">
+      <summary>
+        <span class="num">10</span>
+        <span class="title">Мотивируйте ребёнка близким, а не далёким</span>
+        <span class="chev"></span>
+      </summary>
+      <div class="body">
+        <div class="block example">
+          <div class="lbl">Пример</div>
+          <p>«Учи математику, пригодится в будущем». Подросток в ответ: «мне это не нужно, я не буду математиком». И он по-своему прав.</p>
+        </div>
+        <div class="block">
+          <div class="lbl">Что сделать</div>
+          <p>Мотивируйте только тем, что близко и понятно уже сейчас, — не далёкой профессией, а сегодняшней выгодой.</p>
+        </div>
+        <div class="script">
+          <div class="lbl">Скажите так</div>
+          <p>«Это нужно не для будущей профессии. Это чтобы уже сейчас тебя никто не смог обмануть — с деньгами, с процентами, с любым устройством».</p>
+        </div>
+        <div class="block">
+          <div class="lbl">Почему так</div>
+          <p>До двадцати пяти лет у человека ещё не дозрели лобные доли мозга, которые отвечают за дальнее планирование. Ребёнок физически не чувствует далёкое будущее — поэтому мотивация «потом» для него пустой звук.</p>
+        </div>
+        <div class="block cost">
+          <div class="lbl">Что будет, если нет</div>
+          <p>Если давить далёким будущим, которого ребёнок не ощущает, он решит, что учёба вообще бессмысленна, — и перестанет стараться не только сейчас, но и потом.</p>
+        </div>
+      </div>
+    </details>
+
+    <!-- 11 -->
+    <details class="way">
+      <summary>
+        <span class="num">11</span>
+        <span class="title">Хвалите так, чтобы ребёнок случайно услышал</span>
+        <span class="chev"></span>
+      </summary>
+      <div class="body">
+        <div class="block example">
+          <div class="lbl">Пример</div>
+          <p>В лицо «ты молодец» подросток пропускает мимо ушей — мол, мама обязана так говорить. А вот другое он запоминает накрепко.</p>
+        </div>
+        <div class="block">
+          <div class="lbl">Что сделать</div>
+          <p>Похвалите ребёнка не ему, а другому взрослому — мужу, бабушке по телефону — так, чтобы он услышал это из соседней комнаты. Возьмите именно то, что даётся ему тяжело.</p>
+        </div>
+        <div class="script">
+          <div class="lbl">Скажите так (мужу или бабушке, чтобы ребёнок слышал из другой комнаты)</div>
+          <p>«Я так горжусь нашей дочерью. Я вижу, сколько усилий она вкладывает в английский, даже сама книги дочитывает».</p>
+        </div>
+        <div class="block">
+          <div class="lbl">Почему так</div>
+          <p>Похвале, не предназначенной его ушам, ребёнок верит абсолютно — ведь его в этот момент не воспитывали. На прямую похвалу он закатит глаза, на услышанную — никогда. И начинает сам дотягиваться до этого образа.</p>
+        </div>
+        <div class="block cost">
+          <div class="lbl">Важно</div>
+          <p>Даже в услышанной похвале не сравнивайте ребёнка с другими детьми. Хвалите его усилие, а не место на фоне чужих неудач, — иначе он усвоит, что его ценят, только пока другие справляются хуже.</p>
+        </div>
+      </div>
+    </details>
+
+    <!-- 12 -->
+    <details class="way">
+      <summary>
+        <span class="num">12</span>
+        <span class="title">Помните о своей выгоде на будущее</span>
+        <span class="chev"></span>
+      </summary>
+      <div class="body">
+        <div class="block example">
+          <div class="lbl">Пример</div>
+          <p>Вечер, вы устали, ребёнок снова не сделал — и проще всего сорваться на привычное «посмотри на других». На неделю поможет.</p>
+        </div>
+        <div class="block">
+          <div class="lbl">Что сделать</div>
+          <p>Это правило — для вас, не для ребёнка. В момент, когда хочется сорваться, вспомните о собственной выгоде через двадцать лет и назовите её честно — выгодой.</p>
+        </div>
+        <div class="script">
+          <div class="lbl">Скажите себе</div>
+          <p>«Я делаю это не ради сегодняшней оценки. Я делаю это ради того, кто будет рядом со мной через двадцать лет».</p>
+        </div>
+        <div class="block">
+          <div class="lbl">Почему так</div>
+          <p>Ваша выгода — уверенный взрослый, который сам берётся за сложное; ребёнок, который звонит не по обязанности, а потому что хочет; спокойная старость рядом с человеком, который вас любит, а не доказывает что-то или прячется.</p>
+        </div>
+        <div class="block cost">
+          <div class="lbl">Что будет, если нет</div>
+          <p>Критика и сравнение дают тишину на неделю — и забирают человека на всю жизнь. Цена сорвавшегося «посмотри на Васю» платится не сегодня, а через двадцать лет, и платит её не только ребёнок, но и вы.</p>
+        </div>
+      </div>
+    </details>
+
+  </div>
+</section>
+
+<!-- ДНЕВНИК -->
+<section class="ways">
+  <div class="wrap">
+    <div class="diary">
+      <h3>Дневник на семь дней</h3>
+      <p class="q">Каждый вечер — один вопрос: где сегодня я потянулась к критике или сравнению — и чем смогла их заменить?</p>
+      <div class="day"><span class="d">1</span><span class="line"></span></div>
+      <div class="day"><span class="d">2</span><span class="line"></span></div>
+      <div class="day"><span class="d">3</span><span class="line"></span></div>
+      <div class="day"><span class="d">4</span><span class="line"></span></div>
+      <div class="day"><span class="d">5</span><span class="line"></span></div>
+      <div class="day"><span class="d">6</span><span class="line"></span></div>
+      <div class="day"><span class="d">7</span><span class="line"></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ПЕРЕХОД НА СПОКОЙНОГО РОДИТЕЛЯ -->
+<section class="next">
+  <div class="wrap">
+    <span class="eyebrow">Следующий шаг</span>
+    <h2>Спокойный родитель: 30 правил для семьи с подростком</h2>
+    <p>Двенадцать правил меняют то, как вы говорите с ребёнком. Но когда речь о подростке, каждый вечер превращается в переговоры: гаджеты, уроки, комната, тон, обязанности. И сил объяснять одно и то же по кругу уже нет.</p>
+    <p>«Спокойный родитель» — это 30 готовых правил для самых горячих ситуаций. Не теория про воспитание, а точные формулировки: как сказать правило, как объяснить его подростку и как удержать спокойно, когда начинается спор.</p>
+    <div class="themes">
+      <span>Общение</span><span>Гаджеты</span><span>Быт</span><span>Учёба</span><span>Доверие</span><span>Свобода</span>
+    </div>
+    <p>Этот продукт нужен не для того, чтобы «победить» подростка, а чтобы вернуть себе спокойную родительскую позицию и облегчить жизнь самому ребёнку. Чтобы он видел не уставшего взрослого, которого можно раскачать, а родителя, у которого есть ясная система.</p>
+    <a class="cta" href="https://app.lava.top/products/1c8bd33c-54b9-450b-b26a-ca5f02129198">
+      Получить доступ к «Спокойному родителю»
+      <span class="small">1 490 ₽ · доступ сразу после оплаты</span>
+    </a>
+    <p class="note">Цифровой продукт · открывается на телефоне и компьютере</p>
+  </div>
+</section>
+
+<!-- ПОДВАЛ -->
+<footer>
+  <div class="wrap">
+    <p class="sign">С уважением, Бэлла Леонидовна</p>
+    <p class="nick">@bella.psychologist</p>
+    <p class="copy">© Полянинова Бэлла Леонидовна, 2024–2025<br>Все права защищены. Копирование и распространение без разрешения автора запрещено.</p>
+  </div>
+</footer>
+
+</body>
+</html>
