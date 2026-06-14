@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Правила в дом. Часть 2: Критика — Бэлла Леонидовна</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0e2e33;
+    --ink-soft:#2f5158;
+    --teal:#1f9a9a;
+    --teal-deep:#147a7a;
+    --sky:#5fc7c7;
+    --mint-soft:#e4f6f4;
+    --bg:#f0faf8;
+    --card:#ffffff;
+    --line:#cce9e6;
+    --radius:18px;
+    --shadow:0 10px 34px rgba(20,122,122,.13);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Manrope',-apple-system,system-ui,sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    font-size:19px;
+    line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:0 20px;}
+
+  .hero{
+    background:linear-gradient(160deg,#2bb6b0 0%,#1f9a9a 55%,#147a7a 100%);
+    color:#fff;
+    padding:60px 0 54px;
+    text-align:center;
+  }
+  .hero .wrap{padding:0 26px;}
+  .eyebrow{
+    display:inline-block;
+    font-size:15px;font-weight:700;letter-spacing:2px;
+    text-transform:uppercase;color:#d2f3ef;margin-bottom:20px;line-height:1.7;
+  }
+  .eyebrow-sub{font-weight:600;letter-spacing:2px;opacity:.85;}
+  .hero h1{font-size:38px;line-height:1.18;font-weight:800;letter-spacing:-.5px;margin-bottom:18px;}
+  .hero .sub{font-size:20px;font-weight:500;color:#e3f7f4;max-width:540px;margin:0 auto;}
+
+  .intro{padding:46px 0 8px;}
+  .intro p{margin-bottom:20px;color:var(--ink-soft);}
+  .intro .lead{font-size:23px;font-weight:700;color:var(--ink);line-height:1.45;}
+  .intro .turn{font-size:22px;font-weight:700;color:var(--teal-deep);}
+  .znakomo{font-size:22px;font-weight:800;color:var(--teal);text-align:center;margin:6px 0 24px;}
+
+  .ways{padding:14px 0 8px;}
+  .way{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:var(--shadow);margin-bottom:20px;padding:28px 26px;
+  }
+  .way .head{display:flex;align-items:flex-start;gap:16px;margin-bottom:6px;}
+  .way .num{
+    flex:0 0 auto;width:48px;height:48px;border-radius:14px;background:var(--mint-soft);
+    color:var(--teal-deep);font-size:22px;font-weight:800;display:flex;align-items:center;justify-content:center;
+  }
+  .way .title{font-size:23px;font-weight:800;line-height:1.3;color:var(--ink);flex:1;align-self:center;}
+  .way p{color:var(--ink-soft);margin-top:16px;}
+  .script{
+    background:var(--mint-soft);border-left:4px solid var(--teal);border-radius:8px;
+    padding:16px 18px;margin-top:18px;
+  }
+  .script .lbl{font-size:14px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal-deep);margin-bottom:6px;}
+  .script .q{color:var(--ink);font-weight:600;font-size:19px;}
+  .way .warn{font-size:17px;color:var(--ink-soft);margin-top:16px;font-style:italic;}
+
+  .bridge{padding:34px 0 6px;}
+  .bridge .wrap{padding:0 26px;}
+  .bridge h2{font-size:27px;font-weight:800;line-height:1.3;margin-bottom:18px;color:var(--ink);}
+  .bridge p{color:var(--ink-soft);margin-bottom:16px;}
+
+  .offer{
+    background:linear-gradient(160deg,#147a7a 0%,#0e5e5e 100%);
+    color:#fff;padding:46px 0 50px;margin-top:30px;
+  }
+  .offer .wrap{padding:0 26px;text-align:center;}
+  .offer h2{font-size:28px;font-weight:800;line-height:1.25;margin-bottom:16px;}
+  .offer p{color:#dbf3f0;margin-bottom:22px;font-size:19px;}
+  .cta{
+    display:block;background:#fff;color:var(--teal-deep);text-align:center;
+    font-size:21px;font-weight:800;text-decoration:none;padding:20px 24px;border-radius:16px;
+    box-shadow:0 10px 30px rgba(0,0,0,.22);transition:transform .15s ease;
+  }
+  .cta:active{transform:scale(.98);}
+  .cta .small{display:block;font-size:15px;font-weight:600;color:var(--teal);margin-top:4px;}
+
+  footer{padding:38px 0 56px;text-align:center;}
+  footer .sign{font-size:19px;font-weight:700;color:var(--ink);}
+  footer .nick{margin-top:10px;font-size:15px;font-weight:700;letter-spacing:1px;color:var(--teal);}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .hero h1{font-size:30px;}
+    .hero .sub{font-size:18px;}
+    .intro .lead{font-size:20px;}
+    .intro .turn{font-size:19px;}
+    .way .title{font-size:20px;}
+    .way{padding:24px 20px;}
+    .way .num{width:42px;height:42px;font-size:19px;}
+    .bridge h2,.offer h2{font-size:24px;}
+    .script .q{font-size:18px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Бэлла Леонидовна Полянинова<br><span class="eyebrow-sub">правила в дом · часть 2</span></span>
+    <h1>«Посмотри на Васю»</h1>
+    <p class="sub">Почему эта фраза работает только неделю — и что забирает на двадцать лет вперёд</p>
+  </div>
+</header>
+
+<section class="intro">
+  <div class="wrap">
+    <p class="lead">Ваш сын приносит тройку. Или дочь снова не убрала комнату, вышла в мятом платье, не села вовремя за уроки. И внутри поднимается знакомое, почти против воли: «Посмотри на других. У людей дети как дети. Почему у тебя так?»</p>
+    <p>Кажется, что сейчас ребёнок устыдится, соберётся и станет лучше. И иногда он правда подтягивается — на два-три дня. А потом всё возвращается, и вы снова стоите на той же кухне с теми же словами.</p>
+    <p class="znakomo">Знакомо?</p>
+    <p>Я восемнадцать лет работаю с семьями и скажу прямо то, что редко говорят вслух. <b>Сравнение чинит поведение ребёнка на неделю — и ломает его уверенность на двадцать лет вперёд.</b> Ребёнок запоминает не задачу, которую надо было решить. Он запоминает одно: снова кто-то оказался лучше него. И постепенно перестаёт спрашивать себя «как мне справиться» — начинает спрашивать «почему я хуже».</p>
+    <p>Из мальчика, которого сравнивали, вырастает мужчина, который боится браться за сложное. Из девочки, которую сравнивали, вырастает женщина, которая всю жизнь доказывает, что достойна любви. И это случилось не в один день — копилось по капле, в каждом «посмотри на Васю».</p>
+    <p class="turn">Девяносто девять родителей из ста думают про сегодняшнюю оценку. Этот гайд — для того сотого, который думает, каким человеком его ребёнок проснётся в 25–30 лет.</p>
+    <p>Ниже — два правила, которые можно применить уже сегодня. Не теория. Готовые слова.</p>
+  </div>
+</section>
+
+<section class="ways">
+  <div class="wrap">
+
+    <div class="way">
+      <div class="head">
+        <span class="num">1</span>
+        <span class="title">Смотрите на задачу, а не на ребёнка</span>
+      </div>
+      <p>Когда сын приносит тройку, а дочь бросает вещи на стуле, есть две дороги. Первая — искать виноватого: «ты невнимательный», «ты неряха», «другие же могут». Вторая — повернуться к самой ситуации: «покажи, где именно стало трудно», «давай решим, как сделать, чтобы вещи не копились».</p>
+      <p>Разница не в строгости. Вы можете быть требовательной и всё равно стоять на стороне ребёнка против трудности, а не на стороне трудности против ребёнка. В первом случае ребёнок защищается от вас. Во втором — идёт к решению вместе с вами. И именно во втором случае из него вырастает взрослый, который не боится сложного.</p>
+      <div class="script">
+        <div class="lbl">Скажите так</div>
+        <p class="q">«Покажи мне, где именно стало трудно. Давай посмотрим вместе».</p>
+      </div>
+    </div>
+
+    <div class="way">
+      <div class="head">
+        <span class="num">2</span>
+        <span class="title">Хвалите так, чтобы ребёнок случайно услышал</span>
+      </div>
+      <p>Есть похвала, которой ребёнок верит сильнее всего на свете, — та, что не предназначалась его ушам. В лицо «ты молодец» он может списать на родительский долг. Но когда он слышит из соседней комнаты, как вы искренне им гордитесь в разговоре с мужем или с бабушкой по телефону, — для него это чистая правда. Потому что его в этот момент никто не воспитывал.</p>
+      <p>Возьмите именно то, что у ребёнка пока получается тяжело, и сделайте это услышанным. У сына иногда проскальзывают тройки по математике — пусть он из другой комнаты услышит, как вы говорите отцу: «я так горжусь сыном, он последнее время столько сил вкладывает в эту математику, реально старается». Дочери не даётся английский — пусть услышит: «дочка наша так взялась за английский, я вижу, как она старается, даже сама книги дочитывает». И пусть второй родитель поддержит, а не отмолчится.</p>
+      <p>На прямую похвалу подросток закатит глаза. На услышанную — никогда. Он не услышал нотации, не услышал приказа — он услышал, что в него верят. И начинает сам дотягиваться до этого образа.</p>
+      <div class="script">
+        <div class="lbl">Скажите так (мужу или бабушке, чтобы ребёнок слышал из другой комнаты)</div>
+        <p class="q">«Я так горжусь нашей дочерью. Я вижу, сколько усилий она вкладывает».</p>
+      </div>
+      <p class="warn">Одно важно: даже в услышанной похвале не сравнивайте ребёнка с другими детьми. Хвалите его усилие, а не его место на фоне чужих неудач.</p>
+    </div>
+
+  </div>
+</section>
+
+<section class="bridge">
+  <div class="wrap">
+    <h2>А теперь честно — почему двух правил мало</h2>
+    <p>Эти два правила уже изменят атмосферу в доме. Но критика и сравнение прячутся не только в оценках и уборке. Они в том, как вы хвалите. Как поправляете. Как мотивируете, когда ребёнок говорит «мне эта математика не нужна». Как реагируете на ошибку. Как вводите правила и удерживаете их без скандала.</p>
+    <p>В каждой из этих ситуаций можно сказать так, что ребёнок закроется, — или так, что он вырастет уверенным. Я собрала все двенадцать правил в один продукт. Двенадцать ситуаций, в которых родитель обычно срывается на критику, и двенадцать готовых правил сказать иначе. С точными фразами к каждому — чтобы не придумывать в момент, когда вы устали и на пределе.</p>
+    <p>Это не про то, чтобы стать идеальной матерью. Это про вашу прямую выгоду через двадцать лет: уверенный взрослый, который сам берётся за сложное, и тёплые отношения, которые не рассыпались. Вот ради чего стоит сегодня сдержать «посмотри на Васю».</p>
+  </div>
+</section>
+
+<section class="offer">
+  <div class="wrap">
+    <h2>12 правил влиять на ребёнка без критики</h2>
+    <p>Все двенадцать ситуаций, готовые фразы к каждой и дневник на семь дней. Открывается на телефоне, доступ остаётся у вас навсегда.</p>
+    <a class="cta" href="https://app.lava.top/products/50a6ea2a-c9d3-4dcf-866a-dc32eb4db62c">
+      Получить все 12 правил
+      <span class="small">990 ₽ · доступ сразу после оплаты</span>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="sign">С уважением, Бэлла Леонидовна</p>
+    <p class="nick">@bella.psychologist</p>
+  </div>
+</footer>
+
+</body>
+</html>
