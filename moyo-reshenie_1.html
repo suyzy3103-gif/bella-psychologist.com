@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Моё решение — самодиагностика · Бэлла Леонидовна</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Roboto+Condensed:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue-soft:#A9C8E8; --blue-deep:#3E6B9C; --navy:#1F3A5F;
+    --ink:#23303F; --muted:#5E6B7A;
+    --paper:#F6FAFE;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Roboto Condensed',sans-serif;color:var(--ink);
+    background:
+      radial-gradient(1100px 750px at 8% -8%, #BFDCF5 0%, rgba(191,220,245,0) 60%),
+      radial-gradient(1100px 800px at 100% 108%, #9FC6EC 0%, rgba(159,198,236,0) 60%),
+      var(--paper);
+    background-attachment:fixed;line-height:1.6;-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:0 22px;}
+  .progress{position:fixed;left:0;top:0;height:4px;width:0;z-index:50;
+    background:linear-gradient(90deg,var(--blue-soft),var(--navy));transition:width .1s;}
+
+  /* ОБЛОЖКА */
+  .cover{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:48px 22px;position:relative;}
+  .topbar{position:absolute;top:38px;left:0;right:0;text-align:center;padding:0 22px;}
+  .topbar .name{font-weight:500;font-size:17px;letter-spacing:1px;color:var(--ink);text-transform:uppercase;}
+  .topbar .role{font-weight:300;font-size:13px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:4px;}
+  .cover .kicker{font-weight:600;font-size:13px;letter-spacing:5px;text-transform:uppercase;color:var(--blue-deep);margin-bottom:18px;}
+  .cover h1{font-family:'Oswald',sans-serif;font-weight:600;font-size:clamp(48px,12vw,92px);line-height:.98;letter-spacing:1px;text-transform:uppercase;color:var(--ink);}
+  .cover .sub{margin-top:26px;font-weight:400;font-size:clamp(17px,2.4vw,21px);color:var(--muted);max-width:560px;}
+  .cover .pill{margin-top:30px;display:inline-block;padding:10px 22px;border-radius:30px;background:rgba(255,255,255,.6);
+    border:1px solid rgba(62,107,156,.25);font-size:14px;font-weight:600;color:var(--blue-deep);letter-spacing:.5px;}
+  .scrolldown{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);font-size:12px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--muted);opacity:.7;}
+
+  /* ВСТУПЛЕНИЕ */
+  .intro{padding:70px 0 30px;}
+  .intro p{font-size:18px;margin-bottom:20px;}
+  .intro p.lead{font-size:21px;font-weight:500;}
+
+  /* СЕКЦИЯ-ЗАГОЛОВОК */
+  .sec-h{font-family:'Oswald',sans-serif;font-size:clamp(24px,5vw,36px);font-weight:600;line-height:1.1;letter-spacing:.5px;text-transform:uppercase;color:var(--ink);margin:50px 0 10px;text-align:center;}
+  .sec-sub{text-align:center;color:var(--muted);font-size:16px;margin-bottom:34px;}
+
+  /* КАРТОЧКИ ВОПРОСОВ */
+  .quad{display:grid;gap:18px;padding-bottom:30px;}
+  .q{border-radius:18px;padding:24px 22px;border:1px solid rgba(62,107,156,.2);background:rgba(255,255,255,.62);}
+  .q .qn{display:flex;align-items:center;gap:14px;margin-bottom:14px;}
+  .q .badge{flex:none;width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+    font-family:'Oswald',sans-serif;font-weight:600;font-size:17px;color:#fff;background:linear-gradient(135deg,var(--blue-soft),var(--blue-deep));}
+  .q .qt{font-family:'Oswald',sans-serif;font-weight:500;font-size:19px;line-height:1.2;letter-spacing:.3px;text-transform:uppercase;color:var(--ink);}
+  .q .hint{font-size:16px;color:var(--muted);margin-bottom:14px;}
+  .q .opener{font-size:16.5px;font-weight:600;color:var(--blue-deep);margin-bottom:14px;}
+  .lines{list-style:none;counter-reset:ln;display:grid;gap:12px;}
+  .lines li{counter-increment:ln;display:flex;align-items:center;gap:12px;}
+  .lines li::before{content:counter(ln);flex:none;width:28px;height:28px;border-radius:8px;
+    background:rgba(62,107,156,.14);color:var(--blue-deep);font-family:'Oswald',sans-serif;font-weight:600;font-size:14px;
+    display:flex;align-items:center;justify-content:center;}
+  .lines li .ln-input{flex:1;border:none;border-bottom:1.5px solid rgba(62,107,156,.3);background:transparent;
+    padding:8px 4px;font-family:'Roboto Condensed',sans-serif;font-size:16px;color:var(--ink);outline:none;}
+  .lines li .ln-input:focus{border-bottom-color:var(--blue-deep);}
+
+  /* РАЗБОР */
+  .insight{margin-top:20px;border-radius:18px;padding:28px 24px;background:rgba(169,200,232,.2);}
+  .insight .lab{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue-deep);margin-bottom:12px;}
+  .insight p{font-size:17px;margin-bottom:14px;}
+  .insight p:last-child{margin-bottom:0;}
+
+  /* ПЕРЕХОД НА ПРОДУКТ */
+  .final{text-align:center;padding:70px 0 100px;}
+  .final h2{font-family:'Oswald',sans-serif;font-size:clamp(28px,5.5vw,44px);font-weight:600;line-height:1.06;letter-spacing:.5px;text-transform:uppercase;color:var(--ink);margin-bottom:20px;}
+  .final h2 .acc{color:var(--blue-deep);}
+  .final p{font-size:18px;color:var(--muted);max-width:520px;margin:0 auto 16px;}
+  .cta{display:inline-block;margin-top:20px;padding:17px 36px;border-radius:40px;background:var(--navy);
+    color:#fff;text-decoration:none;font-weight:700;font-size:16px;letter-spacing:.3px;box-shadow:0 12px 30px rgba(31,58,95,.32);transition:.18s;}
+  .cta:hover{transform:translateY(-2px);box-shadow:0 16px 36px rgba(31,58,95,.4);}
+  .sign{margin-top:56px;font-size:14px;font-weight:600;letter-spacing:1px;color:var(--ink);opacity:.7;}
+</style>
+</head>
+<body>
+<div class="progress" id="bar"></div>
+
+<!-- ОБЛОЖКА -->
+<header class="cover">
+  <div class="topbar">
+    <div class="name">Полянинова Бэлла Леонидовна</div>
+    <div class="role">психолог · межличностные отношения</div>
+  </div>
+  <div class="kicker">Самодиагностика</div>
+  <h1>Моё<br>решение</h1>
+  <p class="sub">Честный разбор для женщины, которая не может решиться: уйти или остаться</p>
+  <div class="pill">15 минут наедине с собой</div>
+  <div class="scrolldown">листайте вниз ↓</div>
+</header>
+
+<div class="wrap">
+
+  <!-- ВСТУПЛЕНИЕ -->
+  <section class="intro">
+    <p class="lead">Вы думаете об этом не первый месяц. Иногда кажется — всё, ухожу. А наутро находится причина остаться.</p>
+    <p>И так по кругу: вечером решились, утром передумали. Вы вините себя за нерешительность, но дело не в слабом характере. Дело в том, что вы задаёте себе не тот вопрос. «Уходить или остаться» — это тупик, в котором можно ходить годами.</p>
+    <p>Эта самодиагностика не скажет вам «уходите» или «оставайтесь». Такой ответ за вас не даст никто. Но она поможет честно увидеть свою картину целиком — и понять, что на самом деле держит вас на месте. Возьмите лист бумаги или пишите прямо здесь. Отвечайте честно, для себя. Никто, кроме вас, этого не прочитает.</p>
+  </section>
+
+  <!-- БЛОК ВОПРОСОВ -->
+  <div class="sec-h">Четыре честных вопроса</div>
+  <div class="sec-sub">Не торопитесь. На каждый — несколько минут тишины</div>
+
+  <div class="quad">
+    <div class="q">
+      <div class="qn"><span class="badge">1</span><span class="qt">Что я получу, если останусь</span></div>
+      <div class="hint">Что хорошего есть в том, чтобы остаться? Например: привычный уклад, дети растут с отцом, стабильность, общий дом, страх перемен. Пишите честно — даже то, в чём стыдно признаться.</div>
+      <div class="opener">Если я останусь, я сохраню:</div>
+      <ul class="lines">
+        <li><input class="ln-input" type="text"></li>
+        <li><input class="ln-input" type="text"></li>
+        <li><input class="ln-input" type="text"></li>
+        <li><input class="ln-input" type="text"></li>
+      </ul>
+    </div>
+
+    <div class="q">
+      <div class="qn"><span class="badge">2</span><span class="qt">Что я получу, если уйду</span></div>
+      <div class="hint">Что хорошего откроется, если уйти? Например: спокойствие, тишина дома, больше не нужно подстраиваться под чужое настроение, не нужно обслуживать и угождать всей семье, свекрови, не нужно учитывать чужие желания вместо своих.</div>
+      <div class="opener">Если я уйду, я получу:</div>
+      <ul class="lines">
+        <li><input class="ln-input" type="text"></li>
+        <li><input class="ln-input" type="text"></li>
+        <li><input class="ln-input" type="text"></li>
+        <li><input class="ln-input" type="text"></li>
+      </ul>
+    </div>
+
+    <div class="q">
+      <div class="qn"><span class="badge">3</span><span class="qt">Чего я лишусь, если останусь</span></div>
+      <div class="hint">Что вы теряете каждый день, оставаясь? Например: свои годы, желания, спокойный сон, ощущение радости, свободы, уверенности, чувство, что вы живёте, а не выживаете.</div>
+      <div class="opener">Оставаясь, я теряю:</div>
+      <ul class="lines">
+        <li><input class="ln-input" type="text"></li>
+        <li><input class="ln-input" type="text"></li>
+        <li><input class="ln-input" type="text"></li>
+        <li><input class="ln-input" type="text"></li>
+      </ul>
+    </div>
+
+    <div class="q">
+      <div class="qn"><span class="badge">4</span><span class="qt">Чего я лишусь, если уйду</span></div>
+      <div class="hint">Чего вы боитесь лишиться, уйдя? Например: денег, помощи по быту, привычного уклада, статуса замужней женщины. Назовите страх прямо — тогда его видно.</div>
+      <div class="opener">Уходя, я боюсь потерять:</div>
+      <ul class="lines">
+        <li><input class="ln-input" type="text"></li>
+        <li><input class="ln-input" type="text"></li>
+        <li><input class="ln-input" type="text"></li>
+        <li><input class="ln-input" type="text"></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- РАЗБОР -->
+  <div class="sec-h">Что показывают ваши ответы</div>
+  <div class="insight">
+    <div class="lab">Прочитайте свои четыре ответа целиком</div>
+    <p>Посмотрите на четвёртый ответ — на то, чего вы боитесь лишиться, если уйдёте. Чаще всего там не любовь и не близость. Там деньги, быт, помощь, страх остаться без опоры. И вот это самое важное открытие.</p>
+    <p>Если бы рядом была настоящая близость, вы бы не сидели над этими вопросами. Вас держит не муж — вас держит страх, что без него вы не справитесь. А значит, вопрос вовсе не в том, уходить или остаться. Вопрос в том, есть ли у вас опора внутри себя.</p>
+    <p>Пока этой опоры нет, любое решение будет идти из страха. Останетесь — из страха. Уйдёте — тоже из страха, а на страхе новую жизнь не построить. Сначала опора, потом решение.</p>
+  </div>
+
+  <!-- ПЕРЕХОД НА ПРОДУКТ -->
+  <section class="final">
+    <h2>Вы увидели, что вас <span class="acc">держит страх</span>, а не любовь</h2>
+    <p>Следующий шаг — вырастить ту самую опору внутри, чтобы решение шло не из страха, а из спокойной взрослой силы.</p>
+    <p>Это разобрано по шагам в продукте «Сама себе опора» — одиннадцать правил с примерами, планом и вопросами для дневника.</p>
+    <a class="cta" href="https://app.lava.top/products/72edec30-920f-4922-96dd-2db18bac4777">Получить доступ за 690 ₽</a>
+    <div class="sign">С уважением, Бэлла Леонидовна</div>
+  </section>
+
+</div>
+
+<script>
+  const bar=document.getElementById('bar');
+  addEventListener('scroll',()=>{
+    const h=document.documentElement;
+    bar.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+  });
+</script>
+</body>
+</html>
