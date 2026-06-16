@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Сама себе опора — Бэлла Леонидовна</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Roboto+Condensed:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rose-soft:#E8A9C2; --rose-deep:#9C476B;
+    --blue-soft:#A9C8E8; --blue-deep:#3E6B9C;
+    --amber:#B8794A; --amber-bg:#FBF3EA;
+    --ink:#2B2630; --muted:#6A6470;
+    --paper:#FBF7F9;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Roboto Condensed',sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(1100px 750px at 8% -8%, #F4B8D0 0%, rgba(244,184,208,0) 60%),
+      radial-gradient(1100px 800px at 100% 108%, #B9D4F0 0%, rgba(185,212,240,0) 60%),
+      var(--paper);
+    background-attachment:fixed;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:0 22px;}
+
+  /* ОБЛОЖКА */
+  .cover{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:48px 22px;position:relative;}
+  .topbar{position:absolute;top:38px;left:0;right:0;text-align:center;padding:0 22px;}
+  .topbar .name{font-family:'Roboto Condensed',sans-serif;font-weight:500;font-size:17px;letter-spacing:1px;color:var(--ink);text-transform:uppercase;}
+  .topbar .role{font-family:'Roboto Condensed',sans-serif;font-weight:300;font-size:13px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:4px;}
+  .cover .kicker{font-family:'Roboto Condensed',sans-serif;font-weight:600;font-size:13px;letter-spacing:5px;text-transform:uppercase;color:var(--rose-deep);margin-bottom:18px;}
+  .cover h1{font-family:'Oswald',sans-serif;font-weight:600;font-size:clamp(54px,13vw,104px);line-height:.98;letter-spacing:1px;text-transform:uppercase;color:var(--ink);}
+  .cover .sub{margin-top:26px;font-weight:400;font-size:clamp(17px,2.4vw,21px);color:var(--muted);max-width:540px;}
+  .scrolldown{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);font-size:12px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--muted);opacity:.7;}
+
+  /* ВСТУПЛЕНИЕ */
+  .intro{padding:70px 0 30px;}
+  .intro p{font-size:18px;color:var(--ink);margin-bottom:20px;}
+  .intro p.lead{font-size:21px;font-weight:600;}
+
+  /* СПИСОК-АККОРДЕОН ПРАВИЛ */
+  .rules{padding:30px 0 60px;}
+  .rules-h{font-family:'Oswald',sans-serif;font-size:22px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--ink);margin-bottom:8px;text-align:center;}
+  .rules-sub{text-align:center;color:var(--muted);font-size:15px;margin-bottom:28px;}
+  .acc{display:grid;gap:14px;}
+
+  /* карточка правила */
+  details.rule{border-radius:18px;overflow:hidden;border:1px solid rgba(156,71,107,.16);
+    background:rgba(255,255,255,.62);transition:.2s;}
+  details.rule.fin{border-color:rgba(62,107,156,.2);}
+  details.rule[open]{box-shadow:0 14px 36px rgba(156,71,107,.14);}
+  details.rule.fin[open]{box-shadow:0 14px 36px rgba(62,107,156,.16);}
+
+  /* шапка-кнопка */
+  summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:16px;padding:18px 20px;}
+  summary::-webkit-details-marker{display:none;}
+  .badge{flex:none;width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;
+    font-family:'Oswald',sans-serif;font-weight:600;font-size:18px;color:#fff;
+    background:linear-gradient(135deg,var(--rose-soft),var(--rose-deep));}
+  .fin .badge{background:linear-gradient(135deg,var(--blue-soft),var(--blue-deep));}
+  .s-title{flex:1;font-family:'Oswald',sans-serif;font-weight:500;font-size:18px;line-height:1.16;letter-spacing:.3px;text-transform:uppercase;color:var(--ink);}
+  .chev{flex:none;width:24px;height:24px;color:var(--rose-deep);transition:transform .25s;}
+  .fin .chev{color:var(--blue-deep);}
+  details[open] .chev{transform:rotate(180deg);}
+
+  /* тело правила */
+  .body{padding:4px 22px 26px;}
+  .tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+    color:var(--rose-deep);background:rgba(232,169,194,.22);padding:5px 12px;border-radius:20px;margin-bottom:18px;}
+  .fin .tag{color:var(--blue-deep);background:rgba(169,200,232,.26);}
+  .block{margin-bottom:24px;}
+  .block .lab{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--rose-deep);margin-bottom:10px;}
+  .fin .block .lab{color:var(--blue-deep);}
+  .block p{font-size:17px;margin-bottom:14px;}
+  .ex{background:rgba(255,255,255,.7);border-left:3px solid var(--rose-soft);border-radius:0 14px 14px 0;padding:16px 20px;margin:12px 0;font-size:16.5px;}
+  .fin .ex{border-left-color:var(--blue-soft);}
+  .steps{list-style:none;counter-reset:s;display:grid;gap:12px;margin-top:8px;}
+  .steps li{counter-increment:s;position:relative;padding-left:46px;font-size:16.5px;}
+  .steps li::before{content:counter(s);position:absolute;left:0;top:-2px;width:30px;height:30px;border-radius:9px;
+    background:linear-gradient(135deg,var(--rose-soft),var(--rose-deep));color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;font-family:'Oswald',sans-serif;}
+  .fin .steps li::before{background:linear-gradient(135deg,var(--blue-soft),var(--blue-deep));}
+  .resist{background:var(--amber-bg);border:1px solid rgba(184,121,74,.3);border-radius:16px;padding:20px 22px;margin-top:8px;}
+  .resist .lab{color:var(--amber);}
+  .resist p{font-size:16.5px;margin-bottom:0;}
+  .diary{margin-top:22px;border-radius:16px;padding:22px;background:rgba(232,169,194,.16);}
+  .fin .diary{background:rgba(169,200,232,.18);}
+  .diary .lab{color:var(--rose-deep);}
+  .fin .diary .lab{color:var(--blue-deep);}
+  .diary p{font-size:18px;font-weight:500;font-style:italic;margin-bottom:0;}
+
+  /* ФИНАЛ */
+  .final{text-align:center;padding:80px 0 100px;border-top:1px solid rgba(62,107,156,.14);}
+  .final h2{font-family:'Oswald',sans-serif;font-size:clamp(30px,6vw,48px);font-weight:600;line-height:1.05;letter-spacing:.5px;text-transform:uppercase;margin-bottom:22px;color:var(--ink);}
+  .final h2 .grad{color:var(--rose-deep);}
+  .final p{font-size:18px;color:var(--muted);max-width:520px;margin:0 auto 18px;}
+  .cta{display:inline-block;margin-top:18px;padding:16px 34px;border-radius:40px;background:linear-gradient(100deg,var(--rose-deep),var(--blue-deep));
+    color:#fff;text-decoration:none;font-weight:700;font-size:16px;letter-spacing:.3px;box-shadow:0 12px 30px rgba(62,107,156,.28);transition:.18s;}
+  .cta:hover{transform:translateY(-2px);box-shadow:0 16px 36px rgba(62,107,156,.36);}
+  .sign{margin-top:60px;font-size:14px;font-weight:600;letter-spacing:1px;color:var(--ink);opacity:.7;}
+
+  /* индикатор пути боль→опора сбоку */
+  .progress{position:fixed;left:0;top:0;height:4px;width:0;z-index:50;
+    background:linear-gradient(90deg,var(--rose-deep),var(--blue-deep));transition:width .1s;}
+</style>
+</head>
+<body>
+<div class="progress" id="bar"></div>
+
+<!-- ОБЛОЖКА -->
+<header class="cover">
+  <div class="topbar">
+    <div class="name">Полянинова Бэлла Леонидовна</div>
+    <div class="role">психолог · межличностные отношения</div>
+  </div>
+  <div class="kicker">Авторская программа</div>
+  <h1>Сама себе<br>опора</h1>
+  <p class="sub">Одиннадцать правил для женщины, которой плохо в браке — но страшно остаться одной</p>
+  <div class="scrolldown">листайте вниз ↓</div>
+</header>
+
+<div class="wrap">
+
+  <!-- ВСТУПЛЕНИЕ -->
+  <section class="intro">
+    <p class="lead">Вы давно несчастливы рядом с мужем, но всё равно остаётесь. Думаете об уходе — и каждый раз находите причину остаться.</p>
+    <p>Пугает вас обычно не сам развод. Пугает пустота, которая открывается за ним: решать всё самой, тянуть финансы, справляться с болезнями и бытом без привычной мысли, что рядом всё-таки есть муж. Хотя на самом деле многое из этого вы давно делаете в одиночку.</p>
+    <p>Эта программа не отвечает на вопрос «уходить или остаться». Этот ответ за вас не даст никто. Она про другое — про то, как перестать выбирать из страха и обрести опору внутри себя. Тогда любое ваше решение будет идти не от ужаса перед неизвестностью, а от спокойной взрослой силы.</p>
+  </section>
+
+  <!-- СПИСОК-АККОРДЕОН -->
+  <section class="rules">
+    <div class="rules-h">Одиннадцать правил</div>
+    <div class="rules-sub">Нажмите на правило — оно раскроется</div>
+    <div class="acc">
+
+  <!-- ПРАВИЛО 1 -->
+  <details class="rule" id="r1" open>
+    <summary>
+      <span class="badge">01</span>
+      <span class="s-title">Решение из страха — это не решение</span>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
+    <div class="body">
+    <span class="tag">Правило первое</span>
+    <div class="block">
+      <div class="lab">Почему</div>
+      <p>Пока вы выбираете остаться, потому что страшно уйти, вы не выбираете. Вы замираете. И это замирание стоит вам не жизни — оно стоит упущенных возможностей. Пока вы живёте медленно и печально, лучшие годы проходят мимо: интересные события, развитие, учёба, движение вперёд, самостоятельные решения. Вся живая, настоящая жизнь идёт стороной только потому, что вы боитесь в неё войти.</p>
+    </div>
+
+    <div class="block">
+      <div class="lab">Узнаёте себя?</div>
+      <div class="ex">Подруга зовёт на курсы, о которых вы давно мечтали. Внутри что-то вспыхивает — а потом гаснет: «Не сейчас, дома и так напряжённо, не до этого». Курсы проходят без вас. Через год их снова не будет.</div>
+      <div class="ex">Вечером вы ловите себя на мысли: «Вот разберусь с отношениями — тогда и заживу». Эта фраза звучит у вас в голове уже пятый год подряд, а жизнь, которую вы откладываете, всё не начинается.</div>
+    </div>
+
+    <div class="block">
+      <div class="lab">Что делать</div>
+      <ol class="steps">
+        <li>Выпишите три вещи, которые вы отложили «до тех пор, пока не решится с мужем». Посмотрите на даты — сколько лет вы их откладываете.</li>
+        <li>Выберите одну из них, самую маленькую, и сделайте первый шаг на этой неделе — не дожидаясь, пока решится главное.</li>
+        <li>Запомните ощущение: жизнь сдвинулась, а вопрос с браком ещё даже не тронут. Это и есть доказательство, что вы можете жить, не дожидаясь развязки.</li>
+      </ol>
+    </div>
+
+    <div class="resist">
+      <div class="lab">Будет сопротивление</div>
+      <p>Внутри поднимется знакомое: «Сейчас не время, сначала надо разобраться с главным». Это и есть голос отсрочки. Он звучит разумно, но именно он держит вас на месте годами. Время не станет удобным само — удобным его делаете вы, когда перестаёте ждать.</p>
+    </div>
+
+    <div class="diary">
+      <div class="lab">Вопрос дневника</div>
+      <p>Что я перестала делать для себя с тех пор, как начала «терпеть до решения»? И что из этого я могу вернуть уже на этой неделе?</p>
+    </div>
+    </div>
+  </details>
+
+  <!-- ПРАВИЛО 2 -->
+  <details class="rule" id="r2">
+    <summary>
+      <span class="badge">02</span>
+      <span class="s-title">Опора — это не человек рядом</span>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
+    <div class="body">
+    <span class="tag">Правило второе</span>
+    <div class="block">
+      <div class="lab">Почему</div>
+      <p>Опора — это то, что у вас внутри. Внутри живут ваши сомнения, страхи, неприятие, и одновременно тот набор правил, который помогает вам оставаться собой и двигаться вперёд. Вы думаете, что муж и есть ваша опора. Но если страхи, сомнения и важные жизненные моменты вы проходите в одиночку, не разделяя их ни с кем, значит, супруг не та точка, которая держит вас в полной жизни. Какая же он опора, если рядом с ним вы грустите и не чувствуете, что живёте? Настоящая опора — это внутренние правила, благодаря которым вы стоите ровно и ощущаете себя на высоте.</p>
+    </div>
+    <div class="block">
+      <div class="lab">Узнаёте себя?</div>
+      <div class="ex">Случилась неприятность — нагрубили на работе, заболел ребёнок. Вы прокручиваете это в голове весь вечер одна, потому что рассказать мужу — значит услышать «сама виновата» или равнодушное «ну и что ты от меня хочешь».</div>
+      <div class="ex">Вы сидите за одним столом, но важное решение принимаете молча, внутри себя. Спросить его мнение даже не приходит в голову — вы давно привыкли, что поддержки оттуда не будет.</div>
+    </div>
+    <div class="block">
+      <div class="lab">Что делать</div>
+      <ol class="steps">
+        <li>Вспомните последний трудный момент. Спросите себя честно: я опёрлась на мужа или прошла это сама?</li>
+        <li>Выпишите три ваших внутренних правила, которые реально держат вас на плаву — например, «я всегда найду выход» или «я не бросаю своих».</li>
+        <li>Эти правила и есть ваша настоящая опора. Опирайтесь на них сознательно, а не ждите опоры от того, кто её не даёт.</li>
+      </ol>
+    </div>
+    <div class="resist">
+      <div class="lab">Будет сопротивление</div>
+      <p>Захочется возразить: «Но он же рядом, он мой муж, как это он не опора». Близость по штампу в паспорте и опора — разные вещи. Признать это больно, но именно отсюда начинается возвращение к себе.</p>
+    </div>
+    <div class="diary">
+      <div class="lab">Вопрос дневника</div>
+      <p>В какие моменты я чувствую себя одинокой рядом с мужем? И на что я опираюсь внутри себя, когда его поддержки нет?</p>
+    </div>
+    </div>
+  </details>
+
+  <!-- ПРАВИЛО 3 -->
+  <details class="rule" id="r3">
+    <summary>
+      <span class="badge">03</span>
+      <span class="s-title">Вы уже умеете всё, чего боитесь</span>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
+    <div class="body">
+    <span class="tag">Правило третье</span>
+    <div class="block">
+      <div class="lab">Почему</div>
+      <p>Вы принимаете решения, находите выход из сложных ситуаций, держите быт, поддерживаете близких, справляетесь с болезнями и проблемами. Страх нашёптывает «ты не справишься», а ваша собственная жизнь давно доказала обратное. Вы тянете на себе многое и делаете это годами — просто не привыкли ставить это себе в заслугу.</p>
+    </div>
+    <div class="block">
+      <div class="lab">Узнаёте себя?</div>
+      <div class="ex">Вы боитесь, что без мужа не разберётесь с деньгами. А между тем именно вы планируете бюджет, помните про все платежи и растягиваете семейные финансы до зарплаты.</div>
+      <div class="ex">Вам страшно «остаться за главную». Но когда муж в отъезде или болеет, дом держится именно на вас, и всё почему-то работает.</div>
+    </div>
+    <div class="block">
+      <div class="lab">Что делать</div>
+      <ol class="steps">
+        <li>Выпишите пять трудных дел, которые вы за последний год вытянули сами. Перечитайте список вслух.</li>
+        <li>Напротив каждого страха «я не смогу» поставьте реальный случай, когда вы уже это смогли.</li>
+        <li>Держите этот список под рукой. Каждый раз, когда накрывает «я не справлюсь», возвращайтесь к доказательствам обратного.</li>
+      </ol>
+    </div>
+    <div class="resist">
+      <div class="lab">Будет сопротивление</div>
+      <p>Появится мысль: «То другое дело, а вот настоящую жизнь одной мне не потянуть». Это страх ищет удобную отговорку. Вы не оцениваете себя — вы себя занижаете. Факты говорят иначе.</p>
+    </div>
+    <div class="diary">
+      <div class="lab">Вопрос дневника</div>
+      <p>Что трудное я сделала сама за этот год? И почему я до сих пор считаю, что без мужа не справлюсь?</p>
+    </div>
+    </div>
+  </details>
+
+  <!-- ПРАВИЛО 4 -->
+  <details class="rule" id="r4">
+    <summary>
+      <span class="badge">04</span>
+      <span class="s-title">«Не могу решиться» — вас убедили, что вы не в счёт</span>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
+    <div class="body">
+    <span class="tag">Правило четвёртое</span>
+    <div class="block">
+      <div class="lab">Почему</div>
+      <p>«Я не могу решиться» часто означает не то, что вам запретили хотеть, а то, что вас убедили: ваши желания несущественны. Прямого запрета не было — была расстановка условий. «Решения принимаю я, потому что деньги зарабатываю я», «давай вместе», а вместе всегда выходит по его. Вас годами ставили в рамки, где ваше слово как будто ничего не весит, а любое желание встречали отмашкой: ерунда, мало ли что тебе хочется, хватит. Это и есть газлайтинг — он не отнимает желания силой, он мягко обесценивает их, пока вы сами не начинаете верить, что хотеть вам нечего и незачем.</p>
+    </div>
+    <div class="block">
+      <div class="lab">Узнаёте себя?</div>
+      <div class="ex">Вы предлагаете поехать в отпуск к морю, а в ответ слышите: «Деньги зарабатываю я, значит, едем туда, куда я решил». И вы замолкаете, будто и правда не имеете права голоса.</div>
+      <div class="ex">Вы давно перестали говорить, чего хотите на свой день рождения. Зачем, если каждый раз слышали «ну вот опять ты выдумываешь». Проще не хотеть вовсе.</div>
+    </div>
+    <div class="block">
+      <div class="lab">Что делать</div>
+      <ol class="steps">
+        <li>Вечером запишите три своих желания — любых, даже самых маленьких. Просто верните себе право их иметь.</li>
+        <li>Поймайте момент, когда обрываете себя «мало ли что я хочу». Это не ваш голос — это чужая отмашка, которую вы выучили.</li>
+        <li>Одно из трёх желаний исполните на этой неделе сами, не спрашивая ни у кого разрешения.</li>
+      </ol>
+    </div>
+    <div class="resist">
+      <div class="lab">Будет сопротивление</div>
+      <p>Мелькнёт: «Да мне никто ничего не запрещал, я сама такая нерешительная». В том и тонкость — запрета не было. Было долгое приучение к мысли, что вы не в счёт. Нерешительность тут не характер, а след.</p>
+    </div>
+    <div class="diary">
+      <div class="lab">Вопрос дневника</div>
+      <p>Когда я в последний раз говорила вслух, чего хочу? И чей голос звучит у меня в голове, когда я называю свои желания ерундой?</p>
+    </div>
+    </div>
+  </details>
+
+  <!-- ПРАВИЛО 5 -->
+  <details class="rule fin" id="r5">
+    <summary>
+      <span class="badge">05</span>
+      <span class="s-title">Сначала деньги, потом чувства</span>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
+    <div class="body">
+    <span class="tag">Правило пятое</span>
+    <div class="block">
+      <div class="lab">Почему</div>
+      <p>Сначала верните себе деньги, а уже потом разбирайтесь с чувствами, потому что финансовая беспомощность держит крепче любви. Пока каждый рубль чужой, любое решение идёт из страха, а не из выбора. Поэтому определите себе срок — три месяца, полгода, — за который соберёте финансовую подушку. Конкретный срок и понятная сумма превращают пугающую неизвестность в задачу с датой.</p>
+    </div>
+    <div class="block">
+      <div class="lab">Узнаёте себя?</div>
+      <div class="ex">Вы прикидываете, что будет, если уйти, и упираетесь в одну стену: на что жить первое время. И мысль гаснет, не дойдя до конца.</div>
+      <div class="ex">У вас нет своих отложенных денег — всё общее, всё под контролем мужа. И эта зависимость держит крепче любых чувств.</div>
+    </div>
+    <div class="block">
+      <div class="lab">Что делать</div>
+      <ol class="steps">
+        <li>Посчитайте, сколько денег нужно вам на три месяца спокойной жизни. Запишите конкретную сумму.</li>
+        <li>Назначьте срок, за который соберёте эту подушку, — например, полгода. Откладывайте регулярно, даже понемногу.</li>
+        <li>Заведите счёт или место для денег, к которому есть доступ только у вас.</li>
+      </ol>
+    </div>
+    <div class="resist">
+      <div class="lab">Будет сопротивление</div>
+      <p>Появится чувство вины: «Копить тайком — это нечестно по отношению к мужу». Это не предательство, а взрослая ответственность за себя. Подушка нужна не чтобы сбежать, а чтобы решать из свободы, а не из нужды.</p>
+    </div>
+    <div class="diary">
+      <div class="lab">Вопрос дневника</div>
+      <p>Сколько мне нужно, чтобы три месяца чувствовать себя спокойно? И какой первый шаг к этой сумме я могу сделать уже сейчас?</p>
+    </div>
+    </div>
+  </details>
+
+  <!-- ПРАВИЛО 6 -->
+  <details class="rule" id="r6">
+    <summary>
+      <span class="badge">06</span>
+      <span class="s-title">Смените вопрос «уходить или остаться»</span>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
+    <div class="body">
+    <span class="tag">Правило шестое</span>
+    <div class="block">
+      <div class="lab">Почему</div>
+      <p>Перестаньте спрашивать себя «уходить или остаться». Спросите иначе — «что мне нужно, чтобы крепко стоять на ногах». Неправильный вопрос годами держит вас в тупике, ведь развод — это не про дверь наружу, а про то, есть ли у вас под ногами пол. Сейчас вы просыпаетесь не с радостью, а с перечнем обязанностей: что я должна сделать, чтобы муж не расстроился, чтобы детям было хорошо. Вы живёте как функционал, а не как женщина. Крепко стоять на ногах — это просыпаться с лёгкостью и радоваться тому, что вокруг, а не выживать.</p>
+    </div>
+    <div class="block">
+      <div class="lab">Узнаёте себя?</div>
+      <div class="ex">Вы месяцами крутите одно и то же: уйти или остаться, уйти или остаться. Ответа нет, а сил всё меньше, потому что сам вопрос загоняет в угол.</div>
+      <div class="ex">Вы ждёте, что однажды проснётесь с готовым решением. Но решение не приходит, потому что вы задаёте себе не тот вопрос.</div>
+    </div>
+    <div class="block">
+      <div class="lab">Три вопроса для самоопределения</div>
+      <ol class="steps">
+        <li>Что мне нужно, чтобы быть счастливой?</li>
+        <li>Что мне нужно, чтобы улыбаться и радоваться каждому дню?</li>
+        <li>Как бы я хотела жить, если убрать давление со стороны мужа и близких?</li>
+      </ol>
+    </div>
+    <div class="resist">
+      <div class="lab">Будет сопротивление</div>
+      <p>Захочется отмахнуться: «Это всё лирика, мне бы конкретику — уходить или нет». Но именно конкретику эти вопросы и дают. Когда вы поймёте, что вам нужно для опоры, ответ про уход придёт сам.</p>
+    </div>
+    <div class="diary">
+      <div class="lab">Вопрос дневника</div>
+      <p>Что мне нужно, чтобы крепко стоять на ногах и просыпаться с радостью, а не с перечнем обязанностей — независимо от того, останусь я или уйду?</p>
+    </div>
+    </div>
+  </details>
+
+  <!-- ПРАВИЛО 7 -->
+  <details class="rule" id="r7">
+    <summary>
+      <span class="badge">07</span>
+      <span class="s-title">Вам не нужно ничьё разрешение</span>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
+    <div class="body">
+    <span class="tag">Правило седьмое</span>
+    <div class="block">
+      <div class="lab">Почему</div>
+      <p>Вам не нужно ничьё разрешение — ни мужа, ни мамы, ни подруг. Вы привыкли жить с оглядкой на чужую оценку, ориентироваться на общественное мнение и суждения близких. Внешняя оценка существует, и спорить с ней бессмысленно. Но есть одна вещь, которую видите только вы. Окружающие любуются вашей красивой французской туфелькой из натуральной кожи и говорят, как она вам идёт. И лишь вы знаете, как она натирает — до крови, так, что уже и пластырь не спасает. Чужой глаз видит картинку, а боль внутри живёте вы. Поэтому и решение, как с этой болью быть, принимать вам.</p>
+    </div>
+    <div class="block">
+      <div class="lab">Узнаёте себя?</div>
+      <div class="ex">Мама уговаривает: «Куда пойдёшь, станешь разведёнкой, посмотри, как все мучаются, и ты намучаешься, а тут муж, всё под боком». И вы снова остаётесь — ради её спокойствия, не своего.</div>
+      <div class="ex">Подруги говорят: «Да у тебя нормальный муж, не пьёт, не бьёт, чего тебе ещё надо». А что вам тяжело и пусто внутри — этого со стороны не видно.</div>
+    </div>
+    <div class="block">
+      <div class="lab">Что делать</div>
+      <ol class="steps">
+        <li>Заметьте, чьё одобрение вы ищете чаще всего, прежде чем что-то решить, — мамы, мужа, подруг.</li>
+        <li>Спросите себя: этот человек живёт мою жизнь или свою? Носит мою туфлю или любуется со стороны?</li>
+        <li>Примите одно небольшое решение только для себя, никому его не объясняя и не спрашивая разрешения.</li>
+      </ol>
+    </div>
+    <div class="resist">
+      <div class="lab">Будет сопротивление</div>
+      <p>Станет тревожно: «А что люди скажут, как мама переживёт». Чужое мнение переживёт всё — это вам жить с натёртой до крови ногой. Разрешение себе вы можете дать только сами.</p>
+    </div>
+    <div class="diary">
+      <div class="lab">Вопрос дневника</div>
+      <p>Чьего разрешения я жду, чтобы начать жить по-своему? И что изменится, если я перестану его ждать?</p>
+    </div>
+    </div>
+  </details>
+
+  <!-- ПРАВИЛО 8 -->
+  <details class="rule fin" id="r8">
+    <summary>
+      <span class="badge">08</span>
+      <span class="s-title">Тревогу лечит план, а не ответ</span>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
+    <div class="body">
+    <span class="tag">Правило восьмое</span>
+    <div class="block">
+      <div class="lab">Почему</div>
+      <p>Тревога будущего лечится не ответом, а планом. Вы пытаетесь сначала перестать бояться, а потом действовать — работает же наоборот. Страх отступает тогда, когда у пустой неизвестности появляются конкретные строчки. Чтобы решиться, вам нужен не сценарий «как разводиться», а понятный план жизни после: где вы будете жить, какая будет жилплощадь, останутся ли дети с вами, рассчитываете ли вы на алименты и другую помощь. Когда жизнь после разобрана до мелочей, она перестаёт пугать. Уходить в никуда нельзя, но вас никто и не гонит — спешки нет.</p>
+    </div>
+    <div class="block">
+      <div class="lab">Узнаёте себя?</div>
+      <div class="ex">Вы лежите ночью и прокручиваете ужас: «А вдруг ничего не получится, вдруг я не вытяну». Страх огромный именно потому, что у него нет ни одной конкретной строчки — сплошной туман.</div>
+      <div class="ex">Стоит вам начать прикидывать по пунктам — где жить, на что, кто поможет, — и паника понемногу спадает. Туман превращается в список дел.</div>
+    </div>
+    <div class="block">
+      <div class="lab">Что делать</div>
+      <ol class="steps">
+        <li>Выпишите по пунктам: где буду жить, на какие деньги, с кем останутся дети, на какую помощь рассчитываю.</li>
+        <li>Решите, кто поможет физически в первое время — отец, друг, муж подруги, тот, кто придёт и по-бытовому всё разложит: сюда холодильник, тут подключим розетки.</li>
+        <li>Если попросить некого — найдите службу «Муж на час»: там тоже есть человек, который прикрутит полку и подключит технику. Любую такую задачу сегодня можно либо делегировать близкому, либо заказать.</li>
+      </ol>
+    </div>
+    <div class="resist">
+      <div class="lab">Будет сопротивление</div>
+      <p>Появится: «Зачем планировать, я же ещё ничего не решила». В том и смысл — план не обязывает уходить. Он просто разгоняет туман, и из спокойствия решать намного легче, чем из паники.</p>
+    </div>
+    <div class="diary">
+      <div class="lab">Вопрос дневника</div>
+      <p>Какой первый пункт плана я могу расписать уже сегодня, чтобы неизвестность стала немного понятнее?</p>
+    </div>
+    </div>
+  </details>
+
+  <!-- ПРАВИЛО 9 -->
+  <details class="rule" id="r9">
+    <summary>
+      <span class="badge">09</span>
+      <span class="s-title">Одиночество вдвоём тяжелее одиночества одной</span>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
+    <div class="body">
+    <span class="tag">Правило девятое</span>
+    <div class="block">
+      <div class="lab">Почему</div>
+      <p>Одиночество в браке тяжелее именно потому, что вы видите партнёра — и не можете на него опереться. Рядом есть человек, но это иллюзия: свадебный генерал, на которого нельзя положиться ни в чём. И каждый день вы обманываетесь надеждой на помощь, которой нет. В настоящем одиночестве эта иллюзия спадает. У вас больше нет ложного ожидания, что кто-то решит вашу проблему, и вы начинаете реально искать выход, рассчитывая только на свои силы. Честная опора на себя оказывается прочнее, чем иллюзия опоры на другого.</p>
+    </div>
+    <div class="block">
+      <div class="lab">Узнаёте себя?</div>
+      <div class="ex">Он дома, сидит в соседней комнате. А вы решаете трудный вопрос одна, потому что обратиться к нему — всё равно что говорить со стеной. Присутствие есть, опоры нет.</div>
+      <div class="ex">Вы ждёте, что вот сейчас он наконец поможет, поддержит, возьмёт часть на себя. Ждёте год, два, десять. Иллюзия этой надежды отнимает больше сил, чем если бы вы сразу знали, что рассчитывать не на кого.</div>
+    </div>
+    <div class="block">
+      <div class="lab">Что делать</div>
+      <ol class="steps">
+        <li>Честно назовите вещи, в которых вы уже сейчас одна, хотя муж рядом. Это и есть ваше реальное положение.</li>
+        <li>Перестаньте ждать помощи оттуда, откуда её годами нет. Ожидание иллюзии забирает силы впустую.</li>
+        <li>Эти же силы направьте на поиск настоящего выхода — опираясь на себя и на тех, кто реально рядом.</li>
+      </ol>
+    </div>
+    <div class="resist">
+      <div class="lab">Будет сопротивление</div>
+      <p>Захочется цепляться: «Но вдруг он изменится, вдруг поможет». Надежда на иллюзию — самая дорогая трата вашей жизни. Отпустив её, вы не теряете опору, а наконец перестаёте опираться на пустоту.</p>
+    </div>
+    <div class="diary">
+      <div class="lab">Вопрос дневника</div>
+      <p>В чём я уже сейчас одна, хотя муж рядом? И сколько сил уходит у меня на надежду, которая не сбывается?</p>
+    </div>
+    </div>
+  </details>
+
+  <!-- ПРАВИЛО 10 -->
+  <details class="rule" id="r10">
+    <summary>
+      <span class="badge">10</span>
+      <span class="s-title">Решать сегодня не обязательно</span>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
+    <div class="body">
+    <span class="tag">Правило десятое</span>
+    <div class="block">
+      <div class="lab">Почему</div>
+      <p>Вы не должны принимать решение об уходе или расставании прямо сегодня. Вставать и бежать прямо сейчас не нужно. Но перестать платить собой за свою нерешительность — пора. Опора — это не «я ухожу завтра», а подготовленная почва: план отхода, понимание, что я буду делать и как, чтобы мне стало комфортнее. Остаться, уйти или развернуть ситуацию — выбор потом. Сейчас главное, чтобы под ногами был план, а не пустота.</p>
+    </div>
+    <div class="block">
+      <div class="lab">Узнаёте себя?</div>
+      <div class="ex">Вы думаете, что решение — это обязательно собрать чемодан сегодня. И от этой мысли цепенеете, потому что к такому шагу вы не готовы.</div>
+      <div class="ex">А ведь можно иначе: не уходить сейчас, но потихоньку готовить почву — деньги, план, опору. И тогда решение перестаёт быть прыжком в пропасть.</div>
+    </div>
+    <div class="block">
+      <div class="lab">Что делать</div>
+      <ol class="steps">
+        <li>Снимите с себя давление «решить немедленно». У вас есть время, и это нормально.</li>
+        <li>Вместо решения займитесь подготовкой почвы: соберите подушку, распишите план, верните себе желания.</li>
+        <li>Когда почва будет готова, решение придёт само и уже не будет таким страшным.</li>
+      </ol>
+    </div>
+    <div class="resist">
+      <div class="lab">Будет сопротивление</div>
+      <p>Мелькнёт обратное: «Раз не решаю — значит, можно вообще ничего не делать». Вот это и есть ловушка. Не решать сегодня можно. Не платить собой за бездействие — обязательно.</p>
+    </div>
+    <div class="diary">
+      <div class="lab">Вопрос дневника</div>
+      <p>Чем я плачу за то, что годами не решаю? И что я могу подготовить уже сейчас, не принимая окончательного решения?</p>
+    </div>
+    </div>
+  </details>
+
+  <!-- ПРАВИЛО 11 -->
+  <details class="rule fin" id="r11">
+    <summary>
+      <span class="badge">11</span>
+      <span class="s-title">Готовьте почву, пока есть время</span>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
+    <div class="body">
+    <span class="tag">Правило одиннадцатое</span>
+    <div class="block">
+      <div class="lab">Почему</div>
+      <p>То, чего вы пока не умеете, можно начать осваивать прямо сейчас — не дожидаясь развода. Если страшно из-за денег и профессии, пока вы ещё в браке, у вас есть и время, и тыл, чтобы спокойно подготовиться. Брак в этот момент работает не как клетка, а как опора, которая даёт вам передышку на подготовку. Используйте нынешнее положение не чтобы прятаться, а чтобы вырастить ту самую самостоятельность, которой боитесь.</p>
+    </div>
+    <div class="block">
+      <div class="lab">Узнаёте себя?</div>
+      <div class="ex">Вы давно не работали и боитесь, что никому не нужны. Но пока вы замужем, есть возможность спокойно пройти курс, освоить профессию, начать с небольшой подработки.</div>
+      <div class="ex">Вы не знаете, с чего начать новую жизнь. А начать можно не с ухода, а с обучения — пока есть крыша над головой и время в запасе.</div>
+    </div>
+    <div class="block">
+      <div class="lab">Что делать</div>
+      <ol class="steps">
+        <li>Назовите один навык, отсутствие которого пугает вас больше всего, — заработок, профессия, вождение, финансы.</li>
+        <li>Найдите способ начать осваивать его уже сейчас: онлайн-курс, обучение, небольшая практика.</li>
+        <li>Используйте время в браке как тыл для подготовки, а не как повод откладывать жизнь.</li>
+      </ol>
+    </div>
+    <div class="resist">
+      <div class="lab">Будет сопротивление</div>
+      <p>Появится: «Поздно мне учиться, да и зачем, пока всё равно ничего не решено». Готовить почву никогда не поздно и не рано. Чем крепче вы встанете на ноги сейчас, тем свободнее будет любое будущее решение.</p>
+    </div>
+    <div class="diary">
+      <div class="lab">Вопрос дневника</div>
+      <p>Какой навык сделает меня свободнее? И какой первый шаг к нему я могу сделать, пока у меня есть время и тыл?</p>
+    </div>
+    </div>
+  </details>
+
+    </div>
+  </section>
+
+  <!-- ФИНАЛ -->
+  <section class="final">
+    <h2>Вы увидели, <span class="grad">что вас держит</span></h2>
+    <p>Следующий шаг — разобраться с самим браком: остаться в нём по-новому или выйти достойно, без вины и без страха.</p>
+    <p>Это глубокая работа, и для неё есть отдельная программа.</p>
+    <a class="cta" href="#">Программа «Ясность. Брак без иллюзий»</a>
+    <div class="sign">С уважением, Бэлла Леонидовна</div>
+  </section>
+
+</div>
+
+<script>
+  const bar=document.getElementById('bar');
+  addEventListener('scroll',()=>{
+    const h=document.documentElement;
+    const p=h.scrollTop/(h.scrollHeight-h.clientHeight)*100;
+    bar.style.width=p+'%';
+  });
+</script>
+</body>
+</html>
