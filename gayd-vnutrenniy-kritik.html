@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Внутренний критик — гайд Бэллы Поляниновой</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#cfe0ee;            /* светлый голубой фон — гайд светлее продукта */
+    --bg-deep:#3f5d7c;
+    --card:#ffffff;
+    --ink:#26313d;
+    --ink-soft:#5a6b7d;
+    --blue:#2f5d8a;
+    --blue-deep:#21476b;
+    --line:#bcd0e2;
+    --soft:#eef4fa;
+    --accent:#e3b24a;        /* тёплый акцент, как «сильная женщина» в продукте */
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Manrope',sans-serif;background:var(--bg);color:var(--ink);
+       font-size:18px;line-height:1.62;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:660px;margin:0 auto;padding:0 20px 70px;}
+
+  .hero{background:linear-gradient(160deg,#6f9bc4 0%,#4f78a0 100%);color:#fff;
+        margin:0 -20px;padding:50px 28px 46px;text-align:center;border-radius:0 0 28px 28px;}
+  .hero .badge{display:inline-block;border:1px solid rgba(255,255,255,.4);border-radius:30px;
+        padding:7px 18px;font-size:13px;letter-spacing:3px;text-transform:uppercase;opacity:.85;margin-bottom:20px;}
+  .hero h1{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:48px;line-height:1.1;margin-bottom:16px;}
+  .hero .sub{font-size:18px;opacity:.92;max-width:440px;margin:0 auto;font-weight:500;}
+  .hero .author{font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;margin-top:22px;}
+  .hero .cred{font-size:13px;opacity:.7;margin-top:3px;}
+
+  section{margin-top:34px;}
+  h2{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:30px;line-height:1.18;color:var(--blue-deep);margin-bottom:16px;}
+  p{margin-bottom:15px;}
+  .card{background:var(--card);border-radius:18px;padding:26px 24px;box-shadow:0 8px 26px rgba(33,71,107,.12);}
+  .lead{font-family:'Cormorant Garamond',serif;font-size:23px;line-height:1.4;color:var(--blue-deep);font-weight:600;font-style:italic;}
+  .badlist{list-style:none;margin:14px 0;}
+  .badlist li{background:var(--soft);border-radius:10px;padding:11px 16px;margin-bottom:8px;
+        font-style:italic;color:var(--blue-deep);font-size:17px;}
+
+  .err{background:var(--card);border-radius:18px;padding:24px;margin-bottom:16px;box-shadow:0 6px 20px rgba(33,71,107,.10);position:relative;}
+  .err .tag{display:inline-block;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue);opacity:.7;margin-bottom:8px;}
+  .err h3{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--blue-deep);margin-bottom:10px;}
+  .err .vs{display:flex;gap:10px;margin:14px 0;flex-wrap:wrap;}
+  .err .vs div{flex:1;min-width:130px;border-radius:10px;padding:12px 14px;font-size:16px;}
+  .err .vs .act{background:#e7f1e9;color:#2c6347;}
+  .err .vs .per{background:#f6e7e7;color:#9c4040;}
+  .err .vs b{display:block;font-size:12px;text-transform:uppercase;letter-spacing:1px;opacity:.7;margin-bottom:3px;}
+  .err.key{border:2px solid var(--accent);}
+  .err.key .tag{color:var(--accent);opacity:1;}
+
+  .qbox{background:linear-gradient(135deg,#4f78a0,#2f5d8a);color:#fff;border-radius:18px;padding:26px 24px;margin-top:18px;}
+  .qbox p{color:#eaf2f9;} .qbox p:last-child{margin-bottom:0;}
+  .qbox .big{font-family:'Cormorant Garamond',serif;font-size:23px;font-weight:600;font-style:italic;color:#fff;margin-bottom:12px;}
+
+  .cta{background:var(--bg-deep);color:#fff;margin:38px -20px 0;padding:40px 26px;border-radius:28px;text-align:center;}
+  .cta h2{color:#fff;}
+  .cta p{color:#dbe6f1;}
+  .cta .btn{display:inline-block;margin-top:18px;background:var(--accent);color:#3a2c08;
+        font-weight:800;font-size:18px;letter-spacing:.3px;text-decoration:none;padding:16px 38px;border-radius:40px;}
+  .cta .price{margin-top:14px;font-size:15px;color:#cdddec;}
+  .note{font-size:13px;color:#9fb8d0;margin-top:18px;}
+
+  .foot{text-align:center;margin-top:34px;padding-top:24px;border-top:1px solid var(--line);}
+  .foot .who{font-weight:700;color:var(--ink);}
+  .foot .meta{font-size:14px;color:var(--ink-soft);margin-top:3px;}
+
+  @media(max-width:520px){
+    body{font-size:17px;}
+    .hero h1{font-size:38px;} h2{font-size:26px;} .lead{font-size:21px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="author" style="margin-top:0;margin-bottom:4px;">Полянинова Бэлла Леонидовна</div>
+    <div class="cred" style="margin-bottom:18px;">Психолог · 18 лет практики · Авторский продукт. Все права защищены</div>
+    <div class="badge">Гайд</div>
+    <h1>Внутренний критик</h1>
+    <div class="sub">Почему «полюбите себя» не работает — и что на самом деле держит самокритику</div>
+  </header>
+
+  <section>
+    <div class="card">
+      <p class="lead">Скорее всего, вам уже сто раз советовали одно и то же.</p>
+      <ul class="badlist">
+        <li>«Полюбите себя».</li>
+        <li>«Принимайте себя».</li>
+        <li>«Не критикуйте себя».</li>
+        <li>«Будьте к себе добрее».</li>
+      </ul>
+      <p>Беда в том, что внутренний критик от этих слов никуда не уходит. Можно сто раз сказать себе «я себя принимаю», а через пять минут снова стоять перед зеркалом и искать недостатки.</p>
+      <p>Эти советы не работают, потому что бьют мимо. Самокритика — это не нехватка любви к себе. Она держится на трёх ошибках мышления. Разберём каждую — и вы увидите, за что можно ухватиться по-настоящему.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Три ошибки, на которых держится самокритика</h2>
+
+    <div class="err">
+      <div class="tag">Ошибка первая</div>
+      <h3>Путать оценку действия и оценку личности</h3>
+      <p>Между этими двумя фразами — пропасть, но в голове они звучат одинаково:</p>
+      <div class="vs">
+        <div class="act"><b>Оценка действия</b>Я пересолила суп</div>
+        <div class="per"><b>Оценка личности</b>Я плохая хозяйка</div>
+      </div>
+      <div class="vs">
+        <div class="act"><b>Оценка действия</b>Я неудачно ответила</div>
+        <div class="per"><b>Оценка личности</b>Я всё порчу</div>
+      </div>
+      <p>Действие можно поправить. Личность звучит как приговор, который не обжалуешь. Уже одно умение поймать этот переход возвращает почву под ногами.</p>
+    </div>
+
+    <div class="err">
+      <div class="tag">Ошибка вторая</div>
+      <h3>Замечать только промах и не видеть, что вышло хорошо</h3>
+      <p>Каждый раз, когда появляется мысль «можно было лучше», задайте себе второй вопрос: а что получилось хорошо? Не вместо критики — вместе с ней. Объективность включает обе стороны, а критик показывает только одну. Вы научитесь видеть вторую.</p>
+    </div>
+
+    <div class="err key">
+      <div class="tag">Ошибка третья — главная</div>
+      <h3>Считать самокритику двигателем развития</h3>
+      <p>Многие женщины выросли с правилом: пока я собой недовольна — я развиваюсь. Звучит почти благородно. Но это неправда.</p>
+      <p class="lead" style="margin:14px 0">Развитие создаёт обратная связь. Самокритика создаёт наказание. Это два разных процесса.</p>
+      <p>Можно увидеть свою ошибку, исправить её и пойти дальше. А можно увидеть ту же ошибку и три дня пережёвывать её внутри. Второе не делает человека сильнее — оно только отнимает силы.</p>
+      <p>Посмотрите на тех, кто многого добивается. Они не тратят бóльшую часть себя на самонаказание. Они тратят её на действия. Недовольство собой не двигатель — оно тормоз, который мы по ошибке приняли за мотор.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="qbox">
+      <p class="big">Один простой вопрос, который стоит задать себе сегодня.</p>
+      <p>Представьте, что ваша дочь, подруга или близкий человек говорит о себе ровно теми словами, какими вы говорите о себе внутри головы. Вам понравилось бы это слушать?</p>
+      <p>Чаще всего — нет. И тогда возникает следующий вопрос: почему для другого человека вы выбираете уважение, а для себя — постоянный разбор недостатков?</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="card">
+      <h2>К чему всё это ведёт</h2>
+      <p>Не нужно ставить себе цель «перестать себя критиковать» — психика воспримет это как потерю контроля и будет сопротивляться. Цель другая и достижимая: научиться замечать ошибку, не превращая её в приговор себе.</p>
+      <p>Именно здесь проходит граница между здоровой требовательностью и жизнью под управлением внутреннего критика. И именно этому посвящён практикум, к которому ведёт этот гайд.</p>
+    </div>
+  </section>
+
+  <section class="cta">
+    <h2>Практикум «Внутренний защитник»</h2>
+    <p>Гайд показал, из чего сложена самокритика. Практикум даёт инструмент, который её заменяет: вы выбираете свою фигуру-защитника и свод из пяти правил, осваиваете три практики на каждый день и ведёте дневник на четыре недели — прямо в телефоне.</p>
+    <a class="btn" href="https://app.lava.top/products/8434d67f-626c-4baf-a4dc-3ebb2c295a33">Получить практикум</a>
+    <div class="price">1190 руб. · единоразовая оплата · доступ навсегда</div>
+  </section>
+
+  <div class="foot">
+    <div class="who">Полянинова Бэлла Леонидовна</div>
+    <div class="meta">Психолог · специалист по межличностным отношениям · 18 лет практики</div>
+  </div>
+
+</div>
+</body>
+</html>
