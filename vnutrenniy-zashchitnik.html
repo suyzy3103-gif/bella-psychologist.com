@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Внутренний защитник — практикум Бэллы Поляниновой</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#9fb1c4;--bg-deep:#36506b;--card:#ffffff;--ink:#26313d;--ink-soft:#5a6b7d;
+    --blue:#2f5d8a;--blue-deep:#1f3f5e;--line:#c2cedb;
+    --p1:#eef3f8;--p2:#cfe0ee;--p3:#a7c6e0;
+    --mint:#bfe3d4;--navy:#284a6b;--gold:#e3b24a;--warm:#d8cfc2;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Manrope',sans-serif;background:var(--bg);color:var(--ink);
+       font-size:18px;line-height:1.62;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:680px;margin:0 auto;padding:0 20px 80px;}
+  .hero{background:linear-gradient(160deg,#3f5d7c 0%,#2b465f 100%);color:#fff;
+        margin:0 -20px;padding:54px 28px 50px;text-align:center;border-radius:0 0 28px 28px;}
+  .hero .author{font-family:'Cormorant Garamond',serif;font-size:23px;font-style:italic;margin-bottom:4px;}
+  .hero .cred{font-size:13px;opacity:.72;margin-bottom:30px;letter-spacing:.3px;}
+  .kicker{font-size:14px;letter-spacing:4px;text-transform:uppercase;opacity:.7;margin-bottom:16px;}
+  .hero h1{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:54px;line-height:1.08;margin-bottom:18px;letter-spacing:.5px;}
+  .hero .sub{font-size:19px;opacity:.92;max-width:470px;margin:0 auto;font-weight:500;}
+  .hero .rule{width:54px;height:2px;background:rgba(255,255,255,.5);margin:24px auto 0;}
+  section{margin-top:40px;}
+  h2{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:33px;line-height:1.15;color:var(--blue-deep);margin-bottom:18px;}
+  h2 .small{display:block;font-size:15px;font-family:'Manrope';font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--blue);opacity:.75;margin-bottom:8px;}
+  p{margin-bottom:16px;}
+  .lead{font-family:'Cormorant Garamond',serif;font-size:24px;line-height:1.4;color:var(--blue-deep);font-weight:600;font-style:italic;margin-bottom:22px;}
+  .intro-card{background:var(--card);border-radius:20px;padding:30px 26px;box-shadow:0 10px 34px rgba(31,63,94,.12);}
+  .q{font-weight:700;color:var(--blue-deep);font-size:20px;margin:22px 0 8px;}
+  .guards{display:grid;gap:14px;margin-top:8px;}
+  .guard{border-radius:16px;padding:22px 22px 22px 24px;box-shadow:0 6px 20px rgba(31,63,94,.10);position:relative;overflow:hidden;}
+  .guard:before{content:"";position:absolute;left:0;top:0;bottom:0;width:7px;}
+  .guard h3{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;margin-bottom:6px;color:var(--blue-deep);}
+  .guard p{margin:0;font-size:17px;color:var(--ink-soft);}
+  .g-mint{background:linear-gradient(120deg,#eaf6f0,#dcefe5);} .g-mint:before{background:var(--mint);}
+  .g-navy{background:linear-gradient(120deg,#e7edf4,#d4e0ec);} .g-navy:before{background:var(--navy);}
+  .g-gold{background:linear-gradient(120deg,#fbf3df,#f6e7c4);} .g-gold:before{background:var(--gold);}
+  .g-warm{background:linear-gradient(120deg,#f4f1ec,#e9e2d7);} .g-warm:before{background:var(--warm);}
+  .law{background:var(--card);border-radius:14px;padding:22px 24px;margin-bottom:13px;box-shadow:0 5px 16px rgba(31,63,94,.08);display:flex;gap:16px;align-items:flex-start;}
+  .law .n{flex:0 0 40px;height:40px;border-radius:50%;background:var(--blue);color:#fff;font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+  .law h4{font-size:19px;color:var(--blue-deep);margin-bottom:5px;}
+  .law p{margin:0;font-size:17px;color:var(--ink-soft);}
+  .case{background:linear-gradient(135deg,#2f5d8a,#1f3f5e);color:#fff;border-radius:20px;padding:28px 26px;margin-top:22px;}
+  .case h3{font-family:'Cormorant Garamond',serif;font-size:25px;margin-bottom:14px;}
+  .case p{color:#e3ecf5;margin-bottom:13px;}
+  .case .step{font-weight:700;color:#fff;}
+  .case p:last-child{margin-bottom:0;}
+  .acc{border-radius:18px;margin-bottom:14px;overflow:hidden;box-shadow:0 6px 22px rgba(31,63,94,.12);}
+  .acc summary{list-style:none;cursor:pointer;padding:22px 24px;font-weight:700;font-size:20px;color:var(--blue-deep);display:flex;align-items:center;gap:14px;}
+  .acc summary::-webkit-details-marker{display:none;}
+  .acc .num{flex:0 0 38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;background:rgba(255,255,255,.65);color:var(--blue-deep);}
+  .acc summary .lbl{display:flex;flex-direction:column;}
+  .acc summary .lbl small{font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--blue);opacity:.7;margin-bottom:2px;}
+  .acc summary .chev{margin-left:auto;transition:transform .25s;font-size:15px;opacity:.6;}
+  .acc[open] summary .chev{transform:rotate(180deg);}
+  .acc .body{padding:4px 26px 26px;background:rgba(255,255,255,.55);}
+  .acc .body p:last-child{margin-bottom:0;}
+  .acc .ex{font-style:italic;color:var(--blue-deep);font-weight:600;}
+  .acc .body a{color:var(--blue);font-weight:700;}
+  .p1{background:var(--p1);} .p2{background:var(--p2);} .p3{background:var(--p3);}
+  .rule-card{background:var(--card);border-left:5px solid var(--blue);border-radius:12px;padding:20px 22px;margin-bottom:14px;box-shadow:0 5px 16px rgba(31,63,94,.08);}
+  .rule-card h4{font-size:19px;color:var(--blue-deep);margin-bottom:6px;}
+  .rule-card p{margin:0;color:var(--ink-soft);font-size:17px;}
+
+  /* дневник */
+  .diary{background:var(--card);border-radius:20px;padding:26px 22px;box-shadow:0 10px 34px rgba(31,63,94,.12);}
+  .diary .weeks{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
+  .wtab{flex:1;min-width:64px;padding:10px 4px;border:none;border-radius:10px;background:var(--p1);
+        color:var(--blue-deep);font-family:'Manrope';font-weight:700;font-size:15px;cursor:pointer;transition:.2s;}
+  .wtab.active{background:var(--blue);color:#fff;}
+  .day{border:1px solid var(--line);border-radius:14px;padding:16px 16px 18px;margin-bottom:14px;}
+  .day .dh{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+  .day .dh b{font-family:'Cormorant Garamond',serif;font-size:21px;color:var(--blue-deep);}
+  .day label{display:block;font-size:14px;font-weight:600;color:var(--ink-soft);margin:10px 0 5px;}
+  .day textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:10px 12px;
+        font-family:'Manrope';font-size:16px;color:var(--ink);resize:vertical;min-height:46px;background:#fbfcfd;}
+  .day textarea:focus{outline:none;border-color:var(--blue);}
+  .toggle{display:flex;gap:8px;margin-top:4px;}
+  .toggle button{flex:1;padding:9px;border:1px solid var(--line);border-radius:9px;background:#fbfcfd;
+        font-family:'Manrope';font-weight:600;font-size:14px;color:var(--ink-soft);cursor:pointer;transition:.15s;}
+  .toggle button.yes.on{background:#dcefe5;border-color:var(--mint);color:#1f6b4d;}
+  .toggle button.no.on{background:#e7eef5;border-color:var(--blue);color:var(--blue-deep);}
+  .saved{font-size:13px;color:var(--blue);opacity:0;transition:.3s;text-align:center;margin-top:6px;height:16px;}
+  .saved.show{opacity:.8;}
+  .diary-note{font-size:15px;color:var(--ink-soft);background:var(--p1);border-radius:12px;padding:14px 16px;margin-bottom:18px;}
+
+  .next{background:var(--bg-deep);color:#fff;margin:44px -20px 0;padding:44px 26px;border-radius:28px;}
+  .next h2{color:#fff;} .next h2 .small{color:#bcd2e8;} .next > p{color:#d6e2ee;}
+  .next-list{display:grid;gap:14px;margin-top:20px;}
+  .next-item{display:block;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:18px 20px;text-decoration:none;color:#fff;transition:background .2s;}
+  .next-item:hover{background:rgba(255,255,255,.16);}
+  .next-item b{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:700;display:block;margin-bottom:4px;}
+  .next-item span{font-size:16px;color:#cfdcea;}
+  .foot{text-align:center;margin-top:40px;padding-top:28px;border-top:1px solid var(--line);}
+  .foot .quote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:21px;color:var(--blue-deep);margin-bottom:20px;}
+  .foot .who{font-weight:700;color:var(--ink);}
+  .foot .meta{font-size:14px;color:var(--ink-soft);margin-top:4px;}
+  @media(max-width:520px){
+    body{font-size:17px;}
+    .hero h1{font-size:42px;} h2{font-size:28px;} .lead{font-size:21px;}
+    .hero{padding:44px 22px 42px;}
+    .law{padding:20px;} .law .n{flex-basis:36px;height:36px;}
+    .wtab{min-width:0;font-size:14px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="author">Полянинова Бэлла Леонидовна</div>
+    <div class="cred">Психолог · специалист по межличностным отношениям · 18 лет практики</div>
+    <div class="cred" style="margin-top:8px;letter-spacing:1px;text-transform:uppercase;font-size:11px;">Авторский продукт · Все права защищены</div>
+    <div class="kicker">Практикум</div>
+    <h1>Внутренний защитник</h1>
+    <div class="sub">Как перестать выискивать в себе недостатки и начать быть на своей стороне</div>
+    <div class="rule"></div>
+  </header>
+
+  <section>
+    <div class="intro-card">
+      <h2><span class="small">Вместо вступления</span>Вам это знакомо?</h2>
+      <p>Вы сдали отчёт, и начальник написал короткое «отлично, спасибо». Вместо того чтобы выдохнуть и порадоваться, вы открываете файл заново и находите абзац, который можно было сформулировать сильнее. Похвалу вы пропустили мимо. Услышали только собственный придуманный изъян.</p>
+      <p>Сын прибежал из школы с пятёркой за контрольную, счастливый, ему хочется разделить эту радость с вами. А вы ловите себя на мысли, что по русскому-то на прошлой неделе была тройка и вот там недоработали. Хорошее тут же перекрыто тем, что недотянуто.</p>
+      <p>Вы сделали стрижку, которая вам идёт. Мастер довольна работой, муж заметил перемену. Дома вы подходите к зеркалу и видите только седой волосок у виска. Вокруг всё хорошо, а внимание само уходит туда, где можно найти повод для недовольства.</p>
+      <p class="q">Сколько раз за сегодняшний день вы уже нашли причину остаться собой недовольной?</p>
+      <p>Многие женщины называют это объективным взглядом на себя. Но объективный взгляд замечает не только слабые стороны. Он видит и сильные качества, и реальные достижения, и то, что действительно удалось. Внутренний критик работает иначе. Он направляет внимание только туда, где можно найти повод для очередной претензии к себе.</p>
+      <p>Такой способ мышления никогда не приводит к покою. Какого бы результата вы ни достигли, критик быстро найдёт новую причину для недовольства. Женщина привыкает к этому состоянию настолько, что начинает считать его частью характера. На самом деле это всего лишь привычка оценивать себя через промахи. А привычку можно сменить.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Почему вы вообще себя судите</h2>
+    <p class="lead">Самокритика — это не требовательность. Это защита.</p>
+    <p>Когда женщина первой находит в себе изъян, в глубине срабатывает старая логика: если я сама замечу свой промах раньше других, меня не застанут врасплох, надо мной не посмеются, я буду в безопасности. То есть критик не делает вас лучше. Он охраняет вас от воображаемой угрозы — от чужого осуждения, которого, как правило, и нет.</p>
+    <p>Понять это важно по одной причине. С критиком не нужно воевать и нельзя себя за него стыдить. Он не враг. Он просто очень плохо делает свою работу — оберегает вас способом, который изматывает вместо того, чтобы беречь. Поэтому мы не будем его прогонять. Мы поставим рядом другую защиту — ту, что справляется лучше.</p>
+  </section>
+
+  <section>
+    <h2><span class="small">Главная техника</span>Выберите своего защитника</h2>
+    <p>Внутренний защитник устроен иначе, чем критик. Критик — это автомат, он включается сам. Защитник — это выбор, его вы зовёте сознательно. Он не льстит вам и не оправдывает любую оплошность. Он создаёт паузу между придиркой и осуждением себя, и в этой паузе рождается сила.</p>
+    <p>Первый шаг — выбрать фигуру, которой вы полностью доверяете. Она должна вызывать ощущение надёжности. Выберите образ, который ближе именно вам.</p>
+    <div class="guards">
+      <div class="guard g-mint"><h3>Молодой блестящий адвокат</h3><p>Знает все законы, за словом в карман не лезет, никому не даст вас засудить. Если вам нужен тот, кто отобьёт любое обвинение.</p></div>
+      <div class="guard g-navy"><h3>Умудрённый опытом мужчина</h3><p>Спокойная сила, без суеты. Тот, кто положит руку на плечо: остановись, ты слишком строга к себе. Если вам нужна опора и принятие.</p></div>
+      <div class="guard g-gold"><h3>Сильная, уверенная женщина</h3><p>Знает своё дело и не прогибается ни перед кем. Не льстивая подруга, а человек достоинства и характера. Если вам ближе женский образ.</p></div>
+      <div class="guard g-warm"><h3>Ваш собственный образ</h3><p>Конкретный человек из вашей жизни: наставник, дед, учитель — тот, рядом с кем вам было спокойно и кто верил в вас. Он сработает сильнее любого придуманного.</p></div>
+    </div>
+    <p style="margin-top:24px">Теперь второй шаг — договоритесь с ним, по каким правилам он вас защищает. Это не добрый голос, который гладит по голове. Это фигура, которая стоит на фактах. Вот свод, по которому работает ваш защитник.</p>
+    <div class="law"><div class="n">1</div><div><h4>Предъяви правило</h4><p>По какому установленному регламенту вас судят? Если правила нет — нет и нарушения. Чаще всего срок и планку вы назначили себе сами, и нигде они не записаны.</p></div></div>
+    <div class="law"><div class="n">2</div><div><h4>Смотри на критерий, а не на идеал</h4><p>Какой был реальный критерий — и выполнен ли он? Отчёт принят, гости довольны, дети накормлены. Критерий закрыт — дело окончено, дальше искать нечего.</p></div></div>
+    <div class="law"><div class="n">3</div><div><h4>Нет обвинений без доказательств</h4><p>«Я плохо справилась» — это не факт, а приговор без улик. Где доказательство, что плохо? Чаще всего его нет, есть только ваше ощущение.</p></div></div>
+    <div class="law"><div class="n">4</div><div><h4>Поступок — отдельно от вас</h4><p>Даже если что-то вышло не так — это про одно действие в один день, а не про то, какая вы. «Пересолила суп» не равно «плохая хозяйка».</p></div></div>
+    <div class="law"><div class="n">5</div><div><h4>Право на ошибку и на отдых</h4><p>Ни в одном регламенте мира не записано, что вы обязаны быть безупречны и никогда не уставать. Это право не нужно заслуживать.</p></div></div>
+    <div class="case">
+      <h3>Как это работает: разбор у зеркала</h3>
+      <p>Вы смотрите в зеркало и думаете: живот торчит. Включается критик. Вы зовёте защитника, и он идёт по своим правилам.</p>
+      <p><span class="step">Предъяви правило.</span> Где записано, каким должен быть ваш живот и кто установил эту норму? Нигде и никто. Это планка из чужих картинок, а не правило вашей жизни.</p>
+      <p><span class="step">Смотри на критерий.</span> Что было реальной задачей сегодня? Прожить день, сделать дела, побыть с близкими. Живот не помешал этому ни на минуту. Критерий дня выполнен.</p>
+      <p><span class="step">Нет обвинений без доказательств.</span> «Я выгляжу плохо» — а где улики? Муж заметил, что вы хороши, одежда сидит. Доказательств нет, есть только придирка.</p>
+      <p>И главный вопрос: это пустая придирка или настоящее желание что-то изменить? Если пустая — защитник разрешает отпустить и спокойно жить дальше. Если за ней настоящее желание — тогда это не повод себя казнить, а цель: спокойно поставить её и идти к ней, не изводя себя по дороге. Либо цель, либо тишина.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="small">Три практики</span>Чем защитник работает каждый день</h2>
+    <p>Фигура выбрана, правила установлены. Теперь — три практики, которыми защитник пользуется в живых ситуациях. Открывайте по одной.</p>
+    <details class="acc p1" open>
+      <summary><span class="num">1</span><span class="lbl"><small>Практика первая</small>Чужими словами</span><span class="chev">▼</span></summary>
+      <div class="body">
+        <p>Эта практика мгновенно показывает, насколько несправедлив к вам внутренний голос. Возьмите упрёк, которым вы себя только что наградили, и запишите его не от первого лица, а от второго. Прочитайте вслух — и услышите, что так говорит кто-то посторонний и недобрый, а не вы.</p>
+        <p class="ex">«Я завалила выступление на планёрке».</p>
+        <p>На бумаге: «Ты завалила выступление». Сразу слышно чужой злой голос. А на деле вы выступили, вас выслушали, никто не ушёл. Критик утверждал то, чего не было.</p>
+        <p class="ex">«Я плохая мать, накричала на ребёнка».</p>
+        <p>На бумаге: «Ты плохая мать». Вы бы не позволили никому сказать вам это в лицо — а себе говорите. Защитник смотрит на факт: вы устали и сорвались один раз, это не приговор, это живой человек. Больше того — на вашем срыве ребёнок учится понимать живых людей. Он видит, что у взрослого, как и у него самого, настроение не всегда ровное, что бывает усталость и раздражение. В следующий раз он лучше поймёт, почему человек злится, и научится с этим обходиться. Это не значит, что кричать хорошо. Но и приговором это не делает.</p>
+        <p>Если отношения с ребёнком и срывы беспокоят вас всерьёз — посмотрите практику <a href="https://bella-psychologist.com/pravila-v-dom-2.html">«Правила в дом. Часть 2: Критика»</a>.</p>
+      </div>
+    </details>
+    <details class="acc p2">
+      <summary><span class="num">2</span><span class="lbl"><small>Практика вторая</small>Как с подругой</span><span class="chev">▼</span></summary>
+      <div class="body">
+        <p>Эта практика помогает увидеть ситуацию со стороны и вернуть себе справедливость. Представьте, что женщина, которую вы любите, рассказывает вам ровно то, за что вы корите себя. Что вы ответите ей? И скажите эти самые слова себе — не более мягкие, ровно те же.</p>
+        <p class="ex">Забыли купить хлеб, пришлось идти второй раз.</p>
+        <p>Подруге вы скажете: ерунда, с кем не бывает. А себе — «я рассеянная, ничего не могу запомнить». Разный суд за одно и то же.</p>
+        <p class="ex">На фотографии вы получились, как вам кажется, некрасиво.</p>
+        <p>Подруге вы скажете: да ты что, прекрасно вышла, это просто ракурс. А своё фото удаляете и весь день думаете, что плохо выглядите. К себе вы строже, чем к кому бы то ни было, и в этом нет ни справедливости, ни пользы. Вы заслуживаете той доброты, которую щедро раздаёте другим.</p>
+      </div>
+    </details>
+    <details class="acc p3">
+      <summary><span class="num">3</span><span class="lbl"><small>Практика третья</small>Маленькое действие на опору</span><span class="chev">▼</span></summary>
+      <div class="body">
+        <p>Одних слов мало, мысль нужно закрепить поступком. Каждый раз, когда защитник помог разобрать придирку, сделайте одно маленькое действие, которое возвращает опору.</p>
+        <p><b>Похвалите себя и наградите.</b> Там, где раньше стоял упрёк, поставьте маленькое поощрение. Закрыли трудное дело — дайте себе пять минут с чашкой чая, кусочек шоколада, посидите, вытянув ноги, не хватаясь за следующее дело. Не за идеальный результат, а просто за то, что справились. Критик годами отнимал у вас право порадоваться сделанному — защитник его возвращает.</p>
+        <p><b>Возьмите паузу вместо оправдания.</b> Кто-то указал на мелкую оплошность. Вместо привычного «ой, простите, это я виновата» — короткая пауза и спокойное «да, поправлю». Без вины, без извинений за сам факт своего существования.</p>
+        <p>Действие маленькое, но именно оно превращает практикум из чтения в новую привычку.</p>
+      </div>
+    </details>
+  </section>
+
+  <section>
+    <h2><span class="small">Дневник на четыре недели</span>Ловите критика по горячим следам</h2>
+    <p>Критик живёт в мелочах каждого дня, и поймать его можно, только отмечая по горячим следам. Заполняйте по одной записи в день. К концу четырёх недель вы увидите сами, как стали ловить критика быстрее, — это и есть ваш результат.</p>
+    <div class="diary-note">Записи сохраняются прямо здесь, в вашем телефоне. Их никто не видит. Вторую графу заполняйте без вины: «здесь критик был сильнее» — это не провал, а наблюдение, которое тоже работает на вас.</div>
+    <div class="diary">
+      <div class="weeks" id="weeks"></div>
+      <div id="days"></div>
+      <div class="saved" id="saved">сохранено</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Правила-опоры</h2>
+    <div class="rule-card"><h4>Объективность видит и хорошее</h4><p>Если голос внутри замечает только промахи — это не объективность, это критик в маске. Прежде чем согласиться с придиркой, спросите: а что вышло хорошо? Хорошее там всегда есть, просто критик его не показывает.</p></div>
+    <div class="rule-card"><h4>Критику никогда не бывает достаточно</h4><p>Не ждите момента, когда вы сделаете всё так, что он замолчит. Его не будет. Сколько ни старайтесь, он найдёт новую претензию. Его нужно не победить безупречностью, а заменить другим голосом.</p></div>
+    <div class="rule-card"><h4>Это привычка, а не вы</h4><p>Самоедство ощущается как часть характера. Это неправда. Это привычка, выработанная годами, и её можно заменить другой. Каждый раз, когда вы зовёте защитника, вы новую привычку и строите.</p></div>
+    <div class="rule-card"><h4>Критик защищает, но негодным способом</h4><p>Он не злодей, а испуганный сторож, который верит, что бережёт вас. Не воюйте с ним. Поблагодарите за службу и передайте дело защитнику — тому, кто бережёт вас по-настоящему.</p></div>
+  </section>
+
+  <section class="next">
+    <h2><span class="small">Что дальше</span>Где это ещё может вас касаться</h2>
+    <p>Женщина, которая всё время занята тем, что недосолила и недоделала, редко страдает только от этого. Та же привычка обесценивать себя тихо забирает и другие стороны жизни. Посмотрите, где ещё вы можете узнать себя.</p>
+    <div class="next-list">
+      <a class="next-item" href="https://bella-psychologist.com/gayd-vyhod-iz-kastinga"><b>Выход из кастинга</b><span>Если при виде женщины моложе или спокойнее внутри что-то сжимается, и вы будто проигрываете ещё до того, как вас начали с кем-то сравнивать.</span></a>
+      <a class="next-item" href="https://bella-psychologist.com/snova-vmeste.html"><b>Снова вместе</b><span>Если разговоры с мужем давно свелись к быту и кастрюлям, а живого общения — про вчерашний фильм, про вас двоих — почти не осталось.</span></a>
+      <a class="next-item" href="https://bella-psychologist.com/samodiagnostika.html"><b>Самодиагностика</b><span>Если есть смутное ощущение, что дома вами незаметно управляют, и вы соглашаетесь на то, чего на самом деле не хотите.</span></a>
+    </div>
+  </section>
+
+  <div class="foot">
+    <div class="quote">«Это не теория. Откройте — и начните применять с первого вопроса.»</div>
+    <div class="who">Полянинова Бэлла Леонидовна</div>
+    <div class="meta">Психолог · специалист по межличностным отношениям · 18 лет практики</div>
+  </div>
+
+</div>
+
+<script>
+  const WEEKS=4, DAYS=['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
+  let cur=1, data={}, t=null;
+
+  async function load(){
+    try{ const r=await window.storage.get('diary'); if(r&&r.value) data=JSON.parse(r.value); }
+    catch(e){ data={}; }
+    render();
+  }
+  function save(){
+    const s=document.getElementById('saved');
+    clearTimeout(t);
+    t=setTimeout(async()=>{
+      try{ await window.storage.set('diary',JSON.stringify(data));
+        s.classList.add('show'); setTimeout(()=>s.classList.remove('show'),1200);
+      }catch(e){}
+    },400);
+  }
+  function key(w,d,f){return 'w'+w+'d'+d+f;}
+  function render(){
+    const wk=document.getElementById('weeks'); wk.innerHTML='';
+    for(let w=1;w<=WEEKS;w++){
+      const b=document.createElement('button');
+      b.className='wtab'+(w===cur?' active':''); b.textContent='Неделя '+w;
+      b.onclick=()=>{cur=w;render();}; wk.appendChild(b);
+    }
+    const dd=document.getElementById('days'); dd.innerHTML='';
+    for(let d=0;d<7;d++){
+      const wrap=document.createElement('div'); wrap.className='day';
+      const kEvent=key(cur,d,'e'), kDef=key(cur,d,'g'), kToggle=key(cur,d,'t');
+      wrap.innerHTML=
+        '<div class="dh"><b>'+DAYS[d]+'</b></div>'+
+        '<label>Что случилось — момент, когда включился критик</label>'+
+        '<textarea data-k="'+kEvent+'" placeholder="например: перечитала отчёт и нашла, к чему придраться">'+(data[kEvent]||'')+'</textarea>'+
+        '<label>Удалось ли позвать защитника?</label>'+
+        '<div class="toggle">'+
+          '<button class="yes'+(data[kToggle]==='yes'?' on':'')+'" data-t="yes" data-k="'+kToggle+'">Да, позвала</button>'+
+          '<button class="no'+(data[kToggle]==='no'?' on':'')+'" data-t="no" data-k="'+kToggle+'">Здесь критик был сильнее</button>'+
+        '</div>'+
+        '<label>Что сказал защитник (или сказал бы, если вернуться к этому моменту)</label>'+
+        '<textarea data-k="'+kDef+'" placeholder="например: критерий дня выполнен, отчёт приняли — дело закрыто">'+(data[kDef]||'')+'</textarea>';
+      dd.appendChild(wrap);
+    }
+    dd.querySelectorAll('textarea').forEach(el=>{
+      el.addEventListener('input',()=>{ data[el.dataset.k]=el.value; save(); });
+    });
+    dd.querySelectorAll('.toggle button').forEach(el=>{
+      el.addEventListener('click',()=>{
+        data[el.dataset.k]=el.dataset.t; save(); render();
+      });
+    });
+  }
+  load();
+</script>
+</body>
+</html>
