@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Практикум «Дочь-подросток»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FBF8F3;
+    --ink:#23201B;
+    --soft:#5C564C;
+    --line:#E4DCCE;
+    --card:#FFFFFF;
+    --accent:#9C3B2E;
+    --accent-soft:#C06A4B;
+    --amber-bg:#FBEFD8;
+    --amber-line:#E8C98A;
+    --amber-ink:#7A5418;
+    --green:#2F7A4F;
+    --rose:#B24A52;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Manrope',sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.7;
+    font-size:17px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:0 22px;}
+
+  /* Шапка авторства */
+  .rights{
+    font-size:12px;letter-spacing:.04em;color:var(--soft);
+    text-align:center;padding:14px 22px;border-bottom:1px solid var(--line);
+    background:#F6F1E8;
+  }
+
+  /* Геро */
+  .hero{padding:64px 0 48px;text-align:center;border-bottom:1px solid var(--line);}
+  .hero .eyebrow{
+    font-size:13px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--accent);font-weight:600;margin-bottom:20px;
+  }
+  .hero h1{
+    font-family:'Cormorant Garamond',serif;font-weight:700;
+    font-size:clamp(40px,8vw,68px);line-height:1.04;letter-spacing:-.01em;
+    margin-bottom:22px;
+  }
+  .hero .sub{
+    font-size:18px;color:var(--soft);max-width:540px;margin:0 auto;
+  }
+  .hero .codeword{
+    margin-top:30px;display:inline-block;font-size:13px;letter-spacing:.04em;
+    color:var(--soft);border:1px solid var(--line);border-radius:999px;
+    padding:9px 20px;background:var(--card);
+  }
+  .hero .codeword b{color:var(--accent);letter-spacing:.12em;}
+
+  /* Секции */
+  section{padding:52px 0;border-bottom:1px solid var(--line);}
+  .kicker{
+    font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--accent);font-weight:600;margin-bottom:14px;
+  }
+  h2{
+    font-family:'Cormorant Garamond',serif;font-weight:700;
+    font-size:clamp(28px,5vw,40px);line-height:1.1;margin-bottom:8px;letter-spacing:-.01em;
+  }
+  h3{
+    font-family:'Manrope',sans-serif;font-weight:700;font-size:19px;
+    margin:30px 0 10px;color:var(--ink);
+  }
+  p{margin-bottom:16px;}
+  p.lead{font-size:19px;color:var(--soft);}
+  em{font-style:italic;color:var(--accent-soft);}
+  strong{font-weight:700;}
+
+  /* Янтарный блок «будет сопротивление» */
+  .amber{
+    background:var(--amber-bg);border:1px solid var(--amber-line);
+    border-radius:14px;padding:22px 24px;margin:28px 0;
+  }
+  .amber .lbl{
+    font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--amber-ink);font-weight:700;margin-bottom:8px;
+  }
+  .amber p{margin-bottom:0;color:#6A4A14;}
+
+  /* Аккордеон */
+  .acc{border:1px solid var(--line);border-radius:14px;background:var(--card);margin-bottom:12px;overflow:hidden;}
+  .acc summary{
+    list-style:none;cursor:pointer;padding:20px 22px;
+    display:flex;align-items:flex-start;gap:14px;
+    font-weight:600;font-size:17px;
+  }
+  .acc summary::-webkit-details-marker{display:none;}
+  .acc summary .num{
+    font-family:'Cormorant Garamond',serif;font-weight:700;font-size:22px;
+    color:var(--accent);line-height:1;flex-shrink:0;min-width:26px;
+  }
+  .acc summary .q{flex:1;}
+  .acc summary .chev{color:var(--accent-soft);transition:transform .25s;flex-shrink:0;margin-top:2px;}
+  .acc[open] summary .chev{transform:rotate(180deg);}
+  .acc .body{padding:0 22px 22px;border-top:1px solid var(--line);}
+  .acc .body .row{margin-top:16px;}
+  .acc .body .tag{
+    font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;
+    color:var(--soft);margin-bottom:4px;
+  }
+  .acc .body .say{
+    background:#F4EFE6;border-left:3px solid var(--accent-soft);
+    padding:12px 16px;border-radius:0 8px 8px 0;font-size:16px;
+  }
+  .acc .body p{margin-bottom:0;}
+
+  /* Банк ответов */
+  .qa{border-bottom:1px solid var(--line);padding:20px 0;}
+  .qa:last-child{border-bottom:none;}
+  .qa .her{font-weight:700;color:var(--rose);margin-bottom:8px;font-size:17px;}
+  .qa .her::before{content:"— ";}
+  .qa .ans{
+    background:var(--card);border:1px solid var(--line);border-radius:10px;
+    padding:14px 18px;margin-bottom:10px;font-size:16px;
+  }
+  .qa .why{font-size:14px;color:var(--soft);}
+  .qa .why b{color:var(--ink);font-weight:600;}
+
+  /* Якорь */
+  .anchor-block{background:#F2ECE0;border-radius:16px;padding:30px 26px;margin-top:8px;}
+  .anchor-step{display:flex;gap:14px;margin-bottom:18px;}
+  .anchor-step:last-child{margin-bottom:0;}
+  .anchor-step .n{
+    font-family:'Cormorant Garamond',serif;font-weight:700;font-size:26px;
+    color:var(--accent);line-height:1;flex-shrink:0;min-width:24px;
+  }
+  .anchor-step p{margin-bottom:0;}
+
+  /* Чего не говорить */
+  .swap{margin:14px 0;padding:14px 0;border-bottom:1px dashed var(--line);}
+  .swap:last-child{border-bottom:none;}
+  .swap .no{color:var(--rose);font-weight:600;}
+  .swap .yes{color:var(--green);font-weight:600;}
+
+  .flag{background:#FBE9E9;border:1px solid #E8B9B9;border-radius:14px;padding:22px 24px;margin-top:20px;}
+  .flag .lbl{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#A23A3A;font-weight:700;margin-bottom:10px;}
+  .flag p{margin-bottom:0;color:#7A2E2E;}
+
+  /* Дневник */
+  .diary{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px;}
+  .diary label{display:block;font-weight:600;font-size:15px;margin:16px 0 6px;}
+  .diary textarea{
+    width:100%;border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+    font-family:inherit;font-size:15px;resize:vertical;min-height:64px;background:#FCFAF6;color:var(--ink);
+  }
+  .diary textarea:focus{outline:2px solid var(--accent-soft);border-color:transparent;}
+  .diary .save{
+    margin-top:18px;background:var(--accent);color:#fff;border:none;border-radius:999px;
+    padding:12px 28px;font-family:inherit;font-weight:600;font-size:15px;cursor:pointer;
+  }
+  .diary .save:hover{background:#85301F;}
+  .diary .saved{margin-top:10px;font-size:14px;color:var(--green);min-height:18px;}
+
+  /* Витрина */
+  .shelf-item{
+    display:block;border:1px solid var(--line);border-radius:12px;background:var(--card);
+    padding:18px 20px;margin-bottom:10px;text-decoration:none;color:var(--ink);
+  }
+  .shelf-item:hover{border-color:var(--accent-soft);}
+  .shelf-item .t{font-weight:700;font-size:17px;margin-bottom:3px;}
+  .shelf-item .d{font-size:14px;color:var(--soft);}
+  .shelf-item .p{font-size:14px;color:var(--accent);font-weight:600;margin-top:4px;}
+
+  .signoff{text-align:center;padding:46px 0 60px;color:var(--soft);}
+  .signoff .name{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--ink);margin-top:6px;}
+
+  @media (max-width:560px){
+    body{font-size:16px;}
+    .wrap{padding:0 18px;}
+    section{padding:40px 0;}
+    .hero{padding:48px 0 38px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="rights">Полянинова Бэлла Леонидовна. Авторский продукт. Все права защищены.</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Практикум для родителей</div>
+    <h1>Дочь-подросток</h1>
+    <p class="sub">Как сохранить влияние, уважение и близость с дочерью в самый трудный период её взросления</p>
+  </div>
+</header>
+
+<!-- КАК УСТРОЕН ПРАКТИКУМ -->
+<section>
+  <div class="wrap">
+    <div class="kicker">Навигация</div>
+    <h2>Как устроен этот практикум</h2>
+    <p class="lead">Всё, что здесь есть, — это не теория. Это готовые слова и понятные действия, которые можно взять и применить сегодня вечером. Не для того, чтобы сделать дочь удобной, а для того, чтобы сохранить с ней близость, пока она проходит самый важный этап своей жизни. Вот из чего состоит ваш путь.</p>
+
+    <details class="acc"><summary><span class="num">1</span><span class="q">Почему она вдруг стала другой</span><span class="chev">▾</span></summary>
+      <div class="body"><div class="row" style="margin-top:16px;"><p>Снимаем вину и страх: то, что вас пугает, — признак нормального взросления, а не вашей ошибки.</p></div></div>
+    </details>
+    <details class="acc"><summary><span class="num">2</span><span class="q">Что происходит с ней на самом деле</span><span class="chev">▾</span></summary>
+      <div class="body"><div class="row" style="margin-top:16px;"><p>Масштаб телесной перестройки за шесть лет — чтобы понять дочь, а не воевать с ней.</p></div></div>
+    </details>
+    <details class="acc"><summary><span class="num">3</span><span class="q">Правила вашего дома</span><span class="chev">▾</span></summary>
+      <div class="body"><div class="row" style="margin-top:16px;"><p>Фундамент, на который вы опираетесь вместо собственной власти.</p></div></div>
+    </details>
+    <details class="acc"><summary><span class="num">4</span><span class="q">Техники на каждый день</span><span class="chev">▾</span></summary>
+      <div class="body"><div class="row" style="margin-top:16px;"><p>Арсенал: что делать, когда дочь грубит, давит, проверяет вас на прочность.</p></div></div>
+    </details>
+    <details class="acc"><summary><span class="num">5</span><span class="q">Три возраста: 10–13, 13–16, 16–18</span><span class="chev">▾</span></summary>
+      <div class="body"><div class="row" style="margin-top:16px;"><p>У каждого возраста свои задачи и свои готовые слова.</p></div></div>
+    </details>
+    <details class="acc"><summary><span class="num">6</span><span class="q">Банк ответов и скорая помощь</span><span class="chev">▾</span></summary>
+      <div class="body"><div class="row" style="margin-top:16px;"><p>Готовые ответы на самые острые фразы и опора на те минуты, когда будет совсем невыносимо.</p></div></div>
+    </details>
+  </div>
+</section>
+
+<!-- ВСТУПЛЕНИЕ -->
+<section>
+  <div class="wrap">
+    <div class="kicker">С чего всё начинается</div>
+    <h2>Почему она вдруг стала другой</h2>
+    <p class="lead">Ещё недавно она засыпала у вас на плече и не делала ни шагу, не спросив вас. А теперь закрывает дверь, отвечает резко, отдаляется — и вы ловите себя на мысли, что не узнаёте собственную дочь.</p>
+    <p>Внутри поднимается тревога и знакомый вопрос: где я ошиблась, что я сделала не так. Отвечу сразу, чтобы вы выдохнули. Вашей вины здесь нет. То, что происходит с вашей девочкой, — не сбой воспитания и не утрата близости. Это самый важный этап в её взрослении, и называется он сепарация.</p>
+
+    <details class="acc" open><summary><span class="num">1</span><span class="q">Что такое сепарация и почему она необходима</span><span class="chev">▾</span></summary>
+      <div class="body">
+        <div class="row" style="margin-top:16px;"><p>Сепарация — это отделение ребёнка от родителя, постепенный переход из положения «дочь при маме» в положение взрослого человека рядом с другим взрослым. Без этого этапа девочка не сможет стать самостоятельной женщиной.</p>
+        <p>Психологи подчёркивают важную вещь: тревожиться нужно не тогда, когда дочь начала спорить и отстаивать себя, а наоборот — когда подросток остаётся тихим, удобным и во всём послушным. Колючесть и желание отдалиться говорят о том, что развитие идёт правильно. Удобная покорность — о том, что девочка свою личность подавляет.</p>
+        <p>То есть всё, что вас сейчас пугает, — это и есть признак, что ваша дочь растёт так, как должна.</p></div>
+      </div>
+    </details>
+
+    <details class="acc"><summary><span class="num">2</span><span class="q">При чём здесь гормоны</span><span class="chev">▾</span></summary>
+      <div class="body">
+        <div class="row" style="margin-top:16px;"><p>У отделения есть телесная основа, и о ней важно сказать честно, без упрощений. В пубертате у девочки запускается гормональная система, которая до этого молчала. Но запускается она не плавно. У взрослой женщины гормоны идут размеренной волной в течение цикла. У девочки-подростка этой настроенной волны ещё нет — система только учится работать, и уровни гормонов скачут резко и непредсказуемо.</p>
+        <p>Отсюда то, что вы видите каждый день: за полчаса от смеха к слезам, вспышка из-за мелочи, утренняя нежность и вечерний холод. Это не капризы и не направленное против вас поведение. Это незрелая гормональная система, которая раскачивает её состояние сильнее, чем она сама способна выдержать. Она и рада бы не реагировать так остро — но пока не может.</p></div>
+      </div>
+    </details>
+
+    <details class="acc"><summary><span class="num">3</span><span class="q">Что это меняет для вас</span><span class="chev">▾</span></summary>
+      <div class="body">
+        <div class="row" style="margin-top:16px;"><p>Когда вы перестаёте читать её поведение как «она против меня» и начинаете видеть «ей сейчас тяжелее, чем мне», — меняется всё. Вы больше не воюете с дочерью. Вы становитесь тем взрослым, рядом с которым ей можно штормить и не разрушаться.</p></div>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- МЕДИЦИНСКАЯ ГЛАВА -->
+<section>
+  <div class="wrap">
+    <div class="kicker">Что происходит с ней на самом деле</div>
+    <h2>Масштаб перемены</h2>
+    <p class="lead">Эту главу стоит прочитать один раз и спокойно — чтобы понять, через что проходит ваша дочь телесно. Когда вы увидите масштаб, многое в её поведении перестанет злить и начнёт вызывать сочувствие.</p>
+    <p>Представьте: всего за несколько лет, примерно с десяти до шестнадцати, девочка из ребёнка с тихой, спящей гормональной системой превращается в девушку, способную к взрослой жизни. Это не плавное взросление по чуть-чуть. Это стремительная и глубокая перестройка всего организма — тела и мозга одновременно. По сути, за шесть лет внутри неё происходит трансформация, которую без преувеличения можно назвать удивительной. И она проживает её, ещё будучи во многом ребёнком.</p>
+
+    <h3>Что запускается внутри</h3>
+    <p>До поры гормональная система девочки молчит. Потом включается цепочка, которую врачи называют осью: гипоталамус подаёт сигнал, гипофиз отвечает, яичники начинают вырабатывать половые гормоны — прежде всего эстроген. Раньше этого механизма просто не было в работе. Теперь он запускается — но запускается не сразу ровно.</p>
+    <p>У взрослой женщины эти гормоны идут согласованной волной в течение цикла, система отлажена. У девочки-подростка отладки ещё нет. Выбросы гормонов нерегулярные, уровни скачут, цикл только начинает собираться и поначалу часто идёт без чёткого ритма. Организм буквально учится работать по-новому, методом проб.</p>
+
+    <h3>Почему мозг не поспевает за телом</h3>
+    <p>Вот ключевое, что важно понять. Тело и гормоны рвутся вперёд быстро. А часть мозга, которая отвечает за самоконтроль, за способность затормозить реакцию и всё обдумать, — созревает медленно и заканчивает позже. Получается разрыв: эмоции уже взрослые по силе, а тормоза ещё детские.</p>
+    <p>Отсюда то, что вы видите каждый день. Сильное чувство вспыхивает мгновенно, а удержать его дочь ещё не может — не потому что не хочет, а потому что механизм торможения физически не дозрел. Сильная эмоция при слабом тормозе и даёт ту самую взрывную реакцию: вспышку из-за мелочи, слёзы, хлопок дверью.</p>
+
+    <h3>Почему она иначе слышит обычные слова</h3>
+    <p>Перестройка меняет и восприятие. Девочка начинает гораздо острее считывать социальные сигналы — кто как посмотрел, что сказал, почему промолчал. Обычное бытовое замечание «убери вещи со стула» вы говорите нейтрально, а её мозг в этот период может обработать его как эмоционально значимое и даже угрожающее: «мной опять недовольны», «я всё делаю не так». Она не всегда драматизирует нарочно — в этот момент система обработки эмоций действительно работает на повышенной чувствительности.</p>
+
+    <h3>Что из этого следует для вас</h3>
+    <p>И вот здесь главное, ради чего вся эта глава. Понимание биологии не означает, что девочке теперь всё можно. Гормоны не пишут поведение вместо человека — они лишь повышают вероятность резких реакций. У дочери остаются темперамент, воспитание, ответственность, и правила семьи никто не отменяет.</p>
+    <p>Но знание масштаба меняет вашу позицию. Когда вы видите перед собой не «испорченный характер», а нервную систему в разгаре грандиозной перестройки, вы перестаёте воевать. Вы не принимаете каждую вспышку на свой счёт. Вы действуете иначе: сначала снижаете накал, потом возвращаетесь к смыслу. Злиться можно — оскорблять нельзя. Плакать можно — но правила остаются. Чувства сильны, но они не отменяют уклада дома.</p>
+    <p>Эта перестройка закончится. Пубертат завершается не в день, когда у девочки меняется тело, а тогда, когда её нервная система наконец научается связывать эмоцию, мысль и поступок. Вы не можете сделать эту работу за неё. Но вы можете быть тем взрослым, рядом с которым взросление идёт не как война, а как трудный, но проходимый путь.</p>
+  </div>
+</section>
+
+<!-- ПРАВИЛА ДОМА -->
+<section>
+  <div class="wrap">
+    <div class="kicker">Фундамент</div>
+    <h2>Правила вашего дома</h2>
+    <p class="lead">Это основа, на которую вы будете опираться вместо собственной власти. Правило выше любого спора, потому что оно одно для всех — и для дочери, и для вас.</p>
+    <p>Когда вы отвечаете дочери властью — «не смей так со мной говорить» — вы встаёте с ней на один ринг, и это битва, в которой подросток как раз пробует свою силу. Когда вы ссылаетесь на правило, спорить становится не с кем: правило выше обеих. Девочка может злиться на правило, но не может им ранить вас.</p>
+    <h3>Главные правила дома</h3>
+    <p>Мы не унижаем друг друга — не называем обидными словами, не сравниваем, не говорим гадости. Злиться можно, кричать можно — унижать нельзя. Правило действует в обе стороны: если мать требует «не унижай», но сама называет дочь дурой, правило рушится. Оно держится только тогда, когда ему подчиняются все.</p>
+    <div class="amber">
+      <div class="lbl">Важно</div>
+      <p>Опирайтесь на правило, а не на «я сказала». «Я сказала» — это власть матери, на неё подросток восстаёт. Правило дома выше вас обеих, спорить с ним не выходит.</p>
+    </div>
+
+    <h3>Семейные настольные игры — место, где вы команда</h3>
+    <p>Заведите дома традицию настольных игр, в которые играет вся семья. Подойдут любые, которые объединяют и при этом чему-то учат: игры со словами, с цифрами, домино, игры про страны и народы — что угодно, где есть азарт и совместность.</p>
+    <p>Игра — это территория, где нет «родитель сверху, ребёнок снизу». За столом вы на равных, вы одна команда. Привычку собираться вместе нужно завести задолго до бури — с шести-семи лет. Тогда в 14–15, когда дочь отдаляется и дом будто пустеет, у вас остаётся общий ритуал и общий язык, не связанный с уроками и контролем. Это ниточка, которая держит связь, когда всё остальное натянуто.</p>
+  </div>
+</section>
+
+<!-- ТЕХНИКИ -->
+<section>
+  <div class="wrap">
+    <div class="kicker">Арсенал на каждый день</div>
+    <h2>Техники</h2>
+    <p class="lead">Это инструменты, которые работают в любом возрасте. Когда дочь грубит, злится или давит — вы достаёте нужную технику, как врач нужное средство.</p>
+
+    <details class="acc">
+      <summary><span class="num">1</span><span class="q">Несоревнование</span><span class="chev">▾</span></summary>
+      <div class="body">
+        <div class="row"><div class="tag">Когда применять</div><p>Дочь пытается оказаться сильнее, главнее, переспорить, поставить вас на место.</p></div>
+        <div class="row"><div class="tag">Что хочется выдать</div><p>Включиться в борьбу: «Не смей со мной так, я твоя мать, последнее слово за мной».</p></div>
+        <div class="row"><div class="tag">Как звучит</div><div class="say">Внутри себе: «Я не соревнуюсь с ней». Вслух, спокойно: «Я не собираюсь с тобой бороться, кто кого. Я на твоей стороне».</div></div>
+        <div class="row"><div class="tag">Почему работает</div><p>Подростку нужен противник, чтобы пробовать силу. Если вы не встаёте на ринг, бороться не с кем. И главное: это ваш ребёнок. Его в жизни будут задевать многие — только вы заинтересованы сделать ему хорошо, а не победить его.</p></div>
+      </div>
+    </details>
+
+    <details class="acc">
+      <summary><span class="num">2</span><span class="q">Взрослое отражение</span><span class="chev">▾</span></summary>
+      <div class="body">
+        <div class="row"><div class="tag">Когда применять</div><p>Дочь грубит, дерзит, повышает голос.</p></div>
+        <div class="row"><div class="tag">Что хочется выдать</div><p>«Замолчи. Как ты с матерью разговариваешь».</p></div>
+        <div class="row"><div class="tag">Как звучит</div><div class="say">«Я вижу, что ты сейчас злишься. Злиться можно. Я готова разговаривать, когда крик уйдёт».</div></div>
+        <div class="row"><div class="tag">Почему работает</div><p>Подросток ждёт отпора и готов к драке. Вместо этого он получает понимание. Вы называете её состояние — и накал спадает, потому что эскалировать незачем.</p></div>
+      </div>
+    </details>
+
+    <details class="acc">
+      <summary><span class="num">3</span><span class="q">Мгновенный анализ</span><span class="chev">▾</span></summary>
+      <div class="body">
+        <div class="row"><div class="tag">Когда применять</div><p>Начался крик, ссора заводится, вас затягивает в скандал.</p></div>
+        <div class="row"><div class="tag">Что хочется выдать</div><p>Ответить на эмоции эмоциями, сорваться в ответ.</p></div>
+        <div class="row"><div class="tag">Как звучит</div><div class="say">Внутри, за секунду: «Что сейчас на самом деле происходит? Она злится не на меня — ей плохо. На что я отвечаю — на слова или на состояние?» И только потом спокойный ответ.</div></div>
+        <div class="row"><div class="tag">Почему работает</div><p>Анализ в моменте вынимает вас из автоматической ссоры. Пока ребёнок захвачен бурей, вы остаётесь взрослым — тем, кто видит ситуацию сверху. Это не про то, чтобы уступить, а про то, чтобы не провалиться в детскую позицию вместе с ней.</p></div>
+      </div>
+    </details>
+
+    <details class="acc">
+      <summary><span class="num">4</span><span class="q">Опора на правило дома</span><span class="chev">▾</span></summary>
+      <div class="body">
+        <div class="row"><div class="tag">Когда применять</div><p>Дочь оскорбляет, переходит на личности, сравнивает, говорит гадости.</p></div>
+        <div class="row"><div class="tag">Что хочется выдать</div><p>Ответить властью: «Не смей, я сказала».</p></div>
+        <div class="row"><div class="tag">Как звучит</div><div class="say">«В нашем доме есть правило: мы не унижаем друг друга. Не называем дурой, не сравниваем. Злиться можно. Унижать нельзя. Я вернусь к разговору, когда мы сможем без этого». И, если давление продолжается, — пауза, спокойный уход без хлопка дверью.</div></div>
+        <div class="row"><div class="tag">Почему работает</div><p>С властью матери подросток будет бороться. С правилом, которое выше всех в доме, бороться не выходит — оно не человек, его не ранить. Важно: правило действует в обе стороны, мать ему тоже подчиняется.</p></div>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- БЛОК 10-13 -->
+<section>
+  <div class="wrap">
+    <div class="kicker">Возраст 10–13</div>
+    <h2>Когда тело спешит впереди неё</h2>
+    <p class="lead">Это самое начало пути. У многих девочек тело трогается в рост раньше, чем приходит душевная готовность к переменам.</p>
+    <p>Грудь, первые критические дни, новые очертания фигуры появляются у девочки, которая внутри ещё во многом ребёнок. Снаружи она взрослеет — а внутри ей по-прежнему нужна мама, объятия и ощущение безопасности. Ниже двенадцать правил с готовыми словами.</p>
+
+    <details class="acc"><summary><span class="num">1</span><span class="q">Превратите взросление тела в праздник, а не в стыдную тайну</span><span class="chev">▾</span></summary>
+      <div class="body">
+        <div class="row"><div class="tag">Ситуация</div><p>У дочери начала расти грудь. Девочка смущается, сутулится, прячется в мешковатой одежде.</p></div>
+        <div class="row"><div class="tag">Что сказать</div><div class="say">«Я вижу, что ты взрослеешь, и хочу тебя с этим поздравить. Это не то, чего нужно стесняться, — это значит, что ты становишься девушкой. У каждой женщины это начинается, и у меня когда-то было так же. Будут вопросы — я рядом, спрашивай о чём угодно».</div></div>
+        <div class="row"><div class="tag">Почему так</div><p>Если мать молчит или сводит тему к неловкости, девочка считывает: со мной происходит что-то постыдное. Если мать называет это праздником взросления, тело перестаёт быть врагом. Вы задаёте дочери отношение к самой себе на годы вперёд.</p></div>
+      </div>
+    </details>
+
+    <details class="acc"><summary><span class="num">2</span><span class="q">Когда она закрылась в комнате — не ломитесь</span><span class="chev">▾</span></summary>
+      <div class="body">
+        <div class="row"><div class="tag">Ситуация</div><p>Дочь молча ушла к себе и закрыла дверь. Раньше всё рассказывала, а теперь отгородилась.</p></div>
+        <div class="row"><div class="tag">Что сказать</div><div class="say">Не «немедленно открой», а спокойно, через дверь: «Я понимаю, что тебе хочется побыть одной. Я не буду лезть. Я на кухне — захочешь, приходи, я тебе всегда рада».</div></div>
+        <div class="row"><div class="tag">Почему так</div><p>Закрытая дверь — это первая проба сепарации, ей нужно своё пространство. Если ломиться силой, она будет защищать территорию ещё яростнее. Если уважать её право закрыться, она быстрее выйдет сама.</p></div>
+      </div>
+    </details>
+
+    <details class="acc"><summary><span class="num">3</span><span class="q">Поддержите в нескладном возрасте — это Гадкий утёнок</span><span class="chev">▾</span></summary>
+      <div class="body">
+        <div class="row"><div class="tag">Ситуация</div><p>Девочка растёт неравномерно: вытянулся нос, изменились черты. Над ней могут подшучивать в школе, и она чувствует себя некрасивой.</p></div>
+        <div class="row"><div class="tag">Что сказать</div><div class="say">«Помнишь Гадкого утёнка? Это не про уродство — это про то, что яйцо лебедя попало в утиное гнездо. Лебедёнок рос нескладным, не похожим на других — а вырос в прекрасного лебедя. Так растут все дети: сначала вытягивается одно, потом другое. Ты сейчас в самом разгаре роста. Давай дам тебе перечитать эту сказку, и подумаем, чем помочь».</div></div>
+        <div class="row"><div class="tag">Почему так</div><p>Вы не отмахиваетесь «не выдумывай» и не пустословите «ты красавица». Вы признаёте боль, объясняете механизм через знакомую сказку и даёте дочери опору-историю.</p></div>
+      </div>
+    </details>
+
+    <details class="acc"><summary><span class="num">4</span><span class="q">Говорите про критические дни заранее и спокойно</span><span class="chev">▾</span></summary>
+      <div class="body">
+        <div class="row"><div class="tag">Ситуация</div><p>Дочери 10–12, критических дней ещё нет, но они близко. Многие девочки впервые сталкиваются с этим в школе и пугаются.</p></div>
+        <div class="row"><div class="tag">Что сказать</div><div class="say">«Скоро у тебя начнутся критические дни — это бывает у каждой девушки. Это не болезнь и не страшно. Я покажу тебе, что делать, и положу всё нужное в твой рюкзак, чтобы ты была готова. Случится — сразу спокойно мне скажи».</div></div>
+        <div class="row"><div class="tag">Почему так</div><p>Девочка, которую не предупредили, переживает первые критические дни как катастрофу и стыд. Девочка, которую подготовили, встречает это как нормальный этап.</p></div>
+      </div>
+    </details>
+
+    <details class="acc"><summary><span class="num">5</span><span class="q">Хвалите не внешность, а её саму</span><span class="chev">▾</span></summary>
+      <div class="body">
+        <div class="row"><div class="tag">Ситуация</div><p>Дочь крутится у зеркала, недовольна собой, напрашивается на «ты красивая».</p></div>
+        <div class="row"><div class="tag">Что сказать</div><div class="say">Вместо дежурного «ты у меня красавица» — «мне нравится, как ты придумала это сочетание», «люблю, какая ты живая, когда увлечена». Отмечайте интерес, выбор, характер.</div></div>
+        <div class="row"><div class="tag">Почему так</div><p>Если девочку хвалят только за красоту, её ценность в собственных глазах держится на внешности — а она в этом возрасте «не сложилась». Когда вы цените её саму, у неё появляется опора прочнее зеркала.</p></div>
+      </div>
+    </details>
+
+    <details class="acc"><summary><span class="num">6</span><span class="q">Прыщик — не повод реветь, а повод помочь</span><span class="chev">▾</span></summary>
+      <div class="body">
+        <div class="row"><div class="tag">Ситуация</div><p>Дочь рыдает из-за высыпаний на лице, чувствует себя некрасивой, отказывается идти в школу.</p></div>
+        <div class="row"><div class="tag">Что сказать</div><div class="say">«Я понимаю, что тебе обидно. Но это решаемо, и мы сейчас этим займёмся вместе. Кожа в твоём возрасте меняется почти у всех — это не навсегда. Подберём средство, которое тебе подойдёт, и будем ухаживать».</div></div>
+        <div class="row"><div class="tag">Что сделать</div><p>Показать дочери, что проблема решаемая: сегодня много мягких средств точечного действия — например, на основе цинка или салициловой кислоты, но конкретное подбирают под кожу, и при сильных высыпаниях стоит показаться дерматологу.</p></div>
+        <div class="row"><div class="tag">Почему так</div><p>Когда мать не обесценивает, а берётся решать вместе, девочка получает два сообщения сразу: это не приговор и я не одна.</p></div>
+      </div>
+    </details>
+
+    <details class="acc"><summary><span class="num">7</span><span class="q">Через кожу и фигуру мягко введите тему питания</span><span class="chev">▾</span></summary>
+      <div class="body">
+        <div class="row"><div class="tag">Ситуация</div><p>Высыпания, недовольство фигурой. Хочется сказать «не ешь шоколад» — но в лоб это звучит как упрёк.</p></div>
+        <div class="row"><div class="tag">Что сказать</div><div class="say">Не «прекрати есть сладкое, вот и прыщи», а «давай попробуем поменьше сладкого и мучного и побольше воды и овощей — кожа часто отвечает на это, да и самочувствие меняется. Попробуем вместе, я тоже так буду».</div></div>
+        <div class="row"><div class="tag">Почему так</div><p>Если связать питание со стыдом и запретом, девочка либо взбунтуется, либо начнёт прятать еду. Если подать это как общую заботу и делать вместе, формируется здоровая привычка. Говорите про самочувствие и кожу, а не про «похудей» — фиксация на весе в этом возрасте опасна.</p></div>
+      </div>
+    </details>
+
+    <details class="acc"><summary><span class="num">8</span><span class="q">Дайте ей свой личный уход — средства по возрасту</span><span class="chev">▾</span></summary>
+      <div class="body">
+        <div class="row"><div class="tag">Ситуация</div><p>Дочь начинает тянуться к вашей косметике и умывалке, пробует «как у мамы».</p></div>
+        <div class="row"><div class="tag">Что сказать</div><div class="say">«Давай купим тебе твоё личное — то, что подходит твоей коже сейчас. Это будет только твоё». И сходить вместе выбрать.</div></div>
+        <div class="row"><div class="tag">Почему так</div><p>Своё личное средство — это и про правильный уход, и про взросление: у неё появляется собственная зона ответственности и маленький ритуал заботы о себе. Отдельная полочка «только моё» даёт ощущение, что её взрослость признают.</p></div>
+      </div>
+    </details>
+
+    <details class="acc"><summary><span class="num">9</span><span class="q">Уважайте её право на закрытую дверь</span><span class="chev">▾</span></summary>
+      <div class="body">
+        <div class="row"><div class="tag">Ситуация</div><p>Дочь требует стучаться, прячет дневник, не хочет, чтобы заходили без спроса.</p></div>
+        <div class="row"><div class="tag">Что сказать</div><div class="say">«Хорошо, я буду стучать. Это твоя комната, и ты имеешь право на своё пространство».</div></div>
+        <div class="row"><div class="tag">Почему так</div><p>Потребность в границах — это здоровая сепарация, а не каприз. Когда вы уважаете её территорию сами, ей не нужно отвоёвывать её скандалом, и доверия между вами больше.</p></div>
+      </div>
+    </details>
+
+    <details class="acc"><summary><span class="num">10</span><span class="q">Давайте посильную самостоятельность</span><span class="chev">▾</span></summary>
+      <div class="body">
+        <div class="row"><div class="tag">Ситуация</div><p>Дочь хочет сама выбирать одежду, причёску, как обустроить полку.</p></div>
+        <div class="row"><div class="tag">Что сказать</div><div class="say">«Ты уже взрослеешь и можешь решать это сама. Выбирай — это твоё».</div></div>
+        <div class="row"><div class="tag">Почему так</div><p>В этом возрасте девочка начинает анализировать и принимать решения, и ей нужно тренировать это на безопасных вещах. Запрет на мелкий выбор она читает как «меня не считают за человека».</p></div>
+      </div>
+    </details>
+
+    <details class="acc"><summary><span class="num">11</span><span class="q">Не подшучивайте над меняющимся телом — даже ласково</span><span class="chev">▾</span></summary>
+      <div class="body">
+        <div class="row"><div class="tag">Ситуация</div><p>За столом хочется по-доброму пошутить про вытянувшийся нос, нескладность.</p></div>
+        <div class="row"><div class="tag">Что сказать</div><div class="say">Ничего из этого. Вместо шутки — «ты очень хорошеешь, я любуюсь, как ты взрослеешь».</div></div>
+        <div class="row"><div class="tag">Почему так</div><p>В этом возрасте юмор про внешность ранит сильнее всего, и особенно от самого близкого человека. Одна ласковая подколка способна засесть комплексом на годы.</p></div>
+      </div>
+    </details>
+
+    <details class="acc"><summary><span class="num">12</span><span class="q">Будьте спокойны сами — она считывает ваше состояние</span><span class="chev">▾</span></summary>
+      <div class="body">
+        <div class="row"><div class="tag">Ситуация</div><p>Дочь штормит, грубит, плачет. Внутри у вас всё кипит, но вы говорите «правильные» слова.</p></div>
+        <div class="row"><div class="tag">Что сказать</div><div class="say">Сначала — себе, мысленно: «она не против меня, ей сейчас тяжелее». И только потом, ровно: «я рядом, мы разберёмся».</div></div>
+        <div class="row"><div class="tag">Почему так</div><p>Девочки в пубертате считывают фальшь мгновенно: если вы изображаете принятие, а внутри злитесь, она почувствует именно злость. Ваше настоящее спокойствие действует сильнее любых заученных фраз.</p></div>
+      </div>
+    </details>
+
+    <div class="amber">
+      <div class="lbl">Будет сопротивление</div>
+      <p>Вы начнёте говорить с дочерью о теле, коже, питании спокойно — а она может сперва закрыться, отмахнуться, сказать «мам, перестань». Это нормально. Она не отвергает вас — она проверяет, безопасно ли с вами эта тема. Не отступайте и не давите. Достаточно, чтобы она знала: когда захочет, вы рядом и говорите об этом без стыда.</p>
+    </div>
+  </div>
+</section>
+
+<!-- БЛОК 13-16 -->
+<section>
+  <div class="wrap">
+    <div class="kicker">Возраст 13–16</div>
+    <h2>Самый трудный отрезок</h2>
+    <p class="lead">Этот блок мы делим на две фазы. В 13–14 лет ещё относительно тихо: буря собирается, но почти не грянула. В 14–16 наступает пик — влюблённость, грубость, резкое отдаление.</p>
+
+    <h3>Фаза 13–14. Затишье перед бурей</h3>
+    <p>В эти два года дочь ещё чаще идёт на контакт, чем огрызается. Это короткое и драгоценное окно: то, что вы вложите в доверие сейчас, станет опорой, когда через год начнётся самое острое.</p>
+
+    <details class="acc"><summary><span class="num">1</span><span class="q">Используйте затишье, чтобы накопить доверие впрок</span><span class="chev">▾</span></summary>
+      <div class="body">
+        <div class="row"><div class="tag">Ситуация</div><p>Дочь пока относительно открыта, рассказывает о школе и подругах, серьёзных конфликтов нет.</p></div>
+        <div class="row"><div class="tag">Что сказать</div><div class="say">Чаще обычного: «Расскажи, как у тебя сегодня. Мне правда интересно». И слушать, не перебивая и не поучая.</div></div>
+        <div class="row"><div class="tag">Почему так</div><p>Через год, на пике, дочь откроется только тому, с кем у неё накоплено доверие. Сегодняшние спокойные разговоры — ваш страховой запас на бурю.</p></div>
+      </div>
+    </details>
+
+    <details class="acc"><summary><span class="num">2</span><span class="q">Заметьте первые признаки отдаления и не пугайтесь их</span><span class="chev">▾</span></summary>
+      <div class="body">
+        <div class="row"><div class="tag">Ситуация</div><p>Дочь чуть чаще закрывает дверь, дольше сидит в телефоне, что-то уже не рассказывает.</p></div>
+        <div class="row"><div class="tag">Что сказать</div><div class="say">Не «почему ты от меня что-то скрываешь», а «я вижу, ты взрослеешь, у тебя появляется своё. Это нормально, я рядом, когда понадоблюсь».</div></div>
+        <div class="row"><div class="tag">Почему так</div><p>Это первые пробы сепарации, ещё мягкие. Если встретить их тревогой и контролем, дочь начнёт прятаться раньше и глубже.</p></div>
+      </div>
+    </details>
+
+    <details class="acc"><summary><span class="num">3</span><span class="q">Договоритесь о телефоне сейчас, пока это не поле битвы</span><span class="chev">▾</span></summary>
+      <div class="body">
+        <div class="row"><div class="tag">Ситуация</div><p>Телефон занимает всё больше места, но открытой войны из-за него ещё нет.</p></div>
+        <div class="row"><div class="tag">Что сказать</div><div class="say">«Давай вместе договоримся, как у нас с телефоном — чтобы и тебе было комфортно, и я была спокойна. Предложи ты, и я предложу».</div></div>
+        <div class="row"><div class="tag">Почему так</div><p>Правила, о которых договорились в спокойное время и вместе, держатся. Правила, которые вводят силой на пике конфликта в 15 лет, дочь воспринимает как насилие и обходит.</p></div>
+      </div>
+    </details>
+
+    <details class="acc"><summary><span class="num">4</span><span class="q">Дайте дочери дело, в котором она будет расти</span><span class="chev">▾</span></summary>
+      <div class="body">
+        <div class="row"><div class="tag">Ситуация</div><p>У дочери много свободного времени, и оно утекает в телефон, скуку или сомнительные компании.</p></div>
+        <div class="row"><div class="tag">Что сказать</div><div class="say">«Давай найдём то, что тебе по-настоящему интересно — спорт, рисование, музыка, что угодно. Попробуешь, и если не твоё — поищем дальше».</div></div>
+        <div class="row"><div class="tag">Почему так</div><p>Занятие вне школы даёт подростку среду, где он успешен, здоровую усталость вместо скуки и взрослых-наставников помимо родителей. Насыщенная жизнь — лучшая защита, чем запреты, потому что она не отнимает, а даёт.</p></div>
+      </div>
+    </details>
+
+    <h3>Фаза 14–16. Пик: влюблённость, грубость, отдаление</h3>
+    <p>Это вершина всего пубертата. Дочь рвётся из дома — к подругам, к мальчику, в свою жизнь. Прежде чем давать правила, поймите главное про этот возраст.</p>
+    <p><strong>Зачем ей всё это на самом деле.</strong> Вспомните, как маленькая девочка играет в дочки-матери. Сегодня она мама, завтра дочка, послезавтра меняется ролями с подругой. Так ребёнок в безопасной игре осваивает семейные роли. В 14–16 происходит ровно то же — только игрушки кончились, и репетиция переходит на живые отношения. Влюблённость, первая пара — это следующий круг той же игры: девочка примеряет роль женщины рядом с мужчиной.</p>
+    <p>И модель будущей семьи она списывает с вас. Если в эти годы с дочерью говорят уважительно, такие отношения она и построит. Если ей в ответ говорят «заткнись» и «веди себя прилично», эту модель она унесёт в свой брак. Ваша задача — стать той моделью отношений, которую ей захочется повторить.</p>
+
+    <details class="acc"><summary><span class="num">5</span><span class="q">Дайте ей выходить в мир — это репетиция взрослой жизни</span><span class="chev">▾</span></summary>
+      <div class="body">
+        <div class="row"><div class="tag">Ситуация</div><p>Дочь рвётся из дома: к подругам, гулять, на встречу с мальчиком. Дом будто стал ей мал.</p></div>
+        <div class="row"><div class="tag">Что сказать</div><div class="say">Не «сиди дома», а «иди, общайся. Скажи только, где ты и когда вернёшься, — не чтобы контролировать, а чтобы я была спокойна».</div></div>
+        <div class="row"><div class="tag">Почему так</div><p>Стремление наружу — это здоровая социализация и репетиция отношений. Запирая дочь дома, вы тормозите её взросление.</p></div>
+      </div>
+    </details>
+
+    <details class="acc"><summary><span class="num">6</span><span class="q">Знакомьтесь с её окружением</span><span class="chev">▾</span></summary>
+      <div class="body">
+        <div class="row"><div class="tag">Ситуация</div><p>У дочери появились компания, подруги, возможно — мальчик. Вы не знаете этих людей.</p></div>
+        <div class="row"><div class="tag">Что сказать</div><div class="say">«Зови их к нам. Мне будет приятно познакомиться, посидим, попьём чаю».</div></div>
+        <div class="row"><div class="tag">Почему так</div><p>Когда окружение дочери бывает у вас дома, вы видите своими глазами, с кем она проводит время, — без слежки и допросов. Запрет же толкает всё это во тьму.</p></div>
+      </div>
+    </details>
+
+    <details class="acc"><summary><span class="num">7</span><span class="q">Не разоблачайте плохое влияние в лоб — покажите на стороне</span><span class="chev">▾</span></summary>
+      <div class="body">
+        <div class="row"><div class="tag">Ситуация</div><p>Вы видите, что подруга использует дочь. Хочется сказать прямо: «она тебя использует».</p></div>
+        <div class="row"><div class="tag">Что сказать</div><div class="say">Через перенос: «Слушай, у меня на работе была история… человек вот так же дружил, только когда ему было выгодно. Как тебе кажется, это нормально?»</div></div>
+        <div class="row"><div class="tag">Почему так</div><p>В лоб дочь защитит свою подругу и закроется. Но со стороны, на чужом примере, она видит механизм ясно, потому что не обороняется. Это работает с подругами. С мальчиком, в которого она влюблена, — почти нет: потребность в близости сильнее логики.</p></div>
+      </div>
+    </details>
+
+    <details class="acc"><summary><span class="num">8</span><span class="q">Заложите заранее: все отношения конечны</span><span class="chev">▾</span></summary>
+      <div class="body">
+        <div class="row"><div class="tag">Ситуация</div><p>У дочери первые отношения с мальчиком. Вы предчувствуете боль расставания — или оно уже случилось.</p></div>
+        <div class="row"><div class="tag">Что сказать</div><div class="say">Заранее: «Запомни важное. Любые отношения — это этап, который для чего-то нам даётся. Иногда на годы, иногда ненадолго. И это не беда — так у всех». А после разрыва — не «я же говорила», а «тебе сейчас больно, и это пройдёт».</div></div>
+        <div class="row"><div class="tag">Почему так</div><p>Девочки страдают сильнее всего потому, что верят: отношения — это навсегда. Когда вы заранее, без драмы, объясняете, что любые отношения конечны, дочь получает опору и сейчас, и через двадцать лет.</p></div>
+      </div>
+    </details>
+
+    <details class="acc"><summary><span class="num">9</span><span class="q">На пике грубости опирайтесь на техники, не на власть</span><span class="chev">▾</span></summary>
+      <div class="body">
+        <div class="row"><div class="tag">Ситуация</div><p>Грубость достигает вершины: хлопанье дверью, «ты ничего не понимаешь», «отстань».</p></div>
+        <div class="row"><div class="tag">Что сказать</div><div class="say">Здесь работает арсенал: сначала несоревнование, потом взрослое отражение («я вижу, ты на пределе»), при оскорблении — опора на правило дома.</div></div>
+        <div class="row"><div class="tag">Почему так</div><p>На пике подросток особенно ищет, об кого померить силу. Если держите рамку через техники, грубость не находит опоры и гаснет быстрее.</p></div>
+      </div>
+    </details>
+
+    <details class="acc"><summary><span class="num">10</span><span class="q">Берегите её достоинство во влюблённости</span><span class="chev">▾</span></summary>
+      <div class="body">
+        <div class="row"><div class="tag">Ситуация</div><p>Дочь влюблена, мечтает, переписывается ночами. Хочется снизить пафос шуткой или вмешаться.</p></div>
+        <div class="row"><div class="tag">Что сказать</div><div class="say">Не «нашла в кого влюбиться», а «я вижу, это для тебя важно. Если захочешь поговорить — я рядом и не буду осуждать».</div></div>
+        <div class="row"><div class="tag">Почему так</div><p>Первая влюблённость для неё огромна и хрупка. Любая насмешка над её чувством унижает её саму — и она перестаёт пускать вас в эту часть жизни.</p></div>
+      </div>
+    </details>
+
+    <details class="acc"><summary><span class="num">11</span><span class="q">Сделайте дом местом, куда хочется вернуться</span><span class="chev">▾</span></summary>
+      <div class="body">
+        <div class="row"><div class="tag">Ситуация</div><p>Дочь рвётся наружу, дома бывает урывками, отношения натянуты.</p></div>
+        <div class="row"><div class="tag">Что сказать</div><div class="say">Не «явилась наконец», а «рада, что ты дома. Есть будешь?». Дом — это тыл, а не пост охраны.</div></div>
+        <div class="row"><div class="tag">Почему так</div><p>Чем больше дома упрёков и контроля, тем сильнее тянет из него. Чем больше дома спокойствия, тем вернее дочь возвращается. Вы не удерживаете её стенами — вы делаете так, чтобы к вам хотелось приходить.</p></div>
+      </div>
+    </details>
+
+    <div class="amber">
+      <div class="lbl">Будет сопротивление</div>
+      <p>На пике дочь будет проверять каждую вашу границу на прочность. Это не значит, что границы не нужны — наоборот. Подростку хаос страшнее ясного правила. Держите рамку спокойно и предсказуемо, и буря пройдёт быстрее.</p>
+    </div>
+  </div>
+</section>
+
+<!-- БЛОК 16-18 -->
+<section>
+  <div class="wrap">
+    <div class="kicker">Возраст 16–18</div>
+    <h2>Отпустить, не потеряв</h2>
+    <p class="lead">Это финишная прямая взросления. Перед вами уже почти взрослый человек: со своими взглядами, выбором, планами на жизнь.</p>
+    <p>Самая частая родительская ошибка здесь — продолжать управлять, как управляли в десять. Ваша задача в этом возрасте — перестроиться из руководителя в советника, к которому приходят сами. Чем легче вы отпускаете, тем чаще она возвращается.</p>
+
+    <details class="acc"><summary><span class="num">1</span><span class="q">Перейдите с языка приказа на язык совета</span><span class="chev">▾</span></summary>
+      <div class="body">
+        <div class="row"><div class="tag">Ситуация</div><p>Хочется по привычке указывать: что надеть, с кем дружить, куда поступать.</p></div>
+        <div class="row"><div class="tag">Что сказать</div><div class="say">Не «ты сделаешь, как я сказала», а «я вижу это так, а решать тебе. Хочешь — поделюсь, почему думаю именно так».</div></div>
+        <div class="row"><div class="tag">Почему так</div><p>Приказ воспринимается как непризнание её взрослости. Совет, поданный с уважением, она готова услышать. Чем меньше вы давите, тем больше ваш голос весит.</p></div>
+      </div>
+    </details>
+
+    <details class="acc"><summary><span class="num">2</span><span class="q">Дайте право на свой выбор пути</span><span class="chev">▾</span></summary>
+      <div class="body">
+        <div class="row"><div class="tag">Ситуация</div><p>Дочь выбирает профессию, вуз, направление жизни не так, как вы мечтали.</p></div>
+        <div class="row"><div class="tag">Что сказать</div><div class="say">«Это твоя жизнь и твой выбор. Я могу рассказать, что вижу со стороны, но проживать это тебе, и я тебя поддержу».</div></div>
+        <div class="row"><div class="tag">Почему так</div><p>Навязанный путь оборачивается либо сломанной волей, либо разрывом. Право на собственный выбор — это то, ради чего вся сепарация и затевалась.</p></div>
+      </div>
+    </details>
+
+    <details class="acc"><summary><span class="num">3</span><span class="q">Позвольте ошибаться и не говорите «я предупреждала»</span><span class="chev">▾</span></summary>
+      <div class="body">
+        <div class="row"><div class="tag">Ситуация</div><p>Дочь принимает решение, в котором вы видите ошибку.</p></div>
+        <div class="row"><div class="tag">Что сказать</div><div class="say">Если ошибка не опасна — дать прожить и, когда придёт, поддержать: «бывает, это опыт, разберёмся». Без «я же говорила».</div></div>
+        <div class="row"><div class="tag">Почему так</div><p>На своих ошибках в безопасном возрасте, пока вы рядом, она учится отвечать за себя. «Я предупреждала» учит лишь одному: к матери со своим провалом идти нельзя.</p></div>
+      </div>
+    </details>
+
+    <div class="amber">
+      <div class="lbl">Будет сопротивление</div>
+      <p>Отпускать страшно, и рука сама тянется удержать. Но удержанная силой почти-взрослая дочь уходит дальше, чем отпущенная с доверием. Ваша новая роль — не контролёр, а тот, к кому приходят за советом. Это болезненный, но необходимый переход.</p>
+    </div>
+  </div>
+</section>
+
+<!-- БАНК ОТВЕТОВ -->
+<section>
+  <div class="wrap">
+    <div class="kicker">Банк ответов</div>
+    <h2>Что сказать, когда дочь застала врасплох</h2>
+    <p class="lead">Что дочь бросает в лицо — и что вы отвечаете чётко, спокойно, опираясь на правило, закон или факт. Откройте нужный возраст, найдите свою фразу.</p>
+
+    <h3>Возраст 10–13</h3>
+    <div class="qa"><div class="her">Ты мной манипулируешь!</div><div class="ans">«Это не манипуляция. Манипуляция это когда тобой управляют тайком, чтобы ты не заметила. А я говорю открыто: вот правило, ты его знаешь, и оно одно для всех в доме. Это как светофор — красный горит для всех машин, а не только для твоей. Светофор тобой не манипулирует, он держит порядок, чтобы никто не пострадал».</div><div class="why"><b>Почему:</b> дети роняют это слово, чтобы обрезать запрет. Вы не оправдываетесь, а через понятный образ показываете разницу между тайным управлением и открытым правилом.</div></div>
+
+    <div class="qa"><div class="her">Не смей заходить в мою комнату!</div><div class="ans">«Я постучу прежде чем зайти — это да. Но это не твоя суверенная территория. Это место, где ты живёшь, и оно часть нашей квартиры — как кухня, коридор, ванная. Сказать "не смей заходить в мою комнату" это всё равно что сказать "не смей заходить в туалет, это моё". Пока ты несовершеннолетняя, эта территория предполагает мой свободный вход. Станешь совершеннолетней — тогда поговорим о твоём суверенитете».</div><div class="why"><b>Почему:</b> вы признаёте вежливость, но не отдаёте территорию и опираетесь на факт — это общий дом, а не отдельное государство.</div></div>
+
+    <div class="qa"><div class="her">Ты меня вообще не понимаешь!</div><div class="ans">«Может, и не всё понимаю — я ведь не в твоей голове. Объясни мне, и я пойму, и постараюсь помочь, если ты этого хочешь. Но запомни главное: советоваться лучше с тем, кто тебе не навредит. А это я. Подружка может посоветовать сгоряча, а я подумаю о тебе на годы вперёд».</div><div class="why"><b>Почему:</b> спор «понимаю — не понимаю» бесполезен. Вы признаёте, что не всезнающи, и мягко возвращаете себе роль той, к кому стоит идти за советом.</div></div>
+
+    <div class="qa"><div class="her">Ты меня не любишь!</div><div class="ans">«Я люблю тебя всегда — и когда мы ссоримся, и когда я с тобой не согласна. Любовь это не значит "разрешаю всё". Врач, который не даёт ребёнку есть немытые ягоды, тоже его любит — именно поэтому и не даёт. Запрет бывает частью любви, а не её отсутствием».</div><div class="why"><b>Почему:</b> фраза проверяет, дрогнете ли вы и отмените ли запрет из чувства вины. Вы подтверждаете любовь и отделяете её от вседозволенности.</div></div>
+
+    <div class="qa"><div class="her">А Маше всё можно, ей родители разрешают!</div><div class="ans">«Возможно, у Маши свои правила. Но у каждой семьи свой дом и свой уклад. У кого-то дома можно ходить в обуви, у кого-то нет. Это не значит, что кто-то прав, а кто-то нет — просто у нас свои правила, и я объясню почему».</div><div class="why"><b>Почему:</b> ссылка на чужую семью это проверка вашей рамки. Бытовой пример показывает, что разные правила в разных домах — норма.</div></div>
+
+    <div class="qa"><div class="her">Кого ты больше любишь — меня или брата?</div><div class="ans">«Я люблю вас по-разному, и это честно. Тебя я люблю как свою дочь, а его — как сына. Это две разные любви, два разных человека. Я ведь не могу любить вас одинаково — как и ты не можешь любить меня и папу одинаково. Ты любишь нас по-разному, и это нормально. Вот жалею я вас одинаково. А люблю — по-своему каждого».</div><div class="why"><b>Почему:</b> вопрос нельзя гасить отговоркой «одинаково» — дети в это не верят. Вы даёте честный ответ: любовь к каждому своя, и это не про «больше-меньше».</div></div>
+
+    <div class="qa"><div class="her">Ты обещала и не сделала!</div><div class="ans">«Да, я обещала и не сделала, я поступила неправильно. Но хочу тебе сказать: ты сама много раз обещала и не выполняла. Теперь, когда ты видишь, как это неприятно, я думаю, ты тоже будешь держать своё слово. Пока сам не научишься выполнять обещания — не жди того же от других».</div><div class="why"><b>Почему:</b> вы честно признаёте свою вину и превращаете ситуацию в урок взаимности, а не оправдываетесь.</div></div>
+
+    <div class="qa"><div class="her">Я тебя ненавижу!</div><div class="ans">«Я вижу, ты сейчас на меня очень злишься. Злиться можно, это нормально. Но смотри: когда ты обожжёшься о горячую плиту, ты же не начинаешь ненавидеть плиту — тебе просто больно в моменте. Вот и сейчас тебе больно и обидно. Это пройдёт. Я всё равно тебя люблю и никуда не денусь».</div><div class="why"><b>Почему:</b> за этой фразой стоит не ненависть, а бессилие. Вы называете чувство, даёте образ и остаётесь устойчивой.</div></div>
+
+    <div class="qa"><div class="her">Ты меня заставляешь!</div><div class="ans">«Я тебя не заставляю. Я показываю тебе возможный выход. Если ты не понимаешь почему — это значит, что ты пока не до конца умеешь анализировать. Анализ это умение видеть последствия заранее. Схватишься мокрыми руками за кастрюлю — обожжёшься. Залезешь на табуретку с шаткими ножками — упадёшь. Это не предположение, это анализ. Чаще всего я говорю тебе сделать именно то, что ты сама пока просчитать не можешь».</div><div class="why"><b>Почему:</b> вы снимаете рамку насилия и переводите разговор на язык взрослого навыка — анализа последствий.</div></div>
+
+    <div class="qa"><div class="her">Почему я должна, а ты нет?</div><div class="ans">«Справедливый вопрос, и я отвечу честно. В нашем доме правила для всех. Я тоже мою за собой посуду, тоже держу слово. Если ты увидишь, что я требую от тебя то, чего сама не делаю, — скажи мне прямо, и я поправлюсь. Правило без исключений, даже для меня».</div><div class="why"><b>Почему:</b> дети остро чувствуют несправедливость. Вы признаёте право вопроса и подтверждаете, что правило работает в обе стороны.</div></div>
+
+    <div class="qa"><div class="her">Не лезь, я сама!</div><div class="ans">«Хорошо, делай сама — это правильно, что ты хочешь сама. Я рядом, если понадоблюсь, просто позови. Как с велосипедом: я отпускаю руль, но бегу рядом. Захочешь — придержу, не захочешь — едешь сама».</div><div class="why"><b>Почему:</b> стремление к самостоятельности надо поощрять. Вы отступаете, но через образ показываете, что доступны.</div></div>
+
+    <h3>Возраст 13–16</h3>
+    <div class="qa"><div class="her">Купи мне айфон / сумку / то-то! Ты что, мне родители не могут купить?!</div><div class="ans">«Давай разберёмся спокойно. Кодекс — это свод законов. Семейный кодекс обязывает меня обеспечивать тебя всем необходимым: едой, одеждой, крышей над головой, учёбой, лечением. И я это делаю и буду делать. Но открой его и покажи мне строчку, где написано, что я обязана покупать тебе сумку Loro Piana, куртку Dolce Gabbana и новый айфон, айпад и макбук каждый год. Такого там нет. Необходимое — это мой долг по закону. А статусные вещи родители дают по желанию и любви, когда есть возможность, а не по обязанности. Это разные вещи».</div><div class="why"><b>Почему:</b> истерика-вымогательство давит на чувство долга, чтобы вы сдались. Вы не оправдываетесь и не вступаете в торг, а спокойно опираетесь на факт: закон обязывает обеспечивать необходимое, но дорогие хотелки — это не обязанность, а добрая воля. Спорить с этим невозможно.</div></div>
+
+    <div class="qa"><div class="her">Ты обязана, ты же мать!</div><div class="ans">«Да, я мама, и я всегда буду о тебе заботиться. Но всё, что я тебе действительно должна и обязана, прописано в Семейном кодексе. И там не написано, что я должна каждый год покупать тебе новый айфон, айпад или куртку Dolce Gabbana. Это родители дают по собственному желанию и любви, а не по долгу. А вот это "ты должна, ты обязана" — это не ко мне. Есть вещи, которые ты уже решаешь сама».</div><div class="why"><b>Почему:</b> дочь давит на родительский долг. Вы не оправдываетесь, а спокойно отделяете реальную заботу от потребительских требований, опираясь на факт.</div></div>
+
+    <div class="qa"><div class="her">Это моя жизнь, что хочу, то и делаю!</div><div class="ans">«Да, это твоя жизнь, и решений в ней с каждым годом всё больше — это правильно. Но представь водителя, который только получил права и говорит: "моя машина, еду как хочу". Правила движения всё равно для всех, и они не про несвободу, а про то, чтобы доехать живым. Пока мы под одной крышей, есть правила безопасности, которые мы не отменяем. Всё остальное — да, всё больше твоё».</div><div class="why"><b>Почему:</b> вы соглашаетесь с её взрослением и через образ отделяете свободу от вопросов безопасности.</div></div>
+
+    <div class="qa"><div class="her">Все так делают, одна я нет!</div><div class="ans">«Возможно. Но "все прыгнули с моста — и ты прыгнешь?" Когда мне говорят "все так делают", я слышу, что ты сама не решила, а пошла за толпой. А я хочу, чтобы ты умела думать своей головой. В нашей семье принято так, и я объясню почему — а ты решай, согласна ли ты сама, без оглядки на всех».</div><div class="why"><b>Почему:</b> «все так делают» — попытка снять с себя ответственность за выбор. Вы возвращаете дочь к самостоятельному мышлению.</div></div>
+
+    <div class="qa"><div class="her">Тебе на меня наплевать!</div><div class="ans">«Если бы мне было наплевать, я бы махнула рукой и разрешила тебе всё подряд — так гораздо проще. Наплевать — это когда не замечают. А я замечаю, спрашиваю, ставлю правила и иногда из-за этого ссорюсь с тобой. Это и есть обратное "наплевать"».</div><div class="why"><b>Почему:</b> фраза бьёт по чувству вины. Вы разворачиваете её: безразличие это вседозволенность, а не забота и границы.</div></div>
+
+    <div class="qa"><div class="her">Ты меня позоришь перед друзьями!</div><div class="ans">«Давай так: если я делаю что-то, что тебя задевает при друзьях, скажи мне об этом наедине, и я учту. Но и ты помни — уважение в обе стороны. Я не выясняю с тобой при твоих друзьях, и ты не грубишь мне при них. Это честная договорённость».</div><div class="why"><b>Почему:</b> вы не обижаетесь и не уступаете полностью, а предлагаете взаимное правило.</div></div>
+
+    <div class="qa"><div class="her">Я уже взрослая, хватит меня контролировать!</div><div class="ans">«Взрослая — это здорово, и я рада это видеть. Взрослость измеряется не возрастом, а ответственностью. Чем больше ты берёшь на себя — держишь слово, отвечаешь за свои дела — тем меньше мне нужно контролировать. Это как с ключами от машины: их дают не по возрасту, а когда видят, что человек готов отвечать за руль. Покажи ответственность — и контроля станет меньше».</div><div class="why"><b>Почему:</b> вы не отрицаете её взрослость, а связываете свободу с ответственностью и даёте понятный механизм.</div></div>
+
+    <div class="qa"><div class="her">Не лезь в мой телефон, это личное!</div><div class="ans">«У тебя есть право на личное, и я его уважаю. Но телефон у подростка — это как улица: вроде твоя личная прогулка, а вокруг чужие взрослые люди, и не все из них добрые. Пока ты учишься в этом ориентироваться, я не читаю твои переписки с подругами, но имею право знать, что тебе никто не угрожает. Это не слежка, это безопасность».</div><div class="why"><b>Почему:</b> вы признаёте право на личное и отделяете его от вопроса безопасности в цифровой среде.</div></div>
+
+    <div class="qa"><div class="her">Я тебе вообще ничего не должна!</div><div class="ans">«Ты права — ты мне ничего не должна, я растила тебя не в долг. Но мы живём в одном доме, а в любом общем доме есть взаимность: не из долга, а из уважения друг к другу. Я делаю для тебя, ты — посильное для семьи. Это не долг, это то, как держится семья».</div><div class="why"><b>Почему:</b> вы не давите чувством долга, а переводите в горизонт взаимного уважения.</div></div>
+
+    <h3>Возраст 16–18</h3>
+    <div class="qa"><div class="her">Ты мне всю жизнь сломала!</div><div class="ans">«Если ты считаешь, что я в чём-то не права, — подумай и пересчитай ещё раз. Я действую так, потому что просчитываю ситуацию наперёд, опираюсь на свой опыт и на правила. Да, мои действия могут тебе не нравиться. Да, я могу ошибаться — но это не значит, что жизнь сломана. Жизнь продолжается при любом развитии событий. Сломать можно вещь, а жизнь так не ломается».</div><div class="why"><b>Почему:</b> дочь бьёт по самому больному, проверяя, начнёте ли вы оправдываться. Вы остаётесь на взрослой позиции: я думаю, я анализирую, я имею право ошибаться.</div></div>
+
+    <div class="qa"><div class="her">Он меня бросил, у меня больше никого не будет никогда!</div><div class="ans">«Тебе сейчас очень больно, я вижу, и я рядом. Я не скажу тебе "найдёшь другого" — сейчас это и не нужно, и не утешит. Скажу другое: любые отношения это этап, который для чего-то даётся. Этот тебя чему-то научил — про себя, про то, какой человек тебе подходит. Боль пройдёт, хоть сейчас в это и не верится. А я никуда не денусь».</div><div class="why"><b>Почему:</b> вы не обесцениваете, а признаёте боль и мягко даёте опору «все отношения конечны» как взрослую истину.</div></div>
+
+    <div class="qa"><div class="her">Все сдадут экзамены, а я тупая, у меня не получится!</div><div class="ans">«Я вижу, что ты нервничаешь, устала, что для тебя это очень важный этап. Давай сейчас сядем и спокойно проговорим самый плохой вариант: что будет, если ты не сдашь на нужный балл. Да, расстроимся, планы сдвинутся. Но смотри: не прошла на этот факультет — есть другой, с баллом пониже. Не вышло в вуз сразу — есть колледж, а после него во многие места, особенно в медицину, берут даже с приоритетом. Путей всегда несколько. Экзамен это проверка на один день, а не приговор тебе».</div><div class="why"><b>Почему:</b> вы снимаете оценку личности и, как психолог, проговариваете негативный сценарий вслух — это снимает удушающий страх.</div></div>
+
+    <div class="qa"><div class="her">Отстань, это не твоё дело!</div><div class="ans">«Хорошо, не буду лезть. Но знай: я не из любопытства спрашиваю. Я как маяк на берегу — могу не вмешиваться в твоё плавание, но свечу, чтобы ты видела, где земля. Захочешь поговорить — я здесь».</div><div class="why"><b>Почему:</b> давить бесполезно. Вы уважаете границу и через образ оставляете дверь открытой.</div></div>
+
+    <div class="qa"><div class="her">Я сама решу, куда поступать, не лезь!</div><div class="ans">«Это твой выбор и твоя жизнь — решать тебе, я это уважаю. Я могу рассказать, что вижу со стороны, потому что прожила дольше. Но проживать это тебе. Хочешь — поделюсь мыслями, не хочешь — приму твоё решение и поддержу. Навязывать не буду».</div><div class="why"><b>Почему:</b> навязанный путь оборачивается разрывом. Вы признаёте её право решать и предлагаете опыт как помощь, а не приказ.</div></div>
+
+    <div class="qa"><div class="her">Ты меня душишь своим контролем!</div><div class="ans">«Это не контроль. Я не держу тебя — я забочусь о тебе. Моё естественное желание — знать, где ты сейчас. Не потому что не доверяю, а потому что время такое: если что-то случится, я должна быстро прийти на помощь. Я не говорю, что вокруг одни плохие люди. Но неприятности случаются даже с хорошими, сильными, порядочными. Поэтому мы заботимся друг о друге. И когда я ухожу, я тоже хочу, чтобы кто-то знал, где я. Это не поводок. Это семья, где друг друга берегут».</div><div class="why"><b>Почему:</b> вы убираете слово «контроль» и переводите всё в заботу и реальную безопасность, показывая взаимность.</div></div>
+
+    <div class="qa"><div class="her">Домой к девяти? Мне что, пять лет?!</div><div class="ans">«Дело не в возрасте и не в недоверии. Есть правила безопасности, которые я не меняю, как не меняю ремень в машине — он не про то, что я плохо вожу. Давай так: это не жёсткий приказ, а договорённость. Скажи, во сколько тебе реально нужно, объясни почему, и мы найдём время, которое устроит обеих. Но безопасность не обсуждается, время возвращения — да».</div><div class="why"><b>Почему:</b> вы отделяете правила безопасности от договорённостей и показываете, что готовы слышать, а не диктовать.</div></div>
+
+    <div class="qa"><div class="her">Ты живёшь моей жизнью, займись своей!</div><div class="ans">«Справедливо. Мне правда стоит больше жить своей — и я этим займусь. Но знай: я переживаю за тебя не потому, что мне нечем заняться, а потому что ты мне дорога. Я учусь отпускать, и мне это тоже непросто. Давай учиться вместе: ты — быть самостоятельной, я — отпускать».</div><div class="why"><b>Почему:</b> вы не обижаетесь, а честно признаёте долю правды и переводите в совместное взросление.</div></div>
+
+    <div class="qa"><div class="her">Ты меня не понимаешь, ты из другого поколения!</div><div class="ans">«Да, сейчас другое поколение — и я то же самое говорила своим родителям. Прогресс не стоит на месте, и я по мере сил тоже стараюсь изучать нынешние тенденции. Выбор технологий, моды я оставляю за тобой. Но базовые вещи — порядочность, любовь, верность — во все времена одинаковы, они не меняются от поколения к поколению. Подумай над этим. И неужели ты думаешь, что если я из другого поколения, то люблю тебя меньше, чем ты будешь любить своего ребёнка? Навряд ли».</div><div class="why"><b>Почему:</b> вы признаёте разницу эпох без заискивания, но твёрдо оставляете за собой то, что не устаревает. Вопрос про любовь в конце разворачивает спор.</div></div>
+
+    <div class="qa"><div class="her">Зачем ты вообще меня рожала, если всё так?!</div><div class="ans">«Я слышу, как тебе сейчас тяжело, раз ты говоришь такое. Я родила тебя, потому что хотела тебя, и ни секунды об этом не жалею — даже в наши с тобой трудные дни. Что бы ты ни сказала в сердцах, это не изменится. Давай сядем и поговорим о том, что у тебя сейчас на душе».</div><div class="why"><b>Почему:</b> за этой фразой стоит сильная боль, а не реальный вопрос. Вы не пугаетесь, а подтверждаете безусловность и зовёте к разговору о настоящей причине.</div></div>
+
+    <div class="qa"><div class="her">Ты мне больше не указ!</div><div class="ans">«Ты права в том, что я уже не командую тобой, как маленькой, — то время прошло, и это нормально. Я тебе теперь не указчик, а советчик. Захочешь спросить — спрашивай, всегда отвечу честно. А решения твои — за тобой. Так и должно быть, ты взрослеешь».</div><div class="why"><b>Почему:</b> вы не цепляетесь за уходящую власть, а спокойно принимаете переход из руководителя в советника.</div></div>
+  </div>
+</section>
+
+<!-- ЯКОРНЫЙ БЛОК -->
+<section>
+  <div class="wrap">
+    <div class="kicker">Скорая помощь</div>
+    <h2>Когда невыносимо прямо сейчас</h2>
+    <p class="lead">Бывают минуты, когда сил не осталось. Дочь кричит, хлопает дверью, говорит страшные вещи — а у вас внутри всё дрожит. Эта глава — для таких минут. Не для чтения наперёд, а чтобы открыть прямо тогда, когда горит.</p>
+
+    <div class="anchor-block">
+      <h3 style="margin-top:0;">Главное правило этих минут: гибкость — не поражение</h3>
+      <p>Запомните то, что отличает взрослого от ребёнка. Ребёнок действует по принципу «как я сказал, так и будет» — упереться и не уступить ни за что. Мы, взрослые, можем иначе. Если один раз не настояли на своём, это не проигрыш и не повод обижаться навсегда. Мы гибкие — в этом наша сила, а не слабость.</p>
+      <p>И помните самое важное, даже в разгар огромной ссоры: это ваш ребёнок. С ребёнком нельзя развестись, нельзя уйти навсегда, как от чужого человека. Вы всё равно будете рядом, всё равно будете разговаривать — даже если сейчас обиделись и замолчали. Раз разговаривать придётся в любом случае, не сжигайте мосты в запале. Пауза — да. Разрыв — нет.</p>
+    </div>
+
+    <h3>Что делать в саму минуту</h3>
+    <div class="anchor-block">
+      <div class="anchor-step"><div class="n">1</div><p><strong>Остановитесь и не отвечайте сразу.</strong> Самая большая ошибка — реагировать на пике. Скажите себе: «Сейчас я не обязана ничего решать». Дайте себе несколько секунд тишины, прежде чем открыть рот.</p></div>
+      <div class="anchor-step"><div class="n">2</div><p><strong>Сделайте три медленных вдоха.</strong> Это не совет из книжки — это физиология. Медленный выдох снижает накал, и вы возвращаете себе способность думать, а не только чувствовать.</p></div>
+      <div class="anchor-step"><div class="n">3</div><p><strong>Назовите себе, что происходит.</strong> Не «она невыносима», а «ей сейчас плохо, и мне сейчас плохо». Это и есть мгновенный анализ — он вынимает вас из автоматической ссоры.</p></div>
+      <div class="anchor-step"><div class="n">4</div><p><strong>Если чувствуете, что сорвётесь, — выйдите.</strong> Не хлопая дверью, спокойно: «Мне нужно несколько минут, я вернусь, и мы поговорим». Это не слабость. Вы имеете право взять паузу.</p></div>
+      <div class="anchor-step"><div class="n">5</div><p><strong>Когда отступит — вернитесь.</strong> Обязательно. Пауза это не «разошлись навсегда», а способ продолжить разговор, когда вы обе можете слышать: «Я остыла. Давай поговорим спокойно».</p></div>
+    </div>
+
+    <h3>Ещё один способ быстро прийти в себя</h3>
+    <p>Вспомните, что вы делаете, когда маленький ребёнок зашёлся в истерике и не может остановиться. Почти все матери делают одно — идут и умывают его прохладной водой, несколько раз ополаскивают лицо. Не ледяной, не горячей, просто прохладной. И это работает: вода снимает перенапряжение, ребёнок выдыхает.</p>
+    <p>С вами это работает так же. Если чувствуете, что вас трясёт и мысли путаются, — дойдите до раковины, ополосните лицо прохладной водой или подставьте под неё запястья на тридцать секунд. Это быстро стабилизирует нервную систему и возвращает способность мыслить ясно. Это для вас — чтобы прийти в себя, прежде чем продолжить разговор.</p>
+
+    <div class="amber">
+      <div class="lbl">Помните</div>
+      <p>Это пройдёт. Шторм у дочери — не навсегда и не против вас лично. Вы не плохая мать оттого, что вам сейчас тяжело. Вам тяжело, потому что вы живой человек, который любит. А любовь иногда выматывает — и это нормально. Если же руки опускаются день за днём, это сигнал позаботиться и о себе тоже. Вы имеете право на поддержку не меньше, чем ваша дочь.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ЭКЗАМЕНЫ -->
+<section>
+  <div class="wrap">
+    <div class="kicker">Отдельная тема</div>
+    <h2>Когда всё свелось к экзаменам</h2>
+    <p class="lead">Есть период, когда вся семья словно сходит с ума на одной точке — экзамены и поступление. Дом превращается в место, где у дочери спрашивают только про баллы, а её саму будто перестают замечать.</p>
+    <p>Здесь родители, желая лучшего, совершают опасную ошибку: они делают сдачу экзамена конечной целью. Не этапом, а финишем, за которым как будто ничего нет.</p>
+
+    <h3>Что при этом происходит с ребёнком</h3>
+    <p>Когда цель сужается до одной точки — сдать, поступить — и эта точка превращается в вопрос жизни и смерти, подросток живёт в постоянном страхе разочаровать. И это не просто переживания. Это бьёт по телу: бессонница, проблемы с сердцем, истощение нервной системы, тревога, которая не отпускает месяцами. Ребёнок, который много готовится под давлением «иначе всё кончено», расплачивается за это здоровьем. Цена слишком высока.</p>
+
+    <h3>Что делать матери</h3>
+    <p>Снять с экзамена ореол приговора. Экзамен — это проверка знаний на один день, а не оценка дочери как человека и не приговор её будущему. Жизнь не заканчивается на дверях вуза.</p>
+    <p>И главный приём — проговорить несколько путей заранее. Сядьте вместе и спокойно разберите даже самый плохой вариант: что если не сдаст на нужный балл, что если не поступит туда, куда хотела. Не чтобы напугать, а чтобы показать — выходов всегда несколько.</p>
+    <div class="acc" style="margin-top:16px;"><div class="body" style="border-top:none;padding-top:20px;"><div class="say">«Давай посмотрим спокойно. Допустим, не получилось набрать нужный балл. Тогда есть факультет с баллом пониже. Не вышло в вуз сразу — есть колледж, а после него во многие места, особенно в медицину, берут даже с приоритетом, потому что уже есть среднее образование. Не в этом году — попробуем в следующем. Путей много, и ни один из них не тупик».</div></div></div>
+    <p style="margin-top:20px;">Когда у ребёнка в голове только один сценарий — «сдать или катастрофа», — любой сбой ощущается как конец света. Когда вы вслух раскладываете несколько путей, страх теряет хватку. И помните: ваша спокойная вера в то, что с дочерью всё будет в порядке при любом раскладе, действует на неё сильнее любого репетитора.</p>
+  </div>
+</section>
+
+<!-- ЧТО НЕ ГОВОРИТЬ -->
+<section>
+  <div class="wrap">
+    <div class="kicker">Стоп-фразы</div>
+    <h2>Что не говорить дочери</h2>
+    <p class="lead">Есть фразы, которые рушат близость за секунду, даже если сказаны из лучших побуждений. Вот главные, и чем их заменить.</p>
+
+    <div class="swap"><p><span class="no">Не</span> «не выдумывай», «нашла из-за чего реветь» &nbsp;→&nbsp; <span class="yes">а</span> «я вижу, тебе правда больно».</p><div class="why" style="font-size:14px;color:var(--soft);">Обесценивание учит дочь: со своим к маме идти нельзя.</div></div>
+    <div class="swap"><p><span class="no">Не</span> «вот Маша молодец, а ты» &nbsp;→&nbsp; <span class="yes">а</span> отметить саму дочь, без сравнений.</p><div class="why" style="font-size:14px;color:var(--soft);">Сравнение убеждает её, что вы не на её стороне.</div></div>
+    <div class="swap"><p><span class="no">Не</span> «пока живёшь в моём доме, будешь делать как я сказала» &nbsp;→&nbsp; <span class="yes">а</span> «давай договоримся».</p><div class="why" style="font-size:14px;color:var(--soft);">Первое для неё звучит как «меня выгоняют, здесь мне не рады».</div></div>
+    <div class="swap"><p><span class="no">Не</span> «я же тебе говорила» &nbsp;→&nbsp; <span class="yes">а</span> «бывает, это опыт, разберёмся».</p><div class="why" style="font-size:14px;color:var(--soft);">«Я предупреждала» в момент провала закрывает дочь от вас.</div></div>
+    <div class="swap"><p><span class="no">Не</span> «успокойся» &nbsp;→&nbsp; <span class="yes">а</span> «давай позаботимся о тебе».</p><div class="why" style="font-size:14px;color:var(--soft);">«Успокойся» в накале только усиливает бурю.</div></div>
+    <div class="swap"><p><span class="no">Не</span> шутить над телом, весом, носом, даже ласково.</p><div class="why" style="font-size:14px;color:var(--soft);">В этом возрасте юмор про внешность ранит сильнее всего и от самого близкого человека.</div></div>
+    <div class="swap"><p><span class="no">Не</span> «найдёшь другого» при расставании &nbsp;→&nbsp; <span class="yes">а</span> «тебе сейчас больно, я рядом».</p><div class="why" style="font-size:14px;color:var(--soft);">Обесценивание первой боли ранит глубже самой потери.</div></div>
+
+    <div class="flag">
+      <div class="lbl">Когда нужно к специалисту</div>
+      <p>Всё, о чём мы говорили, — про нормальное, пусть и трудное, взросление. Но обратитесь к психологу, если у дочери: подавленность держится несколько недель подряд; она перестала есть или резко изменила отношение к еде; полностью оборвала общение и не выходит из комнаты сутками; появилась стойкая тревога, агрессия или разговоры о том, что она не хочет жить; после расставания или стресса состояние не выравнивается около месяца. Это не значит, что вы не справились. Это значит, что вы достаточно внимательны, чтобы вовремя подставить ещё одну опору.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ДНЕВНИК -->
+<section>
+  <div class="wrap">
+    <div class="kicker">Ваш инструмент</div>
+    <h2>Дневник наблюдений</h2>
+    <p class="lead">Записывайте, что меняется в дочери и в ваших отношениях. Когда видишь динамику на бумаге, становится спокойнее — путь виден. Записи сохраняются в этом браузере.</p>
+    <div class="diary">
+      <label>Что сегодня получилось в разговоре с дочерью</label>
+      <textarea id="d1" placeholder="Например: впервые не сорвалась, когда она грубила — применила технику отражения…"></textarea>
+      <label>Что было трудно и как я с этим обошлась</label>
+      <textarea id="d2" placeholder="Например: захотелось ответить «я же говорила», но сдержалась…"></textarea>
+      <label>Что я заметила в ней хорошего</label>
+      <textarea id="d3" placeholder="Например: сама подошла поговорить вечером…"></textarea>
+      <button class="save" id="saveBtn">Сохранить запись</button>
+      <div class="saved" id="savedMsg"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ВИТРИНА -->
+<section>
+  <div class="wrap">
+    <div class="kicker">Чтобы углубиться</div>
+    <h2>Другие продукты Бэллы Леонидовны</h2>
+    <p class="lead">Если этот практикум был вам полезен, вот что поможет идти дальше — с детьми, с собой, с близкими.</p>
+
+    <a class="shelf-item" href="https://bella-psychologist.com/pravila-v-dom-2.html"><div class="t">12 правил влиять на ребёнка без критики</div><div class="d">Готовые правила и фразы, чтобы влиять на ребёнка без критики и упрёков. Начните с ознакомительного гайда.</div></a>
+    <a class="shelf-item" href="https://bella-psychologist.com/pravila_v_dom.html"><div class="t">Спокойный родитель</div><div class="d">Правила в дом — как сохранять опору и порядок в семье, не срываясь. Начните с гайда.</div></a>
+    <a class="shelf-item" href="https://bella-psychologist.com/moyo-reshenie.html"><div class="t">Сама себе опора</div><div class="d">Для вас, не только для детей: как вернуть устойчивость себе. Гайд «Моё решение».</div></a>
+    <a class="shelf-item" href="https://bella-psychologist.com/gayd-vnutrenniy-kritik.html"><div class="t">Внутренний защитник</div><div class="d">Расчистить путь к новому уровню себя, опереться на собственную силу. Гайд «Внутренний критик».</div></a>
+  </div>
+</section>
+
+<div class="signoff">
+  <div>С заботой о ваших отношениях с дочерью,</div>
+  <div class="name">Бэлла Леонидовна</div>
+</div>
+
+<script>
+  (function(){
+    var ids=['d1','d2','d3'];
+    ids.forEach(function(id){
+      try{var v=localStorage.getItem('doch_'+id);if(v)document.getElementById(id).value=v;}catch(e){}
+    });
+    var btn=document.getElementById('saveBtn');
+    var msg=document.getElementById('savedMsg');
+    btn.addEventListener('click',function(){
+      try{
+        ids.forEach(function(id){localStorage.setItem('doch_'+id,document.getElementById(id).value);});
+        var d=new Date();
+        msg.textContent='Сохранено '+d.toLocaleDateString('ru-RU')+' в '+d.toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'});
+      }catch(e){msg.textContent='Не удалось сохранить в этом браузере.';}
+    });
+  })();
+</script>
+
+</body>
+</html>
