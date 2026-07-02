@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Дочь-подросток. Одно правило — Бэлла Леонидовна</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rose:#C98A9C;
+    --rose-deep:#8C4A5C;
+    --rose-pale:#F6E6EA;
+    --amber:#B8794A;
+    --amber-bg:#FBF3EA;
+    --ink:#2B2630;
+    --muted:#7A7178;
+    --paper:#FAF7F5;
+    --line: rgba(140,74,92,.16);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Manrope',sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:680px;margin:0 auto;padding:0 22px;}
+
+  /* ШАПКА БРЕНДА */
+  .brandbar{background:var(--rose-pale);padding:22px 22px 20px;text-align:center;border-bottom:1px solid var(--line);}
+  .brandbar .name{font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--rose-deep);}
+  .brandbar .rights{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.3px;}
+
+  /* ОБЛОЖКА */
+  .cover{padding:64px 22px 46px;text-align:center;}
+  .cover .kicker{font-size:12px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:var(--rose-deep);margin-bottom:22px;}
+  .cover h1{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(34px,7.5vw,52px);line-height:1.12;color:var(--ink);}
+  .cover .sub{margin-top:20px;font-size:17px;color:var(--muted);max-width:480px;margin-left:auto;margin-right:auto;}
+  .cover .rule{width:64px;height:2px;background:var(--rose);margin:34px auto 0;opacity:.7;}
+
+  /* ТЕКСТ */
+  .prose{padding:8px 0 10px;}
+  .prose p{font-size:17px;margin-bottom:20px;color:var(--ink);}
+  .prose p:last-child{margin-bottom:0;}
+
+  h2.h{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:26px;color:var(--rose-deep);margin:44px 0 16px;text-align:center;}
+
+  /* БЛОК ПРАВИЛА */
+  .rule-block{background:#fff;border:1px solid var(--line);border-radius:18px;padding:30px 26px;margin:34px 0;box-shadow:0 10px 30px rgba(140,74,92,.08);}
+  .rule-block .tag{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--rose-deep);margin-bottom:10px;}
+  .rule-block .old{color:var(--muted);text-decoration:line-through;font-size:16px;}
+  .rule-block .arrow{color:var(--rose);margin:6px 0;font-size:14px;}
+  .rule-block .new{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:24px;color:var(--ink);line-height:1.3;}
+
+  /* ПРИМЕРЫ ФРАЗ */
+  .examples{display:grid;gap:14px;margin:28px 0 8px;}
+  .ex{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;}
+  .ex .from{font-size:14px;color:var(--muted);text-decoration:line-through;margin-bottom:6px;}
+  .ex .to{font-size:16px;color:var(--ink);font-weight:600;}
+  .ex .to::before{content:"→ ";color:var(--rose-deep);}
+
+  /* ЯНТАРНЫЙ БЛОК СОПРОТИВЛЕНИЯ */
+  .amber-block{background:var(--amber-bg);border-left:4px solid var(--amber);border-radius:10px;padding:22px 24px;margin:34px 0;}
+  .amber-block .h{font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--amber);margin-bottom:10px;}
+  .amber-block p{font-size:16px;color:var(--ink);margin:0;}
+
+  /* CTA НА ПРАКТИКУМ */
+  .cta-block{background:linear-gradient(180deg,#fff, var(--rose-pale));border:1px solid var(--line);border-radius:20px;padding:36px 28px;margin:52px 0 20px;text-align:center;}
+  .cta-block h3{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:26px;color:var(--rose-deep);margin-bottom:16px;line-height:1.25;}
+  .cta-block p{font-size:16px;color:var(--ink);text-align:left;margin-bottom:16px;}
+  .cta-block .price{font-size:15px;color:var(--muted);margin-bottom:22px;}
+  .btn{display:inline-block;background:var(--rose-deep);color:#fff;font-weight:700;font-size:16px;text-decoration:none;padding:16px 36px;border-radius:30px;transition:.2s;}
+  .btn:hover{background:var(--ink);}
+
+  /* ПОДПИСЬ */
+  .sign{text-align:center;padding:40px 22px 60px;color:var(--muted);font-size:15px;}
+  .sign .name{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:19px;color:var(--rose-deep);margin-top:4px;}
+
+  @media (max-width:480px){
+    .cover{padding:48px 18px 34px;}
+    .rule-block{padding:24px 18px;}
+    .cta-block{padding:28px 20px;}
+  }
+</style>
+</head>
+<body>
+
+  <div class="brandbar">
+    <div class="name">Полянинова Бэлла Леонидовна</div>
+    <div class="rights">Авторский материал. Все права защищены.</div>
+  </div>
+
+  <div class="wrap">
+
+    <div class="cover">
+      <div class="kicker">Родителям девочек-подростков</div>
+      <h1>Дочь-подросток.<br>Одно правило</h1>
+      <p class="sub">Что сказать вместо «успокойся»: одна фраза, которая работает с первого раза — и дочь слышит вас, а не хлопает дверью</p>
+      <div class="rule"></div>
+    </div>
+
+    <div class="prose">
+      <p>Она хлопнула дверью в третий раз за неделю, и вы уже знаете, что будет дальше. Вы говорите «успокойся» — спокойным голосом, без крика, ровно так, как учат все статьи про правильное родительство. И в ответ получаете взгляд, от которого хочется выйти из комнаты и больше туда не заходить. Дело не в том, что вы сказали это неправильным тоном. Дело в самом слове.</p>
+
+      <p>«Успокойся» звучит для подростка не как забота, а как требование немедленно перестать чувствовать то, что она чувствует. Мозг в этом возрасте реагирует на такие команды не смирением, а ростом сопротивления: эмоциональные центры уже созрели и работают на полную мощность, а лобные доли, которые должны эти эмоции тормозить, достроятся только к двадцати с небольшим годам. Когда вы просите «успокоиться», вы обращаетесь к той части психики, которая физически ещё не может это сделать. Отсюда и результат обратный ожидаемому: не тишина, а новый виток.</p>
+    </div>
+
+    <h2 class="h">Правило</h2>
+
+    <div class="rule-block">
+      <div class="tag">Замена</div>
+      <div class="old">«Успокойся»</div>
+      <div class="arrow">заменяем на</div>
+      <div class="new">«Давай позаботимся о тебе»</div>
+    </div>
+
+    <div class="prose">
+      <p>Формулировка признаёт, что дочери сейчас плохо, и предлагает действие рядом с ней, а не команду перестать быть в этом состоянии.</p>
+    </div>
+
+    <h2 class="h">Как это звучит на практике</h2>
+
+    <div class="examples">
+      <div class="ex">
+        <div class="from">Успокойся, ничего страшного</div>
+        <div class="to">Вижу, что тебе сейчас тяжело. Давай посидим рядом, пока не станет легче</div>
+      </div>
+      <div class="ex">
+        <div class="from">Хватит истерить</div>
+        <div class="to">Тебе сейчас нужно побыть одной или поговорить со мной?</div>
+      </div>
+      <div class="ex">
+        <div class="from">Возьми себя в руки</div>
+        <div class="to">Давай позаботимся о тебе — что тебе сейчас поможет?</div>
+      </div>
+    </div>
+
+    <div class="amber-block">
+      <div class="h">Будет сопротивление</div>
+      <p>В первый раз дочь может ответить резко или промолчать — не потому, что правило не работает, а потому, что она не привыкла к такому обращению и проверяет, всерьёз ли это. Задача — повторить фразу спокойно ещё раз, не отступая обратно к старой формулировке.</p>
+    </div>
+
+    <div class="cta-block">
+      <h3>Дочь-подросток: что делать родителям, когда у дочери переходный возраст</h3>
+      <p>То, что вы только что прочитали, — лишь один шаг из системы, которая нужна, чтобы пройти переходный возраст дочери, не теряя контакта и не срываясь в крик на каждом хлопке двери. Полная поддержка на весь этот период собрана в практикуме.</p>
+      <p>Внутри — рабочие фразы и конкретные действия на три возраста: десять–тринадцать, тринадцать–шестнадцать, шестнадцать–восемнадцать. План на четыре недели, который меняет не то, что вы знаете о дочери, а то, что вы делаете каждый день: как восстановить контакт, как держать границы без крика, что делать со своим раздражением, когда оно накрывает. Банк из тридцати с лишним готовых ответов на трудные и обидные фразы, которые дочь бросает в порыве. Дневник наблюдений, который часто вскрывает: за вспышкой стоит не характер, а недосып или голод.</p>
+      <p>Практикум переходит в вашу собственность за 1990 рублей — он остаётся с вами на всё взросление дочери, а не на один вечер.</p>
+      <a class="btn" href="https://app.lava.top/products/69eebb23-a572-42ce-9017-2ce95b342b56" target="_blank">Получить доступ за 1990 ₽</a>
+    </div>
+
+  </div>
+
+  <div class="sign">
+    С уважением,
+    <div class="name">Бэлла Леонидовна</div>
+  </div>
+
+</body>
+</html>
