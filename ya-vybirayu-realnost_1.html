@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Я выбираю реальность</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family:'Manrope', sans-serif;
+    background:#FAFAF8;
+    color:#1a1a1a;
+    line-height:1.6;
+  }
+  .wrap { max-width:640px; margin:0 auto; padding:0 24px 80px; }
+  .rights {
+    font-size:13px;
+    color:#8a8a86;
+    text-align:center;
+    padding:20px 0 0;
+    letter-spacing:.02em;
+  }
+  header { text-align:center; padding:32px 0 40px; }
+  h1 {
+    font-family:'Cormorant Garamond', serif;
+    font-weight:700;
+    font-size:44px;
+    line-height:1.15;
+    color:#141414;
+  }
+  .subtitle {
+    font-size:16px;
+    font-weight:600;
+    color:#B11D2A;
+    margin-top:10px;
+    letter-spacing:.02em;
+    text-transform:uppercase;
+  }
+  .rule-line { width:56px; height:3px; background:#B11D2A; margin:24px auto 0; opacity:.6; }
+
+  .opening p { font-size:18px; margin-bottom:18px; }
+  .opening { padding-bottom:8px; }
+
+  .bridge {
+    font-family:'Cormorant Garamond', serif;
+    font-size:24px;
+    font-weight:600;
+    line-height:1.4;
+    text-align:center;
+    padding:36px 0;
+    color:#141414;
+  }
+
+  .deep-section {
+    margin:32px 0;
+    padding:30px 26px;
+    background:#fff;
+    border:1px solid #e4e1d8;
+    border-radius:18px;
+  }
+  .deep-section.tone-lavender { background:#F1EDFA; border-color:#E1D8F2; }
+  .deep-section.tone-mint { background:#E9F5EE; border-color:#D5EBDF; }
+  .deep-section.tone-peach { background:#FDF0E6; border-color:#F5DDC6; }
+  .deep-section.tone-sky { background:#E9F3FB; border-color:#CFE3F5; }
+  .deep-section.tone-lavender h3 { color:#5A3F94; }
+  .deep-section.tone-mint h3 { color:#256B47; }
+  .deep-section.tone-peach h3 { color:#B0611F; }
+  .deep-section.tone-sky h3 { color:#265E8C; }
+  .deep-section h3 {
+    font-family:'Cormorant Garamond', serif;
+    font-size:24px;
+    margin-bottom:14px;
+  }
+  .deep-section p { font-size:16px; margin-bottom:16px; }
+  .trap {
+    font-size:15px;
+    padding:12px 0;
+    border-top:1px solid #eeece5;
+    line-height:1.5;
+  }
+  .trap b { display:block; font-size:16px; margin-bottom:3px; color:#141414; }
+
+  .cost-list { display:flex; flex-direction:column; gap:2px; }
+  .cost-item {
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:10px 0;
+    font-size:16px;
+    border-bottom:1px solid #eeece5;
+    cursor:pointer;
+  }
+  .cost-item:last-child { border-bottom:none; }
+  .cost-item input { width:19px; height:19px; accent-color:#B11D2A; }
+  .cost-counter {
+    margin-top:16px;
+    font-size:14px;
+    font-weight:700;
+    color:#B11D2A;
+    text-align:right;
+  }
+
+  .exercise-cols { display:flex; flex-direction:column; gap:14px; }
+  .exercise-col { flex:1; }
+  .exercise-label {
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    color:#8a8a86;
+    margin-bottom:8px;
+  }
+  .exercise-col textarea {
+    width:100%;
+    min-height:90px;
+    padding:14px;
+    font-family:'Manrope', sans-serif;
+    font-size:15px;
+    border:1px solid #dedad0;
+    border-radius:10px;
+    background:#FAFAF8;
+    resize:vertical;
+  }
+  .exercise-question {
+    margin-top:18px;
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:18px;
+  }
+
+  .index-scale input[type="range"] {
+    width:100%;
+    accent-color:#B11D2A;
+    margin:10px 0;
+  }
+  .index-labels {
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    font-size:12px;
+    color:#8a8a86;
+  }
+  .index-labels span { flex:1; }
+  .index-labels span:last-child { text-align:right; }
+  .index-value {
+    margin-top:14px;
+    font-size:16px;
+    font-weight:700;
+    color:#141414;
+  }
+
+  .diagnostic {
+    background:#F1EFE9;
+    border-radius:18px;
+    padding:32px 28px;
+    margin:28px 0;
+  }
+  .diagnostic h3 {
+    font-family:'Cormorant Garamond', serif;
+    font-size:28px;
+    margin-bottom:6px;
+  }
+  .diagnostic .hint { font-size:14px; color:#6b6b66; margin-bottom:20px; line-height:1.5; }
+
+  .quiz-list { margin-top:4px; }
+  .check-card {
+    display:flex;
+    align-items:flex-start;
+    gap:14px;
+    background:#fff;
+    border-radius:14px;
+    padding:20px;
+    margin-bottom:12px;
+    box-shadow:0 3px 12px rgba(20,20,20,.05);
+    cursor:pointer;
+  }
+  .check-card input { width:22px; height:22px; margin-top:1px; accent-color:#B11D2A; flex-shrink:0; }
+  .check-card span { font-size:16px; line-height:1.5; }
+  .check-lavender { background:#fff; }
+  .check-lavender input { accent-color:#6A4FB5; }
+  .quiz-btn {
+    display:block;
+    width:100%;
+    margin-top:6px;
+    padding:15px;
+    background:#141414;
+    color:#fff;
+    border:none;
+    border-radius:12px;
+    font-family:'Manrope', sans-serif;
+    font-weight:700;
+    font-size:16px;
+    cursor:pointer;
+  }
+  .quiz-btn:hover { background:#2a2a2a; }
+  .quiz-result {
+    margin-top:16px;
+    font-size:16px;
+    font-weight:600;
+    line-height:1.5;
+    display:none;
+  }
+  .quiz-result.show {
+    display:block;
+    padding:20px;
+    border-radius:12px;
+    animation:fadein .3s ease;
+  }
+  .quiz-result.low { background:#EAF1EE; color:#2F6B4F; }
+  .quiz-result.high { background:#FBEAEA; color:#8a1f27; }
+  @keyframes fadein { from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);} }
+
+  .two-questions { margin-top:26px; display:flex; flex-direction:column; gap:14px; }
+  .q-card { border-radius:16px; padding:22px 22px; }
+  .q-blue-light { background:#E4F0FA; }
+  .q-blue-deep { background:#CFE2F5; }
+  .q-label {
+    font-family:'Cormorant Garamond', serif;
+    font-size:14px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color:#265E8C;
+    margin-bottom:8px;
+  }
+  .q-text { font-size:16px; line-height:1.5; color:#1a2a38; }
+
+  .stage-title {
+    font-family:'Cormorant Garamond', serif;
+    font-size:15px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color:#B11D2A;
+    text-align:center;
+    margin:52px 0 8px;
+  }
+  .stage-sub {
+    text-align:center;
+    font-size:14px;
+    color:#6b6b66;
+    margin-bottom:24px;
+  }
+
+  .stage-panel {
+    margin:44px -24px 0;
+    padding:40px 24px 24px;
+  }
+  .stage-blue { background:#EDF4FB; }
+  .stage-sand { background:#FBF3E6; }
+  .stage-rose { background:#FBEEEA; }
+  .stage-blue .stage-title { color:#265E8C; }
+  .stage-sand .stage-title { color:#B0611F; }
+  .stage-rose .stage-title { color:#B11D2A; }
+  .stage-blue .rule, .stage-sand .rule, .stage-rose .rule { border-bottom-color:rgba(20,20,20,.08); }
+
+  .rule { border-bottom:1px solid #e4e1d8; }
+  .rule-head {
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    padding:22px 4px;
+    cursor:pointer;
+    user-select:none;
+  }
+  .rule-num {
+    font-family:'Cormorant Garamond', serif;
+    font-size:26px;
+    font-weight:700;
+    color:#B11D2A;
+    min-width:32px;
+  }
+  .rule-title {
+    font-size:18px;
+    font-weight:700;
+    flex:1;
+  }
+  .chevron {
+    font-size:20px;
+    color:#8a8a86;
+    transition:transform .25s ease;
+  }
+  .rule.open .chevron { transform:rotate(180deg); }
+  .rule-body {
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .35s ease;
+  }
+  .rule.open .rule-body { max-height:2000px; }
+  .rule-body-inner { padding:0 4px 28px 46px; }
+  .rule-body-inner h4 {
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    color:#8a8a86;
+    margin:16px 0 6px;
+  }
+  .rule-body-inner h4:first-child { margin-top:0; }
+  .rule-body-inner p { font-size:16px; }
+  .today-box {
+    background:#EAF1EE;
+    border-radius:12px;
+    padding:16px 18px;
+    margin:14px 0;
+    font-size:16px;
+  }
+  .today-box b { color:#2F6B4F; }
+  .resistance {
+    background:#FBF0DD;
+    border-left:3px solid #D79A1E;
+    border-radius:8px;
+    padding:14px 18px;
+    margin:14px 0;
+    font-size:15px;
+    color:#5c4a1e;
+  }
+  .diary-q {
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:18px;
+    margin-top:14px;
+    color:#141414;
+  }
+
+  .closing {
+    margin-top:56px;
+    padding:32px 0;
+    text-align:center;
+  }
+  .closing p { font-size:17px; margin-bottom:14px; }
+
+  .status-note {
+    margin-top:40px;
+    padding:20px 24px;
+    background:#f1f1ef;
+    border-radius:14px;
+    font-size:14px;
+    color:#6b6b66;
+    text-align:center;
+  }
+
+  @media (max-width:480px) {
+    h1 { font-size:34px; }
+    .bridge { font-size:20px; }
+    .rule-body-inner { padding-left:32px; }
+  }
+</style>
+</head>
+<body>
+<div class="rights">Полянинова Бэлла Леонидовна. Авторский продукт. Все права защищены.</div>
+
+<div class="wrap">
+
+  <header>
+    <h1>Я выбираю реальность</h1>
+    <div class="subtitle">9 правил, после которых вы перестанете ждать человека, которого не существует</div>
+    <div class="rule-line"></div>
+  </header>
+
+  <section class="opening">
+    <p>Вы давно ждёте, что он станет другим. Бросит курить, реже возьмётся за пиво или что покрепче. Начнёт больше зарабатывать, откроет наконец своё дело. Станет внимательнее, ответственнее — будет выбирать вас, а не работу, не друзей, не телефон.</p>
+    <p>Он и сам это знает. Поэтому и говорит: вот закончится проект, выплатим ипотеку, станет полегче — и всё изменится.</p>
+    <p>Вы слушаете это уже пятый год и снова верите. Не потому что вам так важны поездки и новый дом сами по себе — а потому что важно другое, прямо сейчас: чтобы помог по дому, чтобы вместе занимался дачей, а не она одна, чтобы просто сказал доброе слово и посмотрел на вас, а не в телефон.</p>
+    <p>Вы думаете, что он заботится. А у него на этот счёт вообще другие мысли.</p>
+  </section>
+
+  <div class="diagnostic">
+    <h3>Узнаёте себя?</h3>
+    <div class="hint">Отметьте галочкой то, что знакомо, и нажмите «Посчитать».</div>
+    <div class="quiz-list">
+      <label class="check-card"><input type="checkbox" class="diag-check"><span>Он говорит «вот закончится проект — и всё изменится» не первый год.</span></label>
+      <label class="check-card"><input type="checkbox" class="diag-check"><span>Проект заканчивается, начинается следующий с тем же обещанием.</span></label>
+      <label class="check-card"><input type="checkbox" class="diag-check"><span>Вы откладываете свои планы, потому что «скоро станет легче» — и легче не становится.</span></label>
+      <label class="check-card"><input type="checkbox" class="diag-check"><span>Вы находите ему оправдание раньше, чем он сам успевает объясниться.</span></label>
+      <label class="check-card"><input type="checkbox" class="diag-check"><span>Друзьям и себе вы описываете не то, какой он сейчас, а то, каким он «на самом деле» станет.</span></label>
+      <label class="check-card"><input type="checkbox" class="diag-check"><span>Вы помните каждое его обещание, даже сказанное между делом. Иногда напоминаете: «Ты же сам говорил». А он не отрицает — просто снова находит причину, почему не сейчас.</span></label>
+      <label class="check-card"><input type="checkbox" class="diag-check"><span>Вы боитесь спросить прямо, потому что ответ может разрушить то, во что вы верите.</span></label>
+    </div>
+    <button class="quiz-btn" onclick="calcDiag()">Посчитать</button>
+    <div class="quiz-result" id="diagResult"></div>
+
+    <div class="two-questions">
+      <div class="q-card q-blue-light">
+        <div class="q-label">Вопрос первый</div>
+        <div class="q-text">То, чего вы ждёте, — в его силах вообще? Или это уровень, до которого он по своему складу не дотягивается — не потому что ленится, а потому что не так устроен.</div>
+      </div>
+      <div class="q-card q-blue-deep">
+        <div class="q-label">Вопрос второй</div>
+        <div class="q-text">Он хоть раз показывал делом, пусть в малом, что способен на то, чего вы ждёте? Или эту способность вы придумали сами и одолжили ему.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="deep-section tone-lavender">
+    <h3>Почему вы продолжаете ждать</h3>
+    <p>Большинство женщин думают, что продолжают ждать, потому что любят. Это не совсем так. Отметьте галочкой то, что про вас.</p>
+    <label class="check-card check-lavender"><input type="checkbox" class="trap-check"><span><b>Жалко потерянных лет.</b> Кажется, что уйти сейчас — значит признать, что всё это время было зря.</span></label>
+    <label class="check-card check-lavender"><input type="checkbox" class="trap-check"><span><b>Кажется, что осталось совсем немного.</b> Столько уже пережили — значит, до изменений буквально один шаг.</span></label>
+    <label class="check-card check-lavender"><input type="checkbox" class="trap-check"><span><b>Иногда он действительно становится таким, каким вы мечтали его видеть.</b> Эти редкие моменты снова дают надежду.</span></label>
+    <label class="check-card check-lavender"><input type="checkbox" class="trap-check"><span><b>Страшно признать не только правду о нём, но и правду о собственном выборе.</b></span></label>
+    <div class="cost-counter" id="trapCounter">Узнали себя: 0 из 4</div>
+  </div>
+
+  <div class="deep-section tone-mint">
+    <h3>Сколько стоит ваше ожидание?</h3>
+    <p>Пока вы ждёте его изменений, что уже откладывается? Отметьте то, что откладываете сейчас.</p>
+    <div class="cost-list">
+      <label class="cost-item"><input type="checkbox"> Отпуск</label>
+      <label class="cost-item"><input type="checkbox"> Рождение ребёнка</label>
+      <label class="cost-item"><input type="checkbox"> Покупка квартиры</label>
+      <label class="cost-item"><input type="checkbox"> Переезд</label>
+      <label class="cost-item"><input type="checkbox"> Смена работы</label>
+      <label class="cost-item"><input type="checkbox"> Собственное лечение</label>
+      <label class="cost-item"><input type="checkbox"> Отдых</label>
+      <label class="cost-item"><input type="checkbox"> Близость</label>
+      <label class="cost-item"><input type="checkbox"> Чувство безопасности</label>
+      <label class="cost-item"><input type="checkbox"> Уважение к себе</label>
+    </div>
+    <div class="cost-counter" id="costCounter">Отмечено: 0 из 10</div>
+  </div>
+
+  <div class="deep-section tone-peach">
+    <h3>Кто этот человек?</h3>
+    <p>Заполните честно, фактами — не тем, что чувствуете, а тем, что происходит на самом деле.</p>
+    <div class="exercise-cols">
+      <div class="exercise-col">
+        <div class="exercise-label">Какой он сегодня</div>
+        <textarea placeholder="Пишите факты о том, какой он сейчас"></textarea>
+      </div>
+      <div class="exercise-col">
+        <div class="exercise-label">Каким я надеюсь его увидеть</div>
+        <textarea placeholder="Пишите то, на что надеетесь"></textarea>
+      </div>
+    </div>
+    <div class="exercise-question">Когда оба списка будут готовы, задайте себе один вопрос: на какой колонке держатся ваши отношения?</div>
+  </div>
+
+  <div class="deep-section tone-sky">
+    <h3>Индекс ожидания</h3>
+    <p>Сколько процентов ваших сегодняшних решений зависит от его будущих изменений?</p>
+    <div class="index-scale">
+      <input type="range" min="0" max="10" value="5" id="indexRange" oninput="document.getElementById('indexVal').textContent = this.value">
+      <div class="index-labels">
+        <span>0 — моя жизнь не зависит от его обещаний</span>
+        <span>10 — почти все мои планы начинаются со слов «когда он…»</span>
+      </div>
+      <div class="index-value">Ваш индекс: <span id="indexVal">5</span></div>
+    </div>
+  </div>
+
+  <div class="bridge">
+    Дальше — не про то, как заставить его стать другим.<br>Про то, что из этого можете сделать вы, пока он решает сам.
+  </div>
+
+  <!-- ЭТАП 1 -->
+  <div class="stage-panel stage-blue">
+  <div class="stage-title">Этап первый</div>
+  <div class="stage-sub">Перестаньте достраивать за него — вы перестаёте жить его потенциалом</div>
+
+  <div class="rule">
+    <div class="rule-head" onclick="toggleRule(this)">
+      <div class="rule-num">1</div>
+      <div class="rule-title">Хватит закрывать его дела</div>
+      <div class="chevron">⌄</div>
+    </div>
+    <div class="rule-body"><div class="rule-body-inner">
+      <h4>Ловушка</h4>
+      <p>Пока вы дозваниваетесь за него в поликлинику, оплачиваете просроченный штраф, доделываете то, что он не закончил, — у него нет ни одной причины что-то менять. Всё и так работает, просто работаете за двоих вы.</p>
+      <div class="today-box"><b>Сегодня:</b> выберите одно дело, которое обычно доделываете за него, и в этот раз оставьте как есть — не напоминайте, не подхватывайте.</div>
+      <div class="resistance"><b>Будет сопротивление.</b> «Если я не сделаю, вообще ничего не будет». Возможно. Но пока вы это делаете, у него и не появится повода сделать самому.</div>
+      <div class="diary-q">Что из его дел вы делаете так давно, что уже не замечаете, что это не ваше?</div>
+    </div></div>
+  </div>
+
+  <div class="rule">
+    <div class="rule-head" onclick="toggleRule(this)">
+      <div class="rule-num">2</div>
+      <div class="rule-title">Уберите напоминания и контроль</div>
+      <div class="chevron">⌄</div>
+    </div>
+    <div class="rule-body"><div class="rule-body-inner">
+      <h4>Ловушка</h4>
+      <p>Просьбы, напоминания, мягкие подталкивания кажутся заботой, а на деле снижают его собственное желание. Человек меняется от своего решения, не от чужого давления — чем больше вы толкаете, тем меньше у него внутреннего повода двигаться самому.</p>
+      <div class="today-box"><b>Сегодня:</b> один раз промолчите там, где обычно напомнили бы. Просто один раз, без объяснений.</div>
+      <div class="resistance"><b>Будет сопротивление.</b> Внутреннее — тревога, что без напоминания ничего не случится. Это неприятное чувство, но оно не равно факту.</div>
+      <div class="diary-q">О чём вы напоминаете чаще всего — и что случится, если перестать?</div>
+    </div></div>
+  </div>
+
+  <div class="rule">
+    <div class="rule-head" onclick="toggleRule(this)">
+      <div class="rule-num">3</div>
+      <div class="rule-title">Дайте ему столкнуться с последствиями</div>
+      <div class="chevron">⌄</div>
+    </div>
+    <div class="rule-body"><div class="rule-body-inner">
+      <h4>Ловушка</h4>
+      <p>Не наказание — а естественный результат его бездействия, который вы обычно смягчаете или предотвращаете. Пока вы стоите между ним и последствиями, у бездействия нет цены.</p>
+      <div class="today-box"><b>Сегодня:</b> назовите себе одну ситуацию, где вы обычно смягчаете последствия за него, и решите — в следующий раз не вмешиваться.</div>
+      <div class="resistance"><b>Будет сопротивление.</b> «Но пострадаем и мы оба, не только он». Иногда это так. Вопрос — сколько ещё лет вы готовы платить эту цену за него.</div>
+      <div class="diary-q">Какие последствия его решений вы сейчас несёте вместо него?</div>
+    </div></div>
+  </div>
+  </div>
+
+  <!-- ЭТАП 2 -->
+  <div class="stage-panel stage-sand">
+  <div class="stage-title">Этап второй</div>
+  <div class="stage-sub">Постройте свою жизнь отдельно — вы возвращаете себе собственную жизнь</div>
+
+  <div class="rule">
+    <div class="rule-head" onclick="toggleRule(this)">
+      <div class="rule-num">4</div>
+      <div class="rule-title">Точка выплаты</div>
+      <div class="chevron">⌄</div>
+    </div>
+    <div class="rule-body"><div class="rule-body-inner">
+      <h4>Ловушка</h4>
+      <p>Он выплачивает кредит и напоминает об этом при каждом удобном случае — как будто несёт основную тяжесть один. При этом на ваши деньги куплена еда, оплачена помощь его маме, одежда и кружки детей. Он вносит один платёж и считает, что сделал больше вас.</p>
+      <div class="today-box"><b>Сегодня:</b> сведите расходы за этот месяц в одну таблицу — что фактически покрывает каждый из вас.</div>
+      <div class="resistance"><b>Будет сопротивление.</b> «Я же выплачиваю кредит, что ты ещё хочешь». В ответ — не спор, а цифры: платёж по кредиту и то, на что уходят ваши деньги, — это два разных списка.</div>
+      <div class="diary-q">Кто в вашей паре фактически платит за жизнь каждый день, а кто получает признание за один платёж в месяц?</div>
+    </div></div>
+  </div>
+
+  <div class="rule">
+    <div class="rule-head" onclick="toggleRule(this)">
+      <div class="rule-num">5</div>
+      <div class="rule-title">Своя дата, а не его обещание</div>
+      <div class="chevron">⌄</div>
+    </div>
+    <div class="rule-body"><div class="rule-body-inner">
+      <h4>Ловушка</h4>
+      <p>«Закончится ремонт», «пройдёт аврал на работе», «дети подрастут» — у каждой из этих причин нет чёткой финальной точки, а значит, и обещанная «нормальная жизнь» не наступает никогда.</p>
+      <div class="today-box"><b>Сегодня:</b> назначьте календарную дату — свою, не зависящую от его дел, — когда происходит то, что вы откладывали.</div>
+      <div class="resistance"><b>Будет сопротивление.</b> «Сейчас не время, давай доживём — тогда решим». Это и есть момент, когда решение снова откладывается.</div>
+      <div class="diary-q">Сколько раз вы уже слышали «вот закончим — и тогда», и чем это заканчивалось?</div>
+    </div></div>
+  </div>
+
+  <div class="rule">
+    <div class="rule-head" onclick="toggleRule(this)">
+      <div class="rule-num">6</div>
+      <div class="rule-title">Финансовая независимость</div>
+      <div class="chevron">⌄</div>
+    </div>
+    <div class="rule-body"><div class="rule-body-inner">
+      <h4>Ловушка</h4>
+      <p>Ожидание, что его доход вырастет и всё решится само, держит все ваши собственные планы в подвешенном состоянии.</p>
+      <div class="today-box"><b>Сегодня:</b> отложите на свой счёт хотя бы небольшую сумму отдельно — независимо от его планов.</div>
+      <div class="resistance"><b>Будет сопротивление.</b> Внутреннее — «а вдруг это прозвучит как недоверие». Это не недоверие. Это ответственность за собственные планы.</div>
+      <div class="diary-q">На какую сумму вы сейчас рассчитываете, которой пока не существует?</div>
+    </div></div>
+  </div>
+  </div>
+
+  <!-- ЭТАП 3 -->
+  <div class="stage-panel stage-rose">
+  <div class="stage-title">Этап третий</div>
+  <div class="stage-sub">Примите решение — вы решаете, опираясь на факты, а не на надежду</div>
+
+  <div class="rule">
+    <div class="rule-head" onclick="toggleRule(this)">
+      <div class="rule-num">7</div>
+      <div class="rule-title">Смотрите на повторения, а не на обещания</div>
+      <div class="chevron">⌄</div>
+    </div>
+    <div class="rule-body"><div class="rule-body-inner">
+      <h4>Ловушка</h4>
+      <p>Мы оцениваем человека по самым ярким моментам. Психика запоминает красивый разговор, неожиданную заботу, хороший отпуск. Но жизнь строится не из исключений. Она строится из повторений.</p>
+      <div class="today-box"><b>Сегодня:</b> ответьте честно — что в ваших отношениях повторяется чаще всего. Именно это и есть ваши отношения.</div>
+      <div class="resistance"><b>Будет сопротивление.</b> Захочется вспомнить лучшие моменты. Но именно повторения показывают, как человек живёт на самом деле.</div>
+      <div class="diary-q">Что повторяется уже несколько лет подряд независимо от обещаний?</div>
+    </div></div>
+  </div>
+
+  <div class="rule">
+    <div class="rule-head" onclick="toggleRule(this)">
+      <div class="rule-num">8</div>
+      <div class="rule-title">Разговор без ультиматума</div>
+      <div class="chevron">⌄</div>
+    </div>
+    <div class="rule-body"><div class="rule-body-inner">
+      <h4>Ловушка</h4>
+      <p>«Если не изменишься — я уйду» звучит как решение, а на деле снова ставка на его будущую версию: вы опять ждёте, просто с угрозой в конце.</p>
+      <div class="today-box"><b>Сегодня:</b> сформулируйте для себя одним предложением — не что он должен сделать, а как вы теперь будете жить сами.</div>
+      <div class="resistance"><b>Будет сопротивление.</b> Он может услышать это как манипуляцию или как обиду. Формулировка о себе, не о нём, снимает большую часть этого.</div>
+      <div class="diary-q">Как звучит ваше решение, если убрать из него слово «если»?</div>
+    </div></div>
+  </div>
+
+  <div class="rule">
+    <div class="rule-head" onclick="toggleRule(this)">
+      <div class="rule-num">9</div>
+      <div class="rule-title">Остаться или уйти</div>
+      <div class="chevron">⌄</div>
+    </div>
+    <div class="rule-body"><div class="rule-body-inner">
+      <h4>Ловушка</h4>
+      <p>Это не про смирение и не про то, чтобы разрешить ему ничего не менять. Это выбор: остаться и строить жизнь на условиях, которые вы теперь называете вслух, — или уйти. Оба варианта не поражение.</p>
+      <div class="today-box"><b>Сегодня:</b> запишите для себя, без черновика для него, — что вы выбираете сейчас, при том человеке, какой он есть сегодня.</div>
+      <div class="resistance"><b>Будет сопротивление.</b> Страх, что назвать выбор вслух — значит сделать его необратимым. Это не так. Выбор можно пересматривать, но он должен быть назван честно.</div>
+      <div class="diary-q">Вы сегодня строите жизнь с человеком, которого видите каждый день, или продолжаете ждать того, кого всё ещё нет?</div>
+    </div></div>
+  </div>
+  </div>
+
+  <div class="closing">
+    <p>Ни одно из этих правил не требует, чтобы он стал другим человеком.</p>
+    <p>Это не призыв перестать заботиться о нём. Это тренировка принимать решения на основании фактов, а не надежды.</p>
+    <p>И это не только про него. Это про то, кто пишет сценарий вашей жизни — вы сами или ожидание. Эта ценность остаётся с вами независимо от того, что вы в итоге решите — остаться или уйти.</p>
+  </div>
+
+  <div class="status-note">Полянинова Бэлла Леонидовна. Психолог. Авторский продукт. Все права защищены.</div>
+
+</div>
+
+<script>
+  function toggleRule(headEl) {
+    const rule = headEl.parentElement;
+    rule.classList.toggle('open');
+  }
+
+  function calcDiag() {
+    const total = document.querySelectorAll('.diag-check').length;
+    const checked = document.querySelectorAll('.diag-check:checked').length;
+    const el = document.getElementById('diagResult');
+    let tier, text;
+    if (checked >= 3) {
+      tier = 'high';
+      text = 'Отмечено: ' + checked + ' из ' + total + '. Вы не с человеком живёте. Вы живёте с его будущей версией, которую сочинили сами.';
+    } else {
+      tier = 'low';
+      text = 'Отмечено: ' + checked + ' из ' + total + '. Пока это не система — но стоит последить за собой.';
+    }
+    el.className = 'quiz-result show ' + tier;
+    el.textContent = text;
+    el.scrollIntoView({behavior:'smooth', block:'center'});
+  }
+
+  document.querySelectorAll('.trap-check').forEach(box => {
+    box.addEventListener('change', () => {
+      const total = document.querySelectorAll('.trap-check').length;
+      const checked = document.querySelectorAll('.trap-check:checked').length;
+      document.getElementById('trapCounter').textContent = 'Узнали себя: ' + checked + ' из ' + total;
+    });
+  });
+
+  document.querySelectorAll('.cost-item input[type="checkbox"]').forEach(box => {
+    box.addEventListener('change', () => {
+      const total = document.querySelectorAll('.cost-item input[type="checkbox"]').length;
+      const checked = document.querySelectorAll('.cost-item input[type="checkbox"]:checked').length;
+      document.getElementById('costCounter').textContent = 'Отмечено: ' + checked + ' из ' + total;
+    });
+  });
+</script>
+</body>
+</html>
