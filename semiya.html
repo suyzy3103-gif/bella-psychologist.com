@@ -445,17 +445,20 @@
   .author { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--rose); margin-top: 44px; font-weight: 300; }
 
   /* ── STICKY BAR ── */
-  .sticky-bar {
+  .sticky-wrap {
     position: fixed;
     bottom: 0; left: 0; right: 0;
-    background: var(--rose-dark);
     z-index: 999;
+    display: flex;
+    flex-direction: column;
+  }
+  .sticky-row {
     padding: 14px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 12px;
-    box-shadow: 0 -4px 24px rgba(44,31,28,0.2);
+    box-shadow: 0 -4px 24px rgba(44,31,28,0.15);
   }
   .sticky-text { flex: 1; }
   .sticky-title {
@@ -484,7 +487,7 @@
   .sticky-btn:hover { opacity: 0.85; transform: scale(1.06); }
   .sticky-btn.tg { background: #2AABEE; }
   .sticky-btn.wa { background: #25D366; }
-  body { padding-bottom: 180px; }
+  body { padding-bottom: 300px; }
 
 </style>
 </head>
@@ -509,7 +512,7 @@
   <div style="padding: 48px 28px 0;">
     <p class="menu-eyebrow">Семья в приоритете</p>
     <h2 class="menu-title">Выберите шаг</h2>
-    <p class="menu-hint">Начните с любого — хоть с первого, хоть с пятого.</p>
+    <p class="menu-hint">Начните с любого — хоть с первого, хоть с третьего.</p>
   </div>
   <div style="padding: 0 28px 52px; flex:1;">
 
@@ -533,32 +536,12 @@
       <div class="step-card-arrow">›</div>
     </div>
 
-    <div class="step-card" onclick="goTo('screen-s3')">
+    <div class="step-card" onclick="goTo('screen-s4')">
       <div class="step-card-num">3</div>
       <div class="step-card-info">
         <p class="step-card-label">Шаг третий</p>
-        <p class="step-card-title">Письменно</p>
-        <p class="step-card-desc">Сообщение в WhatsApp — без эмоций, с вопросом</p>
-      </div>
-      <div class="step-card-arrow">›</div>
-    </div>
-
-    <div class="step-card" onclick="goTo('screen-s4')">
-      <div class="step-card-num">4</div>
-      <div class="step-card-info">
-        <p class="step-card-label">Шаг четвёртый</p>
         <p class="step-card-title">Среда признания</p>
         <p class="step-card-desc">Называть его вклад вслух — без похвалы, как факт</p>
-      </div>
-      <div class="step-card-arrow">›</div>
-    </div>
-
-    <div class="step-card" onclick="goTo('screen-s5')">
-      <div class="step-card-num">5</div>
-      <div class="step-card-info">
-        <p class="step-card-label">Шаг пятый</p>
-        <p class="step-card-title">Разговор о приоритетах</p>
-        <p class="step-card-desc">Один вопрос в спокойный момент — и молчание</p>
       </div>
       <div class="step-card-arrow">›</div>
     </div>
@@ -620,52 +603,18 @@
     <div class="sep"></div>
     <p class="sec-ttl">Как он отреагировал?</p>
     <button class="rbtn yes" onclick="goTo('screen-done')"><span class="rbtn-icon">✓</span><span>Сделал — всё получилось</span></button>
-    <button class="rbtn no"  onclick="goTo('screen-s3')"><span class="rbtn-icon">→</span><span>Не сделал — шаг третий</span></button>
+    <button class="rbtn no"  onclick="goTo('screen-s4')"><span class="rbtn-icon">→</span><span>Не сделал — шаг третий</span></button>
   </div>
 </div>
 
-<!-- ШАГ 3 -->
-<div id="screen-s3" class="screen">
-  <div class="step-header">
-    <div class="step-nav">
-      <button class="btn-back" onclick="goTo('screen-menu')">← Все шаги</button>
-      <button class="btn-menu" onclick="goTo('screen-menu')">Меню</button>
-    </div>
-    <p class="step-lbl">Шаг третий</p>
-    <h2 class="step-ttl">Письменно</h2>
-  </div>
-  <div class="step-body">
-    <p class="ctx">Устный запрос растворяется в воздухе. Письменный текст стоит на месте — его можно перечитать, он не уходит в фоновый шум дня.</p>
-
-    <div class="wa-card">
-      <p class="wa-lbl">Сообщение в WhatsApp</p>
-      <p class="wa-text">Без эмоций. Без истории. Только факт и просьба.</p>
-      <div class="wa-ex">«Полка до субботы — это важно. Договорились?»</div>
-    </div>
-
-    <div class="icard">
-      <p class="icard-lbl">Правило</p>
-      <p class="icard-text">Никаких объяснений почему пишете. Никаких упрёков. Вопрос в конце — обязателен: он требует ответа.</p>
-    </div>
-
-    <p class="note-lbl">Ваше сообщение</p>
-    <textarea placeholder="Текст сообщения..."></textarea>
-
-    <div class="sep"></div>
-    <p class="sec-ttl">Как он отреагировал?</p>
-    <button class="rbtn yes" onclick="goTo('screen-done')"><span class="rbtn-icon">✓</span><span>Ответил и сделал</span></button>
-    <button class="rbtn no"  onclick="goTo('screen-s4')"><span class="rbtn-icon">→</span><span>Не отреагировал — шаг четвёртый</span></button>
-  </div>
-</div>
-
-<!-- ШАГ 4 -->
+<!-- ШАГ 3 (было: шаг 4, Среда признания) -->
 <div id="screen-s4" class="screen">
   <div class="step-header">
     <div class="step-nav">
       <button class="btn-back" onclick="goTo('screen-menu')">← Все шаги</button>
       <button class="btn-menu" onclick="goTo('screen-menu')">Меню</button>
     </div>
-    <p class="step-lbl">Шаг четвёртый</p>
+    <p class="step-lbl">Шаг третий</p>
     <h2 class="step-ttl">Среда признания</h2>
   </div>
   <div class="step-body">
@@ -690,38 +639,36 @@
     <div class="sep"></div>
     <p class="sec-ttl">Что происходит дома?</p>
     <button class="rbtn yes" onclick="goTo('screen-result')"><span class="rbtn-icon">✓</span><span>Он начал делать больше</span></button>
-    <button class="rbtn no"  onclick="goTo('screen-s5')"><span class="rbtn-icon">→</span><span>Пока ничего не изменилось — шаг пятый</span></button>
+    <button class="rbtn no"  onclick="goTo('screen-premium')"><span class="rbtn-icon">→</span><span>Пока ничего не изменилось</span></button>
   </div>
 </div>
 
-<!-- ШАГ 5 -->
-<div id="screen-s5" class="screen">
+<!-- ПРЕМИУМ-ПРЕДЛОЖЕНИЕ (было: шаг 5, Разговор о приоритетах) -->
+<div id="screen-premium" class="screen">
   <div class="step-header">
     <div class="step-nav">
       <button class="btn-back" onclick="goTo('screen-menu')">← Все шаги</button>
       <button class="btn-menu" onclick="goTo('screen-menu')">Меню</button>
     </div>
-    <p class="step-lbl">Шаг пятый</p>
+    <p class="step-lbl">Если три шага не сдвинули ситуацию</p>
     <h2 class="step-ttl">Разговор<br>о приоритетах</h2>
   </div>
   <div class="step-body">
-    <p class="ctx">Не в момент конфликта. Спокойный вечер, когда оба не заняты и не раздражены.</p>
+    <p class="ctx">Это не значит, что метод не работает. Это значит, что в вашем случае есть своя причина — и дальше начинается более глубокий разговор.</p>
 
     <div class="icard">
-      <p class="icard-lbl">Один вопрос</p>
-      <p class="icard-text">Задайте его и замолчите. Не дополняйте, не объясняйте. Дайте ему время.</p>
-      <div class="phrase"><span class="phrase-lbl">Фраза</span>«Где в твоей жизни стоит наш дом?»</div>
+      <p class="icard-lbl">Что внутри</p>
+      <p class="icard-text">Один вопрос, который вскрывает истинное место семьи в его жизни — с разбором, что делать с любым ответом. Плюс сценарии для случаев, когда предыдущие шаги не сработали по разным типам причин.</p>
     </div>
 
-    <div class="icard">
-      <p class="icard-lbl">Что дальше</p>
-      <p class="icard-text">Это не претензия — это приглашение к договору. Что бы он ни ответил — вы слушаете.</p>
+    <div class="sep"></div>
+
+    <div style="text-align:center; margin-bottom:24px;">
+      <p style="font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:400; color:var(--text); margin-bottom:6px;">Полная версия стратегии</p>
+      <p style="font-size:15px; font-weight:300; color:var(--rose-dark);">990 ₽</p>
     </div>
 
-    <p class="note-lbl">Что он ответил — запишите</p>
-    <textarea placeholder="Его ответ..."></textarea>
-
-    <button class="btn-next" onclick="goTo('screen-result')">Завершить стратегию →</button>
+    <a href="https://app.lava.top/products/a4dee9c8-a40d-4384-a16d-96b6573e030e" target="_blank" class="btn-next" style="text-decoration:none; display:block;">Получить полную версию →</a>
   </div>
 </div>
 
@@ -808,9 +755,23 @@
   }
 </script>
 
-<!-- ФИКСИРОВАННАЯ ПЛАШКА -->
-<div class="sticky-bar" id="sticky-cta">
-  <div style="width:100%;">
+<!-- ФИКСИРОВАННЫЙ БЛОК: ОБЕ ПЛАШКИ -->
+<div class="sticky-wrap">
+
+  <!-- ПОЛНАЯ ВЕРСИЯ -->
+  <div class="sticky-row" style="background: linear-gradient(135deg, #b6875a 0%, #4a2e1f 100%);">
+    <div>
+      <p style="font-family:'Cormorant Garamond',serif; font-size:19px; font-weight:400; color:#fdfaf8; line-height:1.2; margin-bottom:2px;">Полная версия стратегии</p>
+      <p style="font-size:12px; font-weight:300; color:rgba(253,250,248,0.85); letter-spacing:1px;">990 ₽ — все шаги и сценарии</p>
+    </div>
+    <a href="https://app.lava.top/products/a4dee9c8-a40d-4384-a16d-96b6573e030e" target="_blank"
+       style="flex-shrink:0; display:flex; align-items:center; gap:6px; padding:13px 18px; background:#2e1b10; color:white; font-family:'Jost',sans-serif; font-size:12px; font-weight:400; letter-spacing:1.2px; text-transform:uppercase; text-decoration:none; white-space:nowrap;">
+      Получить →
+    </a>
+  </div>
+
+  <!-- ЭКСПРЕСС-РАЗБОР -->
+  <div class="sticky-row" id="sticky-cta" style="background: var(--rose-dark); flex-direction:column; align-items:stretch;">
     <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:12px; margin-bottom:12px;">
       <div>
         <p style="font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:400; color:#fdfaf8; line-height:1.2; margin-bottom:3px;">Экспресс-разбор ситуации</p>
