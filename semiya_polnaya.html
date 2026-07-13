@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Семья в приоритете — полная версия</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --blush: #f5e6e0;
+    --blush-deep: #d4a89a;
+    --rose: #b07870;
+    --rose-dark: #7a4f48;
+    --text: #2c1f1c;
+    --text-light: #6b4f4a;
+    --white: #fdfaf8;
+    --line: rgba(176, 120, 112, 0.25);
+  }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--white);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-size: 16px;
+    padding-bottom: 60px;
+  }
+
+  /* ── HEADER ── */
+  .head {
+    background: linear-gradient(160deg, var(--blush) 0%, var(--white) 65%);
+    padding: 52px 28px 40px;
+    text-align: center;
+  }
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rose);
+    font-weight: 300;
+    margin-bottom: 20px;
+  }
+  .title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--text);
+    margin-bottom: 14px;
+  }
+  .title em { font-style: italic; color: var(--rose); }
+  .sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--text-light);
+    line-height: 1.55;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+  .divider { width: 40px; height: 1px; background: var(--blush-deep); margin: 28px auto; }
+
+  /* ── SECTIONS ── */
+  .section { padding: 40px 28px; }
+  .section-alt { background: var(--blush); }
+
+  .sec-lbl {
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--rose);
+    font-weight: 300;
+    margin-bottom: 8px;
+  }
+  .sec-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px;
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+
+  .ctx {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.85;
+    color: var(--text);
+    margin-bottom: 26px;
+    padding-left: 16px;
+    border-left: 2px solid var(--blush-deep);
+  }
+
+  .icard {
+    background: var(--white);
+    border: 1px solid var(--line);
+    padding: 22px;
+    margin-bottom: 18px;
+    position: relative;
+  }
+  .section-alt .icard { background: var(--white); }
+  .icard::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--rose);
+  }
+  .icard-lbl {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--rose);
+    font-weight: 300;
+    margin-bottom: 10px;
+  }
+  .icard-text {
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--text);
+  }
+  .icard-text.serif {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  .tech-badge {
+    display: inline-block;
+    background: var(--rose-dark);
+    color: #fff;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    padding: 9px 16px;
+    margin-bottom: 16px;
+  }
+
+  .phrase {
+    background: var(--blush);
+    border: 1px solid var(--line);
+    padding: 14px 18px;
+    margin-top: 14px;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .section-alt .phrase { background: var(--white); }
+  .phrase-lbl {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--rose);
+    font-weight: 300;
+    margin-bottom: 8px;
+  }
+
+  .sep { width: 100%; height: 1px; background: var(--line); margin: 8px 0 32px; }
+
+  .type-card {
+    background: var(--white);
+    border: 1px solid var(--line);
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+  .type-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--rose);
+    font-weight: 400;
+    margin-bottom: 6px;
+  }
+  .type-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+  .type-desc {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.8;
+    color: var(--text);
+    margin-bottom: 14px;
+  }
+
+  .btn-next {
+    display: block;
+    width: 100%;
+    background: var(--rose-dark);
+    color: var(--white);
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 18px 24px;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.3s;
+  }
+  .btn-next:hover { background: var(--rose); }
+
+  .author {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-top: 44px;
+    font-weight: 300;
+    text-align: center;
+  }
+
+  .closing {
+    text-align: center;
+    padding: 48px 28px 56px;
+    background: linear-gradient(160deg, var(--blush) 0%, var(--white) 60%);
+  }
+  .closing-icon {
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: var(--blush-deep);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 24px;
+    font-size: 22px;
+  }
+  .closing-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    line-height: 1.3;
+    margin-bottom: 16px;
+  }
+  .closing-text {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.9;
+    color: var(--text);
+    max-width: 320px;
+    margin: 0 auto 32px;
+  }
+
+  .express-block {
+    background: var(--white);
+    border: 1px solid var(--line);
+    padding: 24px;
+    max-width: 380px;
+    margin: 0 auto;
+    text-align: left;
+  }
+  .express-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--text);
+    text-align: center;
+    margin-bottom: 4px;
+  }
+  .express-sub {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--text-light);
+    letter-spacing: 1px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .express-btns { display: flex; gap: 10px; }
+  .express-btns a {
+    flex: 1;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 13px 10px;
+    color: white;
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  .express-btns .tg { background: #2AABEE; }
+  .express-btns .wa { background: #25D366; }
+</style>
+</head>
+<body>
+
+<!-- ШАПКА -->
+<div class="head">
+  <p class="eyebrow">Полная версия стратегии</p>
+  <h1 class="title">Семья<br>в <em>приоритете</em></h1>
+  <p class="sub">Для тех, кто прошёл три шага — и готов к разговору, который вскрывает настоящую причину</p>
+  <div class="divider"></div>
+</div>
+
+<!-- РАЗГОВОР О ПРИОРИТЕТАХ -->
+<div class="section">
+  <p class="sec-lbl">Следующий уровень</p>
+  <h2 class="sec-title">Разговор<br>о приоритетах</h2>
+
+  <p class="ctx">Личный запрос, другая подача, среда признания — это про поведение. Этот разговор — про то, где семья стоит в его картине мира на самом деле. Не в момент конфликта. Спокойный вечер, когда оба не заняты и не раздражены.</p>
+
+  <div class="icard">
+    <p class="icard-lbl">Вопрос</p>
+    <p class="icard-text serif">Задайте его и замолчите. Не дополняйте, не объясняйте, не подсказывайте формулировку ответа. Дайте ему время — пауза здесь не ошибка, а часть техники.</p>
+    <div class="phrase"><span class="phrase-lbl">Фраза</span>«Где в твоей жизни стоит наш дом?»</div>
+  </div>
+
+  <div class="icard">
+    <p class="icard-lbl">Если он теряется и не может ответить сразу</p>
+    <p class="icard-text">Это не уклонение — чаще всего это значит, что вопрос он себе никогда не задавал. Не спасайте его подсказками. Скажите: «Не отвечай сразу. Просто подумай — я подожду».</p>
+  </div>
+
+  <div class="icard">
+    <p class="icard-lbl">Если отвечает формально — «конечно на первом»</p>
+    <p class="icard-text">Формальный ответ без пауз и без сомнения обычно означает, что вопрос воспринят как проверку, а не как приглашение подумать. Реакция: «Я не проверяю тебя. Мне правда интересно, как это выглядит изнутри».</p>
+  </div>
+
+  <div class="icard">
+    <p class="icard-lbl">Если называет конкретное другое место — работу, друзей, родителей</p>
+    <p class="icard-text">Это самый честный и самый ценный ответ. Не спорьте и не обесценивайте. Спросите: «А что нужно, чтобы дом оказался рядом с этим по важности?» — это переводит разговор в план действий, а не обвинений.</p>
+  </div>
+</div>
+
+<div class="sep"></div>
+
+<!-- ПРИЧИНЫ, ПОЧЕМУ НЕ СРАБОТАЛО -->
+<div class="section section-alt">
+  <p class="sec-lbl">Если и это не сдвинуло ситуацию</p>
+  <h2 class="sec-title">Возможная причина —<br>в типе, а не в словах</h2>
+  <p class="ctx">Один и тот же приём работает по-разному в зависимости от того, что стоит за поведением мужчины. Ниже — четыре наиболее частых сценария.</p>
+
+  <div class="type-card">
+    <p class="type-num">Тип первый</p>
+    <p class="type-title">Избегающий конфликт</p>
+    <p class="type-desc">Молчит не потому, что не видит проблему, а потому что боится, что честный разговор перерастёт в ссору. Ему проще стерпеть неудобство, чем рисковать скандалом.</p>
+    <div class="phrase"><span class="phrase-lbl">Как подойти</span>«Я не собираюсь спорить. Мне просто нужно понять — и всё».<br>Сказать это спокойным тоном, без интонации ультиматума, и держать слово: не переходить на упрёки, даже если ответ не понравится.</div>
+  </div>
+
+  <div class="type-card">
+    <p class="type-num">Тип второй</p>
+    <p class="type-title">Соревновательный</p>
+    <p class="type-desc">Слышит любую просьбу как проверку на слабость или на то, кто в доме главный. Признание и мягкость воспринимает настороженно — ищет подвох.</p>
+    <div class="phrase"><span class="phrase-lbl">Как подойти</span>«Это не про то, кто прав. Это про то, что нам обоим будет спокойнее».<br>Убрать из разговора любые сравнения с другими мужчинами или парами — они читаются как вызов, даже если сказаны без умысла.</div>
+  </div>
+
+  <div class="type-card">
+    <p class="type-num">Тип третий</p>
+    <p class="type-title">Перегруженный</p>
+    <p class="type-desc">Дефицит ресурса настоящий, а не отговорка. Семья в его восприятии — ещё одна задача сверх уже переполненного списка, а не место отдыха.</p>
+    <div class="phrase"><span class="phrase-lbl">Как подойти</span>«Мне не нужно больше — мне нужно, чтобы то немногое было моим, а не ничьим».<br>Просить о минимально возможном действии, а не о перестройке привычек целиком — маленький и конкретный шаг снижает сопротивление.</div>
+  </div>
+
+  <div class="type-card">
+    <p class="type-num">Тип четвёртый</p>
+    <p class="type-title">Не считывает бытовые сигналы</p>
+    <p class="type-desc">Не по злому умыслу — так сложилось воспитание или темперамент. Он искренне не замечает то, что вам кажется очевидным без слов.</p>
+    <div class="phrase"><span class="phrase-lbl">Как подойти</span>«Я не жду, что ты угадаешь. Просто скажи, если тебе это неудобно называть вслух».<br>Именами вещи называть прямо и без иронии — этому типу нужна ясность, а не намёк.</div>
+  </div>
+</div>
+
+<div class="sep"></div>
+
+<!-- ЕЖЕДНЕВНЫЕ ПРАКТИКИ -->
+<div class="section">
+  <p class="sec-lbl">Помимо разговора</p>
+  <h2 class="sec-title">Шесть практик<br>на каждый день</h2>
+  <p class="ctx">Разговор о приоритетах задаёт направление. Эти приёмы закрепляют его в повседневности — без давления и без ультиматумов.</p>
+
+  <div class="icard">
+    <p class="icard-lbl">Признание через третьих лиц</p>
+    <p class="icard-text">Он ищет признание снаружи — значит, дайте ему это признание снаружи, а не только напрямую. Похвала, которую он случайно услышал, обращённая не к нему, а о нём, весит больше прямого комплимента — в ней нет ощущения, что его хвалят по обязанности.</p>
+    <div class="phrase"><span class="phrase-lbl">Как это звучит</span>Маме по телефону, при нём или так, чтобы это дошло: «Мам, представляешь, Вася сам розетку поставил — даже электрика вызывать не пришлось».</div>
+  </div>
+
+  <div class="icard">
+    <p class="icard-lbl">Конкретная похвала и якорение</p>
+    <div class="tech-badge">В этом блоке — приём якорения из техники НЛП</div>
+    <p class="icard-text">«Замечайте, что партнёр делает правильно» — простое правило с большим эффектом. Общее «молодец» забывается через минуту. Похвала за конкретное действие — запоминается и повторяется, потому что человек точно знает, что именно сработало.<br><br>Мужчины особенно хорошо откликаются на комплимент, который связывает бытовое дело с образом силы и уверенности. Вы закрепляете за конкретным действием яркий, приятный ему образ — и в следующий раз он вспоминает не усталость от дела, а этот образ. Действие начинает ассоциироваться с тем, что ему самому нравится в себе.</p>
+    <div class="phrase"><span class="phrase-lbl">Примеры</span>«Когда ты прибивал полку, ты выглядел очень мужественно».<br>«Я представляла тебя Тарзаном, когда ты двигал холодильник».<br>«Ты так уверенно и точно закручивал розетку — я засмотрелась».<br>«Мне стало легче именно потому, что ты сам вызвался забрать детей сегодня, без напоминания».</div>
+  </div>
+
+  <div class="icard">
+    <p class="icard-lbl">Я-высказывание вместо просьбы-упрёка</p>
+    <p class="icard-text">«Ты никогда не помогаешь» — обвинение, на него отвечают защитой. Формулировки от первого лица говорят о вас, а не о его недостатках, и не вызывает сопротивления с порога. Не обязательно каждый раз одна и та же фраза — вот несколько рабочих вариантов.</p>
+    <div class="phrase"><span class="phrase-lbl">Варианты</span>«Мне важно, чтобы... — потому что для меня это значит...»<br>«Мне будет приятно, если...»<br>«Я буду благодарна, если ты...»<br>«Давай вместе порадуемся, когда это будет сделано».<br><br>Пример: «Мне будет приятно, если полка появится в эти выходные — я буду благодарна».</div>
+  </div>
+
+  <div class="icard">
+    <p class="icard-lbl">Приоритет без ультиматума</p>
+    <p class="icard-text">«Кто тебе дороже — я или Коля» ставит перед выбором и провоцирует защиту. Работает не выбор, а очерёдность: сначала дом, потом — со спокойной душой — всё остальное.</p>
+    <div class="phrase"><span class="phrase-lbl">Как сказать</span>«Кольке, конечно, надо помочь с холодильником. Давай сначала здесь у нас — это недолго, — а потом ты к нему, время найдётся».</div>
+  </div>
+
+  <div class="icard">
+    <p class="icard-lbl">Соотношение пять к одному</p>
+    <p class="icard-text">Устойчивые пары держат примерно пять тёплых, одобрительных реакций на каждое одно замечание или недовольство. Если разговоры о доме звучат чаще как претензия, чем как благодарность, любая просьба будет восприниматься настороженно — независимо от формулировки.</p>
+    <div class="phrase"><span class="phrase-lbl">Как выглядят пять за один день</span>«Спасибо, что пожарил яичницу — у меня появилось десять свободных минут, чтобы просто собраться с мыслями».<br><br>«Ты сегодня пришёл пораньше — давай хотя бы пять минут просто обнимемся, мне это важно».<br><br>«Мне так нравится, когда ты гладишь меня по волосам».<br><br>«Когда ты вешал полку, ты был такой мужественный».<br><br>«Спасибо, что так быстро вынес мусор — совсем не пришлось терпеть запах».</div>
+  </div>
+
+  <div class="icard">
+    <p class="icard-lbl">Пространство для его инициативы</p>
+    <p class="icard-text">Если мужчина слышит только готовые распоряжения, он привыкает исполнять, а не предлагать. Чтобы инициатива появилась, ей нужно место — вопрос вместо готового решения.<br><br>Мужчины особенно охотно включаются, когда с ними советуются как с экспертом. Знакомая ситуация: приятель приходит в гости и начинает советовать, как что лучше сделать по дому — а хозяин в ответ: «Слушай, откуда ты всё это знаешь, я бы без тебя даже не догадался». После этого приятель работает с полной отдачей, хотя пришёл просто в гости. Признание в компетентности включает мужчину сильнее, чем прямая просьба.</p>
+    <div class="phrase"><span class="phrase-lbl">Как спросить</span>«Как тебе было бы удобнее это сделать?»<br>«Что бы ты сам предложил с холодильником у мамы — может, у тебя есть идея лучше?»<br>«Ты в этом разбираешься лучше меня — как думаешь, что здесь лучше сделать?»<br>«Твоё мнение для меня важно — а как бы ты это решил?»<br><br>Даже если он в этот раз промолчит — вопрос уже сигнал, что от него ждут не только исполнения.</div>
+  </div>
+</div>
+
+<div class="sep"></div>
+
+<!-- ЗАКРЫТИЕ -->
+<div class="closing">
+  <div class="closing-icon">✦</div>
+  <h2 class="closing-title">Если картина сложнее<br>любого из этих типов</h2>
+  <p class="closing-text">Иногда за поведением стоит история, которая не описывается общей типологией — детский сценарий, старая конкуренция, невысказанная обида. Тогда точнее работает индивидуальный разбор, а не универсальная инструкция.</p>
+
+  <div class="express-block">
+    <p class="express-title">Экспресс-разбор ситуации</p>
+    <p class="express-sub">60 минут с психологом</p>
+    <div class="express-btns">
+      <a href="https://t.me/bella_psychologist" target="_blank">Telegram</a>
+      <a href="https://wa.me/79880051025" target="_blank">WhatsApp</a>
+    </div>
+  </div>
+
+  <p class="author">Бэлла Леонидовна Полянинова</p>
+</div>
+
+</body>
+</html>
