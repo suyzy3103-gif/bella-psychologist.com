@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Правила в дом — Гайд для родителей</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #FDF0F3;
+    --accent: #C9848F;
+    --accent-soft: #e9c6cc;
+    --dark: #4A2E35;
+    --white: #ffffff;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{
+    background:var(--bg);
+    color:var(--dark);
+    font-family:'Jost', sans-serif;
+    font-weight:300;
+    line-height:1.65;
+    overflow-x:hidden;
+    position:relative;
+  }
+  .circle{
+    position:absolute;
+    border-radius:50%;
+    background:var(--accent-soft);
+    opacity:0.35;
+    z-index:0;
+  }
+  .c1{ width:340px; height:340px; top:-120px; right:-100px; }
+  .c2{ width:220px; height:220px; top:900px; left:-80px; opacity:0.25;}
+  .c3{ width:280px; height:280px; bottom:200px; right:-120px; opacity:0.2;}
+
+  header{
+    text-align:center;
+    padding:64px 24px 40px;
+    position:relative;
+    z-index:1;
+  }
+  .eyebrow{
+    font-size:13px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--accent);
+  }
+  h1{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:52px;
+    margin:12px 0 8px;
+  }
+  .subtitle{
+    font-size:16px;
+    max-width:480px;
+    margin:0 auto 28px;
+    color:#7a5a61;
+  }
+  .lede{
+    font-family:'Cormorant Garamond', serif;
+    font-size:22px;
+    font-style:italic;
+    max-width:520px;
+    margin:0 auto;
+    color:var(--dark);
+  }
+
+  section{
+    max-width:640px;
+    margin:0 auto;
+    padding:40px 24px;
+    position:relative;
+    z-index:1;
+  }
+
+  .rule-card{
+    background:var(--white);
+    border-radius:18px;
+    padding:32px 30px;
+    margin-bottom:24px;
+    box-shadow:0 8px 30px rgba(74,46,53,0.06);
+  }
+  .rule-number{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:15px;
+    color:var(--accent);
+    letter-spacing:0.05em;
+  }
+  .rule-title{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:500;
+    font-size:28px;
+    margin:6px 0 12px;
+  }
+  .rule-text{
+    font-size:16px;
+    color:#5c4348;
+  }
+
+  .divider{
+    text-align:center;
+    margin:48px 0 40px;
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:19px;
+    color:var(--dark);
+    line-height:1.7;
+  }
+  .divider .accent-line{
+    width:40px;
+    height:1px;
+    background:var(--accent);
+    margin:0 auto 24px;
+  }
+
+  .offer-box{
+    background:var(--white);
+    border-radius:20px;
+    padding:40px 32px;
+    text-align:center;
+    box-shadow:0 12px 40px rgba(74,46,53,0.09);
+  }
+  .offer-box p{
+    font-size:17px;
+    margin-bottom:24px;
+    color:var(--dark);
+  }
+  .cta-button{
+    display:inline-block;
+    background:var(--dark);
+    color:var(--white);
+    text-decoration:none;
+    font-family:'Jost', sans-serif;
+    font-weight:400;
+    font-size:16px;
+    letter-spacing:0.02em;
+    padding:16px 36px;
+    border-radius:30px;
+    transition:background 0.25s ease, transform 0.25s ease;
+  }
+  .cta-button:hover{
+    background:var(--accent);
+    transform:translateY(-2px);
+  }
+  .price-note{
+    font-size:13px;
+    color:#a3818a;
+    margin-top:16px;
+  }
+
+  footer{
+    text-align:center;
+    padding:48px 24px 40px;
+    font-size:13px;
+    color:#a3818a;
+    position:relative;
+    z-index:1;
+  }
+  footer .handle{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:16px;
+    color:var(--dark);
+    display:block;
+    margin-bottom:10px;
+  }
+
+  @media (max-width:480px){
+    h1{ font-size:38px; }
+    .rule-title{ font-size:24px; }
+    .offer-box{ padding:32px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="circle c1"></div>
+<div class="circle c2"></div>
+<div class="circle c3"></div>
+
+<header>
+  <div class="eyebrow">Гайд для родителей</div>
+  <h1>Правила в дом</h1>
+  <p class="subtitle">Готовые формулировки для семьи. Без споров, без объяснений, без потери нервов.</p>
+  <p class="lede">Правило работает, когда оно конкретное. «Убирай игрушки» — не работает. «С 20:30 до 21:00 мягкие игрушки в корзину, машинки на полку» — работает.</p>
+</header>
+
+<section>
+
+  <div class="rule-card">
+    <div class="rule-number">Правило 04</div>
+    <div class="rule-title">Гаджеты уходят в 21:30</div>
+    <p class="rule-text">После 21:30 все телефоны идут на зарядку. Это не наказание — это время для отдыха. Мозг должен успеть успокоиться перед сном.</p>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-number">Правило 10</div>
+    <div class="rule-title">30 минут вместе каждый день</div>
+    <p class="rule-text">За ужином или после — время разговора. Что хорошего было сегодня? Что было трудно? Без оценок, без нотаций. Просто рассказать и услышать.</p>
+  </div>
+
+  <div class="divider">
+    <div class="accent-line"></div>
+    Это два правила из десяти. Остальные восемь — про утро, вечер и порядок в доме — я собрала вместе с техникой, как ввести правило и удержать его без скандалов. Не растянуто на годы: одна техника, две недели на правило. Дальше сами.
+  </div>
+
+  <div class="offer-box">
+    <p>Полная версия «Правила в дом» — все десять правил, техника внедрения и бонус о том, как приучить ребёнка к посильной помощи по дому.</p>
+    <a href="https://app.lava.top/products/ba73809b-bf72-4e0f-b8dd-88a6575a437e" class="cta-button">Получить все десять правил — 690 ₽</a>
+    <div class="price-note">Цифровой продукт — доступен сразу после оплаты</div>
+  </div>
+
+</section>
+
+<footer>
+  <span class="handle">@bella.psychologist</span>
+  © Полянинова Бэлла Леонидовна, 2024–2025<br>
+  Все права защищены. Копирование и распространение без разрешения автора запрещено.
+</footer>
+
+</body>
+</html>
