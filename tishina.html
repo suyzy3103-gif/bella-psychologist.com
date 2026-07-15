@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Тишина, которая давит. Бэлла Леонидовна</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background-color: #FDF0F3 !important;
+    color: #1A1A1A;
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+  body { padding-bottom: 84px; position: relative; }
+
+  .circle { position: absolute; border-radius: 50%; background: rgba(217,138,84,0.10); z-index: 0; pointer-events: none; }
+  .c1 { width: 340px; height: 340px; top: -120px; right: -100px; }
+  .c2 { width: 220px; height: 220px; top: 900px; left: -90px; }
+  .c3 { width: 280px; height: 280px; bottom: 200px; right: -120px; }
+
+  .wrap { max-width: 640px; margin: 0 auto; padding: 48px 24px 24px; position: relative; z-index: 1; }
+
+  .eyebrow { font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: #B8622E; font-weight: 600; margin-bottom: 18px; }
+
+  h1 { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-style: normal; font-size: 42px; line-height: 1.15; color: #1A1A1A; margin-bottom: 22px; }
+  h1 em { font-style: normal; font-weight: 700; color: #B8622E; }
+
+  .lede { font-size: 18px; color: #1A1A1A; margin-bottom: 40px; }
+
+  section { margin: 52px 0; }
+
+  h2 { font-family: 'Cormorant Garamond', serif; font-style: normal; font-weight: 700; font-size: 27px; margin-bottom: 20px; color: #1A1A1A; }
+
+  .translation-card { background: #ffffff; border-left: 4px solid #B8622E; padding: 24px 26px; border-radius: 4px; margin: 24px 0; }
+  .translation-card .label { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #B8622E; font-weight: 600; margin-bottom: 10px; }
+  .translation-card p { font-size: 17px; color: #1A1A1A; }
+  .translation-card p + p { margin-top: 10px; }
+  .translation-card.honest { border-left-color: #1A1A1A; }
+  .translation-card.honest p { font-style: normal; font-weight: 600; font-family: 'Jost', sans-serif; font-size: 18px; }
+
+  .rule-line { font-family: 'Cormorant Garamond', serif; font-style: normal; font-weight: 700; font-size: 21px; text-align: center; padding: 8px 0 8px; color: #1A1A1A; }
+
+  .key-insight {
+    font-size: 20px;
+    font-weight: 600;
+    color: #000000;
+    text-align: center;
+    padding: 26px 22px;
+    margin: 28px 0;
+    border-top: 2px solid #B8622E;
+    border-bottom: 2px solid #B8622E;
+    line-height: 1.5;
+  }
+
+  .diagnostic { display: flex; gap: 14px; margin: 18px 0; }
+  .diagnostic .col { flex: 1; background: #ffffff; padding: 20px 18px; border-radius: 6px; }
+  .diagnostic .col h3 { font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: #B8622E; margin-bottom: 10px; font-weight: 700; }
+  .diagnostic .col p { font-size: 15px; color: #1A1A1A; }
+
+  .paywall {
+    background: #ffffff; border-radius: 10px; padding: 34px 28px; margin: 40px 0 32px; position: relative;
+  }
+  .paywall::before {
+    content: ""; position: absolute; top: 0; left: 28px; right: 28px; height: 2px;
+    background: #B8622E;
+  }
+  .paywall h2 { margin-bottom: 18px; }
+  .paywall ul { list-style: none; }
+  .paywall li { font-size: 16px; color: #1A1A1A; padding: 10px 0 10px 22px; position: relative; border-bottom: 1px solid #FDF0F3; }
+  .paywall li:last-child { border-bottom: none; }
+  .paywall li::before { content: "•"; position: absolute; left: 0; color: #B8622E; font-weight: 700; }
+
+  .price-block { text-align: center; margin: 30px 0 10px; }
+  .price-block .price { font-family: 'Cormorant Garamond', serif; font-size: 46px; font-weight: 700; color: #1A1A1A; }
+  .price-block .price span { font-size: 20px; opacity: 0.7; }
+
+  .buy-btn {
+    display: block; text-align: center; background: #B8622E; color: #ffffff; text-decoration: none;
+    padding: 16px; border-radius: 8px; font-size: 16px; font-weight: 600; letter-spacing: 0.02em; margin-top: 22px;
+  }
+  .fineprint { font-size: 12.5px; text-align: center; color: #1A1A1A; opacity: 0.6; margin-top: 14px; }
+
+  .signature { text-align: right; font-family: 'Cormorant Garamond', serif; font-weight: 700; font-style: normal; font-size: 19px; color: #1A1A1A; margin-top: 50px; }
+
+  .bottom-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #ffffff; display: flex; box-shadow: 0 -2px 12px rgba(0,0,0,0.12); z-index: 10; }
+  .bottom-bar a { flex: 1; text-align: center; padding: 16px 0; font-size: 14px; text-decoration: none; color: #1A1A1A; font-weight: 500; }
+  .bottom-bar a:first-child { border-right: 1px solid #FDF0F3; }
+</style>
+</head>
+<body>
+
+<div class="circle c1"></div>
+<div class="circle c2"></div>
+<div class="circle c3"></div>
+
+<div class="wrap">
+
+  <div class="eyebrow">Бэлла Леонидовна · Психология отношений</div>
+
+  <h1>Тишина, которая <em>давит</em></h1>
+  <p class="lede">Молчание работает одинаково узнаваемо, и совершенно по-разному в зависимости от того, кто молчит. Муж, начальник, подросток и пятилетний ребёнок молчат не по одной причине, и отвечать им одной и той же фразой значит ухудшить ситуацию вместо того, чтобы её решить.</p>
+
+  <section>
+    <h2>Перевод с токсичного</h2>
+    <div class="translation-card">
+      <div class="label">Что говорят</div>
+      <p>Ничего. Именно в этом и дело.</p>
+    </div>
+    <div class="translation-card honest">
+      <div class="label">Что происходит на самом деле</div>
+      <p>«Пусть теперь она попереживает. Пусть засомневается и первой придёт мириться. Пусть поймёт, что я тоже умею обижаться».</p>
+    </div>
+  </section>
+
+  <div class="key-insight">В большинстве случаев между взрослыми это не обида, а манипуляция: способ вернуть контроль через вашу тревогу. Зная правила и готовые противоядия, её легко избежать.</div>
+
+  <section>
+    <h2>Как отличить одно от другого</h2>
+    <div class="diagnostic">
+      <div class="col">
+        <h3>Нужно время</h3>
+        <p>Скажет об этом прямо. Назовёт направление: «мне надо подумать, вернёмся к этому вечером». Возвращается к разговору сам.</p>
+      </div>
+      <div class="col">
+        <h3>Управляет тревогой</h3>
+        <p>Не объясняет молчание. Оставляет вас в неизвестности настолько долго, насколько это работает. Возвращается, только когда вы приходите первой.</p>
+      </div>
+    </div>
+    <div class="rule-line">Разница не в длительности молчания, а в том, объяснили его или нет.</div>
+  </section>
+
+  <section>
+    <h2>Что происходит, когда ваша тревога проходит</h2>
+    <p>Если после каждой ссоры ваш муж начинает молчать, первое время вы действительно тревожитесь. Вы пытаетесь понять, что произошло, ищете способ всё исправить и ждёте, когда он снова с вами заговорит.</p>
+    <p style="margin-top:10px;">Но любой сценарий, который повторяется снова и снова, становится предсказуемым.</p>
+    <p style="margin-top:10px;">Через некоторое время вы уже точно знаете, что сейчас он опять будет молчать несколько дней, а потом всё закончится так же, как и всегда.</p>
+    <p style="margin-top:10px;">Именно тогда тревога начинает уходить. Вы перестаёте постоянно ждать его сообщения, перестаёте проверять телефон и постепенно возвращаетесь к своей жизни. Вы встречаетесь с друзьями, занимаетесь своими делами, строите планы и всё реже думаете о его молчании.</p>
+    <p style="margin-top:10px;">В этот момент молчание перестаёт быть инструментом влияния. Оно больше не вызывает тревогу. Оно начинает выращивать другое чувство: равнодушие.</p>
+    <p style="margin-top:10px;">Парадокс заключается в том, что человек, который молчит ради контроля, очень часто собственными руками разрушает ту эмоциональную связь, которую хотел удержать. Сначала исчезает тревога. Потом исчезает ожидание. А следом постепенно исчезает и сама эмоциональная близость.</p>
+  </section>
+
+  <div class="paywall">
+    <h2>Что внутри полной версии</h2>
+    <ul>
+      <li>Партнёр: готовый ответ, который снимает игру в молчанку с первой фразы</li>
+      <li>Начальник: молчание как способ держать в неопределённости, без прямого конфликта</li>
+      <li>Подросток: почти никогда не манипуляция, а потребность в дистанции, и ответ на это принципиально другой</li>
+      <li>Маленький ребёнок: как не стать мамой, которая тоже начинает молчать в ответ</li>
+      <li>Взрослая дочь или сын и мама: молчание, которое длится годами, и с чего начать разговор первой</li>
+      <li>Молчун не по расчёту, а по характеру: два подвида, «мир не важен» и «нет аргументов»</li>
+    </ul>
+
+    <div class="price-block">
+      <div class="price">690 <span>₽</span></div>
+    </div>
+    <a href="https://app.lava.top/products/90b81eba-d12d-4cb3-8e00-695cf1c4c953" class="buy-btn">Получить полный разбор</a>
+    <div class="fineprint">Оплата через Lava Top · доступ открывается сразу</div>
+  </div>
+
+  <p class="signature">С уважением, Бэлла Леонидовна</p>
+
+  <p style="text-align:center; font-size:12px; color:#1A1A1A; opacity:0.6; margin-top:30px;">© 2026 Полянинова Бэлла Леонидовна. Все права защищены. Копирование и распространение материалов без разрешения автора запрещено.</p>
+
+</div>
+
+<div class="bottom-bar">
+  <a href="https://t.me/Bella_psychologist">Telegram</a>
+  <a href="https://wa.me/79880051025">WhatsApp</a>
+</div>
+
+</body>
+</html>
