@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Отложенный старт</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background-color: #F4FBF8 !important;
+    color: #10201A;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 400;
+    line-height: 1.65;
+    overscroll-behavior: none;
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
+  }
+  body {
+    padding-bottom: 90px;
+  }
+  .page {
+    position: relative;
+    overflow-x: hidden;
+  }
+  .circle {
+    position: absolute;
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .circle.c1 { width: 340px; height: 340px; top: -140px; right: -140px; background: rgba(15,139,114,0.10); }
+  .circle.c2 { width: 220px; height: 220px; top: 620px; left: -110px; background: rgba(154,205,50,0.14); }
+  .circle.c3 { width: 280px; height: 280px; bottom: 260px; right: -120px; background: rgba(20,184,166,0.10); }
+  .circle.c4 { width: 180px; height: 180px; bottom: -60px; left: -60px; background: rgba(15,139,114,0.10); }
+
+  .wrap {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 56px 24px 40px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .eyebrow {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #0F8B72;
+    text-align: center;
+    margin-bottom: 18px;
+  }
+
+  h1 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: 42px;
+    text-align: center;
+    color: #0B1F1A;
+    line-height: 1.15;
+    margin-bottom: 20px;
+    letter-spacing: -0.01em;
+  }
+
+  .subtitle {
+    text-align: center;
+    font-size: 17px;
+    font-weight: 500;
+    color: #2B4A40;
+    max-width: 480px;
+    margin: 0 auto 44px;
+  }
+
+  .intro {
+    font-size: 16px;
+    font-weight: 400;
+    color: #10201A;
+    margin-bottom: 20px;
+  }
+
+  .intro strong {
+    font-weight: 700;
+    color: #0B1F1A;
+  }
+
+  .divider {
+    width: 60px;
+    height: 3px;
+    background: #0F8B72;
+    margin: 40px auto;
+    border-radius: 2px;
+  }
+
+  .section-title {
+    font-weight: 800;
+    font-size: 26px;
+    text-align: center;
+    color: #0B1F1A;
+    margin-bottom: 8px;
+  }
+
+  .section-note {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: #4B6B60;
+    margin-bottom: 32px;
+  }
+
+  .sticky-nav {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: #F4FBF8;
+    border-bottom: 2px solid #E3F1EC;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .sticky-nav .nav-title {
+    font-weight: 800;
+    font-size: 15px;
+    color: #0B1F1A;
+    white-space: nowrap;
+  }
+
+  .sticky-nav .nav-tag {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #0F8B72;
+    text-align: right;
+  }
+
+  /* accordion */
+  .accordion-item {
+    background: #ffffff;
+    border: 2px solid #E3F1EC;
+    border-radius: 14px;
+    margin-bottom: 14px;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+  .accordion-item.open {
+    border-color: #0F8B72;
+    box-shadow: 0 6px 24px rgba(11,31,26,0.08);
+  }
+
+  .accordion-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 22px 22px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .accordion-header .label-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .accordion-header .type-tag {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #0F8B72;
+  }
+
+  .accordion-header .type-name {
+    font-weight: 700;
+    font-size: 21px;
+    color: #0B1F1A;
+  }
+
+  .accordion-icon {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid #0F8B72;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    font-weight: 700;
+    color: #0F8B72;
+    transition: transform 0.3s ease;
+  }
+
+  .accordion-item.open .accordion-icon {
+    transform: rotate(45deg);
+  }
+
+  .accordion-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+
+  .accordion-item.open .accordion-body {
+    max-height: 2400px;
+  }
+
+  .accordion-body-inner {
+    padding: 0 22px 26px;
+  }
+
+  .block-label {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #0F8B72;
+    margin-top: 18px;
+    margin-bottom: 8px;
+  }
+
+  .block-label:first-child { margin-top: 0; }
+
+  .block-text {
+    font-size: 15px;
+    font-weight: 400;
+    color: #10201A;
+  }
+
+  .journal-box {
+    background: #EAF7F2;
+    border-left: 4px solid #0F8B72;
+    border-radius: 0 8px 8px 0;
+    padding: 14px 16px;
+    margin-top: 18px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #0B1F1A;
+  }
+
+  .closing {
+    margin-top: 48px;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    color: #10201A;
+  }
+
+  .signature {
+    text-align: center;
+    font-weight: 700;
+    font-size: 17px;
+    margin-top: 28px;
+    color: #0F8B72;
+  }
+
+  .contact-note {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: #2B4A40;
+    padding: 0 24px 18px;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  /* fixed bottom bar */
+  .bottom-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #0B1F1A;
+    display: flex;
+    z-index: 10;
+  }
+  .bottom-bar a {
+    flex: 1;
+    text-align: center;
+    padding: 16px 8px;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    color: #ffffff;
+    letter-spacing: 0.02em;
+  }
+  .bottom-bar a:first-child {
+    border-right: 1px solid rgba(255,255,255,0.15);
+    color: #0B1F1A;
+    background: #9ACD32;
+  }
+
+  @media (max-width: 400px) {
+    h1 { font-size: 32px; }
+    .wrap { padding: 44px 18px 30px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+<div class="circle c1"></div>
+<div class="circle c2"></div>
+<div class="circle c3"></div>
+<div class="circle c4"></div>
+
+<div class="wrap">
+
+  <div class="eyebrow">Практикум</div>
+  <h1>Отложенный старт</h1>
+  <p class="subtitle">Пять сценариев, из-за которых настоящая жизнь всё ещё «начнётся потом» — и что с каждым из них делать.</p>
+
+  <p class="intro">Вы давно знаете, что хотите изменить. Работу, отношения, город, привычный уклад дня. Вы много раз представляли, как это будет. Но каждый раз находится причина: сейчас не время, сначала нужно закончить другое, потом будет легче решиться.</p>
+
+  <p class="intro">Синдром отложенной жизни — так психологи называют это состояние — не диагноз и не слабость характера. Это сценарий, в котором человек живёт на этапе подготовки, полагая, что настоящая жизнь начнётся позже. У каждой женщины этот сценарий держится на разном: у кого-то на страхе, у кого-то на вине, у кого-то на привычке ждать.</p>
+
+  <p class="intro"><strong>Дальше — пять сценариев.</strong> Откройте свой — тот, который вам показал тест. Внутри: почему именно он держит вас на месте, узнаваемые примеры, техника, которая помогает увидеть искажение в самом убеждении, и первый шаг, с которого можно начать уже сегодня.</p>
+
+  <div class="divider"></div>
+
+  <div class="section-title">Пять сценариев</div>
+  <div class="section-note">Откройте тот, который относится к вам</div>
+
+  <div class="sticky-nav">
+    <span class="nav-title">Отложенный старт</span>
+    <span class="nav-tag">Пять сценариев</span>
+  </div>
+
+  <div id="accordion">
+
+    <!-- 1. СТРАХ -->
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleItem(this)">
+        <div class="label-group">
+          <span class="type-tag">Сценарий</span>
+          <span class="type-name">Страх неизвестности</span>
+        </div>
+        <div class="accordion-icon">+</div>
+      </div>
+      <div class="accordion-body">
+        <div class="accordion-body-inner">
+
+          <div class="block-label">Почему именно это держит вас</div>
+          <p class="block-text">Вы уже мысленно ушли из этой ситуации десятки раз. Но каждый раз, доходя до момента «а что дальше», натыкаетесь на пустоту, которую нечем заполнить. Не сама перемена пугает — пугает неизвестность за ней: справитесь ли вы одна, что будет с деньгами, бытом, привычным укладом. Мозг выбирает знакомое неудобство вместо непредсказуемого облегчения, потому что знакомое, даже плохое, кажется безопаснее.</p>
+
+          <div class="block-label">Как это выглядит в жизни</div>
+          <p class="block-text">Вы открываете сайт с вакансиями третий раз за месяц — и закрываете, ничего не отправив. Репетируете разговор о переезде — и снова молчите, потому что «сейчас не время». Откладываете шаг не потому, что не хотите его сделать, а потому что не можете представить жизнь после него в подробностях.</p>
+
+          <div class="block-label">Техника: два голоса</div>
+          <p class="block-text">Возьмите лист бумаги и разделите пополам. Слева — голос, который приводит доводы против перемены: «не справлюсь», «будет хуже». Справа — второй голос, который отвечает на каждый довод фактом, а не утешением: откуда взялась уверенность, что не справитесь, было ли в прошлом хоть одно доказательство обратного. В большинстве случаев голос слева опирается не на факты, а на привычную тревогу, которая давно устарела.</p>
+
+          <div class="block-label">Первый шаг</div>
+          <p class="block-text">Не сама перемена, а один маленький, обратимый шаг в её сторону: узнать одну конкретную цифру, которая пугает (сколько стоит переезд, сколько нужно на первое время одной), вместо того чтобы бояться абстрактной неизвестности.</p>
+
+          <div class="journal-box">Вопрос дневника: какое конкретное доказательство того, что «не справлюсь», у меня есть на самом деле — и есть ли оно вообще?</div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. ВИНА -->
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleItem(this)">
+        <div class="label-group">
+          <span class="type-tag">Сценарий</span>
+          <span class="type-name">Чувство вины</span>
+        </div>
+        <div class="accordion-icon">+</div>
+      </div>
+      <div class="accordion-body">
+        <div class="accordion-body-inner">
+
+          <div class="block-label">Почему именно это держит вас</div>
+          <p class="block-text">С детства многие из нас слышали: сначала обязанности, потом радости. Эта установка не исчезает с возрастом — она превращается в автоматическое правило: любое решение в свою пользу выглядит как предательство по отношению к тем, кто рядом. Вы уверены, что отвечаете за чувства всех вокруг, поэтому собственный шаг вперёд ощущается как эгоизм, а не как право.</p>
+
+          <div class="block-label">Как это выглядит в жизни</div>
+          <p class="block-text">У вас есть свободный вечер без обязательств — и вы всё равно находите, чем заняться по дому или для других. Вы хотите начать учиться или сменить работу, но мысль «а как без меня справятся близкие» останавливает раньше, чем вы успеваете дойти до решения.</p>
+
+          <div class="block-label">Техника: чья это на самом деле ответственность</div>
+          <p class="block-text">Выпишите решение, которое откладываете. Рядом выпишите, за чьи именно чувства вы боитесь в связи с этим решением. Затем честно ответьте: является ли забота об этих чувствах действительно вашей обязанностью, или вы взяли её на себя сами, никем не назначенная. Вина за чужую реакцию и ответственность за неё — не одно и то же.</p>
+
+          <div class="block-label">Первый шаг</div>
+          <p class="block-text">Один раз сознательно выбрать себя в маленьком, безопасном решении — и заметить, что мир вокруг не рухнул. Это не про большие перемены сразу, а про то, чтобы тело и психика получили опыт: выбор в свою пользу не разрушителен.</p>
+
+          <div class="journal-box">Вопрос дневника: кто на самом деле назначил меня ответственной за чужие чувства — и давала ли я на это согласие?</div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. НАДЕЖДА -->
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleItem(this)">
+        <div class="label-group">
+          <span class="type-tag">Сценарий</span>
+          <span class="type-name">Надежда, что изменится само</span>
+        </div>
+        <div class="accordion-icon">+</div>
+      </div>
+      <div class="accordion-body">
+        <div class="accordion-body-inner">
+
+          <div class="block-label">Почему именно это держит вас</div>
+          <p class="block-text">Надежда — самый комфортный способ отложить решение, потому что она не требует действия прямо сейчас. Вы ждёте, что партнёр изменится, что обстоятельства сложатся сами, что однажды станет легче без вашего вмешательства. Пока вы ждёте, ответственность как будто не на вас — а решение всё равно не наступает.</p>
+
+          <div class="block-label">Как это выглядит в жизни</div>
+          <p class="block-text">Вы годами замечаете один и тот же паттерн в отношениях или на работе, но каждый раз находите объяснение, почему в этот раз будет иначе. Откладываете разговор, потому что «может, само уляжется». Проходит месяц, потом ещё один — картина не меняется, а вы продолжаете ждать.</p>
+
+          <div class="block-label">Техника: доказательства за последний год</div>
+          <p class="block-text">Выпишите конкретные факты за последние двенадцать месяцев, которые подтверждают, что ситуация меняется сама, без вашего участия. Не намерения, не обещания — только то, что действительно произошло. Пустой список — тоже ответ, и часто самый честный.</p>
+
+          <div class="block-label">Первый шаг</div>
+          <p class="block-text">Заменить один пассивный вопрос («когда это изменится») на один активный («что именно я могу сделать в этом на следующей неделе») — и сделать это одно конкретное действие.</p>
+
+          <div class="journal-box">Вопрос дневника: что случилось бы, если бы я перестала ждать и взяла решение в свои руки прямо сейчас?</div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. ПРИВЫЧКА -->
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleItem(this)">
+        <div class="label-group">
+          <span class="type-tag">Сценарий</span>
+          <span class="type-name">Привычка ставить всех выше себя</span>
+        </div>
+        <div class="accordion-icon">+</div>
+      </div>
+      <div class="accordion-body">
+        <div class="accordion-body-inner">
+
+          <div class="block-label">Почему именно это держит вас</div>
+          <p class="block-text">Ваша жизнь давно перестала вас устраивать, но мозг раз за разом выбирает знакомое вместо неизвестного — не потому, что знакомое лучше, а потому что оно требует меньше усилий и риска. Собственные желания при этом отходят так далеко на второй план, что вы перестаёте их замечать и даже формулировать.</p>
+
+          <div class="block-label">Как это выглядит в жизни</div>
+          <p class="block-text">Вы с трудом можете ответить на простой вопрос, чего хотите именно вы — не для семьи, не для работы, а для себя. День устроен так, что решения принимаются автоматически, по накатанной колее, и мысль что-то изменить возникает, но быстро тонет в привычных делах.</p>
+
+          <div class="block-label">Техника: неделя маленьких выборов</div>
+          <p class="block-text">В течение недели в нескольких бытовых ситуациях в день (какую кофту надеть, что съесть, куда сесть) задавайте себе один вопрос: что выбрало бы тело, если бы логика молчала. Это не про большие решения — это про то, чтобы заново научиться слышать собственный отклик до того, как включится привычка выбирать «как всегда».</p>
+
+          <div class="block-label">Первый шаг</div>
+          <p class="block-text">Выделить один час в неделе, который принадлежит только вам, и заранее решить, на что он пойдёт — прежде чем на это время найдётся дело для кого-то другого.</p>
+
+          <div class="journal-box">Вопрос дневника: если бы никто не заметил и не оценил моё решение, я бы всё равно выбрала так же?</div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. ЛОЖНЫЙ ДОЛГ -->
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleItem(this)">
+        <div class="label-group">
+          <span class="type-tag">Сценарий</span>
+          <span class="type-name">Ложный долг</span>
+        </div>
+        <div class="accordion-icon">+</div>
+      </div>
+      <div class="accordion-body">
+        <div class="accordion-body-inner">
+
+          <div class="block-label">Почему именно это держит вас</div>
+          <p class="block-text">Вас удерживает не любовь и не обстоятельства, а ощущение, что вы всем что-то должны: должны довести до конца то, во что вложили годы, должны быть благодарной, должны сначала расплатиться с прошлым, прежде чем разрешить себе новое. Этот долг никто с вас не требовал вслух — вы назначили его себе сами.</p>
+
+          <div class="block-label">Как это выглядит в жизни</div>
+          <p class="block-text">Вы держитесь за ситуацию, потому что «столько лет вложено, бросить сейчас нечестно». Любая мысль об уходе сопровождается не облегчением, а виной перед собственным прошлым выбором — как будто изменить решение значит признать, что все эти годы были ошибкой.</p>
+
+          <div class="block-label">Техника: перед кем именно я в долгу</div>
+          <p class="block-text">Назовите конкретно, перед кем именно вы чувствуете себя обязанной продолжать. Если ответ — «перед собой в прошлом», спросите: а что бы сказала вам сегодняшней та женщина, которая начинала этот путь много лет назад, если бы видела, чего он стоит вам сейчас.</p>
+
+          <div class="block-label">Первый шаг</div>
+          <p class="block-text">Отделить прошлое вложение (времени, сил, лет) от сегодняшнего решения. Прошлое вложение уже сделано и не может быть возвращено ни продолжением, ни остановкой — значит, оно не может быть аргументом ни за, ни против.</p>
+
+          <div class="journal-box">Вопрос дневника: что изменится в моих сегодняшних чувствах, если я перестану считать, что кому-то должна?</div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="divider"></div>
+
+  <p class="closing">Прочитав свой сценарий, не торопитесь сразу к следующему. Поживите с ним несколько дней, попробуйте технику, ответьте на вопрос дневника — и возвращайтесь к практикуму столько раз, сколько понадобится. Ссылка сохраняется навсегда.</p>
+
+  <p class="signature">С уважением, Бэлла Леонидовна</p>
+
+</div>
+
+</div>
+
+<p class="contact-note">Если ситуация требует более глубокой работы, можно обратиться напрямую — отвечаю лично.</p>
+
+<div class="bottom-bar">
+  <a href="https://t.me/bella_psychologist" target="_blank">Telegram</a>
+  <a href="https://wa.me/79880051025" target="_blank">WhatsApp</a>
+</div>
+
+<script>
+  function toggleItem(header) {
+    const item = header.parentElement;
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  }
+</script>
+
+</body>
+</html>
