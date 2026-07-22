@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Какого правила не хватает вашей жизни</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAFAF8;
+    --ink:#141414;
+    --ink-soft:#5c5a56;
+    --accent:#B11D2A;
+    --track:#E8E4DC;
+    --card:#FFFFFF;
+    --line:#DEDAD1;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Manrope',sans-serif;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:100vh;
+    padding:24px;
+  }
+  .app{
+    width:100%;
+    max-width:560px;
+  }
+
+  /* header */
+  .brand{
+    text-align:center;
+    margin-bottom:28px;
+  }
+  .brand .kicker{
+    font-size:12px;
+    letter-spacing:2.5px;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    font-weight:700;
+  }
+  .brand .name{
+    font-family:'Cormorant Garamond',serif;
+    font-size:22px;
+    font-weight:600;
+    margin-top:4px;
+  }
+
+  /* progress */
+  .progress-wrap{
+    margin-bottom:32px;
+  }
+  .progress-track{
+    height:2px;
+    background:var(--track);
+    width:100%;
+    position:relative;
+    border-radius:2px;
+    overflow:hidden;
+  }
+  .progress-fill{
+    height:100%;
+    background:var(--accent);
+    width:0%;
+    transition:width .5s cubic-bezier(.65,0,.35,1);
+  }
+  .progress-label{
+    display:flex;
+    justify-content:space-between;
+    margin-top:10px;
+    font-size:13px;
+    color:var(--ink-soft);
+    font-weight:600;
+  }
+
+  /* card */
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:56px 40px;
+    min-height:320px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+
+  /* intro screen */
+  .screen{display:none;}
+  .screen.active{display:flex; flex-direction:column;}
+
+  #intro.active{align-items:center; text-align:center;}
+  #intro .q-num{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:700;
+    font-size:64px;
+    color:var(--accent);
+    line-height:1;
+    margin-bottom:20px;
+  }
+  #intro h1{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:600;
+    font-size:32px;
+    line-height:1.25;
+    margin-bottom:18px;
+  }
+  #intro p{
+    font-size:15px;
+    color:var(--ink-soft);
+    line-height:1.6;
+    max-width:400px;
+    margin-bottom:32px;
+  }
+
+  /* question screen */
+  .q-eyebrow{
+    font-size:13px;
+    font-weight:700;
+    color:var(--accent);
+    letter-spacing:.5px;
+    margin-bottom:18px;
+  }
+  .q-text{
+    font-family:'Cormorant Garamond',serif;
+    font-size:30px;
+    font-weight:600;
+    line-height:1.35;
+    margin-bottom:36px;
+    opacity:1;
+    transition:opacity .2s ease;
+  }
+  .q-text.fade{
+    opacity:0;
+  }
+  .answers{
+    display:flex;
+    gap:14px;
+  }
+  .answer-btn{
+    flex:1;
+    padding:16px 0;
+    font-family:'Manrope',sans-serif;
+    font-size:16px;
+    font-weight:700;
+    border-radius:3px;
+    border:1.5px solid var(--ink);
+    background:transparent;
+    color:var(--ink);
+    cursor:pointer;
+    transition:background .15s ease, color .15s ease;
+  }
+  .answer-btn:hover{
+    background:var(--ink);
+    color:var(--bg);
+  }
+  .answer-btn.yes{
+    border-color:var(--accent);
+    color:var(--accent);
+    background:transparent;
+  }
+  @media (hover:hover){
+    .answer-btn.yes:hover{ background:var(--accent); color:#fff; }
+    .answer-btn:not(.yes):hover{ background:var(--ink); color:var(--bg); }
+  }
+  .answer-btn.yes.picked{
+    background:var(--accent);
+    color:#fff;
+  }
+  .answer-btn:not(.yes).picked{
+    background:var(--ink);
+    color:var(--bg);
+  }
+  .answer-btn:disabled{
+    cursor:default;
+    opacity:1;
+  }
+
+  .nav-back{
+    margin-top:24px;
+    font-size:13px;
+    color:var(--ink-soft);
+    background:none;
+    border:none;
+    cursor:pointer;
+    text-align:left;
+    padding:0;
+    font-family:'Manrope',sans-serif;
+    font-weight:600;
+  }
+  .nav-back:hover{ color:var(--ink); }
+
+  /* result screen */
+  #result.active{align-items:center; text-align:center;}
+  #result .r-eyebrow{
+    font-size:13px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    font-weight:700;
+    margin-bottom:18px;
+  }
+  #result .r-rule{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:700;
+    font-size:38px;
+    line-height:1.2;
+    color:var(--accent);
+    margin-bottom:22px;
+  }
+  #result .r-desc{
+    font-size:15px;
+    line-height:1.7;
+    color:var(--ink);
+    max-width:420px;
+    margin-bottom:32px;
+  }
+  .cta-btn{
+    display:inline-block;
+    background:var(--ink);
+    color:var(--bg);
+    font-weight:700;
+    font-size:15px;
+    padding:16px 36px;
+    border-radius:3px;
+    border:none;
+    cursor:pointer;
+    font-family:'Manrope',sans-serif;
+    text-decoration:none;
+    transition:background .15s ease;
+  }
+  .cta-btn:hover{ background:var(--accent); }
+
+  .restart{
+    margin-top:20px;
+    font-size:13px;
+    color:var(--ink-soft);
+    background:none;
+    border:none;
+    cursor:pointer;
+    font-family:'Manrope',sans-serif;
+    text-decoration:underline;
+  }
+
+  .footer-note{
+    text-align:center;
+    margin-top:22px;
+    font-size:12px;
+    color:var(--ink-soft);
+  }
+
+  @media (max-width:480px){
+    .card{padding:40px 26px; min-height:280px;}
+    .q-text{font-size:24px;}
+    #intro h1{font-size:26px;}
+    #result .r-rule{font-size:30px;}
+    .answers{flex-direction:column;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .progress-fill{transition:none;}
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+  <div class="brand">
+    <div class="kicker">Полянинова Бэлла Леонидовна</div>
+    <div class="name">Аудит внутренних правил</div>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-label">
+      <span id="progressText">Начало</span>
+      <span id="progressCount"></span>
+    </div>
+  </div>
+
+  <div class="card">
+
+    <div class="screen active" id="intro">
+      <h1>Какого правила сейчас не хватает вашей жизни?</h1>
+      <p>Десять вопросов. Ответьте честно, без раздумий — так, как чувствуете в первую секунду. В конце вы узнаете, какое правило стоит записать в свою жизнь заново.</p>
+      <button class="cta-btn" onclick="startTest()">Начать</button>
+    </div>
+
+    <div class="screen" id="question">
+      <div class="q-eyebrow" id="qEyebrow">Вопрос 1 из 10</div>
+      <div class="q-text" id="qText"></div>
+      <div class="answers">
+        <button class="answer-btn yes" onclick="answer(true)">Да</button>
+        <button class="answer-btn" onclick="answer(false)">Нет</button>
+      </div>
+      <button class="nav-back" id="backBtn" onclick="goBack()" style="visibility:hidden;">← Назад</button>
+    </div>
+
+    <div class="screen" id="result">
+      <div class="r-eyebrow">Результат аудита</div>
+      <div class="r-rule" id="rRule"></div>
+      <div class="r-desc" id="rDesc"></div>
+      <a class="cta-btn" id="ctaLink" href="#">Написать «ПРАВИЛА» в Директ</a>
+      <button class="restart" onclick="restartTest()">Пройти заново</button>
+    </div>
+
+  </div>
+
+  <div class="footer-note">@bella.psychologist</div>
+</div>
+
+<script>
+  // Каждый вопрос привязан к одному из пяти правил (индекс 0–4)
+  const questions = [
+    { text: "Вам трудно говорить «нет»?", rule: 0 },
+    { text: "Вы терпите то, что давно пора закончить?", rule: 0 },
+    { text: "Вам кажется, что вас не ценят?", rule: 1 },
+    { text: "Вам трудно просить деньги за свою работу?", rule: 1 },
+    { text: "Вы принимаете решения слишком долго?", rule: 2 },
+    { text: "Вы боитесь конфликтов?", rule: 2 },
+    { text: "Вы всё время спасаете других?", rule: 3 },
+    { text: "Вы часто чувствуете вину после отказа?", rule: 3 },
+    { text: "Вы часто оправдываетесь?", rule: 4 },
+    { text: "Вам сложно просить помощи?", rule: 4 }
+  ];
+
+  const rules = [
+    {
+      name: "Правило личных границ",
+      desc: "Вы привыкли соглашаться там, где хочется отказать, и терпеть то, что давно пора закончить. Это не мягкость характера. Это отсутствие правила, которое защищает ваше время и решения."
+    },
+    {
+      name: "Правило собственной ценности",
+      desc: "Вы делаете много, но ощущение, что вас не замечают, не проходит. Дело не в том, что вы делаете недостаточно. Дело в правиле, которое до сих пор не назначило вашему труду цену."
+    },
+    {
+      name: "Правило выбора",
+      desc: "Долгие раздумья и уход от конфликта — это не осторожность. Это способ не брать на себя решение. Правило выбора возвращает вам право решать быстро и без вины."
+    },
+    {
+      name: "Правило «сначала я»",
+      desc: "Вы спасаете других и потом чувствуете вину, если хоть раз отказали. Правило «сначала я» не про эгоизм — это правило, без которого забота о других заканчивается истощением."
+    },
+    {
+      name: "Правило права на ошибку",
+      desc: "Постоянные оправдания и неловкость при просьбе о помощи — признак того, что внутри действует правило «я должна справляться одна». Его давно пора заменить."
+    }
+  ];
+
+  let current = -1; // -1 = intro
+  let answers = [];
+  const scores = [0,0,0,0,0];
+
+  const introEl = document.getElementById('intro');
+  const questionEl = document.getElementById('question');
+  const resultEl = document.getElementById('result');
+  const progressFill = document.getElementById('progressFill');
+  const progressText = document.getElementById('progressText');
+  const progressCount = document.getElementById('progressCount');
+
+  function showScreen(el){
+    [introEl, questionEl, resultEl].forEach(s => s.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  function startTest(){
+    current = 0;
+    answers = [];
+    scores.fill(0);
+    renderQuestion();
+    showScreen(questionEl);
+  }
+
+  function renderQuestion(){
+    const q = questions[current];
+    document.getElementById('qEyebrow').textContent = `Вопрос ${current+1} из ${questions.length}`;
+    const qTextEl = document.getElementById('qText');
+    qTextEl.textContent = q.text;
+    qTextEl.classList.remove('fade');
+    document.getElementById('backBtn').style.visibility = current > 0 ? 'visible' : 'hidden';
+    // на всякий случай сбрасываем состояние кнопок при каждом новом вопросе
+    questionEl.querySelectorAll('.answer-btn').forEach(b => {
+      b.disabled = false;
+      b.classList.remove('picked');
+    });
+    updateProgress();
+  }
+
+  function updateProgress(){
+    const pct = current < 0 ? 0 : (current / questions.length) * 100;
+    progressFill.style.width = pct + '%';
+    if(current < 0){
+      progressText.textContent = 'Начало';
+      progressCount.textContent = '';
+    } else if(current >= questions.length){
+      progressFill.style.width = '100%';
+      progressText.textContent = 'Готово';
+      progressCount.textContent = '';
+    } else {
+      progressText.textContent = 'В процессе';
+      progressCount.textContent = `${current+1} / ${questions.length}`;
+    }
+  }
+
+  function answer(value){
+    // визуально фиксируем выбор и блокируем повторное нажатие на время паузы
+    const btns = questionEl.querySelectorAll('.answer-btn');
+    btns.forEach(b => b.disabled = true);
+    const pickedBtn = questionEl.querySelector(value ? '.answer-btn.yes' : '.answer-btn:not(.yes)');
+    if(pickedBtn) pickedBtn.classList.add('picked');
+
+    answers[current] = value;
+    if(value){ scores[questions[current].rule]++; }
+
+    document.getElementById('qText').classList.add('fade');
+
+    setTimeout(() => {
+      btns.forEach(b => { b.disabled = false; b.classList.remove('picked'); });
+      current++;
+      if(current >= questions.length){
+        showResult();
+      } else {
+        renderQuestion();
+      }
+    }, 450);
+  }
+
+  function goBack(){
+    if(current <= 0) return;
+    // откатываем счёт предыдущего ответа
+    const prevQ = questions[current-1];
+    if(answers[current-1]){ scores[prevQ.rule]--; }
+    current--;
+    questionEl.querySelectorAll('.answer-btn').forEach(b => {
+      b.disabled = false;
+      b.classList.remove('picked');
+    });
+    renderQuestion();
+  }
+
+  function showResult(){
+    let maxScore = -1, ruleIndex = 0;
+    scores.forEach((s,i) => { if(s > maxScore){ maxScore = s; ruleIndex = i; } });
+    const r = rules[ruleIndex];
+    document.getElementById('rRule').textContent = `У вас отсутствует ${r.name.charAt(0).toLowerCase()+r.name.slice(1)}`;
+    document.getElementById('rDesc').textContent = r.desc;
+    updateProgress();
+    showScreen(resultEl);
+  }
+
+  function restartTest(){
+    current = -1;
+    showScreen(introEl);
+    updateProgress();
+  }
+
+  updateProgress();
+</script>
+
+</body>
+</html>
