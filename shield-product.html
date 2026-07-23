@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ЩИТ — противоядия на пять манипуляций</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background-color: #0F2D2A; }
+  body {
+    font-family: 'Manrope', 'Segoe UI', sans-serif;
+    background-color: #0F2D2A;
+    color: #103B34;
+    -webkit-font-smoothing: antialiased;
+    padding-bottom: 60px;
+  }
+  .wrap { max-width: 640px; margin: 0 auto; background: #F4FBF9; }
+
+  .header { background: #0F2D2A; color: #F4FBF9; padding: 48px 28px 40px; position: relative; overflow: hidden; }
+  .header::before { content: ""; position: absolute; top: -60px; right: -60px; width: 220px; height: 220px; border-radius: 50%; background: radial-gradient(circle, rgba(94,209,180,0.35) 0%, rgba(94,209,180,0) 70%); }
+  .eyebrow { font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: #5ED1B4; font-weight: 700; margin-bottom: 14px; }
+  .title { font-size: 36px; font-weight: 800; line-height: 1.15; letter-spacing: -0.01em; }
+  .subtitle { margin-top: 14px; font-size: 15px; line-height: 1.6; color: #B9DED4; max-width: 46ch; }
+
+  .diagnostic { padding: 32px 28px; background: #14453F; color: #F4FBF9; }
+  .diagnostic-label { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #5ED1B4; margin-bottom: 10px; }
+  .diagnostic-text { font-size: 16px; line-height: 1.7; }
+
+  .technique { padding: 32px 28px; background: #E4F3EE; border-bottom: 1px solid #CFE9E1; }
+  .technique-label { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #17796A; margin-bottom: 10px; }
+  .technique-text { font-size: 16px; line-height: 1.65; color: #103B34; }
+  .finger-row { display: flex; gap: 6px; margin-top: 18px; }
+  .finger-dot { width: 28px; height: 28px; border-radius: 50%; border: 2px solid #17796A; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: #17796A; background: #F4FBF9; }
+
+  .template-section { padding: 32px 28px 8px; }
+  .template-heading { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #17796A; margin-bottom: 14px; }
+  .phrase-card { background: #0F2D2A; color: #F4FBF9; border-radius: 18px; padding: 26px 24px; font-size: 17px; line-height: 1.6; font-weight: 600; }
+  .phrase-card .slot { color: #5ED1B4; font-weight: 700; }
+  .footnote { padding: 18px 28px 8px; font-size: 14px; line-height: 1.7; color: #345048; }
+  .footnote strong { color: #103B34; }
+
+  .modules { padding: 28px 20px 8px; display: flex; flex-direction: column; gap: 16px; }
+  details.m-block { border-radius: 18px; overflow: hidden; }
+  details.m-block > summary { list-style: none; cursor: pointer; padding: 20px 22px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  details.m-block > summary::-webkit-details-marker { display: none; }
+  .m-question { font-size: 19px; font-weight: 800; letter-spacing: -0.01em; line-height: 1.35; }
+  .m-tag { font-size: 12px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; opacity: 0.65; margin-top: 8px; }
+  .chevron { font-size: 22px; font-weight: 800; transition: transform 0.2s ease; flex-shrink: 0; }
+  details[open] .chevron { transform: rotate(45deg); }
+  .m-body { padding: 0 22px 26px; }
+  .m-situation { font-size: 14.5px; line-height: 1.65; margin-bottom: 18px; opacity: 0.9; }
+  .m-sub-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.6; margin: 18px 0 8px; }
+  .m-sub-label:first-of-type { margin-top: 0; }
+  .m-example { font-size: 14px; line-height: 1.65; margin-bottom: 10px; }
+  .m-example .who { font-weight: 700; }
+  .m-fragment { font-size: 15px; font-weight: 700; line-height: 1.55; padding: 12px 14px; border-radius: 12px; margin: 8px 0 12px; }
+  .m-antidote { font-size: 14.5px; line-height: 1.65; margin-bottom: 8px; }
+  .m-closing { margin-top: 16px; padding-top: 14px; border-top: 1px solid rgba(0,0,0,0.12); font-size: 13.5px; line-height: 1.6; opacity: 0.85; }
+
+  .b1 { background: #DDEFA7; color: #33421A; } .b1 .m-fragment { background: #C7E378; color: #2A3714; }
+  .b2 { background: #C9E4F7; color: #16374F; } .b2 .m-fragment { background: #A9D2EF; color: #0F2A3D; }
+  .b3 { background: #F9E39B; color: #4A3A0A; } .b3 .m-fragment { background: #F4D269; color: #3D2F06; }
+  .b4 { background: #E3D2BE; color: #3F2E1C; } .b4 .m-fragment { background: #D4BB9C; color: #33240F; }
+  .b5 { background: #F5CBD8; color: #5A1D30; } .b5 .m-fragment { background: #EFB0C3; color: #4C1526; }
+
+  .template-section.bottom { padding-top: 30px; }
+
+  .cta-block { margin: 32px 20px 0; background: #0F2D2A; color: #F4FBF9; border-radius: 20px; padding: 30px 26px; text-align: center; }
+  .cta-title { font-size: 21px; font-weight: 800; margin-bottom: 10px; }
+  .cta-text { font-size: 14.5px; line-height: 1.65; color: #B9DED4; margin-bottom: 22px; }
+  .cta-button { display: inline-block; background: #5ED1B4; color: #0F2D2A; font-weight: 800; font-size: 16px; padding: 15px 32px; border-radius: 999px; text-decoration: none; }
+
+  .signature { text-align: center; padding: 30px 28px 0; font-size: 14px; color: #4B6B64; line-height: 1.7; }
+
+  @media (max-width: 400px) {
+    .title { font-size: 30px; }
+    .phrase-card { font-size: 15px; padding: 20px 18px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header">
+    <div class="eyebrow">Полная версия</div>
+    <div class="title">ЩИТ</div>
+    <div class="subtitle">Противоядия на пять манипуляций. Одна фраза-основа, которая работает всегда, и конкретные ответы на каждую ситуацию — что сказать и что сделать.</div>
+  </div>
+
+  <div class="diagnostic">
+    <div class="diagnostic-label">Как узнать манипуляцию</div>
+    <div class="diagnostic-text">Если после разговора вы ловите себя на мысли не о самой ситуации, а о том, как оправдаться или как не разочаровать собеседника — скорее всего, вами пытались манипулировать. Мы реагируем так остро именно потому, что хотим либо оправдаться перед человеком, либо соответствовать тому, что он от нас ожидает.</div>
+  </div>
+
+  <div class="technique">
+    <div class="technique-label">Прежде чем ответить</div>
+    <div class="technique-text">Досчитайте медленно до семи, загибая по одному пальцу на каждый счёт. Это не для драмы — это чтобы дать себе время вспомнить нужный ответ, а не среагировать на автомате.</div>
+    <div class="finger-row">
+      <div class="finger-dot">1</div><div class="finger-dot">2</div><div class="finger-dot">3</div>
+      <div class="finger-dot">4</div><div class="finger-dot">5</div><div class="finger-dot">6</div><div class="finger-dot">7</div>
+    </div>
+  </div>
+
+  <div class="technique" style="background:#DCEEE8; border-bottom:1px solid #C3E0D6;">
+    <div class="technique-label">Второй вопрос себе</div>
+    <div class="technique-text">Пока считаете до семи, задайте себе не «кто прав», а «чего я хочу добиться этим ответом». Это возврат к собственной цели в разговоре — вместо того чтобы анализировать манипулятора, вы проверяете себя. Если честный ответ — «хочу доказать, что я не виновата» или «хочу, чтобы он перестал так говорить» — вы уже внутри манипуляции, а не вне её. Настоящая цель обычно проще: чтобы вас услышали, или чтобы решение осталось за вами — и её можно добиться без доказательств и оправданий.</div>
+
+    <div class="m-fragment" style="background:#5ED1B4; color:#0F2D2A; margin-top:16px; font-size:16px;">«Чего я хочу добиться этим ответом?»</div>
+
+    <div class="m-sub-label" style="margin-top:20px;">Пример с любовью</div>
+    <div class="m-example"><span class="who">Партнёр:</span> «Если бы ты меня любила, ты бы так не поступила.»</div>
+    <div class="m-antidote">Вместо того чтобы отвечать сразу, спросите себя: «Чего я хочу от этой ситуации?» Если ответ — «хочу, чтобы он не задавал таких вопросов», годится жёсткий встречный вопрос: «Для чего ты сейчас это спрашиваешь?» Если ответ — «хочу, чтобы он понял, что я всё равно его люблю», годится более мягкий ответ: «Я люблю тебя. И именно поэтому не хочу соглашаться из страха, а не по своей воле.»</div>
+
+    <div class="m-sub-label" style="margin-top:20px;">Пример с мамой и эгоизмом</div>
+    <div class="m-example"><span class="who">Мама:</span> «Ты вообще не думаешь о матери.»</div>
+    <div class="m-antidote">Спросите себя: «Чего я хочу от этой ситуации?» Если ответ — «хочу доказать, что я не виновата», манипуляция уже сработала: вины изначально не было, доказывать нечего. Само желание доказывать — и есть сигнал. В этом случае лучше не оправдываться, а вернуться к фактам: «Я слышу, что тебе тяжело. Расскажи, чем я могу помочь на самом деле» — без попытки заслужить прощение за несуществующую вину.</div>
+
+    <div class="m-closing" style="border-top:1px solid rgba(0,0,0,0.12); margin-top:18px; padding-top:14px;">Этот вопрос работает не только на пять манипуляций из этого продукта — держите его в голове в любой ситуации, где чувствуете давление, а не только там, где узнали знакомый паттерн.</div>
+  </div>
+
+  <div class="template-section">
+    <div class="template-heading">Основа, которая работает всегда</div>
+    <div class="phrase-card">
+      Я вижу, что вы манипулируете мной — через <span class="slot">[манипуляция]</span>. Мне это неприятно. И каждый раз, когда вы так делаете, вы теряете свой <span class="slot">[авторитет / уважение / статус]</span> в моих глазах.
+    </div>
+  </div>
+  <div class="footnote">
+    Окончание можно менять под собеседника: <strong>«авторитет»</strong> — для того, чьё мнение имеет вес, руководителя или родителя; <strong>«уважение»</strong> — для партнёра и близкого круга; <strong>«статус»</strong> — для более отстранённых отношений, коллег и дальних знакомых.
+  </div>
+
+  <div class="modules">
+
+    <!-- MODULE 1 — ВИНА -->
+    <details class="m-block b1" open>
+      <summary>
+        <div><div class="m-question">Что делать, если постоянно выставляют виноватой?</div><div class="m-tag">Манипуляция ложным чувством вины</div></div>
+        <div class="chevron">+</div>
+      </summary>
+      <div class="m-body">
+        <div class="m-situation">Вас обвиняют не фактами, а намёком, молчанием или демонстрацией страдания. Цель — не разобраться, а заставить передумать. Проверка простая: если после разговора вы ничего плохого не сделали, но всё равно хотите оправдываться — вами управляли.</div>
+
+        <div class="m-sub-label">Мягкий вариант, для коллег и малознакомых</div>
+        <div class="m-fragment">«Я вижу, что вы обижаетесь и хотите, чтобы всё было по-другому, то есть по-вашему. Но ваше страдание — не доказательство моей вины.»</div>
+
+        <div class="m-sub-label">На работе</div>
+        <div class="m-example"><span class="who">Коллега:</span> «Ну да, вы быстро сделали, но не факт, что правильно, а мне потом за вами проверять и переделывать, пока вы уже убежали.»</div>
+        <div class="m-fragment">«Если в работе есть ошибка — скажите, какая именно, и я её исправлю. Пока ошибки не найдено, обсуждать нечего.»</div>
+
+        <div class="m-sub-label">В семье</div>
+        <div class="m-example"><span class="who">Мама:</span> «Конечно, поезжай, подружки важнее, я уж как-нибудь сама.»</div>
+        <div class="m-fragment">«Мама, если тебе нужна помощь — попроси меня прямо. Если ты расстроилась — скажи об этом. Но давай не будем говорить намёками.»</div>
+        <div class="m-antidote">Более короткий и прямой вариант, если ситуация повторяется: «Ты хочешь, чтобы я приехала, или хочешь, чтобы я почувствовала себя виноватой, что не приеду?»</div>
+
+        <div class="m-sub-label">С друзьями</div>
+        <div class="m-example"><span class="who">Друзья:</span> «Мы надеялись, что ты купишь шашлыков и приедешь, теперь мы сидим голодные из-за тебя, мы на тебя рассчитывали.»</div>
+        <div class="m-fragment">«Я не смогла приехать по важной причине. Если ужин зависел от одного человека — стоило заранее подстраховаться, а не только рассчитывать на меня.»</div>
+        <div class="m-antidote">Если есть подозрение, что вас нарочно подставляют под вину: «Мне кажется, вы сейчас хотите, чтобы я почувствовала себя виноватой, а не разобраться, что случилось на самом деле.»</div>
+
+        <div class="m-sub-label">Напоминание о прошлом — отдельный случай вины</div>
+        <div class="m-situation">Человек регулярно возвращается к одной и той же прошлой ошибке, чтобы обесценить текущую просьбу.</div>
+        <div class="m-fragment">«Да, я помню эту ситуацию. Я её проанализировала и сделала выводы. Впредь прошу к ней больше не возвращаться, потому что реагировать на неё я больше не буду.»</div>
+
+        <div class="m-sub-label">Универсальные фразы</div>
+        <div class="m-antidote">«Мы сейчас решаем проблему, или вы хотите, чтобы я продолжала чувствовать себя виноватой?»</div>
+        <div class="m-antidote">«Для чего вы мне сейчас об этом говорите? Что вы хотите, чтобы я сделала?»</div>
+
+        <div class="m-closing">Действие прежде слов: прежде чем отвечать, спросите себя — я правда сделала что-то не так, или мне просто хотят показать, что я плохая. И не оправдывайтесь развёрнуто — оправдание удлиняет разговор и укрепляет ощущение вины.</div>
+      </div>
+    </details>
+
+    <!-- MODULE 2 — ЭГОИЗМ -->
+    <details class="m-block b2">
+      <summary>
+        <div><div class="m-question">Что ответить, когда вас обвиняют в эгоизме?</div><div class="m-tag">Манипуляция обвинением в эгоизме</div></div>
+        <div class="chevron">+</div>
+      </summary>
+      <div class="m-body">
+        <div class="m-situation">«Ты стала эгоисткой» чаще всего звучит не потому, что вы начали думать только о себе, а потому, что впервые сказали «нет». Так называют не заботу о себе, а отказ жить чужими желаниями.</div>
+
+        <div class="m-sub-label">Узнаваемая ситуация</div>
+        <div class="m-example">Вы решили купить себе новую сумку или провести пару дней на море. И тут же выясняется: маме нужен забор на даче, а друзьям срочно понадобились деньги. Начинается: «Она на курорт, а тут сумка вон какая дорогая, ты стала такой эгоисткой». Это лучший комплимент для женщины, у которой есть границы — так говорят именно тогда, когда вы впервые сказали «нет».</div>
+
+        <div class="m-sub-label">Разница, которую стоит держать в голове</div>
+        <div class="m-antidote">Здоровый эгоизм — это ответственность за свою жизнь, разрушительный — попытка получить своё за чужой счёт. Если вы просто отказались обслуживать чужие ожидания, это не эгоизм, это граница.</div>
+
+        <div class="m-sub-label">Базовый ответ</div>
+        <div class="m-fragment">«Я понимаю, что вам не нравится моё решение. Но оно останется прежним.»</div>
+
+        <div class="m-sub-label">Разворот на конкретику</div>
+        <div class="m-fragment">«Что именно вам сейчас нужно от меня? Скажите прямо, и я подумаю, что могу сделать.»</div>
+        <div class="m-antidote">Это переводит общее обвинение в конкретную просьбу, с которой уже можно работать.</div>
+
+        <div class="m-sub-label">Для повторяющихся случаев</div>
+        <div class="m-fragment">«Граница — не эгоизм. Эгоизм — это когда мои желания важнее ваших чувств. Граница — когда мои желания и ваши чувства просто существуют отдельно.»</div>
+
+        <div class="m-closing">Если чувствуете, что разговор идёт по кругу и слово «эгоистка» звучит уже не как аргумент, а как давление — у вас есть право выйти из разговора и вернуться к нему позже, когда обе стороны спокойнее. Граница начинается там, где заканчиваются оправдания.</div>
+      </div>
+    </details>
+
+    <!-- MODULE 3 — ГАЗЛАЙТИНГ -->
+    <details class="m-block b3">
+      <summary>
+        <div><div class="m-question">Что делать, если собеседник убеждает вас в том, чего не было?</div><div class="m-tag">Газлайтинг</div></div>
+        <div class="chevron">+</div>
+      </summary>
+      <div class="m-body">
+        <div class="m-situation">Вместо фактов вам меняют картину происходящего: «этого не было», «ты всё придумала», «ты слишком остро реагируешь». Здесь одной фразой не обойтись — газлайтинг работает по-разному, и нужны разные ходы под разные атаки.</div>
+
+        <div class="m-sub-label">На работе</div>
+        <div class="m-example"><span class="who">Руководитель:</span> «Этого никогда не было, вы всё придумали.»</div>
+        <div class="m-fragment">«Хорошо. Тогда расскажите, как, по-вашему, это происходило, по порядку.»</div>
+        <div class="m-antidote">Подробно пересказать выдуманную версию тяжело — газлайтеру сложно удержать её последовательной.</div>
+
+        <div class="m-sub-label">В близких отношениях</div>
+        <div class="m-example"><span class="who">Партнёр:</span> «Ты слишком остро реагируешь, тебе показалось.»</div>
+        <div class="m-fragment">«Мы сейчас обсуждаем мои эмоции или то, что произошло на самом деле?»</div>
+
+        <div class="m-sub-label">Универсальные фразы</div>
+        <div class="m-antidote">«Я помню ситуацию иначе и доверяю своей памяти.»</div>
+        <div class="m-antidote">«Я услышала вашу версию. У меня другая. Спор о том, чья память точнее, ничего не изменит.»</div>
+
+        <div class="m-closing">Внутренний вопрос себе, а не собеседнику — тот, что редко объясняют: «После этого разговора я стала лучше понимать ситуацию, или просто стала меньше доверять себе?» Если верно второе — проблема не в вашей памяти, а в том, как с вами разговаривают.</div>
+      </div>
+    </details>
+
+    <!-- MODULE 4 — НЕПРОШЕНЫЕ СОВЕТЫ -->
+    <details class="m-block b4">
+      <summary>
+        <div><div class="m-question">Что ответить на непрошеный совет?</div><div class="m-tag">Манипуляция скрытой критикой под видом заботы</div></div>
+        <div class="chevron">+</div>
+      </summary>
+      <div class="m-body">
+        <div class="m-situation">«Я же лучше знаю, я мама, я столько лет прожила» — а следом прямая дискредитация: «ты одела дурацкую кофту», «ты неправильно воспитываешь детей, я бы сделала по-другому». Дело не в родительском опыте самом по себе — люди по-настоящему учатся только на своих ошибках, и это нормально. Неприятно не то, что дают совет, а то, что через совет вас обесценивают.</div>
+
+        <div class="m-sub-label">Короткий закрывающий ответ</div>
+        <div class="m-fragment">«Спасибо за ваше мнение. Я учту.»</div>
+        <div class="m-antidote">Без спора и без оправданий — разговор закрывается одной фразой, и вы возвращаетесь к своим делам. Это не слабость, а способ не тратить силы там, где спор ничего не изменит.</div>
+
+        <div class="m-sub-label">Разворот на участие</div>
+        <div class="m-example"><span class="who">Про кофту:</span> «Не та кофта, я бы такую не купила.»</div>
+        <div class="m-fragment">«Я так понимаю, ты хочешь купить мне кофту, которая нравится тебе?»</div>
+        <div class="m-example"><span class="who">Про ремонт или мебель:</span> «Мне не нравится, как вы тут всё расставили.»</div>
+        <div class="m-fragment">«Ты хочешь взять на себя ремонт — нанять дизайнера, выбрать материалы?»</div>
+        <div class="m-antidote">Это переводит критику в вопрос об участии и ответственности, а не в спор о вкусах.</div>
+
+        <div class="m-sub-label">Обесценивание под видом мнения</div>
+        <div class="m-example">Новая кофта: «Красивая, но чёрная была бы лучше.» Или про сделанную работу: «Ты всё хорошо сделала, но вот здесь могла бы получше.» Это не забота и не совет — человек не помогает, а доказывает, что лучше знает, и вам начинает казаться, что вы выбрали неправильно, хотя не ошибались.</div>
+        <div class="m-fragment">«Интересное мнение.» Или: «Мммм, концептуально.»</div>
+        <div class="m-antidote">Без оправданий и без спора — короткая ироничная реплика забирает у критики серьёзность, не превращая её в конфликт. Эту фразу можно использовать почти в любой похожей ситуации.</div>
+
+        <div class="m-sub-label">Если совет повторяется систематически</div>
+        <div class="m-fragment">«Если понадобится ваше мнение, я спрошу сама.»</div>
+      </div>
+    </details>
+
+    <!-- MODULE 5 — МАНИПУЛЯЦИЯ ЛЮБОВЬЮ -->
+    <details class="m-block b5">
+      <summary>
+        <div><div class="m-question">Что ответить, когда говорят: если бы ты любила, ты бы так не поступила?</div><div class="m-tag">Манипуляция любовью</div></div>
+        <div class="chevron">+</div>
+      </summary>
+      <div class="m-body">
+        <div class="m-situation">Любовью не шантажируют. Это не предмет торга, и её не нужно заслуживать отказом от себя. Когда вы слышите фразу «если бы ты меня любила» — это уже не про любовь. Это инструкция, как заставить вас сделать то, чего вы не хотите. Часто за этим следует вторая часть манипуляции — молчание или холодность после отказа, как наказание за то, что условие не выполнено.</div>
+
+        <div class="m-sub-label">Короткое противоядие</div>
+        <div class="m-fragment">«Я люблю. Но не ценой себя.»</div>
+
+        <div class="m-sub-label">На прямое обвинение</div>
+        <div class="m-example"><span class="who">Партнёр:</span> «Если бы ты меня любила, ты бы так не поступила.»</div>
+        <div class="m-fragment">«Любовь — не предмет торга. Я могу любить тебя и не соглашаться с этим конкретно.»</div>
+
+        <div class="m-sub-label">На «значит, ты меня не любишь»</div>
+        <div class="m-fragment">«Один отказ не отменяет того, что я к тебе чувствую. Пожалуйста, не проверяй это через ультиматумы.»</div>
+
+        <div class="m-sub-label">На молчание и холодность после отказа</div>
+        <div class="m-fragment">«Я вижу, что ты расстроен и замолчал. Когда захочешь поговорить прямо — я готова.»</div>
+        <div class="m-antidote">Дальше не повторять и не уговаривать — не бежать следом. Сказать один раз и остановиться.</div>
+
+        <div class="m-closing">Важно и для тех, у кого есть дети: если говорить ребёнку «если бы ты меня любил, ты бы так не поступил» — вы не учите его любить правильно, вы учите его в будущем заслуживать любовь вместо того, чтобы её проживать. С высокой вероятностью вы растите взрослого, который будет выпрашивать одобрение, а не жить свою жизнь.</div>
+      </div>
+    </details>
+
+  </div>
+
+  <div class="cta-block">
+    <div class="cta-title">Хотите разобрать вашу ситуацию лично?</div>
+    <div class="cta-text">Если готовые ответы не закрывают вопрос до конца — запишитесь на консультацию. Установочная сессия 40–60 минут бесплатна.</div>
+    <a class="cta-button" href="http://t.me/BellaPsy_bot">Записаться на консультацию</a>
+  </div>
+
+  <div class="signature">Это всё, что нужно, чтобы перестать теряться в моменте. Пять манипуляций, узнаваемые ситуации из жизни и готовые слова на каждый случай — под рукой, когда они понадобятся.<br><br>Нам необходимы правила. Всегда.<br>С уважением, Бэлла Леонидовна</div>
+
+</div>
+</body>
+</html>
