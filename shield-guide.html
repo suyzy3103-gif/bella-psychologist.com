@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ЩИТ — гайд</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background-color: #0F2D2A; }
+  body {
+    font-family: 'Manrope', 'Segoe UI', sans-serif;
+    background-color: #0F2D2A;
+    color: #0F2D2A;
+    -webkit-font-smoothing: antialiased;
+    padding: 0 0 60px 0;
+  }
+  .wrap { max-width: 640px; margin: 0 auto; background: #F4FBF9; }
+
+  .header { background: #0F2D2A; color: #F4FBF9; padding: 48px 28px 40px; position: relative; overflow: hidden; }
+  .header::before { content: ""; position: absolute; top: -60px; right: -60px; width: 220px; height: 220px; border-radius: 50%; background: radial-gradient(circle, rgba(94,209,180,0.35) 0%, rgba(94,209,180,0) 70%); }
+  .eyebrow { font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: #5ED1B4; font-weight: 700; margin-bottom: 14px; }
+  .title { font-size: 34px; font-weight: 800; line-height: 1.15; letter-spacing: -0.01em; }
+  .subtitle { margin-top: 14px; font-size: 15px; line-height: 1.6; color: #B9DED4; max-width: 46ch; }
+
+  .blocks { padding: 28px 20px 8px; display: flex; flex-direction: column; gap: 18px; }
+  .m-block { border-radius: 18px; padding: 24px 24px 26px; }
+  .m-index { font-size: 12px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.65; margin-bottom: 10px; }
+  .m-hook { font-size: 15.5px; line-height: 1.65; font-weight: 700; margin-bottom: 14px; }
+  .m-text { font-size: 14.5px; line-height: 1.65; margin-bottom: 16px; opacity: 0.9; }
+  .m-antidote-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.6; margin-bottom: 6px; }
+  .m-antidote { font-size: 16px; font-weight: 700; line-height: 1.55; padding: 12px 14px; border-radius: 12px; margin-bottom: 14px; }
+  .m-closing { font-size: 13.5px; line-height: 1.6; opacity: 0.85; margin-bottom: 16px; }
+  .m-cta { font-size: 14px; line-height: 1.6; font-weight: 600; padding-top: 14px; border-top: 1px solid rgba(0,0,0,0.12); }
+
+  .b1 { background: #DDEFA7; color: #33421A; } .b1 .m-antidote { background: #C7E378; color: #2A3714; }
+  .b2 { background: #C9E4F7; color: #16374F; } .b2 .m-antidote { background: #A9D2EF; color: #0F2A3D; }
+  .b3 { background: #F9E39B; color: #4A3A0A; } .b3 .m-antidote { background: #F4D269; color: #3D2F06; }
+  .b4 { background: #E3D2BE; color: #3F2E1C; } .b4 .m-antidote { background: #D4BB9C; color: #33240F; }
+  .b5 { background: #F5CBD8; color: #5A1D30; } .b5 .m-antidote { background: #EFB0C3; color: #4C1526; }
+
+  .signature { text-align: center; padding: 34px 28px 0; font-size: 14px; color: #B9DED4; line-height: 1.7; background: #0F2D2A; margin-top: 10px; padding-top: 30px; padding-bottom: 30px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header">
+    <div class="eyebrow">Ваш вопрос — мой ответ</div>
+    <div class="title">ЩИТ</div>
+    <div class="subtitle">Вы уже знаете, как это работает. Теперь это будет у вас под рукой. Пять манипуляций из роликов — собраны здесь, чтобы не листать ленту в нужный момент, когда мама звонит или коллега давит, а знать, что ответить.</div>
+  </div>
+
+  <div style="padding:32px 24px 8px; background:#E4F3EE;">
+    <div style="font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#17796A; margin-bottom:10px;">Маленький тест</div>
+    <div style="font-size:15px; line-height:1.6; color:#103B34; margin-bottom:20px;">Нажмите на те фразы, в которых узнали себя.</div>
+
+    <div id="quiz-items" style="display:flex; flex-direction:column; gap:10px;">
+      <div class="quiz-item" data-checked="false" style="background:#DDEFA7; color:#33421A; padding:14px 16px; border-radius:12px; font-size:14.5px; line-height:1.5; cursor:pointer;">Вы часто извиняетесь, даже когда не уверены, что сделали что-то не так.</div>
+      <div class="quiz-item" data-checked="false" style="background:#DDEFA7; color:#33421A; padding:14px 16px; border-radius:12px; font-size:14.5px; line-height:1.5; cursor:pointer;">Вы соглашаетесь на просьбу, лишь бы не видеть, как расстраивается собеседник.</div>
+      <div class="quiz-item" data-checked="false" style="background:#C9E4F7; color:#16374F; padding:14px 16px; border-radius:12px; font-size:14.5px; line-height:1.5; cursor:pointer;">Вам говорили, что вы думаете только о себе, именно тогда, когда вы впервые сказали «нет».</div>
+      <div class="quiz-item" data-checked="false" style="background:#C9E4F7; color:#16374F; padding:14px 16px; border-radius:12px; font-size:14.5px; line-height:1.5; cursor:pointer;">После отказа вы чувствуете вину сильнее, чем облегчение.</div>
+      <div class="quiz-item" data-checked="false" style="background:#F9E39B; color:#4A3A0A; padding:14px 16px; border-radius:12px; font-size:14.5px; line-height:1.5; cursor:pointer;">После разговора с определённым человеком вы чаще сомневаетесь в себе, чем в нём.</div>
+      <div class="quiz-item" data-checked="false" style="background:#F9E39B; color:#4A3A0A; padding:14px 16px; border-radius:12px; font-size:14.5px; line-height:1.5; cursor:pointer;">Вам говорили «этого не было» или «тебе показалось» о том, что вы точно помните.</div>
+      <div class="quiz-item" data-checked="false" style="background:#E3D2BE; color:#3F2E1C; padding:14px 16px; border-radius:12px; font-size:14.5px; line-height:1.5; cursor:pointer;">Вам сложно сказать «спасибо, но я сделаю по-своему» без развёрнутого объяснения.</div>
+      <div class="quiz-item" data-checked="false" style="background:#E3D2BE; color:#3F2E1C; padding:14px 16px; border-radius:12px; font-size:14.5px; line-height:1.5; cursor:pointer;">После чужого мнения о вашем выборе вам хочется всё переделать, хотя вы не ошибались.</div>
+      <div class="quiz-item" data-checked="false" style="background:#F5CBD8; color:#5A1D30; padding:14px 16px; border-radius:12px; font-size:14.5px; line-height:1.5; cursor:pointer;">Вам говорили «если бы ты любила, ты бы так не поступила».</div>
+      <div class="quiz-item" data-checked="false" style="background:#F5CBD8; color:#5A1D30; padding:14px 16px; border-radius:12px; font-size:14.5px; line-height:1.5; cursor:pointer;">После отказа кому-то близкому следует молчание или холодность.</div>
+    </div>
+
+    <div style="margin-top:20px; background:#0F2D2A; color:#F4FBF9; border-radius:16px; padding:20px 20px;">
+      <div id="quiz-count" style="font-size:22px; font-weight:800; margin-bottom:8px;">0 из 10</div>
+      <div id="quiz-result" style="font-size:14.5px; line-height:1.6; color:#B9DED4;">Нажимайте на фразы выше — здесь появится расшифровка.</div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      var items = document.querySelectorAll('.quiz-item');
+      var countEl = document.getElementById('quiz-count');
+      var resultEl = document.getElementById('quiz-result');
+      var checkedColors = {};
+      items.forEach(function(item) {
+        checkedColors[item] = item.style.background;
+      });
+      function update() {
+        var checked = document.querySelectorAll('.quiz-item[data-checked="true"]').length;
+        countEl.textContent = checked + ' из 10';
+        var msg;
+        if (checked === 0) {
+          msg = 'Нажимайте на фразы выше — здесь появится расшифровка.';
+        } else if (checked <= 2) {
+          msg = 'Это манипуляции, которые вы уже узнаёте в моменте — а раз узнаёте, у вас есть шанс не поддаться. Хорошо, когда под рукой есть готовые слова на такой случай.';
+        } else if (checked <= 5) {
+          msg = 'Похоже, есть манипуляции, на которые вы иногда всё же ведётесь. Стоит позаботиться о себе заранее — знать конкретные слова, которые можно сказать в момент, а не после.';
+        } else {
+          msg = 'Вы редко замечаете это, пока разговор уже не идёт своим ходом. Тем важнее заранее подготовить себе слова на каждый случай — чтобы не искать их задним числом.';
+        }
+        resultEl.textContent = msg;
+      }
+      items.forEach(function(item) {
+        var originalBg = item.style.background;
+        item.addEventListener('click', function() {
+          var isChecked = item.getAttribute('data-checked') === 'true';
+          item.setAttribute('data-checked', isChecked ? 'false' : 'true');
+          item.style.opacity = isChecked ? '1' : '0.55';
+          item.style.outline = isChecked ? 'none' : '2px solid #0F2D2A';
+          update();
+        });
+      });
+    })();
+  </script>
+
+  <div class="blocks">
+
+    <!-- 1 — ВИНА -->
+    <div class="m-block b1">
+      <div class="m-index">Ролик 1</div>
+      <div class="m-hook">Почему некоторые люди заставляют вас чувствовать вину, даже если вы ничего плохого не сделали?</div>
+      <div class="m-text">Чувство вины часто вызывают не фактами, а намёками, разочарованием, молчанием или демонстрацией страдания. Цель — не разобраться, а заставить вас передумать. Проверка простая: если после разговора вы понимаете, что ничего плохого не сделали, но всё равно хотите оправдываться — вами пытались управлять через вину.</div>
+      <div class="m-antidote-label">Противоядие</div>
+      <div class="m-antidote">«Я вижу, что вы обижаетесь и хотите, чтобы всё было по-вашему. Но ваше страдание — не доказательство моей вины.»</div>
+      <div class="m-closing">Подходит для коллег и малознакомых людей.</div>
+      <div class="m-cta">Пишите ЩИТ — пришлю, как сказать мягче, но не слабее.</div>
+    </div>
+
+    <!-- 2 — ЭГОИЗМ -->
+    <div class="m-block b2">
+      <div class="m-index">Ролик 2</div>
+      <div class="m-hook">Вы решили купить себе новую сумку или провести пару дней на море. И тут же: маме нужен забор на даче, а друзьям срочно понадобились деньги. Начинается: «Она на курорт, а тут сумка вон какая дорогая — ты стала такой эгоисткой!»</div>
+      <div class="m-text">Это лучший комплимент для женщины, у которой есть границы. Так говорят именно тогда, когда вы впервые сказали «нет». Смысл, который вкладывают в слово «эгоизм», — не забота о себе, а ваш отказ жить чужими желаниями.</div>
+      <div class="m-antidote-label">Противоядие</div>
+      <div class="m-antidote">«Я понимаю, что вам не нравится моё решение. Но оно останется прежним.»</div>
+      <div class="m-closing">Граница начинается там, где заканчиваются оправдания.</div>
+      <div class="m-cta">Пишите ЩИТ — пришлю готовые ответы, которые работают уже сейчас.</div>
+    </div>
+
+    <!-- 3 — ГАЗЛАЙТИНГ -->
+    <div class="m-block b3">
+      <div class="m-index">Ролик 3</div>
+      <div class="m-hook">Почему после разговора с некоторыми людьми вы начинаете сомневаться в себе?</div>
+      <div class="m-text">Потому что вместо обсуждения фактов вам начинают менять картину реальности. «Ты всё придумала», «этого не было», «ты слишком эмоционально реагируешь». Если после разговора вы больше сомневаетесь в себе, чем разбираетесь в ситуации — это тревожный признак давления.</div>
+      <div class="m-antidote-label">Противоядие</div>
+      <div class="m-antidote">«Я знаю, что произошло. Я знаю, что я видела. Ваше слово не заменит мою память.»</div>
+      <div class="m-cta">Пишите ЩИТ — пришлю ещё противоядия, которые помогут не потерять уверенность в себе.</div>
+    </div>
+
+    <!-- 4 — ОБЕСЦЕНИВАНИЕ / НЕПРОШЕНЫЕ СОВЕТЫ -->
+    <div class="m-block b4">
+      <div class="m-index">Ролик 4</div>
+      <div class="m-hook">Вы надели новую кофту, приятельница говорит: «Красивая, но чёрная была бы лучше». Или мама: «Ты всё хорошо сделала, ну вот здесь могла бы получше».</div>
+      <div class="m-text">И вы уже думаете, что неправильно выбрали или сделали. Это обесценивание, а не забота и не совет. Человек не помогает — он доказывает, что лучше знает. И вам хочется переделать, хотя вы не ошибались.</div>
+      <div class="m-antidote-label">Противоядие</div>
+      <div class="m-antidote">«Интересное мнение.» Или: «Мммм, концептуально.»</div>
+      <div class="m-closing">Не агрессия. Просто возврат. Чужое «лучше» — не повод переделывать свой выбор.</div>
+      <div class="m-cta">Пишите ЩИТ — пришлю то, что действительно и сразу работает.</div>
+    </div>
+
+    <!-- 5 — ЛЮБОВЬ -->
+    <div class="m-block b5">
+      <div class="m-index">Ролик 5</div>
+      <div class="m-hook">«Если бы ты меня любила…» И вы соглашаетесь?</div>
+      <div class="m-text">Любовью не шантажируют. Это не предмет торга. Любовь не нужно заслуживать отказом от себя. Когда слышите эту фразу — это уже не любовь. Это инструкция, как заставить вас сделать то, чего вы не хотите.</div>
+      <div class="m-antidote-label">Противоядие</div>
+      <div class="m-antidote">«Я люблю. Но не ценой себя.»</div>
+      <div class="m-cta">Пишите ЩИТ — пришлю ещё ответы. Только те, что работают.</div>
+    </div>
+
+  </div>
+
+  <div class="cta-block" style="margin: 32px 20px 0; background: #0F2D2A; border-radius: 20px; padding: 28px 24px; text-align: center;">
+    <div style="color:#F4FBF9; font-size:15px; line-height:1.6; margin-bottom:20px;">В продукте — практика на несколько секунд и один ответ, который работает на любую манипуляцию сразу.</div>
+    <a href="https://app.lava.top/products/33cf6c18-6381-4c81-a428-04c698a93caa" style="display:inline-block; background:#5ED1B4; color:#0F2D2A; font-weight:800; font-size:16px; padding:15px 32px; border-radius:999px; text-decoration:none;">Получить полный доступ — 590 ₽</a>
+  </div>
+
+  <div class="signature">Нам необходимы правила. Всегда.<br>С уважением, Бэлла Леонидовна</div>
+
+</div>
+</body>
+</html>
