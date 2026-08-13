@@ -3,768 +3,681 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Как жить в браке без иллюзий</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<!-- Цена продукта: 2490 ₽. Кнопки оплаты здесь нет — ставится только в гайде и на LavaTop. -->
+<title>Я у себя одна. Психология финансовой грамотности — Бэлла Полянинова</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --blue-deep: #1A3F5C;
-    --blue-mid: #2C6A96;
-    --blue-light: #A8CEDE;
-    --blue-pale: #D6EAF4;
-    --blue-mist: #EEF6FB;
-    --white: #FFFFFF;
-    --ink: #0D1F2D;
-    --ink-soft: #2A3D4D;
-    --accent: #6BA3C4;
+  :root{
+    --bg:#FFFFFF; --card:#FFFFFF; --ink:#1B1B1B; --ink-soft:#5A5A5A;
+    --line:#E4E7EA; --blue:#3E6E91; --blue-deep:#2C5470; --blue-tint:#EAF1F6; --blue-tint-line:#BFD6E4;
+    --sage:#F0F3EF; --sage-line:#C8D4C4;
   }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--ink); font-family:'Manrope', sans-serif; line-height:1.6; -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:760px; margin:0 auto; padding:0 24px;}
+  header.top{padding:56px 0 28px; text-align:center; border-bottom:1px solid var(--line);}
+  header.top .attribution{font-size:12px; letter-spacing:1.5px; text-transform:uppercase; color:var(--ink-soft); opacity:.8;}
+  .hero{padding:64px 0 40px; text-align:center;}
+  .hero .eyebrow{font-size:13px; letter-spacing:3px; text-transform:uppercase; color:var(--blue-deep); font-weight:700; margin-bottom:18px;}
+  .hero h1{font-family:'Cormorant Garamond', serif; font-weight:700; font-size:44px; line-height:1.18; margin-bottom:22px;}
+  .hero p.lead{font-size:19px; color:var(--ink-soft); max-width:580px; margin:0 auto;}
+  .intro{padding:8px 0 40px; font-size:17px;}
+  .intro p{margin-bottom:16px;}
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    font-family: 'Jost', sans-serif;
-    background: var(--white);
-    color: var(--ink);
-    line-height: 1.7;
-    overflow-x: hidden;
+  .parts-overview{display:flex; flex-direction:column; gap:14px; padding:8px 0 48px;}
+  .overview-card{
+    background:var(--card); border:1px solid var(--line); border-radius:16px;
+    padding:26px 24px; text-align:center;
   }
-
-  /* COVER */
-  .cover {
-    min-height: 100vh;
-    background: linear-gradient(160deg, #1B3F5C 0%, #2C5F8A 45%, #4A8BB5 100%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 60px 30px;
-    position: relative;
-    overflow: hidden;
+  .overview-icon{
+    width:64px; height:64px; border-radius:50%; background:var(--blue-tint);
+    display:flex; align-items:center; justify-content:center; margin:0 auto 16px;
   }
-
-  .cover::before {
-    content: '';
-    position: absolute;
-    top: -100px; right: -100px;
-    width: 500px; height: 500px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(168,206,222,0.15) 0%, transparent 70%);
+  .overview-num{
+    font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--blue-deep);
+    font-weight:700; margin-bottom:8px;
   }
+  .overview-card h3{font-family:'Cormorant Garamond', serif; font-weight:600; font-size:22px; margin-bottom:10px;}
+  .overview-card p{font-size:15px; color:var(--ink-soft); margin:0; max-width:420px; margin:0 auto;}
 
-  .cover::after {
-    content: '';
-    position: absolute;
-    bottom: -80px; left: -80px;
-    width: 400px; height: 400px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(107,163,196,0.12) 0%, transparent 70%);
+  @media (min-width:600px){
+    .parts-overview{flex-direction:row;}
+    .overview-card{flex:1;}
   }
+  .cta-block{text-align:center; padding:8px 0 48px;}
+  .cta-btn{display:inline-block; background:var(--blue); color:#fff; font-weight:700; font-size:17px; padding:18px 40px; border-radius:32px; text-decoration:none;}
+  .cta-btn:hover{background:var(--blue-deep);}
+  .cta-note{margin-top:14px; font-size:14px; color:var(--ink-soft);}
 
-  .cover-badge {
-    font-family: 'Jost', sans-serif;
-    font-weight: 300;
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--blue-light);
-    margin-bottom: 40px;
-    opacity: 0;
-    animation: fadeUp 0.8s ease forwards 0.2s;
+  .part-marker{
+    display:flex; align-items:center; gap:16px; padding:48px 0 8px;
   }
-
-  .cover-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(36px, 7vw, 64px);
-    font-weight: 300;
-    color: var(--white);
-    text-align: center;
-    line-height: 1.2;
-    max-width: 700px;
-    margin-bottom: 24px;
-    opacity: 0;
-    animation: fadeUp 0.8s ease forwards 0.4s;
+  .part-marker .part-num{
+    font-family:'Cormorant Garamond', serif; font-weight:700; font-size:15px;
+    color:#fff; background:var(--blue); width:32px; height:32px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
   }
+  .part-marker .part-name{font-size:13px; letter-spacing:2px; text-transform:uppercase; color:var(--blue-deep); font-weight:700;}
+  .section-title{font-family:'Cormorant Garamond', serif; font-weight:700; font-size:30px; padding:8px 0 12px;}
+  .section-sub{color:var(--ink-soft); font-size:15px; margin-bottom:28px;}
 
-  .cover-title em {
-    font-style: italic;
-    color: var(--blue-light);
+  .fact-card{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:24px 24px; margin-bottom:18px;}
+  .fact-card h3{font-family:'Cormorant Garamond', serif; font-size:23px; margin-bottom:10px;}
+  .fact-card p{font-size:16px; margin-bottom:12px;}
+  .fact-card .example{
+    background:var(--blue-tint); border:1px solid var(--blue-tint-line); border-radius:10px;
+    padding:16px 18px; margin-top:14px;
   }
+  .fact-card .example .label{font-size:12px; letter-spacing:1px; text-transform:uppercase; color:var(--blue-deep); font-weight:700; margin-bottom:8px;}
+  .fact-card .example p{margin:0; font-size:15px;}
+  .fact-card .note{font-size:13px; color:var(--ink-soft); margin-top:12px; font-style:italic;}
 
-  .cover-subtitle {
-    font-family: 'Jost', sans-serif;
-    font-weight: 300;
-    font-size: clamp(14px, 2.5vw, 17px);
-    color: rgba(214, 234, 244, 0.85);
-    text-align: center;
-    max-width: 520px;
-    line-height: 1.7;
-    margin-bottom: 60px;
-    opacity: 0;
-    animation: fadeUp 0.8s ease forwards 0.6s;
-  }
+  .math-table{width:100%; border-collapse:collapse; margin-top:12px;}
+  .math-table td{padding:8px 4px; font-size:15px; border-bottom:1px solid var(--line);}
+  .math-table td:last-child{text-align:right; font-weight:700; color:var(--blue-deep);}
 
-  .cover-divider {
-    width: 60px;
-    height: 1px;
-    background: var(--blue-light);
-    margin: 0 auto 40px;
-    opacity: 0;
-    animation: fadeUp 0.8s ease forwards 0.7s;
-  }
+  /* Диагностика */
+  .diag{padding:24px 0 56px; border-top:1px solid var(--line); margin-top:24px;}
+  .diag-q{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:20px 22px; margin-bottom:14px;}
+  .diag-q p{font-size:16px; margin-bottom:12px; font-weight:600;}
+  .diag-opts{display:flex; gap:10px; flex-wrap:wrap;}
+  .diag-opt{border:1px solid var(--line); border-radius:20px; padding:8px 16px; font-size:14px; cursor:pointer; background:#FAFBFC; transition:all .15s;}
+  .diag-opt.selected{background:var(--blue); color:#fff; border-color:var(--blue);}
+  .diag-result{background:var(--blue-tint); border:1px solid var(--blue-tint-line); border-radius:12px; padding:20px 22px; margin-top:20px; font-size:15px; display:none;}
+  .diag-result.show{display:block;}
+  .diag-result .label{font-size:12px; letter-spacing:1px; text-transform:uppercase; color:var(--blue-deep); font-weight:700; margin-bottom:8px;}
 
-  .cover-author {
-    font-family: 'Jost', sans-serif;
-    font-weight: 300;
-    font-size: 13px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: rgba(168, 206, 222, 0.7);
-    opacity: 0;
-    animation: fadeUp 0.8s ease forwards 0.9s;
-  }
+  /* Правила */
+  .rule{border:1px solid var(--line); border-radius:14px; margin-bottom:14px; background:var(--card); overflow:hidden;}
+  .rule-head{display:flex; align-items:center; gap:16px; padding:22px 24px; cursor:pointer; user-select:none;}
+  .rule-num{font-family:'Cormorant Garamond', serif; font-weight:700; font-size:26px; color:var(--blue); min-width:34px;}
+  .rule-title{font-family:'Cormorant Garamond', serif; font-weight:600; font-size:22px; flex:1;}
+  .rule-toggle{font-size:20px; color:var(--blue-deep); transition:transform .25s ease; flex-shrink:0;}
+  .rule.open .rule-toggle{transform:rotate(45deg);}
+  .rule-body{max-height:0; overflow:hidden; transition:max-height .3s ease;}
+  .rule.open .rule-body{max-height:1600px;}
+  .rule-body-inner{padding:0 24px 26px;}
+  .rule-body-inner p{margin-bottom:14px; font-size:16px;}
+  .rule-body-inner h4{font-size:13px; letter-spacing:1px; text-transform:uppercase; color:var(--ink-soft); margin:18px 0 10px; font-weight:700;}
+  .rule-body-inner ul{padding-left:20px; margin-bottom:6px;}
+  .rule-body-inner li{margin-bottom:8px; font-size:15.5px;}
+  .resistance{background:#F4F1EC; border:1px solid #DCD5C8; border-radius:10px; padding:16px 18px; margin-top:18px;}
+  .resistance .label{font-size:12px; letter-spacing:1px; text-transform:uppercase; color:#7A6E58; font-weight:700; margin-bottom:8px;}
+  .resistance p{margin:0; font-size:15px; color:#4A4232;}
+  .script{background:var(--sage); border:1px solid var(--sage-line); border-radius:10px; padding:16px 18px; margin-top:14px;}
+  .script .label{font-size:12px; letter-spacing:1px; text-transform:uppercase; color:#4E6B44; font-weight:700; margin-bottom:8px;}
+  .script p{margin:0; font-size:15.5px; font-style:italic; color:#2E3D2A;}
 
-  .cover-scroll {
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    opacity: 0;
-    animation: fadeUp 0.8s ease forwards 1.2s;
-  }
+  .price-exercise{padding:8px 0 56px;}
+  .price-card{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:26px 24px;}
+  .price-card h3{font-family:'Cormorant Garamond', serif; font-size:24px; margin-bottom:12px;}
+  .price-card p{font-size:16px; margin-bottom:14px;}
+  .price-card label{display:block; font-size:13px; letter-spacing:.5px; text-transform:uppercase; color:var(--blue-deep); font-weight:700; margin-bottom:8px; margin-top:16px;}
+  .price-card input, .price-card textarea{width:100%; border:1px solid var(--line); border-radius:8px; font-family:'Manrope'; font-size:15px; padding:12px 14px; background:#FAFBFC;}
+  .price-card textarea{min-height:60px; resize:vertical;}
+  .price-card input:focus, .price-card textarea:focus{outline:none; border-color:var(--blue);}
 
-  .cover-scroll span {
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: rgba(168,206,222,0.5);
-  }
+  .diary{margin-top:24px; padding:40px 0 56px; border-top:1px solid var(--line);}
+  .week-grid{display:flex; flex-direction:column; gap:12px;}
+  .day-row{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 20px;}
+  .day-row .day-label{font-weight:700; font-size:15px; margin-bottom:10px; color:var(--blue-deep);}
+  .day-row textarea{width:100%; border:1px solid var(--line); border-radius:8px; font-family:'Manrope'; font-size:14.5px; padding:10px 12px; min-height:50px; resize:vertical; background:#FAFBFC;}
+  .day-row textarea:focus{outline:none; border-color:var(--blue);}
 
-  .scroll-line {
-    width: 1px;
-    height: 40px;
-    background: linear-gradient(to bottom, rgba(168,206,222,0.5), transparent);
-    animation: scrollPulse 2s ease infinite;
-  }
+  .checklist{padding:40px 0 56px; border-top:1px solid var(--line);}
+  .checklist ol{padding-left:24px;}
+  .checklist li{font-size:15.5px; margin-bottom:12px; font-weight:600;}
+  .print-btn{display:block; margin:24px auto 0; background:none; border:1px solid var(--blue); color:var(--blue-deep); font-weight:700; font-size:14px; padding:10px 24px; border-radius:20px; cursor:pointer;}
 
-  /* INTRO */
-  .intro {
-    background: var(--blue-mist);
-    padding: 80px 30px;
-    text-align: center;
-  }
+  .showcase{padding:48px 0 64px; border-top:1px solid var(--line);}
+  .showcase h3{font-family:'Cormorant Garamond', serif; font-weight:700; font-size:24px; text-align:center; margin-bottom:24px;}
+  .showcase-list{display:flex; flex-direction:column; gap:12px;}
+  .showcase-item{display:flex; justify-content:space-between; align-items:center; padding:16px 20px; border:1px solid var(--line); border-radius:10px; text-decoration:none; color:var(--ink);}
+  .showcase-item .name{font-weight:600; font-size:15px;}
+  .showcase-item .price{font-size:14px; color:var(--blue-deep); font-weight:700;}
 
-  .intro-inner {
-    max-width: 620px;
-    margin: 0 auto;
-  }
+  footer{text-align:center; padding:40px 0 60px; color:var(--ink-soft); font-size:13px;}
+  footer .sign{font-family:'Cormorant Garamond', serif; font-size:20px; font-weight:600; color:var(--ink); margin-bottom:8px;}
 
-  .intro p {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(20px, 3.5vw, 26px);
-    font-weight: 300;
-    font-style: italic;
-    color: var(--blue-deep);
-    line-height: 1.6;
-    margin-bottom: 24px;
-  }
-
-  .intro-note {
-    font-family: 'Jost', sans-serif;
-    font-weight: 300;
-    font-size: 15px;
-    color: var(--ink-soft);
-    line-height: 1.8;
-  }
-
-  /* BLOCKS */
-  .block {
-    padding: 80px 30px;
-    max-width: 700px;
-    margin: 0 auto;
-  }
-
-  .block-number {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 80px;
-    font-weight: 300;
-    color: var(--blue-pale);
-    line-height: 1;
-    margin-bottom: -10px;
-  }
-
-  .block-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(26px, 4vw, 36px);
-    font-weight: 400;
-    color: var(--blue-deep);
-    line-height: 1.25;
-    margin-bottom: 20px;
-  }
-
-  .block-idea {
-    font-family: 'Jost', sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    color: #1A3040;
-    line-height: 1.85;
-    margin-bottom: 40px;
-    padding-left: 20px;
-    border-left: 2px solid var(--blue-light);
-  }
-
-  .questions-label {
-    font-family: 'Jost', sans-serif;
-    font-weight: 500;
-    font-size: 11px;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    color: var(--blue-mid);
-    margin-bottom: 20px;
-  }
-
-  .questions {
-    list-style: none;
-    margin-bottom: 48px;
-  }
-
-  .questions li {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(18px, 2.5vw, 22px);
-    font-weight: 500;
-    font-style: italic;
-    color: #0D1F2D;
-    line-height: 1.5;
-    padding: 16px 0;
-    border-bottom: 1px solid var(--blue-pale);
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-  }
-
-  .questions li::before {
-    content: '—';
-    color: var(--blue-mid);
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-
-  .practice-box {
-    background: linear-gradient(135deg, var(--blue-mist) 0%, #E0F0F8 100%);
-    border-radius: 16px;
-    padding: 36px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .practice-box::before {
-    content: '';
-    position: absolute;
-    top: 0; right: 0;
-    width: 120px; height: 120px;
-    background: radial-gradient(circle, rgba(74,139,181,0.1) 0%, transparent 70%);
-    border-radius: 50%;
-  }
-
-  .practice-label {
-    font-family: 'Jost', sans-serif;
-    font-weight: 500;
-    font-size: 10px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--blue-mid);
-    margin-bottom: 14px;
-  }
-
-  .practice-text {
-    font-family: 'Jost', sans-serif;
-    font-weight: 400;
-    font-size: 15px;
-    color: #0D1F2D;
-    line-height: 1.85;
-  }
-
-  .practice-example {
-    margin-top: 16px;
-    padding: 14px 18px;
-    background: rgba(255,255,255,0.85);
-    border-radius: 10px;
-    font-family: 'Jost', sans-serif;
-    font-weight: 400;
-    font-size: 14px;
-    color: #1A3040;
-    line-height: 1.7;
-  }
-
-  .practice-example em {
-    font-style: italic;
-    color: var(--blue-deep);
-  }
-
-  /* DIVIDERS */
-  .block-divider {
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(to right, transparent, var(--blue-light), transparent);
-    max-width: 700px;
-    margin: 0 auto;
-  }
-
-  .block-alt {
-    background: var(--blue-mist);
-  }
-
-  /* FINAL QUESTION */
-  .final-question {
-    background: linear-gradient(160deg, #1B3F5C 0%, #2C5F8A 100%);
-    padding: 80px 30px;
-    text-align: center;
-  }
-
-  .final-question-inner {
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  .fq-label {
-    font-family: 'Jost', sans-serif;
-    font-weight: 300;
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--blue-light);
-    margin-bottom: 30px;
-  }
-
-  .fq-question {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(22px, 4vw, 34px);
-    font-weight: 300;
-    font-style: italic;
-    color: var(--white);
-    line-height: 1.4;
-    margin-bottom: 30px;
-  }
-
-  .fq-note {
-    font-family: 'Jost', sans-serif;
-    font-weight: 300;
-    font-size: 15px;
-    color: rgba(214,234,244,0.8);
-    line-height: 1.8;
-    max-width: 480px;
-    margin: 0 auto;
-  }
-
-  /* SALE BLOCK */
-  .sale {
-    padding: 80px 30px;
-    max-width: 700px;
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  .sale-eyebrow {
-    font-family: 'Jost', sans-serif;
-    font-weight: 300;
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--blue-mid);
-    margin-bottom: 20px;
-  }
-
-  .sale-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(28px, 5vw, 44px);
-    font-weight: 400;
-    color: var(--blue-deep);
-    line-height: 1.2;
-    margin-bottom: 16px;
-  }
-
-  .sale-subtitle {
-    font-family: 'Jost', sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    color: #1A3040;
-    line-height: 1.8;
-    max-width: 500px;
-    margin: 0 auto 40px;
-  }
-
-  .sale-card {
-    background: linear-gradient(135deg, var(--blue-mist) 0%, #ddeef7 100%);
-    border-radius: 20px;
-    padding: 48px 40px;
-    margin-bottom: 32px;
-    text-align: left;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .sale-card::after {
-    content: '';
-    position: absolute;
-    top: -60px; right: -60px;
-    width: 200px; height: 200px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(74,139,181,0.12) 0%, transparent 70%);
-  }
-
-  .sale-what {
-    font-family: 'Jost', sans-serif;
-    font-weight: 500;
-    font-size: 11px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--blue-mid);
-    margin-bottom: 20px;
-  }
-
-  .sale-list {
-    list-style: none;
-    margin-bottom: 32px;
-  }
-
-  .sale-list li {
-    font-family: 'Jost', sans-serif;
-    font-weight: 400;
-    font-size: 15px;
-    color: #0D1F2D;
-    line-height: 1.6;
-    padding: 10px 0;
-    border-bottom: 1px solid rgba(168,206,222,0.3);
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-  }
-
-  .sale-list li:last-child { border-bottom: none; }
-
-  .sale-list li::before {
-    content: '→';
-    color: var(--blue-mid);
-    flex-shrink: 0;
-    font-size: 14px;
-    margin-top: 2px;
-  }
-
-  .sale-promise {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(17px, 2.5vw, 21px);
-    font-style: italic;
-    font-weight: 300;
-    color: var(--blue-deep);
-    line-height: 1.5;
-    padding: 20px;
-    background: rgba(255,255,255,0.6);
-    border-radius: 12px;
-    border-left: 3px solid var(--blue-mid);
-  }
-
-  .sale-price {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(36px, 6vw, 52px);
-    font-weight: 400;
-    color: var(--blue-deep);
-    margin: 32px 0 8px;
-    text-align: center;
-  }
-
-  .sale-price-note {
-    font-family: 'Jost', sans-serif;
-    font-weight: 300;
-    font-size: 13px;
-    color: var(--ink-soft);
-    text-align: center;
-    margin-bottom: 32px;
-  }
-
-  .btn-buy {
-    display: block;
-    width: 100%;
-    max-width: 420px;
-    margin: 0 auto;
-    padding: 20px 40px;
-    background: linear-gradient(135deg, var(--blue-deep) 0%, var(--blue-mid) 100%);
-    color: var(--white);
-    font-family: 'Jost', sans-serif;
-    font-weight: 400;
-    font-size: 15px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    text-decoration: none;
-    border-radius: 100px;
-    text-align: center;
-    transition: all 0.3s ease;
-    box-shadow: 0 8px 30px rgba(44,95,138,0.3);
-    cursor: pointer;
-    border: none;
-  }
-
-  .btn-buy:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 40px rgba(44,95,138,0.4);
-  }
-
-  .sale-reassure {
-    font-family: 'Jost', sans-serif;
-    font-weight: 300;
-    font-size: 13px;
-    color: var(--ink-soft);
-    text-align: center;
-    margin-top: 20px;
-    line-height: 1.7;
-  }
-
-  /* FOOTER */
-  footer {
-    background: var(--blue-mist);
-    padding: 40px 30px;
-    text-align: center;
-  }
-
-  footer p {
-    font-family: 'Jost', sans-serif;
-    font-weight: 300;
-    font-size: 13px;
-    color: var(--ink-soft);
-    letter-spacing: 1px;
-  }
-
-  /* ANIMATIONS */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes scrollPulse {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 1; }
-  }
-
-  /* SCROLL REVEAL */
-  .reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* MOBILE */
-  @media (max-width: 600px) {
-    .sale-card { padding: 32px 24px; }
-    .practice-box { padding: 28px 24px; }
-    .block { padding: 60px 24px; }
-  }
+  @media print{ .cta-block, header.top, .diag, .price-exercise, .diary, .showcase, .print-btn{display:none;} }
+  @media (max-width:600px){ .hero h1{font-size:32px;} .section-title{font-size:26px;} }
 </style>
 </head>
 <body>
 
-<!-- COVER -->
-<section class="cover">
-  <div class="cover-badge">Психолог Бэлла Леонидовна</div>
-  <h1 class="cover-title">Как жить в браке<br><em>без иллюзий</em><br>и не разрушать себя</h1>
-  <div class="cover-divider"></div>
-  <p class="cover-subtitle">4 шага, чтобы вернуть себе спокойствие, ясность и внутреннюю опору — даже если решение о разводе пока не принято</p>
-  <div class="cover-author">Гайд · Бэлла Леонидовна</div>
-  <div class="cover-scroll">
-    <div class="scroll-line"></div>
-    <span>читать</span>
-  </div>
-</section>
+<header class="top">
+  <div class="attribution">Полянинова Бэлла Леонидовна · Авторский продукт · Все права защищены</div>
+</header>
 
-<!-- INTRO -->
-<section class="intro">
-  <div class="intro-inner reveal">
-    <p>Этот гайд не про то, как сохранить брак. И не про то, как решиться на развод.</p>
-    <p>Он про то, как не разрушить себя, пока вы живёте в ситуации, где ещё нет окончательного ответа.</p>
-    <div class="cover-divider" style="margin: 32px auto;"></div>
-    <p class="intro-note">Четыре шага — это четыре разговора с собой. Честных, взрослых, без самообмана. Читайте медленно. Возвращайтесь к вопросам. Записывайте ответы.</p>
-  </div>
-</section>
+<div class="wrap">
 
-<!-- BLOCK 1 -->
-<section class="block">
-  <div class="reveal">
-    <div class="block-number">01</div>
-    <h2 class="block-title">Перевести брак из ожиданий в договорённости</h2>
-    <p class="block-idea">Если чувства просели, не нужно каждый разговор превращать в попытку добиться любви, которой сейчас нет. Иногда брак на время нужно перевести в более трезвый формат: быт, деньги, дети, обязанности, график, личное пространство.</p>
+  <section class="hero">
+    <div class="eyebrow">Практикум в четырёх частях</div>
+    <h1>Я у себя одна</h1>
+    <p class="lead">Когда нужно другим, вы находите время, деньги и силы. Когда нужно вам — снова звучит «ладно, я сама». Этот практикум — о том, как перестать ставить себя последней.</p>
+  </section>
 
-    <div class="questions-label">Вопросы для себя</div>
-    <ul class="questions">
-      <li>О чём я продолжаю просить мужа как о проявлении любви, хотя он годами этого не даёт?</li>
-      <li>Какие бытовые и финансовые вопросы нужно перестать обсуждать через обиду и начать — как договорённость?</li>
-      <li>Что он реально делает для семьи, даже если эмоционально я им недовольна?</li>
-      <li>Где мне нужна не близость, а конкретное правило?</li>
-    </ul>
-
-    <div class="practice-box">
-      <div class="practice-label">Практика</div>
-      <p class="practice-text">Выпишите три темы, по которым вы чаще всего ссоритесь. Напротив каждой напишите не эмоцию, а конкретную договорённость, которая вам нужна.</p>
-      <div class="practice-example">
-        <em>Не «будь внимательнее» →</em> «По воскресеньям ты забираешь ребёнка на два часа».<br>
-        <em>Не «помогай мне» →</em> «После ужина ты убираешь посуду три раза в неделю».
+  <section class="parts-overview">
+    <div class="overview-card">
+      <div class="overview-icon">
+        <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+          <circle cx="17" cy="17" r="12" stroke="#3E6E91" stroke-width="1.8"/>
+          <path d="M14 13c0-2 1.5-3.5 3.5-3.5S21 11 21 13c0 2-3.5 2.5-3.5 5.5" stroke="#3E6E91" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+          <circle cx="17.5" cy="22.5" r="1.3" fill="#3E6E91"/>
+        </svg>
       </div>
+      <div class="overview-num">Часть 1</div>
+      <h3>Я боюсь услышать «нет»</h3>
+      <p>Как несказанное «нет» останавливает вас раньше настоящего ответа.</p>
     </div>
-    <p style="margin-top: 28px; font-family: 'Jost', sans-serif; font-weight: 400; font-size: 15px; color: #1A3F5C; line-height: 1.8; font-style: italic;">Как именно формулировать договорённости, чтобы муж услышал, а не закрылся — это отдельная работа. В <strong>Практической стратегии</strong> вы составите свои конкретные фразы под свою ситуацию.</p>
-  </div>
-</section>
-
-<div class="block-divider"></div>
-
-<!-- BLOCK 2 -->
-<section class="block block-alt" style="max-width: 100%; padding: 80px 30px;">
-  <div style="max-width: 700px; margin: 0 auto;" class="reveal">
-    <div class="block-number" style="color: rgba(44,95,138,0.15);">02</div>
-    <h2 class="block-title">Перестать переделывать взрослого человека</h2>
-    <p class="block-idea">Попытка изменить мужа часто держит женщину в зависимости сильнее, чем сам брак. Пока вы ждёте, что он станет другим, вы всё время эмоционально привязаны к его реакции, настроению, обещаниям и временным улучшениям.</p>
-
-    <div class="questions-label">Вопросы для себя</div>
-    <ul class="questions">
-      <li>Что я пытаюсь объяснить ему уже не первый год?</li>
-      <li>Какие его черты я называю временными, хотя они давно стали стабильными?</li>
-      <li>Где я всё ещё живу надеждой, что однажды он поймёт?</li>
-      <li>Что изменится в моём поведении, если я признаю, что он пока именно такой?</li>
-    </ul>
-
-    <div class="practice-box">
-      <div class="practice-label">Практика</div>
-      <p class="practice-text">Разделите лист на две колонки.</p>
-      <div class="practice-example">
-        <em>Колонка 1:</em> «Что я всё ещё пытаюсь в нём изменить»<br><br>
-        <em>Колонка 2:</em> «Как мне жить, если это не изменится в ближайшие полгода»
+    <div class="overview-card">
+      <div class="overview-icon">
+        <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+          <rect x="5" y="12" width="24" height="15" rx="2" stroke="#3E6E91" stroke-width="1.8"/>
+          <rect x="8" y="8" width="24" height="15" rx="2" stroke="#3E6E91" stroke-width="1.8" fill="#FFFFFF"/>
+          <circle cx="20" cy="15.5" r="4" stroke="#3E6E91" stroke-width="1.6"/>
+        </svg>
       </div>
-      <p class="practice-text" style="margin-top: 16px;">Это неприятная практика, но она быстро возвращает из фантазии в управление.</p>
+      <div class="overview-num">Часть 2</div>
+      <h3>Психология финансовой грамотности</h3>
+      <p>Как вы обращаетесь с деньгами и с собой в мелочах, которые незаметно складываются в привычку.</p>
     </div>
-    <p style="margin-top: 28px; font-family: 'Jost', sans-serif; font-weight: 400; font-size: 15px; color: #1A3F5C; line-height: 1.8; font-style: italic;">Сколько именно сил уходит на этот проект — и как их вернуть себе — вы считаете в <strong>Практической стратегии</strong>. Там есть конкретное задание, после которого многие женщины говорят: "я не думала, что трачу на это столько".</p>
-  </div>
-</section>
-
-<div class="block-divider"></div>
-
-<!-- BLOCK 3 -->
-<section class="block">
-  <div class="reveal">
-    <div class="block-number">03</div>
-    <h2 class="block-title">Снизить ожидания до уровня реальности</h2>
-    <p class="block-idea">Снижение ожиданий не означает, что вы согласились на плохую жизнь. Это значит, что вы перестали каждый раз подходить к пустому колодцу с ведром. Ожидание там, где нет реальных действий, превращается не в любовь, а в хроническое разочарование.</p>
-
-    <div class="questions-label">Вопросы для себя</div>
-    <ul class="questions">
-      <li>Чего я жду от него снова и снова, хотя фактов под это почти нет?</li>
-      <li>Какие обещания я принимаю за изменения?</li>
-      <li>Где я путаю надежду с реальной динамикой?</li>
-      <li>Что я могу перестать просить у него и начать давать себе через другие источники?</li>
-    </ul>
-
-    <div class="practice-box">
-      <div class="practice-label">Практика</div>
-      <p class="practice-text">Составьте список из пяти ожиданий к мужу. Напротив каждого поставьте отметку:</p>
-      <div class="practice-example">
-        <em>«Даёт стабильно»</em> / <em>«Даёт редко»</em> / <em>«Почти не даёт»</em><br><br>
-        Всё, что попало в третью категорию — перестаньте считать опорой. Это не значит, что вы этого не заслуживаете. Это значит, что именно здесь нельзя строить свою устойчивость.
+    <div class="overview-card">
+      <div class="overview-icon">
+        <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+          <line x1="7" y1="9" x2="27" y2="9" stroke="#3E6E91" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="7" y1="17" x2="27" y2="17" stroke="#3E6E91" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="7" y1="25" x2="20" y2="25" stroke="#3E6E91" stroke-width="1.8" stroke-linecap="round"/>
+          <circle cx="10" cy="9" r="1.6" fill="#3E6E91"/>
+          <circle cx="10" cy="17" r="1.6" fill="#3E6E91"/>
+          <circle cx="10" cy="25" r="1.6" fill="#3E6E91"/>
+        </svg>
       </div>
+      <div class="overview-num">Часть 3</div>
+      <h3>Девять правил</h3>
+      <p>Почему вам трудно просить, и что с этим делать по шагам — с диагностикой и готовыми формулировками.</p>
     </div>
-    <p style="margin-top: 28px; font-family: 'Jost', sans-serif; font-weight: 400; font-size: 15px; color: #1A3F5C; line-height: 1.8; font-style: italic;">Где брать опору, если не от него — и как выстроить свою карту устойчивости — это четвёртый шаг <strong>Практической стратегии</strong>. Там под каждую ситуацию есть конкретные направления действий.</p>
-  </div>
-</section>
-
-<div class="block-divider"></div>
-
-<!-- BLOCK 4 -->
-<section class="block block-alt" style="max-width: 100%; padding: 80px 30px;">
-  <div style="max-width: 700px; margin: 0 auto;" class="reveal">
-    <div class="block-number" style="color: rgba(44,95,138,0.15);">04</div>
-    <h2 class="block-title">Вернуть себе собственную жизнь</h2>
-    <p class="block-idea">Самая большая опасность сложного брака не только в конфликтах. Опасность в том, что женщина постепенно перестаёт жить своей жизнью. Она следит за настроением мужа, подстраивается под его реакции, откладывает себя — и потом чувствует, что исчезла.</p>
-
-    <div class="questions-label">Вопросы для себя</div>
-    <ul class="questions">
-      <li>Где моя жизнь стала слишком зависеть от его настроения?</li>
-      <li>Что я перестала делать для себя за время этого брака?</li>
-      <li>Какие мои желания всё время откладываются до лучших времён?</li>
-      <li>Что я могу вернуть уже сейчас, не дожидаясь его разрешения?</li>
-    </ul>
-
-    <div class="practice-box">
-      <div class="practice-label">Практика</div>
-      <p class="practice-text">Выберите одну маленькую часть жизни, которую вы возвращаете себе на этой неделе. Не глобально. Не «начать новую жизнь». Конкретно:</p>
-      <div class="practice-example">
-        тренировка · личные деньги · встреча с подругой · врач · обучение · прогулка · час тишины · свой проект
+    <div class="overview-card">
+      <div class="overview-icon">
+        <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+          <path d="M17 27C17 27 6 20.5 6 13.5C6 9.9 8.7 7.5 12 7.5C14.2 7.5 16 8.7 17 10.5C18 8.7 19.8 7.5 22 7.5C25.3 7.5 28 9.9 28 13.5C28 20.5 17 27 17 27Z" stroke="#3E6E91" stroke-width="1.8" stroke-linejoin="round"/>
+        </svg>
       </div>
-      <p class="practice-text" style="margin-top: 16px;">Внутренняя опора возвращается не лозунгами, а маленькими повторяющимися действиями.</p>
+      <div class="overview-num">Часть 4</div>
+      <h3>Право получать</h3>
+      <p>Пять упражнений на то, чтобы разрешить себе принимать, а не только отдавать.</p>
     </div>
-    <p style="margin-top: 28px; font-family: 'Jost', sans-serif; font-weight: 400; font-size: 15px; color: #1A3F5C; line-height: 1.8; font-style: italic;">Что именно вернуть себе на этой неделе, как не откатиться и как собрать личный план на 30 дней — четвёртый этап <strong>Практической стратегии</strong>. Там вы составляете его под себя, а не берёте чужой шаблон.</p>
+  </section>
+
+  <section class="fact-card" style="margin-top:8px;">
+    <h3>Первое и важное упражнение. Называется «Взгляд»</h3>
+    <p>Перед началом практикума я хочу предложить вам одно важное упражнение. Оно поможет вам по-новому увидеть себя и почувствовать, что вы заслуживаете собственного внимания, уважения, заботы и любви не меньше, чем люди, которым вы отдаёте всё это каждый день.</p>
+    <p>Выполняйте её каждое утро, когда можете остаться наедине с собой. Вам понадобится всего одна-две минуты.</p>
+    <p>Подойдите к зеркалу и внимательно посмотрите на женщину, которую видите перед собой. Не поправляйте волосы, не рассматривайте морщины и не оценивайте внешность. Просто посмотрите на неё со стороны, словно впервые замечаете человека, который всё это время находился рядом.</p>
+    <p>К себе вы настолько привыкли, что почти перестали себя видеть. Как к табуретке на кухне: прошли мимо, случайно задели ногой, отодвинули и продолжили заниматься делами.</p>
+    <p>Посмотрите ещё раз. Перед вами женщина, которая жалеет ребёнка, помогает родственникам, гладит чужую собаку и переживает за котёнка под окном. Она замечает, когда помощь нужна другим, но собственную усталость, желания и потребности привычно отодвигает.</p>
+    <p>Разве эта женщина заслуживает меньше заботы?</p>
+    <p>Она тоже живой человек, которому бывает трудно, страшно и одиноко. Она так же нуждается в поддержке, внимании и добром отношении. Возможно, даже сильнее остальных, потому что именно на ней держится забота обо всех вокруг.</p>
+    <p>Смотрите на неё каждое утро и запоминайте: у вас есть вы. Женщина, которую нельзя снова не заметить, отодвинуть или оставить без заботы.</p>
+    <p style="font-family:'Cormorant Garamond', serif; font-weight:600; font-size:22px; margin-top:8px;">Вы у себя одна.</p>
+  </section>
+
+  <!-- ЧАСТЬ 1 -->
+  <div class="part-marker">
+    <div class="part-num">1</div>
+    <div class="part-name">Часть первая</div>
   </div>
-</section>
+  <h2 class="section-title">Я боюсь услышать «нет»</h2>
+  <p class="section-sub">Как несказанное «нет» останавливает вас раньше настоящего ответа.</p>
 
-<!-- FINAL QUESTION -->
-<section class="final-question">
-  <div class="final-question-inner reveal">
-    <div class="fq-label">Главный вопрос</div>
-    <p class="fq-question">«Не как заставить его измениться — а какую систему жизни я могу выстроить, если он останется таким же?»</p>
-    <p class="fq-note">Этот вопрос не про капитуляцию. Он про взрослость. Пока ваше состояние зависит от того, изменится он или нет — вы всё ещё живёте не своей жизнью. Когда вы начинаете строить систему вокруг реальности, появляется спокойствие, ясность и возможность принимать решения без паники.</p>
-  </div>
-</section>
-
-<!-- BRIDGE -->
-<section style="background: var(--white); padding: 60px 30px 0;">
-  <div style="max-width: 620px; margin: 0 auto;" class="reveal">
-    <p style="font-family: 'Cormorant Garamond', serif; font-size: clamp(20px, 3.5vw, 28px); font-weight: 400; font-style: italic; color: var(--blue-deep); line-height: 1.55; margin-bottom: 24px;">Гайд даёт ясность. Но ясность не всегда удерживает вас в моменте, когда он снова молчит, грубит, обещает, обесценивает или перекладывает всё на вас.</p>
-    <p style="font-family: 'Jost', sans-serif; font-size: 16px; font-weight: 400; color: #1A3040; line-height: 1.85;">Для этого нужна стратегия: что говорить, где перестать ждать, где перевести отношения в договорённости — и как вернуть себе нормальную жизнь без скандала и унижения.</p>
-  </div>
-</section>
-
-<!-- SALE -->
-<section class="sale">
-  <div class="reveal">
-    <div class="sale-eyebrow">Следующий шаг</div>
-    <h2 class="sale-title">Брак без иллюзий</h2>
-    <p class="sale-subtitle">Практическая стратегия для тех, кто пока не принял окончательное решение, но больше не хочет жить в режиме ожидания, обиды и постоянных попыток достучаться.</p>
-
-    <div class="sale-card">
-      <div class="sale-what">Что входит в практикум</div>
-      <ul class="sale-list">
-        <li>4 этапа, каждый с конкретными стратегиями для вашей ситуации</li>
-        <li>Вы находите свою ситуацию — получаете конкретные стратегии действий под неё</li>
-        <li>Таблицы, карта опор, список фраз для разговоров без скандала</li>
-        <li>Личная стратегия на 30 дней — собирается из ваших ответов</li>
-        <li>Бонус: 20 фраз, которые помогают говорить без унижения, мольбы и истерики</li>
-      </ul>
-      <p class="sale-promise">За 4 этапа вы разберёте свою ситуацию трезво: что можно перевести в договорённости, чего пора перестать ждать, где вы теряете себя — и какие конкретные шаги помогут вернуть опору уже сейчас.</p>
+  <div class="fact-card">
+    <h3>1. Отказ, который случился только у вас в голове</h3>
+    <p>Иногда вы ничего не просите не потому, что вам ничего не нужно. Вам нужно. Просто ещё до разговора вы уже провели его сами с собой — и услышали «нет» на просьбу, которую так и не произнесли.</p>
+    <div class="example">
+      <div class="label">Пример</div>
+      <p>«Мне завтра к врачу. Ты сможешь меня отвезти?» — вместо этой фразы внутри звучит: «У него работа», «Наверное, будет неудобно», «Скажет вызвать такси». И решение готово: «Ладно, сама».</p>
     </div>
-
-    <div class="sale-price">1 490 ₽</div>
-    <p class="sale-price-note">Единоразовая оплата · Доступ сразу после оплаты</p>
-
-    <a href="https://app.lava.top/products/0c147737-64c2-4dcf-8969-7f037a70514f" class="btn-buy">Перейти к стратегии действий</a>
-
-    <p class="sale-reassure">Это не курс про развод и не инструкция как терпеть дальше.<br>Это взрослый инструмент для женщины, которая готова смотреть на свою ситуацию честно.</p>
+    <div class="resistance"><div class="label">Метод внедрения</div><p>Человек ещё не успел вам отказать, а вы уже начали жить так, будто услышали его «нет». Помните: это только ваше предположение, а не стопроцентный факт — и оно вполне может оказаться ошибочным. Прежде чем решать за другого человека, замечайте этот момент.</p></div>
   </div>
-</section>
+
+  <div class="fact-card">
+    <h3>2. Просьба, уменьшенная заранее</h3>
+    <p>Иногда вы всё-таки просите — но послушайте, как звучит эта просьба.</p>
+    <div class="example">
+      <div class="label">Что вы говорите</div>
+      <p>«Только если тебе не сложно». «Мне вообще-то не очень нужно». «Ладно, забудь».</p>
+    </div>
+    <div class="resistance"><div class="label">Метод внедрения</div><p>Вы ещё не услышали ответа, но уже объяснили другому человеку, что ваше желание не такое уж важное. В следующий раз произнесите просьбу без смягчения — и посмотрите, что будет.</p></div>
+  </div>
+
+  <div class="fact-card">
+    <h3>3. Откуда берётся такая осторожность</h3>
+    <p>Кому-то в детстве говорили «мало ли чего ты хочешь». Кому-то приходилось долго объяснять, зачем ей что-то нужно. У кого-то совсем другая история. Причину не нужно придумывать за себя заранее.</p>
+    <div class="resistance"><div class="label">Метод внедрения</div><p>Важно увидеть другое: иногда страх услышать «нет» появился не сегодня. Старое правило может продолжать работать даже там, где сегодняшнюю реальность вы ещё не проверили.</p></div>
+  </div>
+
+  <div class="fact-card">
+    <h3>4. Что именно вы слышите в слове «нет»</h3>
+    <p>Вы спросили: «Сможешь завтра отвезти меня к врачу?» Услышали: «Завтра не смогу».</p>
+    <div class="example">
+      <div class="label">Что происходит дальше уже в вашей голове</div>
+      <p>«Я ему не важна». «На него нельзя рассчитывать». «Опять я слишком многого хочу».</p>
+    </div>
+    <div class="resistance"><div class="label">Метод внедрения</div><p>Человек сказал одну фразу. Значение этой фразы вам ещё предстоит понять — отдельно от того, что вы сами дописали.</p></div>
+  </div>
+
+  <div class="fact-card">
+    <h3>5. Отказ в одной просьбе — не отказ от вас</h3>
+    <p>Муж может не суметь отвезти вас завтра. Может не согласиться на конкретную покупку. Это может расстроить. Но один ответ «нет» сам по себе ещё не доказывает: «меня не любят», «я не важна», «мне нельзя просить».</p>
+    <div class="resistance"><div class="label">Метод внедрения</div><p>Не превращайте ответ на одну просьбу в ответ на вопрос о собственной ценности.</p></div>
+  </div>
+
+  <div class="fact-card">
+    <h3>6. Но не любой отказ стоит оправдывать</h3>
+    <p>Одно дело — муж не может сегодня, но предлагает решение на завтра. Другое дело — если каждая ваша просьба вызывает раздражение, а «опять тебе что-то надо» вы слышите каждый раз.</p>
+    <div class="resistance"><div class="label">Метод внедрения</div><p>Задача не в том, чтобы терпеть любое «нет». Задача — смотреть, что человек делает с вашими просьбами на самом деле.</p></div>
+  </div>
+
+  <div class="fact-card">
+    <h3>7. Новое правило</h3>
+    <p>В следующий раз, поймав себя на «ладно, я сама», задайте два вопроса: мне правда удобнее сделать это самой? Или я сейчас просто боюсь услышать ответ?</p>
+    <div class="resistance"><div class="label">Метод внедрения</div><p>Если причина во втором — сформулируйте обычную просьбу. Без оправданий. Без готового пути отступления. И только после ответа решайте, что он означает.</p></div>
+  </div>
+
+  <div class="fact-card" style="text-align:center; background:var(--blue-tint); border-color:var(--blue-tint-line);">
+    <p style="font-family:'Cormorant Garamond', serif; font-weight:600; font-size:22px; margin:0;">Я могу попросить. Другой человек может ответить. А я могу посмотреть на его ответ и решить, что делать дальше.</p>
+  </div>
+
+  <!-- ЧАСТЬ 2 -->
+  <div class="part-marker">
+    <div class="part-num">2</div>
+    <div class="part-name">Часть вторая</div>
+  </div>
+  <h2 class="section-title">Капитал, а не просьба</h2>
+  <p class="section-sub">Смена рамки: не «как выпросить, чтобы не отказали», а «как увеличивать то, что у вас уже есть».</p>
+
+  <div class="fact-card">
+    <h3>1. Считайте маленькие траты</h3>
+    <p>Небольшие ежедневные расходы, которые кажутся незначительными, за месяцы складываются в заметную сумму. Это не магия и не быстрое обогащение — это то, что вы перестаёте тратить не глядя и начинаете видеть, куда уходят деньги.</p>
+    <div class="example">
+      <div class="label">Пример</div>
+      <p>Кофе в кофейне по пути на работу — около 300 ₽. Тот же кофе, сваренный дома и взятый с собой в кружке — около 30 ₽.</p>
+      <table class="math-table">
+        <tr><td>Экономия в день</td><td>270 ₽</td></tr>
+        <tr><td>За 20 рабочих дней</td><td>5 400 ₽</td></tr>
+        <tr><td>За месяц целиком</td><td>≈ 8 100 ₽</td></tr>
+      </table>
+    </div>
+    <p class="note">Принцип работает на любой ежедневной мелочи, которую вы берёте не задумываясь — не обязательно на кофе.</p>
+    <div class="resistance"><div class="label">Метод внедрения</div><p>Найдите свою ежедневную трату — то, что вы покупаете каждый день или почти каждый день, не задумываясь. Посчитайте разницу за месяц и решите заранее, куда пойдёт эта сумма.</p></div>
+  </div>
+
+  <div class="fact-card">
+    <h3>2. Платите сначала себе</h3>
+    <p>Принцип «заплати сначала себе» — один из старейших в финансовой грамотности. Суть в том, чтобы откладывать часть дохода сразу при получении, до всех остальных трат, а не по остаточному принципу «если что-то останется».</p>
+    <div class="example">
+      <div class="label">Как это работает</div>
+      <p>При доходе 60 000 ₽ отложить 10% — это 6000 ₽ в месяц, отложенные в первый же день, а не в последний.</p>
+    </div>
+    <div class="resistance"><div class="label">Метод внедрения</div><p>Настройте автоматический перевод фиксированной суммы на отдельный счёт в день зарплаты — до того, как деньги окажутся на основной карте и начнут расходиться на текущее.</p></div>
+  </div>
+
+  <div class="fact-card">
+    <h3>3. Автоматизация исключает уговоры с собой</h3>
+    <p>Когда решение о накоплении принимается один раз и дальше выполняется автоматически, не остаётся места для внутреннего торга — «сегодня можно, отложу в следующий раз». Именно ручные решения чаще всего проваливаются не из-за силы воли, а из-за того, что решение приходится принимать заново каждый день.</p>
+    <div class="resistance"><div class="label">Метод внедрения</div><p>Настройте автоплатёж один раз. Дальше решение уже не требует силы воли — оно просто происходит.</p></div>
+  </div>
+
+  <div class="fact-card">
+    <h3>4. Структура бюджета — не жёсткий закон, а ориентир</h3>
+    <p>Одна из известных схем распределения дохода — 50% на обязательные нужды, 30% на желания, 20% на накопления. Это не строгое правило, а отправная точка: если обязательные расходы съедают 70–80% бюджета, это сигнал присмотреться к структуре трат, а не повод отказаться от идеи откладывать вовсе.</p>
+    <div class="example">
+      <div class="label">Пример при доходе 80 000 ₽</div>
+      <table class="math-table">
+        <tr><td>Обязательные нужды — 50%</td><td>40 000 ₽</td></tr>
+        <tr><td>Личные желания — 30%</td><td>24 000 ₽</td></tr>
+        <tr><td>Накопления — 20%</td><td>16 000 ₽</td></tr>
+      </table>
+    </div>
+    <div class="resistance"><div class="label">Метод внедрения</div><p>Разделите свой доход по этим трём категориям хотя бы приблизительно. Не для отчёта — чтобы увидеть, есть ли в вашем бюджете категория «на себя» вообще.</p></div>
+  </div>
+
+  <div class="fact-card">
+    <h3>5. Ваш незаметный вклад тоже стоит денег</h3>
+    <p>Домашний труд, который берёт на себя женщина — готовка, организация быта, забота о детях — имеет реальную экономическую стоимость, просто она не оплачивается напрямую и потому не считается вкладом. Пока этот труд не назван вслух и не учтён, легко думать, что вклад в семью вносит только тот, кто приносит зарплату.</p>
+    <div class="resistance"><div class="label">Метод внедрения</div><p>Прикиньте, сколько стоили бы услуги, которые вы выполняете бесплатно — уборка, готовка, логистика семьи — по рыночным ценам за месяц. Держите эту цифру в голове в следующий раз, когда будете сомневаться, вправе ли вы просить.</p></div>
+  </div>
+
+  <div class="fact-card">
+    <h3>6. Разговор о бюджете — не просьба, а открытость</h3>
+    <p>Пока разговор о деньгах в семье подаётся как просьба, в нём есть неловкость и риск отказа. Когда это подаётся как открытое обсуждение общих ресурсов — неловкость уходит, потому что решение принимается вместе, а не выдаётся одной стороной другой.</p>
+    <div class="example">
+      <div class="label">Формулировка</div>
+      <p>Не «можно мне денег на...», а «нам стоит выделить в бюджете сумму на то, что важно каждому из нас, включая меня».</p>
+    </div>
+    <div class="resistance"><div class="label">Метод внедрения</div><p>Предложите партнёру одно совместное решение о бюджете — не о конкретной покупке, а о принципе, по которому вы распределяете общие деньги.</p></div>
+  </div>
+
+  <!-- ЧАСТЬ 3 -->
+  <div class="part-marker">
+    <div class="part-num">3</div>
+    <div class="part-name">Часть третья</div>
+  </div>
+  <h2 class="section-title">Девять правил</h2>
+  <p class="section-sub">Раскрывайте по одному, не спешите</p>
+
+  <section class="diag" style="border-top:none; padding-top:0;">
+    <p class="section-sub">Прежде чем начать — минута на диагностику, чтобы понять, с какого правила начинать именно вам.</p>
+    <div id="diagContainer"></div>
+    <div class="diag-result" id="diagResult">
+      <div class="label">Ваш ориентир</div>
+      <p id="diagResultText"></p>
+    </div>
+  </section>
+
+  <div id="rulesContainer"></div>
+
+  <!-- ЧАСТЬ 4 -->
+  <div class="part-marker">
+    <div class="part-num">4</div>
+    <div class="part-name">Часть четвёртая</div>
+  </div>
+  <h2 class="section-title">Право получать</h2>
+  <p class="section-sub">Пять упражнений подряд, каждое — несколько дней практики. Не спешите, дайте себе пройти каждое до конца.</p>
+
+  <div class="fact-card">
+    <h3>Упражнение 1. Дневник тихих просьб</h3>
+    <p>В течение нескольких дней фиксируйте ситуации, когда вы хотели что-то получить от близкого человека, но промолчали, уменьшили просьбу, оправдали её или решили справиться сами. Записывайте не только ситуацию, но и мысль, которая мелькнула в этот момент.</p>
+    <div class="example">
+      <div class="label">Частые автоматические мысли</div>
+      <p>«Неудобно». «Дорого». «Он решит, что я транжира». «Я должна сама». «Нормальная взрослая женщина не просит».</p>
+    </div>
+    <div class="resistance"><div class="label">Как выполнять</div><p>Просто фиксируйте, ничего не меняя. Задача этого упражнения — увидеть закономерность, а не сразу её сломать.</p></div>
+  </div>
+
+  <div class="fact-card">
+    <h3>Упражнение 2. Откуда взялось это правило</h3>
+    <p>Возьмите одну из мыслей, записанных в первом упражнении, и проследите её происхождение. Родительская семья, прошлые отношения, опыт финансового контроля, гордость, страх зависимости, представление о том, какой должна быть хорошая жена — правило пришло откуда-то, и обычно не от вас самой.</p>
+    <div class="resistance"><div class="label">Как выполнять</div><p>Закончите фразу: «Я узнала это правило от…» или «Я усвоила это, когда…». Не обязательно менять правило прямо сейчас — достаточно увидеть, что оно не родилось вместе с вами.</p></div>
+  </div>
+
+  <div class="fact-card">
+    <h3>Упражнение 3. Получать без немедленной платы</h3>
+    <p>Здесь пока не нужны деньги. Когда близкий человек предлагает помощь — подвезти, что-то купить, взять часть дела на себя, решить проблему — не отвечайте привычным «не надо, я сама». Задача — заметить желание отказаться и всё же позволить другому сделать что-то для вас.</p>
+    <div class="resistance"><div class="label">Как выполнять</div><p>Одно принятое предложение помощи в день, без возврата долга в тот же день. Просто примите — и отследите, что вы почувствовали.</p></div>
+  </div>
+
+  <div class="fact-card">
+    <h3>Упражнение 4. Просьба без оправдания</h3>
+    <p>Выберите небольшую реальную просьбу и уберите из неё всё, чем вы обычно уменьшаете собственное право просить.</p>
+    <div class="example">
+      <div class="label">Уберите эти фразы</div>
+      <p>«Только если можешь». «Ничего страшного, если нет». «Вообще-то мне не очень нужно». «Я потом верну». «Я могу и сама».</p>
+    </div>
+    <div class="resistance"><div class="label">Как выполнять</div><p>Сформулируйте просьбу одним прямым предложением. Без вступления, без смягчения, без пути отступления в конце.</p></div>
+  </div>
+
+  <div class="fact-card">
+    <h3>Упражнение 5. Мои денежные законы</h3>
+    <p>Деньги в паре редко бывают только про сумму — за ними стоит безопасность, власть, свобода, забота, ценность человека. Прежде чем формулировать общие правила с партнёром, полезно сначала понять собственное отношение к деньгам.</p>
+    <div class="example">
+      <div class="label">Определите для себя</div>
+      <p>Какие ваши личные потребности — нормальная часть семейной жизни, не требующая оправданий. Что оплачивается совместно. Какой финансовой поддержки вы вправе ожидать друг от друга. Как в вашей паре обсуждаются крупные личные расходы.</p>
+    </div>
+    <div class="resistance"><div class="label">Как выполнять</div><p>Запишите три собственных денежных правила. Не для мужа — для себя, чтобы знать, с чем вы приходите в следующий разговор о бюджете.</p></div>
+  </div>
+
+  <section class="price-exercise">
+    <h2 class="section-title">Назовите свою цену</h2>
+    <p class="section-sub">Продолжение упражнения 5 — с конкретной суммой. Про то, чтобы вслух признать: у желаемого есть цена, и вы имеете право её назвать.</p>
+    <div class="price-card">
+      <h3>Что вам действительно нужно прямо сейчас</h3>
+      <p>Не то, что кажется уместным попросить. То, что вы бы хотели на самом деле — даже если это большая или неудобная сумма или просьба.</p>
+      <label>Что это</label>
+      <input type="text" placeholder="Например: новый ноутбук, отдых одна на несколько дней, помощь по дому раз в неделю">
+      <label>Сколько это стоит или сколько это будет вам стоить</label>
+      <input type="text" placeholder="Назовите конкретную сумму или объём — без округления в меньшую сторону">
+      <label>Что вы обычно говорите себе, чтобы не назвать эту цифру вслух</label>
+      <textarea placeholder="Например: это слишком дорого, я сама накоплю, не стоит того"></textarea>
+    </div>
+  </section>
+
+  <section class="diary">
+    <h2 class="section-title">Дневник недели</h2>
+    <p class="section-sub">Каждый день — одна строка. Что не попросили и какое правило здесь работает.</p>
+    <div class="week-grid" id="weekGrid"></div>
+  </section>
+
+  <section class="checklist">
+    <h2 class="section-title">Памятка</h2>
+    <p class="section-sub">Коротко все девять правил — распечатайте и держите перед глазами</p>
+    <ol id="checklistItems"></ol>
+    <button class="print-btn" onclick="window.print()">Распечатать памятку</button>
+  </section>
+
+  <section class="showcase">
+    <h3>Обратите внимание также на</h3>
+    <div class="showcase-list">
+      <a class="showcase-item" href="https://bella-psychologist.com/pravila_v_dom.html" target="_blank" rel="noopener">
+        <span class="name">Гайд «Правила в дом»</span>
+      </a>
+      <a class="showcase-item" href="https://bella-psychologist.com/pravila-v-dom-2.html" target="_blank" rel="noopener">
+        <span class="name">Гайд «Без критики»</span>
+      </a>
+      <a class="showcase-item" href="https://bella-psychologist.com/cennost-sebya.html" target="_blank" rel="noopener">
+        <span class="name">Гайд «Ценность себя»</span>
+      </a>
+    </div>
+  </section>
+
+</div>
 
 <footer>
-  <p>Психолог Бэлла Леонидовна · @Bella_leonidovna</p>
+  <div class="sign">С уважением, Бэлла Леонидовна</div>
+  <div>bella-psychologist.com</div>
 </footer>
 
 <script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.1 });
+  const rules = [
+    {
+      title: "Смотрите на себя со стороны, а не изнутри",
+      body: "То, в чём вы отказываете себе, для другого человека вы бы сделали не задумываясь. Проблема не в просьбе. Проблема в том, кто просит.",
+      examples: [
+        "Для ребёнка вы решите вопрос за час, для себя откладываете месяцами.",
+        "Подруге вы скажете «конечно бери отпуск», себе — «сейчас не время».",
+        "Заболевшего мужа отправите к врачу в тот же день, свою боль терпите неделями."
+      ],
+      method: "Прежде чем отказать себе, спросите — сказали бы вы это человеку, о котором заботитесь. Заведите привычку задавать себе этот вопрос перед любым «не сейчас» и «сама справлюсь».",
+      script: "Мне важно сделать это для себя так же, как я делаю это для тебя.",
+      resistance: "Вы скажете себе — это разные ситуации, у меня правда сейчас не время. Но если присмотреться, «не время» находится каждый раз, когда речь о вас."
+    },
+    {
+      title: "Спросите, для чего вам это на самом деле нужно",
+      body: "За любым желанием стоит более глубокая причина. Пока вы её не видите, желание легко откладывается как несущественное.",
+      examples: [
+        "«Хочу новую одежду» — а за этим может стоять желание снова чувствовать себя женщиной, а не только мамой и женой.",
+        "«Хочу поехать одна» — а за этим желание вспомнить, кто вы без семьи вокруг.",
+        "«Хочу, чтобы он помог» — а за этим желание почувствовать, что вы не одна тянете дом."
+      ],
+      method: "На любое «хочу» задайте себе вопрос «для чего мне это» три раза подряд, углубляя ответ. Запишите итоговый ответ — то, ради чего вы просите на самом деле, легче отстоять, чем повод.",
+      script: "Мне нужно не это конкретно. Мне нужно снова почувствовать себя собой.",
+      resistance: "Появится мысль — зачем копать, я и так знаю чего хочу. Обычно первый ответ самый поверхностный, и именно поэтому его легко отложить."
+    },
+    {
+      title: "Найдите, что вам даёт нынешнее положение",
+      body: "Если вы годами не просите, это не случайность. Это положение вам что-то приносит — и пока вы не видите что именно, менять его нечем.",
+      examples: [
+        "Установка «я справляюсь сама» стала частью того, какая вы. Отказаться от неё — как отказаться от себя прежней.",
+        "Страх отказа. Пока не просишь — не рискуешь услышать «нет».",
+        "Привычная роль. Внутри до сих пор живёт та маленькая девочка, которую задвигали, когда решали, кому что достанется. И она давно решила: лучше не просить, чем снова остаться без.",
+        "Чувство контроля. Пока справляетесь сами, ничего не зависит от чужого решения."
+      ],
+      method: "Назовите свою причину вслух или письменно — без осуждения, просто как факт. Спросите — эта причина всё ещё вам служит, или она осталась с тех пор, когда была нужна.",
+      script: "Мне не нужно доказывать, что я справлюсь сама. Я уже это доказала.",
+      resistance: "Захочется найти причину полегче — например, просто нет времени просить. Настоящая причина обычно менее удобная, чем кажется на первый взгляд."
+    },
+    {
+      title: "Проверьте, не связано ли молчание с тем, кем вы себя считаете",
+      body: "Иногда за «я сама справлюсь» стоит не характер, а старое правило из семьи: просить — стыдно, зависеть — слабость.",
+      examples: [
+        "В семье говорили «не будь обузой» — и вы до сих пор боитесь стать ей для мужа.",
+        "Мама тянула всё сама, и вы усвоили — так живут хорошие жёны.",
+        "Вас хвалили именно за то, что вы «не капризная, не требовательная»."
+      ],
+      method: "Спросите — это моё убеждение или чужое, которое я однажды приняла за своё. Проверьте на практике: одна просьба — и посмотрите, действительно ли случается то, чего вы боялись.",
+      script: "В нашей семье так было. Это не значит, что так должно быть и у меня.",
+      resistance: "Появится ощущение — это не установка, это просто мой характер. Характер и усвоенное правило снаружи выглядят одинаково, разница видна только когда пробуете поступить иначе."
+    },
+    {
+      title: "Замечайте, что вы регулируете молчанием",
+      body: "Молчание бывает не про силу. Иногда это способ не встретиться с тревогой или обидой, которые поднимутся, если сказать вслух.",
+      examples: [
+        "Молчите, чтобы не услышать отказ — тревога сильнее желания.",
+        "Молчите, чтобы не разозлиться на ответ, который может не понравиться.",
+        "Молчите, чтобы не почувствовать, что вам действительно что-то нужно — легче считать, что не нужно ничего."
+      ],
+      method: "В момент, когда хочется промолчать вместо просьбы, назовите чувство, которое сейчас есть на самом деле. Разрешите себе почувствовать это чувство, не подавляя его молчанием.",
+      script: "Мне сейчас тревожно это говорить. И я всё равно скажу.",
+      resistance: "Захочется сказать — мне правда ничего не нужно, я не обижена. Стоит проверить эту мысль на следующей же похожей ситуации."
+    },
+    {
+      title: "Слушайте, как вы говорите сами с собой",
+      body: "Внутренний голос, который отказывает вам раньше, чем это сделает кто-то другой, — самый частый источник молчания.",
+      examples: [
+        "«Не сейчас, потерпит» — вы говорите это себе до того, как вообще открыли рот.",
+        "«Ему и так тяжело» — вы решаете за него, не дав ему шанса ответить.",
+        "«Опять я со своими просьбами» — вы стыдите себя за саму потребность."
+      ],
+      method: "Заметьте одну такую фразу и произнесите её вслух, как будто это сказал кто-то другой — так яснее слышно, насколько она несправедлива. Замените её на нейтральную: «у меня есть право попросить».",
+      script: "У меня есть право попросить. Дальше решает он, не я заранее за него.",
+      resistance: "Фраза покажется настолько привычной, что не захочется её замечать вовсе — она давно стала фоном, а не мыслью."
+    },
+    {
+      title: "Замечайте свою потребность до того, как она станет требованием",
+      body: "Потребности, которые долго не озвучиваются, накапливаются и выходят раздражением, обидой или холодностью — тем, что уже труднее объяснить.",
+      examples: [
+        "Копите усталость неделями, а потом срываетесь из-за мелочи.",
+        "Молчите про нехватку внимания, а потом обижаетесь, что он «сам не видит».",
+        "Терпите неудобство, а потом злитесь, что никто не спросил, как вам."
+      ],
+      method: "Раз в день спрашивайте себя прямо — чего мне сейчас не хватает. Проговаривайте потребность, пока она маленькая, а не тогда, когда она уже стала обидой.",
+      script: "Мне сейчас не хватает внимания. Мне бы хотелось, чтобы ты меня обнял.",
+      resistance: "Появится соблазн отложить вопрос на потом — сейчас не до этого. Именно так потребность обычно и накапливается."
+    },
+    {
+      title: "Смотрите, что вы делаете вместо того, чтобы попросить",
+      body: "Оправдания, занижение цены, «мне не к спеху» — это не мелочи. Это конкретные действия, которые каждый день поддерживают старое положение.",
+      examples: [
+        "Говорите «да это недорого стоило», хотя цена вас саму смутила.",
+        "Добавляете «если тебе не сложно» к просьбе, которая для вас важна.",
+        "Откладываете разговор, называя это «сейчас неподходящий момент» — уже месяцами."
+      ],
+      method: "Одна просьба в день — прямая, без «если тебе не сложно» и без объяснений зачем. Замечайте момент, когда вы начинаете оправдывать просьбу, и остановите себя до объяснения.",
+      script: "Мне нужно вот это. Стоит вот столько.",
+      resistance: "Прямая просьба без объяснений покажется резкой или невежливой. На деле объяснения чаще всего снижают вес просьбы, а не смягчают её."
+    },
+    {
+      title: "Проверьте, кто вокруг поддерживает ваше молчание",
+      body: "Иногда окружение хвалит именно за то, что вы не просите — «ты такая самостоятельная», «на тебя всегда можно положиться». Эта похвала закрепляет привычку.",
+      examples: [
+        "Подруги завидуют, что вы «со всем справляетесь сама».",
+        "Муж привык, что вопросы решаются без его участия, и это его устраивает.",
+        "Мама гордится тем, что вы «не как избалованные»."
+      ],
+      method: "Заметьте, от кого вы слышите одобрение за то, что справляетесь сама, и что вы чувствуете, когда это слышите. Спросите себя — эта похвала мне на пользу, или она держит меня на месте.",
+      script: "Мне приятна твоя похвала. И мне также нужна твоя помощь, а не только одобрение.",
+      resistance: "Захочется отмахнуться — это же просто комплимент, зачем в нём копаться. Комплимент и то, что он закрепляет, могут быть верны одновременно."
+    }
+  ];
 
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  const container = document.getElementById('rulesContainer');
+  const checklistEl = document.getElementById('checklistItems');
+
+  rules.forEach((rule, i) => {
+    const el = document.createElement('div');
+    el.className = 'rule';
+    const examplesHtml = rule.examples.map(e => `<li>${e}</li>`).join('');
+    el.innerHTML = `
+      <div class="rule-head">
+        <div class="rule-num">${String(i + 1).padStart(2, '0')}</div>
+        <div class="rule-title">${rule.title}</div>
+        <div class="rule-toggle">+</div>
+      </div>
+      <div class="rule-body">
+        <div class="rule-body-inner">
+          <p>${rule.body}</p>
+          <h4>Узнайте себя</h4>
+          <ul>${examplesHtml}</ul>
+          <h4>Метод внедрения</h4>
+          <p>${rule.method}</p>
+          <div class="script"><div class="label">Скажите это сегодня</div><p>«${rule.script}»</p></div>
+          <div class="resistance"><div class="label">Будет сопротивление</div><p>${rule.resistance}</p></div>
+        </div>
+      </div>`;
+    el.querySelector('.rule-head').addEventListener('click', () => el.classList.toggle('open'));
+    container.appendChild(el);
+
+    const li = document.createElement('li');
+    li.textContent = rule.title;
+    checklistEl.appendChild(li);
+  });
+
+  const diagQuestions = [
+    { q: "Как часто вы просите близких о помощи в мелочах?", opts: ["Почти никогда", "Иногда", "Регулярно"] },
+    { q: "Что вы чувствуете перед тем как попросить о чём-то для себя?", opts: ["Неловкость", "Спокойствие", "Раздражение"] },
+    { q: "Как вы обычно объясняете свою просьбу?", opts: ["Долго оправдываюсь", "Коротко и по делу", "Вообще не объясняю"] },
+    { q: "Что вы делаете после отказа?", opts: ["Больше не прошу", "Пробую иначе", "Настаиваю"] },
+    { q: "Кто в вашей семье учил вас просить или не просить?", opts: ["Учили не просить", "Учили просить", "Не помню, чтобы это обсуждалось"] },
+    { q: "Как часто вы занижаете цену того, что купили себе?", opts: ["Почти всегда", "Иногда", "Никогда"] }
+  ];
+
+  const diagContainer = document.getElementById('diagContainer');
+  const answers = new Array(diagQuestions.length).fill(null);
+
+  diagQuestions.forEach((item, qi) => {
+    const qEl = document.createElement('div');
+    qEl.className = 'diag-q';
+    const optsHtml = item.opts.map((o, oi) =>
+      `<div class="diag-opt" data-q="${qi}" data-o="${oi}">${o}</div>`
+    ).join('');
+    qEl.innerHTML = `<p>${item.q}</p><div class="diag-opts">${optsHtml}</div>`;
+    diagContainer.appendChild(qEl);
+  });
+
+  diagContainer.addEventListener('click', (e) => {
+    if (!e.target.classList.contains('diag-opt')) return;
+    const qi = e.target.dataset.q;
+    const group = diagContainer.querySelectorAll(`[data-q="${qi}"]`);
+    group.forEach(o => o.classList.remove('selected'));
+    e.target.classList.add('selected');
+    answers[qi] = parseInt(e.target.dataset.o);
+
+    if (answers.every(a => a !== null)) {
+      const firstOptCount = answers.filter(a => a === 0).length;
+      const resultEl = document.getElementById('diagResult');
+      const textEl = document.getElementById('diagResultText');
+      let text;
+      if (firstOptCount >= 4) {
+        text = "Молчание уже стало привычкой. Начните с правил 1, 3 и 6 — они про то, чтобы увидеть эту привычку и её причину.";
+      } else if (firstOptCount >= 2) {
+        text = "Вы просите, но не всегда прямо. Обратите внимание на правила 8 и 9 — про действия, которые незаметно поддерживают старое положение.";
+      } else {
+        text = "У вас уже есть опора для прямых просьб. Пройдите все девять правил — они закрепят то, что уже получается, и уберут отдельные слепые зоны.";
+      }
+      textEl.textContent = text;
+      resultEl.classList.add('show');
+    }
+  });
+
+  const days = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"];
+  const weekGrid = document.getElementById('weekGrid');
+  days.forEach(day => {
+    const row = document.createElement('div');
+    row.className = 'day-row';
+    row.innerHTML = `<div class="day-label">${day}</div><textarea placeholder="Что не попросили сегодня и какое правило здесь работает"></textarea>`;
+    weekGrid.appendChild(row);
+  });
 </script>
 
 </body>
