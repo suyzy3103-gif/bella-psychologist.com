@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>После ссоры — диагностика</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FAFAF8;
+    --ink:#20201E;
+    --ink-soft:#5B5B57;
+    --line:#E7E5DE;
+    --burgundy:#8C2E3B;
+    --burgundy-deep:#6E1F2A;
+
+    --blue-bg:#E7F0F8;   --blue-ink:#2E4E6B;   --blue-line:#C9DCEC;
+    --pink-bg:#FBE9EE;   --pink-ink:#8A3B4D;   --pink-line:#F2CFDA;
+    --green-bg:#E7F3EA;  --green-ink:#3C6A48;  --green-line:#CDE4D3;
+    --teal-bg:#E3F4F1;   --teal-ink:#2E6B62;   --teal-line:#C6E5DF;
+    --yellow-bg:#FBF4DA; --yellow-ink:#8A6A1F; --yellow-line:#F0E2B0;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Manrope',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:640px;margin:0 auto;padding:32px 20px 80px;}
+
+  .attrib{
+    font-size:11px; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--ink-soft); text-align:center; margin-bottom:28px;
+  }
+
+  .title{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:600;
+    font-size:44px;
+    line-height:1.1;
+    text-align:center;
+    margin-bottom:14px;
+  }
+  .subtitle{
+    text-align:center;
+    color:var(--ink-soft);
+    font-size:15.5px;
+    line-height:1.6;
+    max-width:460px;
+    margin:0 auto 36px;
+  }
+
+  .bottom-cta{
+    margin-top:44px;
+    padding-top:34px;
+    border-top:1px solid var(--line);
+    text-align:center;
+  }
+  .bottom-cta-title{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:600;
+    font-size:26px;
+    margin-bottom:18px;
+  }
+  .bottom-cta-buttons{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    max-width:320px;
+    margin:0 auto;
+  }
+  .btn-link{
+    text-decoration:none;
+    display:block;
+  }
+  .btn-link-outline{
+    background:transparent;
+    color:var(--burgundy);
+    border:1.5px solid var(--burgundy);
+  }
+  .btn-link-outline:hover{ background:var(--burgundy); color:#fff; }
+
+  .progress{
+    display:flex; gap:8px; justify-content:center; margin-bottom:36px;
+  }
+  .progress i{
+    width:26px; height:4px; border-radius:2px; background:var(--line);
+    transition:background .35s ease;
+  }
+  .progress i.done{ background:var(--burgundy); }
+
+  .card{
+    border-radius:20px;
+    margin-bottom:14px;
+    overflow:hidden;
+    border:1px solid transparent;
+    transition:box-shadow .3s ease;
+  }
+  .card.open{ box-shadow:0 6px 24px rgba(0,0,0,.06); }
+  .card.locked .q-head{ cursor:default; }
+
+  .card[data-c="blue"]{ background:var(--blue-bg); border-color:var(--blue-line); }
+  .card[data-c="pink"]{ background:var(--pink-bg); border-color:var(--pink-line); }
+  .card[data-c="green"]{ background:var(--green-bg); border-color:var(--green-line); }
+  .card[data-c="teal"]{ background:var(--teal-bg); border-color:var(--teal-line); }
+  .card[data-c="yellow"]{ background:var(--yellow-bg); border-color:var(--yellow-line); }
+
+  .q-head{
+    display:flex; align-items:center; gap:14px;
+    padding:20px 22px;
+    cursor:pointer;
+    user-select:none;
+  }
+  .q-num{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:600;
+    font-size:26px;
+    width:34px; flex-shrink:0;
+  }
+  .card[data-c="blue"] .q-num{ color:var(--blue-ink); }
+  .card[data-c="pink"] .q-num{ color:var(--pink-ink); }
+  .card[data-c="green"] .q-num{ color:var(--green-ink); }
+  .card[data-c="teal"] .q-num{ color:var(--teal-ink); }
+  .card[data-c="yellow"] .q-num{ color:var(--yellow-ink); }
+
+  .q-text{ font-size:16.5px; font-weight:600; line-height:1.4; flex:1; }
+  .q-check{
+    width:22px; height:22px; border-radius:50%;
+    border:2px solid rgba(0,0,0,.15);
+    flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+    font-size:13px; color:transparent;
+    transition:all .25s ease;
+  }
+  .card.answered .q-check{
+    background:var(--burgundy); border-color:var(--burgundy); color:#fff;
+  }
+
+  .q-body{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .4s ease;
+  }
+  .card.open .q-body{ max-height:600px; }
+
+  .options{ padding:0 22px 22px; display:flex; flex-direction:column; gap:10px; }
+  .opt{
+    display:flex; align-items:flex-start; gap:12px;
+    padding:13px 16px;
+    background:rgba(255,255,255,.6);
+    border-radius:13px;
+    border:1.5px solid transparent;
+    cursor:pointer;
+    font-size:15px;
+    line-height:1.45;
+    transition:all .2s ease;
+  }
+  .opt:hover{ background:rgba(255,255,255,.95); }
+  .opt.selected{
+    background:#fff;
+    border-color:var(--burgundy);
+  }
+  .opt .letter{
+    font-weight:800; font-size:13px;
+    width:20px; height:20px; border-radius:50%;
+    background:rgba(0,0,0,.06);
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0; margin-top:1px;
+  }
+  .opt.selected .letter{ background:var(--burgundy); color:#fff; }
+
+  .result-gate{
+    text-align:center;
+    margin-top:28px;
+    display:none;
+  }
+  .result-gate.show{ display:block; }
+  .btn{
+    display:inline-block;
+    background:var(--burgundy);
+    color:#fff;
+    font-family:'Manrope',sans-serif;
+    font-weight:700;
+    font-size:15px;
+    padding:16px 34px;
+    border-radius:30px;
+    border:none;
+    cursor:pointer;
+    letter-spacing:.01em;
+  }
+  .btn:hover{ background:var(--burgundy-deep); }
+  .gate-hint{ font-size:13.5px; color:var(--ink-soft); margin-top:12px; }
+
+  .result{
+    display:none;
+    margin-top:32px;
+    background:var(--ink);
+    color:#fff;
+    border-radius:24px;
+    padding:38px 28px;
+    text-align:center;
+  }
+  .result.show{ display:block; animation:fadein .5s ease; }
+  @keyframes fadein{ from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:none;} }
+
+  .result-eyebrow{
+    font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+    color:#D9B7BD; margin-bottom:14px;
+  }
+  .result-title{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:600; font-style:italic;
+    font-size:34px; line-height:1.2;
+    margin-bottom:18px;
+  }
+  .result-text{
+    font-size:15.5px; line-height:1.7; color:#EDEBE6;
+    max-width:440px; margin:0 auto 16px;
+  }
+  .result-note{
+    font-size:14px; line-height:1.6; color:#C9C6BE;
+    max-width:420px; margin:20px auto 0;
+    border-top:1px solid rgba(255,255,255,.15);
+    padding-top:20px;
+  }
+
+  .cta{
+    margin-top:26px;
+    text-align:center;
+  }
+  .cta p{
+    font-size:15.5px; line-height:1.6; margin-bottom:16px; color:var(--ink);
+  }
+
+  @media (max-width:420px){
+    .title{ font-size:36px; }
+    .q-text{ font-size:15.5px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="attrib">Полянинова Бэлла Леонидовна. Авторский продукт. Все права защищены</div>
+
+  <div class="title">После ссоры</div>
+  <div class="subtitle">Пять вопросов о том, что происходит с вами после конфликта. Отвечайте так, как есть на самом деле, а не так, как правильно.</div>
+
+  <div class="progress" id="progress"></div>
+
+  <div id="cards"></div>
+
+  <div class="result-gate" id="gate">
+    <button class="btn" id="revealBtn">Посмотреть свой паттерн</button>
+    <div class="gate-hint">Займёт меньше минуты, чем вы уже потратили на вопросы</div>
+  </div>
+
+  <div class="result" id="result">
+    <div class="result-eyebrow" id="resEyebrow">Ваш паттерн</div>
+    <div class="result-title" id="resTitle"></div>
+    <div class="result-text" id="resText"></div>
+    <div class="result-note" id="resNote"></div>
+  </div>
+
+  <div class="cta" id="ctaBlock" style="display:none;">
+    <p>Универсального ответа здесь нет — у каждой женщины это своё правило.<br>
+    На консультации разберём именно вашу ситуацию: что происходит с вами после конфликта, чего вы ждёте от партнёра и какое правило удерживает вас в этом ожидании.</p>
+  </div>
+
+  <div class="bottom-cta">
+    <div class="bottom-cta-title">Записаться на консультацию</div>
+    <div class="bottom-cta-buttons">
+      <a class="btn btn-link" href="https://t.me/bella_psychologist" target="_blank" rel="noopener">Написать в Telegram</a>
+      <a class="btn btn-link btn-link-outline" href="https://wa.me/79880051025" target="_blank" rel="noopener">Написать в WhatsApp</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const QUESTIONS = [
+  {
+    color:'blue',
+    text:'Что происходит с вами в первое время после ссоры?',
+    options:[
+      {t:'Не могу переключиться ни на что другое, весь день проходит в ожидании его шага', s:{resolution:2, fusion:1}},
+      {t:'Пытаюсь заниматься делами, но ловлю себя на мысли о ссоре каждые несколько минут', s:{fusion:2, fear:1}},
+      {t:'Мне плохо какое-то время, но через несколько часов или дней я возвращаюсь к обычной жизни', s:{}},
+      {t:'Живу своей прежней жизнью. Делаю вид, что ничего не случилось', s:{}}
+    ]
+  },
+  {
+    color:'pink',
+    text:'Чего вы ждёте от партнёра в этот момент?',
+    options:[
+      {t:'Что он первым подойдёт и покажет, что всё в порядке', s:{resolution:2}},
+      {t:'Что он извинится и признает свою часть вины', s:{fear:1, resolution:1}},
+      {t:'Что ситуация сама сгладится, и не придётся ничего решать', s:{fusion:1}},
+      {t:'Не жду ничего конкретного, просто жду, когда это закончится', s:{resolution:1, fusion:1}}
+    ]
+  },
+  {
+    color:'green',
+    text:'Что происходит с вашими собственными планами, пока длится конфликт?',
+    options:[
+      {t:'Вообще ничего не могу делать — как будто жизнь замерла', s:{resolution:2, fear:2}},
+      {t:'Откладываю всё, что приносит удовольствие — как будто не имею на это права', s:{fear:2, resolution:1}},
+      {t:'Продолжаю дела, но без удовольствия, на автомате', s:{fusion:2}},
+      {t:'Планы не меняются, но настроение испорчено', s:{}}
+    ]
+  },
+  {
+    color:'teal',
+    text:'Если представить, что прямо во время ссоры вы поехали бы к подруге или занялись своим делом — что вы почувствуете?',
+    options:[
+      {t:'Вину, будто предаю серьёзность ситуации', s:{fear:2}},
+      {t:'Тревогу, что пока меня нет, станет только хуже', s:{fusion:2}},
+      {t:'Облегчение, но потом ощущение, что это как-то неправильно', s:{fear:1, resolution:1}},
+      {t:'Ничего особенного, но я всё равно этого не делаю', s:{resolution:2}}
+    ]
+  },
+  {
+    color:'yellow',
+    text:'Как давно так происходит?',
+    options:[
+      {t:'Так было всегда, сколько себя помню в отношениях', s:{resolution:1, fear:1}},
+      {t:'Так стало в последние годы', s:{fusion:1}},
+      {t:'Замечаю это не только с партнёром — с начальником, с подругой тоже', s:{general:3}},
+      {t:'Так было ещё в детстве: если мама обижалась, наказывала или ругала — наступало «жизнь не мила»', s:{fusion:2, resolution:1}}
+    ]
+  }
+];
+
+const PROFILES = {
+  resolution:{
+    eyebrow:'Ваш паттерн',
+    title:'Ожидание разрешения',
+    text:'Вы не возвращаетесь к своей жизни, пока не получите явный знак, что буря прошла. Пока партнёр не показал, что всё нормализовалось, вы держите жизнь на паузе.',
+    note:'За этим стоит конкретное правило о том, кто имеет право первым решить, что конфликт закончен. Оно нигде не записано — но именно оно управляет вашими днями.'
+  },
+  fusion:{
+    eyebrow:'Ваш паттерн',
+    title:'Слияние с чужим настроением',
+    text:'Ваше состояние настолько связано с настроением близкого человека, что пока он не в порядке, вы физически не можете быть в порядке сами.',
+    note:'Это не черта характера и не «слишком чувствительная». За этим стоит механизм, который можно рассмотреть отдельно и ослабить.'
+  },
+  fear:{
+    eyebrow:'Ваш паттерн',
+    title:'Страх подтвердить неважность',
+    text:'Часть вас боится: если вы спокойно продолжите жить, пока конфликт не решён, это будет значить, что отношения не так уж важны — для вас или для него.',
+    note:'Здесь работает правило, которое незаметно связывает вашу ценность с силой переживания.'
+  },
+  general:{
+    eyebrow:'Ваш паттерн',
+    title:'Не только здесь',
+    text:'Это происходит не только с партнёром. Вы теряете опору в любом значимом разрыве контакта — с начальником, с подругой, с близким человеком.',
+    note:'Это говорит не про конкретные отношения, а про более общий механизм реакции на то, что вас временно исключили из круга.'
+  }
+};
+
+const answers = new Array(QUESTIONS.length).fill(null);
+const cardsEl = document.getElementById('cards');
+const progressEl = document.getElementById('progress');
+
+QUESTIONS.forEach((q,i)=>{ const dot=document.createElement('i'); dot.id='dot'+i; progressEl.appendChild(dot); });
+
+function render(){
+  cardsEl.innerHTML='';
+  QUESTIONS.forEach((q,i)=>{
+    const card=document.createElement('div');
+    card.className='card'+(i===currentOpen()?' open':'')+(answers[i]!==null?' answered':'');
+    card.dataset.c=q.color;
+
+    const head=document.createElement('div');
+    head.className='q-head';
+    head.innerHTML=`<div class="q-num">${i+1}</div><div class="q-text">${q.text}</div><div class="q-check">✓</div>`;
+    head.onclick=()=>toggle(i);
+    card.appendChild(head);
+
+    const body=document.createElement('div');
+    body.className='q-body';
+    const opts=document.createElement('div');
+    opts.className='options';
+    q.options.forEach((opt,oi)=>{
+      const row=document.createElement('div');
+      row.className='opt'+(answers[i]===oi?' selected':'');
+      row.innerHTML=`<div class="letter">${String.fromCharCode(65+oi)}</div><div>${opt.t}</div>`;
+      row.onclick=(e)=>{ e.stopPropagation(); selectAnswer(i,oi); };
+      opts.appendChild(row);
+    });
+    body.appendChild(opts);
+    card.appendChild(body);
+    cardsEl.appendChild(card);
+  });
+  updateProgress();
+}
+
+let openIndex = 0;
+function currentOpen(){ return openIndex; }
+function toggle(i){ openIndex = (openIndex===i) ? -1 : i; render(); }
+
+function selectAnswer(i,oi){
+  answers[i]=oi;
+  const next = QUESTIONS.findIndex((q,idx)=>idx>i && answers[idx]===null);
+  openIndex = next!==-1 ? next : -1;
+  render();
+  checkComplete();
+}
+
+function updateProgress(){
+  QUESTIONS.forEach((q,i)=>{
+    const dot=document.getElementById('dot'+i);
+    if(dot) dot.classList.toggle('done', answers[i]!==null);
+  });
+}
+
+function checkComplete(){
+  if(answers.every(a=>a!==null)){
+    document.getElementById('gate').classList.add('show');
+  }
+}
+
+document.getElementById('revealBtn').onclick = ()=>{
+  const scores = {resolution:0, fusion:0, fear:0, general:0};
+  answers.forEach((oi,qi)=>{
+    const s = QUESTIONS[qi].options[oi].s;
+    Object.keys(s).forEach(k=> scores[k]+=s[k] );
+  });
+  const order = ['general','fear','fusion','resolution'];
+  let best = order[0];
+  order.forEach(k=>{ if(scores[k] > scores[best]) best = k; });
+
+  const p = PROFILES[best];
+  document.getElementById('resEyebrow').textContent = p.eyebrow;
+  document.getElementById('resTitle').textContent = p.title;
+  document.getElementById('resText').textContent = p.text;
+  document.getElementById('resNote').textContent = p.note;
+
+  document.getElementById('gate').classList.remove('show');
+  document.getElementById('result').classList.add('show');
+  document.getElementById('ctaBlock').style.display='block';
+  document.getElementById('result').scrollIntoView({behavior:'smooth', block:'start'});
+};
+
+render();
+</script>
+</body>
+</html>
