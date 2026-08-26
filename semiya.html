@@ -9,14 +9,14 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
-    --blush: #f5e6e0;
-    --blush-deep: #d4a89a;
-    --rose: #b07870;
-    --rose-dark: #7a4f48;
-    --text: #2c1f1c;
-    --text-light: #6b4f4a;
-    --white: #fdfaf8;
-    --line: rgba(176, 120, 112, 0.25);
+    --blush: #eef2ea;
+    --blush-deep: #a9bfa0;
+    --rose: #7c9473;
+    --rose-dark: #4f6b47;
+    --text: #232a1f;
+    --text-light: #5f6b57;
+    --white: #fbfaf6;
+    --line: rgba(122, 148, 115, 0.25);
   }
 
   body {
@@ -444,40 +444,85 @@
   .res-text { font-size: 15px; font-weight: 300; line-height: 1.9; color: var(--text-light); max-width: 320px; margin: 0 auto 36px; }
   .author { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--rose); margin-top: 44px; font-weight: 300; }
 
-  /* ── STICKY BAR ── */
+  /* ── STICKY BAR (переработано: светлый стиль, без тёмного блока) ── */
   .sticky-wrap {
     position: fixed;
     bottom: 0; left: 0; right: 0;
     z-index: 999;
     display: flex;
     flex-direction: column;
+    box-shadow: 0 -4px 20px rgba(44,31,28,0.10);
   }
+
   .sticky-row {
-    padding: 14px 20px;
+    padding: 13px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
-    box-shadow: 0 -4px 24px rgba(44,31,28,0.15);
+    gap: 14px;
   }
-  .sticky-text { flex: 1; }
-  .sticky-title {
+
+  /* верхняя плашка — платный продукт, светлая, тонкая линия сверху вместо тёмного блока */
+  .sticky-premium {
+    background: var(--white);
+    border-top: 1px solid var(--line);
+  }
+  .sticky-premium-text { flex: 1; min-width: 0; }
+  .sticky-premium-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 17px;
+    font-size: 21px;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.25;
+    margin-bottom: 5px;
+  }
+  .sticky-premium-sub {
+    font-size: 13.5px;
+    font-weight: 400;
+    color: var(--text-light);
+    line-height: 1.45;
+  }
+  .sticky-premium-btn {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 15px 22px;
+    background: var(--rose-dark);
+    color: var(--white);
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1.3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.2s;
+  }
+  .sticky-premium-btn:hover { background: var(--rose); }
+
+  /* нижняя плашка — экспресс-консультация, компактная, без дублирования текста */
+  .sticky-consult {
+    background: var(--rose-dark);
+  }
+  .sticky-consult-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
     font-weight: 400;
     color: var(--white);
-    line-height: 1.2;
-    margin-bottom: 3px;
+    line-height: 1.25;
+    margin-bottom: 2px;
   }
-  .sticky-sub {
+  .sticky-consult-sub {
     font-size: 11px;
     font-weight: 300;
     color: rgba(253,250,248,0.7);
-    line-height: 1.4;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
   }
   .sticky-btns { display: flex; gap: 8px; flex-shrink: 0; }
   .sticky-btn {
-    width: 46px; height: 46px;
+    width: 42px; height: 42px;
     border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
     text-decoration: none;
@@ -487,7 +532,8 @@
   .sticky-btn:hover { opacity: 0.85; transform: scale(1.06); }
   .sticky-btn.tg { background: #2AABEE; }
   .sticky-btn.wa { background: #25D366; }
-  body { padding-bottom: 300px; }
+
+  body { padding-bottom: 132px; }
 
 </style>
 </head>
@@ -658,17 +704,17 @@
 
     <div class="icard">
       <p class="icard-lbl">Что внутри</p>
-      <p class="icard-text">Один вопрос, который вскрывает истинное место семьи в его жизни — с разбором, что делать с любым ответом. Плюс сценарии для случаев, когда предыдущие шаги не сработали по разным типам причин.</p>
+      <p class="icard-text">Один вопрос, который вскрывает истинное место семьи в его жизни — с разбором, что делать с любым ответом. Плюс четыре типа мужчин и сценарии для случаев, когда предыдущие шаги не сработали, и шесть практик на каждый день для закрепления.</p>
     </div>
 
     <div class="sep"></div>
 
     <div style="text-align:center; margin-bottom:24px;">
-      <p style="font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:400; color:var(--text); margin-bottom:6px;">Полная версия стратегии</p>
+      <p style="font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:400; color:var(--text); margin-bottom:6px;">Забота возвращается в дом</p>
       <p style="font-size:15px; font-weight:300; color:var(--rose-dark);">990 ₽</p>
     </div>
 
-    <a href="https://app.lava.top/products/a4dee9c8-a40d-4384-a16d-96b6573e030e" target="_blank" class="btn-next" style="text-decoration:none; display:block;">Получить полную версию →</a>
+    <a href="https://app.lava.top/products/a4dee9c8-a40d-4384-a16d-96b6573e030e" target="_blank" class="btn-next" style="text-decoration:none; display:block;">Открыть →</a>
   </div>
 </div>
 
@@ -755,48 +801,32 @@
   }
 </script>
 
-<!-- ФИКСИРОВАННЫЙ БЛОК: ОБЕ ПЛАШКИ -->
+<!-- ФИКСИРОВАННЫЙ БЛОК: ОБЕ ПЛАШКИ, СВЕТЛЫЙ СТИЛЬ -->
 <div class="sticky-wrap">
 
   <!-- ПОЛНАЯ ВЕРСИЯ -->
-  <div class="sticky-row" style="background: linear-gradient(135deg, #b6875a 0%, #4a2e1f 100%);">
-    <div>
-      <p style="font-family:'Cormorant Garamond',serif; font-size:19px; font-weight:400; color:#fdfaf8; line-height:1.2; margin-bottom:2px;">Полная версия стратегии</p>
-      <p style="font-size:12px; font-weight:300; color:rgba(253,250,248,0.85); letter-spacing:1px;">990 ₽ — все шаги и сценарии</p>
+  <div class="sticky-row sticky-premium">
+    <div class="sticky-premium-text">
+      <p class="sticky-premium-title">Забота возвращается в дом</p>
+      <p class="sticky-premium-sub">990 ₽ — шаг к отношениям, где помощь и забота о вас и семье стоят на первом месте</p>
     </div>
-    <a href="https://app.lava.top/products/a4dee9c8-a40d-4384-a16d-96b6573e030e" target="_blank"
-       style="flex-shrink:0; display:flex; align-items:center; gap:6px; padding:13px 18px; background:#2e1b10; color:white; font-family:'Jost',sans-serif; font-size:12px; font-weight:400; letter-spacing:1.2px; text-transform:uppercase; text-decoration:none; white-space:nowrap;">
-      Получить →
+    <a href="https://app.lava.top/products/a4dee9c8-a40d-4384-a16d-96b6573e030e" target="_blank" class="sticky-premium-btn">
+      Открыть →
     </a>
   </div>
 
   <!-- ЭКСПРЕСС-РАЗБОР -->
-  <div class="sticky-row" id="sticky-cta" style="background: var(--rose-dark); flex-direction:column; align-items:stretch;">
-    <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:12px; margin-bottom:12px;">
-      <div>
-        <p style="font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:400; color:#fdfaf8; line-height:1.2; margin-bottom:3px;">Экспресс-разбор ситуации</p>
-        <p style="font-size:12px; font-weight:300; color:rgba(253,250,248,0.6); letter-spacing:1.5px; text-transform:uppercase;">60 минут с психологом</p>
-      </div>
-      <div style="display:flex; gap:8px; flex-shrink:0; margin-top:2px;">
-        <a href="https://t.me/bella_psychologist" target="_blank" class="sticky-btn tg" title="Telegram">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.8 13.9l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.835.952l.013-.293z"/></svg>
-        </a>
-        <a href="https://wa.me/79880051025" target="_blank" class="sticky-btn wa" title="WhatsApp">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12.031 0C5.384 0 .001 5.383.001 12.031c0 2.122.557 4.112 1.528 5.837L0 24l6.306-1.653A11.974 11.974 0 0012.031 24C18.678 24 24 18.617 24 11.969 24 5.322 18.678 0 12.031 0zm6.051 16.708c-.253.714-1.467 1.32-2.028 1.374-.521.05-1.01.247-3.402-.708-2.86-1.143-4.695-4.058-4.836-4.245-.14-.187-1.148-1.527-1.148-2.912s.727-2.059.985-2.34c.258-.28.562-.35.75-.35l.538.01c.173.007.405-.066.633.483.235.563.797 1.947.867 2.087.07.14.117.303.023.487-.094.184-.14.298-.28.46l-.422.49c-.14.14-.286.292-.123.573.163.28.724 1.194 1.554 1.933 1.067.952 1.967 1.246 2.247 1.386.28.14.443.117.607-.07.163-.187.7-.817.887-1.097.187-.28.374-.234.633-.14.258.093 1.644.775 1.924.915.28.14.467.21.537.327.07.117.07.677-.183 1.337z"/></svg>
-        </a>
-      </div>
+  <div class="sticky-row sticky-consult">
+    <div>
+      <p class="sticky-consult-title">Экспресс-разбор ситуации</p>
+      <p class="sticky-consult-sub">60 минут с психологом</p>
     </div>
-    <p style="font-size:13px; font-weight:300; color:rgba(253,250,248,0.82); line-height:1.6;">Семейный сценарий, детская история, соревнование — то, что стоит за поведением и не решается общей инструкцией</p>
-    <div style="display:flex; gap:10px; margin-top:14px;">
-      <a href="https://t.me/bella_psychologist" target="_blank"
-         style="flex:1; display:flex; align-items:center; justify-content:center; gap:8px; padding:13px 10px; background:#2AABEE; color:white; font-family:'Jost',sans-serif; font-size:12px; font-weight:400; letter-spacing:1.5px; text-transform:uppercase; text-decoration:none; border-radius:2px;">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.8 13.9l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.835.952l.013-.293z"/></svg>
-        Telegram
+    <div class="sticky-btns">
+      <a href="https://t.me/bella_psychologist" target="_blank" class="sticky-btn tg" title="Telegram">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.8 13.9l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.835.952l.013-.293z"/></svg>
       </a>
-      <a href="https://wa.me/79880051025" target="_blank"
-         style="flex:1; display:flex; align-items:center; justify-content:center; gap:8px; padding:13px 10px; background:#25D366; color:white; font-family:'Jost',sans-serif; font-size:12px; font-weight:400; letter-spacing:1.5px; text-transform:uppercase; text-decoration:none; border-radius:2px;">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12.031 0C5.384 0 .001 5.383.001 12.031c0 2.122.557 4.112 1.528 5.837L0 24l6.306-1.653A11.974 11.974 0 0012.031 24C18.678 24 24 18.617 24 11.969 24 5.322 18.678 0 12.031 0zm6.051 16.708c-.253.714-1.467 1.32-2.028 1.374-.521.05-1.01.247-3.402-.708-2.86-1.143-4.695-4.058-4.836-4.245-.14-.187-1.148-1.527-1.148-2.912s.727-2.059.985-2.34c.258-.28.562-.35.75-.35l.538.01c.173.007.405-.066.633.483.235.563.797 1.947.867 2.087.07.14.117.303.023.487-.094.184-.14.298-.28.46l-.422.49c-.14.14-.286.292-.123.573.163.28.724 1.194 1.554 1.933 1.067.952 1.967 1.246 2.247 1.386.28.14.443.117.607-.07.163-.187.7-.817.887-1.097.187-.28.374-.234.633-.14.258.093 1.644.775 1.924.915.28.14.467.21.537.327.07.117.07.677-.183 1.337z"/></svg>
-        WhatsApp
+      <a href="https://wa.me/79880051025" target="_blank" class="sticky-btn wa" title="WhatsApp">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12.031 0C5.384 0 .001 5.383.001 12.031c0 2.122.557 4.112 1.528 5.837L0 24l6.306-1.653A11.974 11.974 0 0012.031 24C18.678 24 24 18.617 24 11.969 24 5.322 18.678 0 12.031 0zm6.051 16.708c-.253.714-1.467 1.32-2.028 1.374-.521.05-1.01.247-3.402-.708-2.86-1.143-4.695-4.058-4.836-4.245-.14-.187-1.148-1.527-1.148-2.912s.727-2.059.985-2.34c.258-.28.562-.35.75-.35l.538.01c.173.007.405-.066.633.483.235.563.797 1.947.867 2.087.07.14.117.303.023.487-.094.184-.14.298-.28.46l-.422.49c-.14.14-.286.292-.123.573.163.28.724 1.194 1.554 1.933 1.067.952 1.967 1.246 2.247 1.386.28.14.443.117.607-.07.163-.187.7-.817.887-1.097.187-.28.374-.234.633-.14.258.093 1.644.775 1.924.915.28.14.467.21.537.327.07.117.07.677-.183 1.337z"/></svg>
       </a>
     </div>
   </div>
