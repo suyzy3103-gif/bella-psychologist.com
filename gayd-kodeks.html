@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Почему вы всё понимаете, но снова поступаете по-старому</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F4F8FC;
+    --ink:#1E2B38;
+    --ink-soft:#4A5A68;
+    --blue-bg:#D6E6F5;   --blue-ac:#3E6B9C;
+    --rose-bg:#F3D6E3;   --rose-ac:#B8557E;
+    --beige-bg:#EDE3D3;  --beige-ac:#93714A;
+    --teal-bg:#D3ECE9;   --teal-ac:#2E8C86;
+    --green-bg:#DCEEDA;  --green-ac:#4A8C63;
+    --card-shadow: 0 2px 14px rgba(30,43,56,.06);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Manrope',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{
+    max-width:640px;
+    margin:0 auto;
+    padding:48px 24px 64px;
+  }
+  .eyebrow{
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:2.5px;
+    text-transform:uppercase;
+    color:var(--blue-ac);
+    text-align:center;
+    margin-bottom:18px;
+  }
+  h1{
+    font-family:'Playfair Display',serif;
+    font-weight:700;
+    font-size:34px;
+    line-height:1.28;
+    text-align:center;
+    margin:0 0 16px;
+    color:var(--ink);
+  }
+  .subtitle{
+    text-align:center;
+    font-size:17px;
+    font-weight:600;
+    color:var(--ink-soft);
+    margin:0 0 36px;
+    line-height:1.5;
+  }
+  .intro p{
+    font-size:16px;
+    line-height:1.7;
+    color:var(--ink);
+    margin:0 0 16px;
+  }
+  .intro{ margin-bottom:36px; }
+
+  .qlist{ display:flex; flex-direction:column; gap:14px; margin-bottom:8px; }
+
+  details.card{
+    border-radius:18px;
+    box-shadow:var(--card-shadow);
+    overflow:hidden;
+    background:#fff;
+  }
+  details.card > summary{
+    list-style:none;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:20px 22px;
+    font-family:'Manrope',sans-serif;
+    font-weight:700;
+    font-size:17px;
+    line-height:1.4;
+  }
+  details.card > summary::-webkit-details-marker{ display:none; }
+  .num{
+    flex:0 0 auto;
+    width:34px; height:34px;
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Playfair Display',serif;
+    font-weight:700;
+    font-size:16px;
+    color:#fff;
+  }
+  .chev{
+    margin-left:auto;
+    flex:0 0 auto;
+    width:20px; height:20px;
+    transition:transform .25s ease;
+    opacity:.55;
+  }
+  details[open] .chev{ transform:rotate(180deg); }
+
+  .body{
+    padding:0 22px 24px 70px;
+    font-size:15.5px;
+    line-height:1.7;
+  }
+  .body p{ margin:0 0 14px; }
+  .example{
+    border-radius:12px;
+    padding:14px 16px;
+    font-size:14.5px;
+    line-height:1.6;
+    margin-top:6px;
+  }
+  .example b{ font-weight:800; }
+
+  /* card 1 — rose */
+  .c1 .num{ background:var(--rose-ac); }
+  .c1 summary{ background:var(--rose-bg); }
+  .c1 .example{ background:#FBEAF1; color:#7A3455; }
+
+  /* card 2 — beige */
+  .c2 .num{ background:var(--beige-ac); }
+  .c2 summary{ background:var(--beige-bg); }
+  .c2 .example{ background:#F5EEDF; color:#6B4F2E; }
+
+  /* card 3 — teal */
+  .c3 .num{ background:var(--teal-ac); }
+  .c3 summary{ background:var(--teal-bg); }
+  .c3 .example{ background:#E4F4F2; color:#1F5F5B; }
+
+  /* card 4 — blue */
+  .c4 .num{ background:var(--blue-ac); }
+  .c4 summary{ background:var(--blue-bg); }
+  .c4 .example{ background:#E7F0FA; color:#2C4F72; }
+
+  /* card 5 — green */
+  .c5 .num{ background:var(--green-ac); }
+  .c5 summary{ background:var(--green-bg); }
+  .c5 .example{ background:#E9F6E7; color:#356247; }
+
+  .divider{
+    height:1px;
+    background:linear-gradient(to right, transparent, #C7D6E4, transparent);
+    margin:44px 0 36px;
+  }
+
+  .closing h2{
+    font-family:'Playfair Display',serif;
+    font-size:22px;
+    font-weight:700;
+    text-align:center;
+    margin:0 0 18px;
+  }
+  .closing p{
+    font-size:16px;
+    line-height:1.7;
+    margin:0 0 16px;
+  }
+
+  .author-box{
+    background:#fff;
+    border-left:3px solid var(--blue-ac);
+    border-radius:4px 16px 16px 4px;
+    box-shadow:var(--card-shadow);
+    padding:22px 24px;
+    margin:0 0 36px;
+  }
+  .author-box p{
+    font-size:15.5px;
+    line-height:1.7;
+    color:var(--ink);
+    margin:0 0 14px;
+  }
+  .author-box p:last-of-type{ margin-bottom:0; }
+  .emphasis{
+    font-family:'Playfair Display',serif;
+    font-style:italic;
+    font-weight:700;
+    font-size:19px;
+    line-height:1.5;
+    color:var(--blue-ac);
+    text-align:center;
+    margin:24px 0;
+    padding:0 6px;
+  }
+
+  .author-sign{
+    font-family:'Playfair Display',serif;
+    font-style:italic;
+    font-weight:700;
+    color:var(--blue-ac) !important;
+    text-align:right;
+    font-size:15px !important;
+  }
+
+  .topic-list{
+    list-style:none;
+    margin:0 0 20px;
+    padding:0;
+  }
+  .topic-list li{
+    font-size:15.5px;
+    line-height:1.6;
+    color:var(--ink);
+    padding:9px 0 9px 22px;
+    position:relative;
+    border-bottom:1px solid #EAF0F6;
+  }
+  .topic-list li:last-child{ border-bottom:none; }
+  .topic-list li:before{
+    content:"—";
+    position:absolute;
+    left:0;
+    color:var(--blue-ac);
+  }
+
+  .rules-box{
+    background:#fff;
+    border-radius:16px;
+    box-shadow:var(--card-shadow);
+    padding:20px 22px;
+    margin:20px 0 24px;
+  }
+  .rules-box p{
+    font-size:15px;
+    font-style:italic;
+    color:var(--ink-soft);
+    margin:0 0 12px;
+    padding-left:16px;
+    border-left:3px solid var(--blue-bg);
+  }
+  .rules-box p:last-child{ margin-bottom:0; }
+
+  .cta-block{
+    text-align:center;
+    margin:40px 0 8px;
+  }
+  .cta-block p{
+    font-size:15.5px;
+    line-height:1.6;
+    color:var(--ink-soft);
+    margin:0 0 20px;
+  }
+  .cta-btn{
+    display:inline-block;
+    background:var(--blue-ac);
+    color:#fff;
+    font-family:'Manrope',sans-serif;
+    font-weight:700;
+    font-size:16px;
+    padding:16px 32px;
+    border-radius:30px;
+    text-decoration:none;
+    box-shadow:0 6px 20px rgba(62,107,156,.28);
+  }
+
+  .slogan{
+    text-align:center;
+    font-family:'Playfair Display',serif;
+    font-weight:700;
+    font-style:italic;
+    font-size:18px;
+    color:var(--blue-ac);
+    margin:44px 0 6px;
+  }
+  .sign{
+    text-align:center;
+    font-size:14px;
+    color:var(--ink-soft);
+    margin:0;
+  }
+
+  @media (max-width:480px){
+    h1{ font-size:27px; }
+    .body{ padding-left:22px; padding-right:18px; }
+    details.card > summary{ padding:16px 16px; font-size:15.5px; gap:10px; }
+    .num{ width:28px; height:28px; font-size:14px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="eyebrow">Полянинова Бэлла Леонидовна · Психолог · Все права защищены</div>
+  <h1>Почему вы всё понимаете,<br>но снова поступаете по-старому</h1>
+  <p class="subtitle">Пять вопросов, которые показывают, что на самом деле управляет вашими решениями</p>
+
+  <div class="intro">
+    <p>Вы можете прекрасно понимать, что пора сказать «нет», перестать всё контролировать, не спасать взрослого ребёнка и не подстраиваться под настроение мужа.</p>
+    <p>Потом наступает конкретная ситуация — и вы снова соглашаетесь, объясняетесь, терпите, переделываете, берёте ответственность на себя.</p>
+    <p>Причина бывает совсем не в слабом характере.</p>
+    <p>Многие привычки, которые сегодня мешают вам жить, когда-то помогали сохранять отношения, избегать конфликтов, получать одобрение или чувствовать себя нужной. Со временем способ защиты становится настолько привычным, что начинает казаться характером.</p>
+    <p>Эти пять вопросов помогут заметить, где заканчивается ваше настоящее решение и начинается старое правило, по которому вы живёте автоматически.</p>
+  </div>
+
+  <div class="qlist">
+
+    <details class="card c1" open>
+      <summary><span class="num">1</span><span>Что вы боитесь потерять, когда хотите сказать «нет»?</span><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary>
+      <div class="body">
+        <p>Вы уже понимаете, что не хотите соглашаться. Не хотите ехать туда, куда вас снова зовут из чувства долга. Не хотите выполнять просьбу только потому, что вам неудобно отказать. Не хотите брать на себя ответственность за то, что другой взрослый человек вполне может решить сам. Не хотите позволять родственникам вмешиваться в ваши решения. Иногда вы даже заранее знаете, что именно хотите ответить.</p>
+        <p>Потом человек расстраивается, обижается, становится холоднее или начинает объяснять, почему вы поступаете неправильно. Через несколько минут собственное «нет» уже кажется слишком жёстким, неудобным или эгоистичным.</p>
+        <p>Посмотрите не только на то, от чего вы хотите отказаться. Посмотрите, что вы пытаетесь сохранить своим согласием: хорошие отношения, спокойствие в семье, чужое одобрение, привычное представление о себе как о хорошей жене, матери, дочери или подруге.</p>
+        <div class="example"><b>Вопрос.</b> «Я действительно изменила своё решение или просто испугалась последствий чужого недовольства?»</div>
+        <p>Иногда женщина платит собственными интересами не потому, что не умеет говорить «нет», а потому, что слишком дорого оценивает право другого человека остаться ею довольным.</p>
+      </div>
+    </details>
+
+    <details class="card c2">
+      <summary><span class="num">2</span><span>Почему вам проще сделать самой, чем позволить другому сделать по-своему?</span><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary>
+      <div class="body">
+        <p>Вы можете искренне уставать от того, что всё держится на вас. Муж должен что-то решить, ребёнок способен справиться самостоятельно, коллега вполне может выполнить свою часть работы.</p>
+        <p>Потом вы замечаете, что муж делает иначе, ребёнок медлит, коллега допускает ошибку. Через несколько минут вы уже вмешиваетесь, объясняете, проверяете или переделываете.</p>
+        <p>Постепенно возникает очень неприятная система: окружающие привыкают, что вы всё равно подхватите, а вы получаете очередное подтверждение мысли «без меня ничего нормально не работает».</p>
+        <div class="example"><b>Вопрос.</b> «Что для меня тяжелее — самой сделать лишнее или позволить другому человеку сделать не так, как сделала бы я?»</div>
+        <p>Иногда женщина действительно хочет помощи, но вместе с помощью ей приходится принять чужой способ, чужую скорость и чужие ошибки. Именно это оказывается намного труднее, чем продолжать нести всё самой.</p>
+      </div>
+    </details>
+
+    <details class="card c3">
+      <summary><span class="num">3</span><span>Почему вы говорите «всё нормально», когда хотите сказать совершенно другое?</span><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary>
+      <div class="body">
+        <p>Вас что-то задело, не устроило или разозлило. Вы могли бы сказать об этом прямо, но вместо этого отвечаете: «Ничего, всё нормально», «Ладно», «Неважно».</p>
+        <p>Снаружи конфликт как будто закончился. Внутри разговор продолжается ещё несколько часов. Вы прокручиваете сказанное, раздражаетесь, представляете, что нужно было ответить, а потом можете сорваться совершенно на другого человека.</p>
+        <p>Окружающие при этом получают одну информацию: вас всё устраивает. Вы проживаете совсем другую реальность.</p>
+        <div class="example"><b>Вопрос.</b> «Что мне сейчас страшнее — сказать правду о своём недовольстве или потом жить с последствиями собственного молчания?»</div>
+        <p>Иногда привычное «всё нормально» сохраняет спокойствие только на несколько минут. Цена появляется позже — раздражением, накопленной обидой и ощущением, что вас снова не услышали.</p>
+      </div>
+    </details>
+
+    <details class="card c4">
+      <summary><span class="num">4</span><span>Почему чужое недовольство заставляет вас сомневаться в своём решении?</span><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary>
+      <div class="body">
+        <p>Вы уже решили отказаться, не объясняться, не давать деньги, не менять свои планы или не делать за другого человека то, что он способен сделать сам.</p>
+        <p>Потом кто-то обижается, становится холоднее, обвиняет вас в эгоизме или говорит: «Раньше ты была другой». Через десять минут вы уже думаете: «Может быть, я действительно неправа?»</p>
+        <p>Обратите внимание на важную вещь. Само решение могло не измениться. Изменилась только реакция другого человека на него.</p>
+        <div class="example"><b>Вопрос.</b> «Я меняю решение потому, что узнала новые факты, или потому, что кому-то не понравился мой выбор?»</div>
+        <p>Именно в таких ситуациях чужое недовольство незаметно становится важнее собственного решения.</p>
+      </div>
+    </details>
+
+    <details class="card c5">
+      <summary><span class="num">5</span><span>Кто вы, когда никому ничего от вас не нужно?</span><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary>
+      <div class="body">
+        <p>Представьте день, в котором никто срочно не просит вас помочь. Муж сам решает свои вопросы, дети заняты своими делами, родственникам ничего не требуется, на работе никто не перекладывает на вас чужие задачи.</p>
+        <p>Сначала может появиться облегчение. Потом неожиданно возникает другой вопрос: «А что теперь делать мне?»</p>
+        <p>Женщина, которая много лет знает, что нужно каждому вокруг, иногда с трудом отвечает на простой вопрос о себе. Что ей нравится, чего она хочет, на что хочет потратить время и деньги, как выглядел бы её день без постоянной пользы для других.</p>
+        <div class="example"><b>Вопрос.</b> «Чего бы я захотела сегодня, если бы мне не нужно было учитывать ожидания окружающих?»</div>
+        <p>Иногда собственное желание кажется эгоизмом только потому, что женщина слишком долго привыкала подтверждать свою ценность заботой, терпением и необходимостью быть нужной.</p>
+      </div>
+    </details>
+
+  </div>
+
+  <div class="intro" style="margin-top:8px;">
+    <p>Посмотрите на свои ответы ещё раз. Скорее всего, перед вами уже начинают проявляться правила, по которым вы живёте: не расстраивать других, всё держать под контролем, молчать ради спокойствия, пересматривать решение из-за чужой реакции, быть нужной, чтобы чувствовать собственную ценность. Проблема в том, что большинство этих правил когда-то появились сами собой. Вы их не выбирали.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="closing">
+    <h2>Что делать с ответами</h2>
+    <p>Не пытайтесь немедленно исправить себя после этих пяти вопросов. Сначала найдите повторяющееся правило, по которому вы уже живёте — не осознавая, что это правило, а не характер.</p>
+
+    <div class="rules-box">
+      <p>«Мне проще согласиться, чем выдержать чужое недовольство».</p>
+      <p>«Я чувствую себя спокойнее, когда контролирую всё сама».</p>
+      <p>«Мне трудно отказать, потому что хороший человек должен помогать».</p>
+      <p>«Когда муж недоволен мной, я начинаю сомневаться в собственном решении».</p>
+      <p>«Если ребёнку тяжело, я обязана немедленно решить его проблему».</p>
+    </div>
+
+    <p>Именно такие правила незаметно принимают решения вместо вас. Одного понимания часто оказывается недостаточно: вы можете прекрасно знать, почему снова уступили, а через неделю оказаться в похожей ситуации и поступить точно так же — потому что в момент давления некогда проводить психологический анализ. Нужна заранее определённая граница: что для вас допустимо, что недопустимо и как именно вы поступаете, когда привычная ситуация повторяется.</p>
+  </div>
+
+  <div class="author-box">
+    <p>Эти правила не придуманы ради красивых формулировок. Я собирала их из своей практики, повторяющихся женских запросов, наблюдений за тем, где именно мы чаще всего теряем себя, уступаем, берём лишнюю ответственность или действуем против собственных интересов.</p>
+    <p>Потом я отобрала самые важные правила, адаптировала их под реальные жизненные ситуации и собрала в систему, которой можно пользоваться каждый день.</p>
+    <p>Они работают именно потому, что дают заранее понятный ориентир: как поступать, когда на вас давят, вами манипулируют, требуют удобства, перекладывают ответственность или заставляют сомневаться в собственном решении.</p>
+    <p>Соблюдать такие правила намного проще, чем каждый раз заново решать, что правильно именно сейчас.</p>
+    <p class="author-sign">— Бэлла Леонидовна</p>
+  </div>
+
+  <div class="closing">
+    <h2>Кодекс правил для женщин</h2>
+
+    <p>Пять вопросов из этого гайда помогают увидеть правила, по которым вы уже живёте. Но увидеть старое правило — ещё не значит знать, какое поставить вместо него.</p>
+
+    <p>Именно для этого я создала «Кодекс правил для женщин».</p>
+
+    <p class="emphasis">Это 38 правил, которые заранее отвечают на вопросы, в которых женщина чаще всего начинает сомневаться и принимать решение под влиянием момента.</p>
+
+    <ul class="topic-list">
+      <li>Как распоряжаться своим временем.</li>
+      <li>Что считать своей ответственностью, а что — чужой.</li>
+      <li>Как относиться к деньгам.</li>
+      <li>Как распределять обязанности в семье.</li>
+      <li>Какие правила устанавливать с детьми.</li>
+      <li>Как защищать свой дом и свой порядок.</li>
+      <li>Когда помогать, а когда не вмешиваться.</li>
+      <li>Что делать со своим отдыхом, желаниями, интересами.</li>
+      <li>Как принимать решения в отношениях с мужем, родственниками и самой собой.</li>
+    </ul>
+
+    <p>Смысл Кодекса в том, что важные решения не должны каждый раз зависеть от вашего настроения, чувства вины, усталости, страха или чужой реакции.</p>
+
+    <p><b>Правило определяется заранее.</b></p>
+
+    <p>Поэтому в нужный момент вам не приходится снова начинать внутренний суд:</p>
+
+    <div class="rules-box">
+      <p>«А имею ли я право?»</p>
+      <p>«А правильно ли я поступаю?»</p>
+      <p>«А может, всё-таки уступить?»</p>
+      <p>«А вдруг я слишком много хочу?»</p>
+    </div>
+
+    <p>Вы открываете своё правило и уже знаете, как вы поступаете.</p>
+
+    <p>И это не список из 38 коротких фраз. Каждое правило в Кодексе разобрано полностью:</p>
+
+    <ul class="topic-list">
+      <li>почему оно необходимо;</li>
+      <li>в каких жизненных ситуациях оно применяется;</li>
+      <li>что конкретно делать;</li>
+      <li>с каким сопротивлением вы можете столкнуться;</li>
+      <li>что отслеживать у себя, когда начинаете его применять.</li>
+    </ul>
+
+    <p>Отдельно внутри есть практика «Четыре колонки», которая помогает разбирать своё состояние, когда эмоции мешают увидеть происходящее ясно, и дневник результатов на неделю, чтобы наблюдать, какие правила уже начали работать в вашей жизни.</p>
+
+    <p class="emphasis">«Кодекс правил для женщин» — это не книга, которую нужно один раз прочитать. Это личный справочник решений, к которому можно возвращаться всю жизнь.</p>
+
+    <ul class="topic-list">
+      <li>Не искать каждый раз правильный ответ заново.</li>
+      <li>Не принимать важные решения случайно.</li>
+      <li>Не жить по правилам, которые когда-то сложились без вашего участия.</li>
+    </ul>
+
+    <p><b>Определить свои. И жить по ним.</b></p>
+  </div>
+
+  <div class="cta-block">
+    <a class="cta-btn" href="https://app.lava.top/products/a4aab5e3-188d-41fc-9aae-58a642655786" target="_blank">Получить Кодекс правил для женщин — 3590 ₽</a>
+  </div>
+
+  <p class="slogan">Нам нужны правила. Всегда.</p>
+  <p class="sign">С уважением, Бэлла Леонидовна</p>
+
+</div>
+</body>
+</html>
