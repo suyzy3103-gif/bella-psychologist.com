@@ -34,7 +34,6 @@
   .c1{ width:340px; height:340px; top:-120px; right:-100px; }
   .c2{ width:220px; height:220px; top:900px; left:-80px; opacity:0.25;}
   .c3{ width:280px; height:280px; bottom:200px; right:-120px; opacity:0.2;}
-
   header{
     text-align:center;
     padding:64px 24px 40px;
@@ -68,7 +67,6 @@
     margin:0 auto;
     color:var(--dark);
   }
-
   section{
     max-width:640px;
     margin:0 auto;
@@ -76,7 +74,6 @@
     position:relative;
     z-index:1;
   }
-
   .rule-card{
     background:var(--white);
     border-radius:18px;
@@ -101,39 +98,44 @@
     font-size:16px;
     color:#5c4348;
   }
-
   .divider{
-    text-align:center;
     margin:48px 0 40px;
-    font-family:'Cormorant Garamond', serif;
-    font-style:italic;
-    font-size:19px;
     color:var(--dark);
-    line-height:1.7;
   }
   .divider .accent-line{
     width:40px;
     height:1px;
     background:var(--accent);
-    margin:0 auto 24px;
+    margin:0 auto 32px;
   }
-
-  .offers{
-    display:flex;
-    flex-direction:column;
-    gap:20px;
+  .divider-lead{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:21px;
+    line-height:1.65;
+    margin-bottom:20px;
+    text-align:center;
   }
-
+  .divider-body{
+    font-size:16px;
+    color:#5c4348;
+    line-height:1.75;
+    margin-bottom:16px;
+  }
+  .divider-close{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:20px;
+    color:var(--dark);
+    text-align:center;
+    margin-top:28px;
+  }
   .offer-box{
     background:var(--white);
     border-radius:20px;
     padding:40px 32px;
     text-align:center;
     box-shadow:0 12px 40px rgba(74,46,53,0.09);
-  }
-  .offer-box.secondary{
-    box-shadow:0 12px 40px rgba(74,46,53,0.06);
-    border:1px solid var(--accent-soft);
   }
   .offer-eyebrow{
     font-size:12px;
@@ -169,15 +171,6 @@
     color:#a3818a;
     margin-top:16px;
   }
-  .or-split{
-    text-align:center;
-    font-family:'Cormorant Garamond', serif;
-    font-style:italic;
-    font-size:15px;
-    color:#a3818a;
-    margin:2px 0;
-  }
-
   footer{
     text-align:center;
     padding:48px 24px 40px;
@@ -194,7 +187,6 @@
     display:block;
     margin-bottom:10px;
   }
-
   @media (max-width:480px){
     h1{ font-size:38px; }
     .rule-title{ font-size:24px; }
@@ -203,71 +195,46 @@
 </style>
 </head>
 <body>
-
 <div class="circle c1"></div>
 <div class="circle c2"></div>
 <div class="circle c3"></div>
-
 <header>
   <div class="eyebrow">Гайд для родителей</div>
   <h1>Правила в дом</h1>
   <p class="subtitle">Готовые формулировки для семьи. Без споров, без объяснений, без потери нервов.</p>
   <p class="lede">Правило работает, когда оно конкретное. «Убирай игрушки» — не работает. «С 20:30 до 21:00 мягкие игрушки в корзину, машинки на полку» — работает.</p>
 </header>
-
 <section>
-
   <div class="rule-card">
     <div class="rule-number">Правило 04</div>
     <div class="rule-title">Гаджеты уходят в 21:30</div>
     <p class="rule-text">После 21:30 все телефоны идут на зарядку. Это не наказание — это время для отдыха. Мозг должен успеть успокоиться перед сном.</p>
   </div>
-
   <div class="rule-card">
     <div class="rule-number">Правило 10</div>
     <div class="rule-title">30 минут вместе каждый день</div>
     <p class="rule-text">За ужином или после — время разговора. Что хорошего было сегодня? Что было трудно? Без оценок, без нотаций. Просто рассказать и услышать.</p>
   </div>
-
   <div class="divider">
     <div class="accent-line"></div>
-    Это два правила из десяти. Остальные восемь — про утро, вечер и порядок в доме — я собрала вместе с техникой, как ввести правило и удержать его без скандалов. Не растянуто на годы: одна техника, две недели на правило. Дальше сами.
+    <p class="divider-lead">Эти два правила нужны не для того, чтобы вы просто прочитали и сказали: «Хорошо бы так жить».</p>
+    <p class="divider-body">Они показывают главный принцип: ребёнку нужны не длинные объяснения, а понятные правила, которые взрослый сам способен удержать.</p>
+    <p class="divider-body">Проблема начинается там, где правило вроде есть, но каждый вечер превращается в новый спор. Сегодня гаджеты до 21:30, завтра «ну ладно, ещё десять минут», послезавтра слёзы, торг, обида, и взрослый снова сдаётся.</p>
+    <p class="divider-body">В полной версии «Правила в дом» я собрала 10 правил, которые помогают убрать ежедневный торг: что говорить, как вводить, как удерживать и что делать, когда ребёнок проверяет вас на прочность.</p>
+    <p class="divider-body">Это не лекция о воспитании. Это готовые формулировки для обычной семьи, где взрослые устали спорить об одном и том же.</p>
+    <p class="divider-close">Нам нужны правила. Всегда.</p>
   </div>
-
-  <div class="offers">
-
-    <div class="offer-box">
-      <div class="offer-eyebrow">Десять правил</div>
-      <p>Полная версия «Правила в дом» — все 10 правил, техника внедрения и бонус о том, как приучить ребёнка к посильной помощи по дому.</p>
-      <a href="https://app.lava.top/products/ba73809b-bf72-4e0f-b8dd-88a6575a437e" class="cta-button">Получить все 10 правил — 690 ₽</a>
-      <div class="price-note">Цифровой продукт — доступен сразу после оплаты</div>
-    </div>
-
-    <div class="or-split">или</div>
-
-    <div class="offer-box secondary">
-      <div class="offer-eyebrow">Спокойный родитель</div>
-      <p style="text-align:left;">Когда ребёнок становится подростком, всё, что раньше работало — просьбы, правила, договорённости — перестаёт работать.</p>
-      <p style="text-align:left;">Вы объясняете спокойно. В ответ — спор, торг, обесценивание. Каждая простая вещь снова требует доказательств: почему важен сон, почему нельзя жить в телефоне, почему свобода не отменяет обязанностей.</p>
-      <p style="text-align:left;">Этот продукт создан для родителей, которые хотят говорить чётко, держать правила спокойно — и перестать каждый день нервничать из-за одного и того же.</p>
-      <p style="text-align:left; font-weight:500; margin-bottom:12px;">Что внутри:</p>
-      <p style="text-align:left;"><b>Часть 1 — Как дети сдвигают правила.</b> 7 тактик подростков — с реальными цитатами и конкретными ответами родителя. Читаете — и сразу узнаёте своего ребёнка.</p>
-      <p style="text-align:left;"><b>Часть 2 — 30 правил для семьи с подростком 11–16 лет.</b> По 6 темам: общение, гаджеты, быт, учёба, доверие, свобода. Каждое правило — готовая формулировка и пример из реальной семейной ситуации.</p>
-      <p style="text-align:left;"><b>Часть 3 — Система внедрения.</b> 5 шагов и 3 принципа, которые объясняют, почему правила держатся — и почему рассыпаются.</p>
-      <p style="text-align:left;">Это не теория. Открываете — и применяете сегодня.</p>
-      <a href="https://app.lava.top/products/1c8bd33c-54b9-450b-b26a-ca5f02129198" class="cta-button">Получить программу «Спокойный родитель» — 1490 ₽</a>
-      <div class="price-note">Цифровой продукт — доступен сразу после оплаты</div>
-    </div>
-
+  <div class="offer-box">
+    <div class="offer-eyebrow">Десять правил</div>
+    <p>Полная версия «Правила в дом» — все 10 правил, техника внедрения и бонус о том, как приучить ребёнка к посильной помощи по дому.</p>
+    <a href="https://app.lava.top/products/ba73809b-bf72-4e0f-b8dd-88a6575a437e" class="cta-button">Получить все 10 правил — 690 ₽</a>
+    <div class="price-note">Цифровой продукт — доступен сразу после оплаты</div>
   </div>
-
 </section>
-
 <footer>
   <span class="handle">@bella.psychologist</span>
   © Полянинова Бэлла Леонидовна, 2024–2025<br>
   Все права защищены. Копирование и распространение без разрешения автора запрещено.
 </footer>
-
 </body>
 </html>
