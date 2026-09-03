@@ -151,7 +151,8 @@ body { font-family: 'Jost', sans-serif; background: var(--paper); color: var(--i
 .rule-card:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(61,107,85,0.12); }
 .rule-num { font-size:10px; font-weight:500; letter-spacing:2px; color:var(--sage); text-transform:uppercase; margin-bottom:6px; }
 .rule-title { font-family:'Cormorant Garamond',serif; font-size:21px; font-weight:700; color:var(--ink); line-height:1.25; margin-bottom:10px; }
-.rule-body { font-size:13.5px; font-weight:300; color:#3A5045; line-height:1.78; margin-bottom:12px; }
+.rule-body { font-size:13.5px; font-weight:300; color:#3A5045; line-height:1.78; margin-bottom:8px; }
+.rule-body strong { font-weight:600; color:var(--ink); }
 .rule-divider { height:1px; background:var(--sage-pale); margin:10px 0; }
 .rule-example {
   background:var(--sage-pale); border-radius:8px; padding:12px 14px;
@@ -185,6 +186,20 @@ body { font-family: 'Jost', sans-serif; background: var(--paper); color: var(--i
 .principle-list li { display:flex; gap:12px; align-items:flex-start; padding:12px 0; border-bottom:1px solid rgba(28,28,46,0.1); font-size:14px; font-weight:300; color:var(--ink); line-height:1.65; }
 .principle-list li:last-child { border-bottom:none; }
 .principle-list li::before { content:'✦'; color:var(--sage-dark); font-size:12px; flex-shrink:0; margin-top:3px; }
+
+/* PART 4 — INTRO TEXT BLOCK */
+.intro-block { padding:0 28px 12px; max-width:480px; margin:0 auto; }
+.intro-block p { font-size:17px; font-weight:300; color:#3A5045; line-height:1.85; margin-bottom:16px; }
+.intro-block p:last-child { margin-bottom:0; }
+
+/* DEFINITIONS LIST */
+.def-list { max-width:480px; margin:0 auto; padding:0 28px 8px; }
+.def-item {
+  background:var(--white); border-radius:10px; padding:16px 18px; margin-bottom:10px;
+  border-left:3px solid var(--sage-light);
+}
+.def-term { font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:700; font-size:19px; color:var(--sage-dark); margin-bottom:4px; }
+.def-text { font-size:15px; font-weight:300; color:#3A5045; line-height:1.7; }
 
 /* COPYRIGHT FOOTER */
 .copyright-section { background:var(--ink); padding:32px 28px; text-align:center; }
@@ -231,7 +246,48 @@ body { font-family: 'Jost', sans-serif; background: var(--paper); color: var(--i
       <div class="contents-num">3</div>
       <div><strong>Система внедрения</strong><br>5 шагов и три принципа, которые держат всё вместе</div>
     </li>
+    <li onclick="document.getElementById('part4').scrollIntoView({behavior:'smooth'})">
+      <div class="contents-num">4</div>
+      <div><strong>Просьба, правило, граница и последствие</strong><br>На чём держится спокойствие родителя, когда слов уже недостаточно</div>
+    </li>
   </ul>
+</section>
+
+<div class="part-divider"></div>
+
+<!-- ВСТУПЛЕНИЕ -->
+<div class="part-header reveal" id="intro">
+  <div class="part-badge dark">Прежде чем начать</div>
+  <h2 class="part-title">На чём строится<br>право родителя</h2>
+  <p class="part-desc">Прежде чем говорить о правилах и границах, важно понимать, откуда у родителя вообще есть право их устанавливать.</p>
+</div>
+
+<section class="rules-wrap" style="padding-top:8px;">
+
+  <div class="rule-card reveal" style="border-left-color:var(--warm);">
+    <div class="rule-num" style="color:var(--warm);">Семейный кодекс РФ, ст. 63–64 (Федеральный закон от 29.12.1995 № 223-ФЗ)</div>
+    <div class="rule-title">Что родитель обязан по закону</div>
+    <div class="rule-body">Родитель обязан заботиться о здоровье, физическом, психическом, духовном и нравственном развитии ребёнка, обеспечивать его содержание, безопасность и образование. Это не предмет спора и не вопрос стиля воспитания — это прямая обязанность, установленная законом.</div>
+  </div>
+
+  <div class="rule-card reveal" style="border-left-color:var(--sage);">
+    <div class="rule-num">Комната</div>
+    <div class="rule-title">Не суверенная территория</div>
+    <div class="rule-body">Комната предоставляется ребёнку в пользование, а не в собственность. Родитель заходит в неё не по особому поводу, а потому что несёт ответственность за то, что происходит в его доме — так же, как заходит на кухню или в гостиную.</div>
+    <div class="rule-body">Это не предмет обсуждения и не вопрос настроения: родитель вправе заходить в комнату. Речь не о том, чтобы подсматривать за личной жизнью ребёнка из любопытства — а о том же контроле, что действует с телефоном. Сегодня это выглядит как безобидные детские секреты. Но именно то, что кажется мелочью — закрытая дверь, недоступная переписка, территория, куда взрослому «нельзя» — создаёт пространство, которым при случае может воспользоваться кто-то посторонний. Ребёнок пока не способен сам провести границу между «личным» и «опасным» — эту границу удерживает родитель.</div>
+    <div class="rule-divider"></div>
+    <div class="rule-example">Ребёнок при этом свободно пользуется всеми помещениями в доме — кухней, гостиной, ванной. Это нормально и не обсуждается. Исключение одно, и оно работает в обратную сторону: спальня родителей — суверенная территория взрослых. Туда не входят без стука и без разрешения. Это вопрос субординации и уважения — у каждого поколения в доме есть своя граница, но у родителей она в этом доме первична.</div>
+  </div>
+
+  <div class="rule-card reveal" style="border-left-color:var(--alert);">
+    <div class="rule-num" style="color:var(--alert);">Телефон и гаджеты</div>
+    <div class="rule-title">Ответственность, а не собственность</div>
+    <div class="rule-body">Не имеет значения, кто подарил телефон — бабушка, тётя, друг семьи, или ребёнок купил его сам на подаренные деньги. Источник подарка не меняет главного: пока ребёнок несовершеннолетний, юридическую ответственность за него несёт родитель.</div>
+    <div class="rule-body">Поэтому доступ и контроль остаются за родителем независимо от того, на чьи деньги куплена вещь и на чьё имя оформлена. Родитель не обязан читать переписку из любопытства, но обязан иметь возможность вмешаться, если увидит угрозу.</div>
+  </div>
+
+  <div class="rule-hint" style="text-align:center; margin-top:4px;">Разделяйте два вида обязательств. Первое — то, что родитель обязан обеспечивать: безопасность, образование, базовые условия жизни. Второе — то, что родитель даёт по своему усмотрению: конкретная модель телефона, отдельная комната, уровень комфорта. Путаница между этими двумя категориями и заставляет подростка воспринимать предоставленное как заработанное по праву.</div>
+
 </section>
 
 <div class="part-divider"></div>
@@ -656,6 +712,121 @@ body { font-family: 'Jost', sans-serif; background: var(--paper); color: var(--i
   </ul>
 </section>
 
+<div class="part-divider"></div>
+
+<!-- ЧАСТЬ 4 -->
+<div class="part-header reveal" id="part4">
+  <div class="part-badge dark">Часть четвёртая</div>
+  <h2 class="part-title">Просьба, правило,<br>граница и последствие</h2>
+  <p class="part-desc">На чём держится спокойствие родителя, когда слов уже недостаточно.</p>
+</div>
+
+<section class="why-section">
+  <div class="reveal intro-block" style="max-width:480px; padding-left:0; padding-right:0;">
+    <div class="section-tag" style="text-align:center">На чём строится семья</div>
+    <p>Любые отношения в семье держатся на <strong>взаимовыгодном сотрудничестве</strong>. Это не обязательно про деньги — чаще это взаимопомощь, взаимовыручка, взаимная поддержка. Ни один член семьи не может только получать от остальных, ничего не отдавая взамен, — так семья не работает.</p>
+  </div>
+</section>
+
+<section class="howto-section" style="padding-top:36px;">
+  <div class="reveal" style="text-align:center; margin-bottom:20px;">
+    <div class="section-tag">Четыре понятия, которые важно не путать</div>
+  </div>
+  <div class="def-list">
+    <div class="def-item reveal">
+      <div class="def-term">Просьба</div>
+      <div class="def-text">Сообщает подростку, чего вы от него хотите. Он может согласиться, начать спорить или отказаться.</div>
+    </div>
+    <div class="def-item reveal">
+      <div class="def-term">Правило</div>
+      <div class="def-text">Заранее устанавливает понятный семейный порядок. Действует не только сегодня и не зависит от настроения участников.</div>
+    </div>
+    <div class="def-item reveal">
+      <div class="def-term">Граница</div>
+      <div class="def-text">Определяет, что сделаете именно вы, когда поведение подростка становится для вас неприемлемым.</div>
+    </div>
+    <div class="def-item reveal">
+      <div class="def-term">Последствие</div>
+      <div class="def-text">Показывает, что произойдёт после нарушения правила. Оно заранее известно, выполнимо и связано с самим поступком.</div>
+    </div>
+  </div>
+</section>
+
+<section class="howto-section">
+  <div class="reveal intro-block" style="padding:0;">
+    <div class="section-tag" style="text-align:center">Почему правило без границы не держится</div>
+    <p>Правило говорит, что должно происходить. Граница говорит, что сделаете именно вы, если этого не происходит. Без границы даже хорошее правило держится только на вашем терпении — а терпение конечно. Спокойствие родителя строится не на том, что подросток согласился. Оно строится на том, что вы заранее знаете, как поступите, если он не согласится.</p>
+  </div>
+</section>
+
+<div class="rules-wrap" style="padding-top:0;">
+  <div class="rule-card reveal">
+    <div class="rule-num">Ситуация 01</div>
+    <div class="rule-title">Грубость по отношению к младшему брату или сестре</div>
+    <div class="rule-body"><strong>Просьба:</strong> «Пожалуйста, не груби брату».</div>
+    <div class="rule-body"><strong>Правило:</strong> «В семье никто не унижает и не обижает младших — ни словами, ни насмешками».</div>
+    <div class="rule-divider"></div>
+    <div class="rule-example"><strong>Граница</strong>«Когда это происходит при мне, я вмешиваюсь сразу и не жду, пока вы разберётесь сами».</div>
+    <div class="rule-hint">Последствие: совместные привилегии — фильм вечером, поездка вдвоём с друзьями — временно приостанавливаются до восстановления нормального тона между детьми.</div>
+  </div>
+
+  <div class="rule-card reveal">
+    <div class="rule-num">Ситуация 02</div>
+    <div class="rule-title">Отказ участвовать в семейных мероприятиях</div>
+    <div class="rule-body"><strong>Просьба:</strong> «Пожалуйста, поедем с нами к бабушке в это воскресенье».</div>
+    <div class="rule-body"><strong>Правило:</strong> «Семейные события — не по желанию, а часть общей жизни, в которой участвует каждый».</div>
+    <div class="rule-divider"></div>
+    <div class="rule-example"><strong>Граница</strong>«Если вы отказываетесь без веской причины, я не подстраиваю ваши личные планы под остаток выходных».</div>
+    <div class="rule-hint">Последствие: время, которое родитель обычно выделяет на просьбы подростка в эти дни, сокращается соразмерно.</div>
+  </div>
+
+  <div class="rule-card reveal">
+    <div class="rule-num">Ситуация 03</div>
+    <div class="rule-title">Подросток требует стучать и спрашивать разрешения перед входом в комнату</div>
+    <div class="rule-body"><strong>Просьба:</strong> «Пожалуйста, стучи, прежде чем войти».</div>
+    <div class="rule-body"><strong>Правило:</strong> «Комната находится в доме родителей, и родитель заходит, когда считает нужным — не для того, чтобы застать врасплох, а потому что это его дом».</div>
+    <div class="rule-divider"></div>
+    <div class="rule-example"><strong>Граница</strong>«Когда порядок в комнате нарушает общие договорённости дома, я вмешиваюсь без предупреждения, а не жду приглашения».</div>
+    <div class="rule-hint">Последствие: степень самостоятельности в организации своего пространства зависит от того, насколько подросток сам поддерживает порядок без напоминаний.</div>
+  </div>
+
+  <div class="rule-card reveal">
+    <div class="rule-num">Ситуация 04</div>
+    <div class="rule-title">Грубость или неуважение при посторонних</div>
+    <div class="rule-body"><strong>Просьба:</strong> «Пожалуйста, не разговаривай со мной так при друзьях».</div>
+    <div class="rule-body"><strong>Правило:</strong> «Уважительный тон в семье не меняется от того, кто рядом».</div>
+    <div class="rule-divider"></div>
+    <div class="rule-example"><strong>Граница</strong>«Когда это происходит на людях, я заканчиваю разговор немедленно и продолжаю его только дома».</div>
+    <div class="rule-hint">Последствие: планы, которые зависели от присутствия друзей, переносятся.</div>
+  </div>
+
+  <div class="rule-card reveal">
+    <div class="rule-num">Ситуация 05</div>
+    <div class="rule-title">Постоянные просьбы выдать деньги сверх договорённого</div>
+    <div class="rule-body"><strong>Просьба:</strong> «Пожалуйста, укладывайся в сумму, которую мы обсудили».</div>
+    <div class="rule-body"><strong>Правило:</strong> «Карманные деньги — определённая сумма на определённый срок. Дополнительных выдач по требованию нет».</div>
+    <div class="rule-divider"></div>
+    <div class="rule-example"><strong>Граница</strong>«Когда сумма заканчивается раньше срока, я не выдаю остаток вперёд».</div>
+    <div class="rule-hint">Последствие: подросток донашивает бюджет до конца периода самостоятельно — и в следующий раз планирует траты иначе.</div>
+  </div>
+
+  <div class="rule-card reveal">
+    <div class="rule-num">Ситуация 06</div>
+    <div class="rule-title">Подросток отказывается показать телефон или скрывает переписку</div>
+    <div class="rule-body"><strong>Просьба:</strong> «Пожалуйста, дай мне посмотреть телефон, мне нужно быть спокойной за тебя».</div>
+    <div class="rule-body"><strong>Правило:</strong> «Телефон предоставлен тебе для связи и твоей безопасности. Пока ответственность за тебя несут родители, доступ к телефону есть у родителей».</div>
+    <div class="rule-divider"></div>
+    <div class="rule-example"><strong>Граница</strong>«Когда мне отказывают в доступе без объяснения, я временно ограничиваю пользование телефоном, пока доверие не восстановится».</div>
+    <div class="rule-hint">Последствие: полноценное пользование телефоном без вопросов возвращается, когда подросток показывает, что скрывать нечего.</div>
+  </div>
+</div>
+
+<section class="howto-section" style="padding-top:0;">
+  <div class="note-box reveal">
+    <p><strong>Итог:</strong> просьба сама по себе не слабость — во многих семьях её достаточно. Трудности начинаются, когда просьбу приходится повторять, а после срыва родитель всё равно уступает. Граница не заставляет подростка согласиться немедленно. Она не даёт родителю потерять собственное решение под давлением крика, обиды или молчания. Именно из этого и складывается спокойствие — не из того, что подросток каждый раз прав, а из того, что вы знаете, что сделаете, если он не прав.</p>
+  </div>
+</section>
+
 <!-- COPYRIGHT FOOTER -->
 <section class="copyright-section">
   <p>
@@ -669,7 +840,6 @@ body { font-family: 'Jost', sans-serif; background: var(--paper); color: var(--i
 <script>
 function switchTab(name, el) {
   const prefix = name.startsWith('t') && !name.startsWith('r') ? 't' : 'r';
-  // find sibling tabs
   const allTabs = el.closest('.tabs').querySelectorAll('.tab');
   const allContents = el.closest('.tabs').parentElement.querySelectorAll('.tab-content');
   allTabs.forEach(t => t.classList.remove('active'));
