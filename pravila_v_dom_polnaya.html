@@ -1,312 +1,592 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Правила в дом. Полная версия — Бэлла Полянинова</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{
---bg: #FDF0F3;
---accent: #C9848F;
---accent-soft: #e9c6cc;
---dark: #4A2E35;
---white: #ffffff;
-}
-*{ box-sizing:border-box; margin:0; padding:0; }
-body{
-background:var(--bg);
-color:var(--dark);
-font-family:'Jost', sans-serif;
-font-weight:300;
-line-height:1.65;
-overflow-x:hidden;
-position:relative;
-}
-.circle{ position:absolute; border-radius:50%; background:var(--accent-soft); opacity:0.35; z-index:0; }
-.c1{ width:340px; height:340px; top:-120px; right:-100px; }
-.c2{ width:220px; height:220px; top:1400px; left:-80px; opacity:0.25;}
-.c3{ width:280px; height:280px; bottom:200px; right:-120px; opacity:0.2;}
+  :root{
+    --bg:#FAFAF8;
+    --ink:#1E1B16;
+    --ink-soft:#5B5650;
+    --line:#E7E2D8;
+    --accent:#8B4A3C;
+    --amber-bg:#FFF4DE;
+    --amber-border:#E8C27A;
+    --amber-text:#6B4E1E;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Manrope',sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    padding:0 0 60px;
+  }
+  .wrap{max-width:640px;margin:0 auto;padding:0 20px;}
+  .author-line{
+    font-family:'Manrope',sans-serif;
+    font-size:13px;
+    color:var(--ink-soft);
+    text-align:center;
+    padding:14px 20px;
+    border-bottom:1px solid var(--line);
+    letter-spacing:.2px;
+  }
+  header.hero{padding:40px 0 28px;text-align:center;}
+  .kicker{font-size:14px;color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;}
+  h1{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:700;
+    font-size:42px;
+    line-height:1.15;
+    margin:0 0 14px;
+  }
+  .subtitle{color:var(--ink-soft);font-size:17px;max-width:480px;margin:0 auto;}
 
-header{ text-align:center; padding:64px 24px 40px; position:relative; z-index:1; }
-.eyebrow{ font-size:13px; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent); }
-h1{ font-family:'Cormorant Garamond', serif; font-style:italic; font-weight:500; font-size:48px; margin:12px 0 8px; }
-.subtitle{ font-size:16px; max-width:480px; margin:0 auto 20px; color:#7a5a61; }
+  .intro{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:22px 22px;
+    margin:28px 0;
+  }
+  .intro h2{
+    font-family:'Cormorant Garamond',serif;
+    font-size:24px;
+    margin:0 0 10px;
+  }
+  .intro ul{margin:12px 0 0;padding-left:20px;}
+  .intro li{margin-bottom:6px;}
 
-section{ max-width:640px; margin:0 auto; padding:24px 24px; position:relative; z-index:1; }
+  .rules-title{
+    font-family:'Cormorant Garamond',serif;
+    font-size:26px;
+    margin:38px 0 14px;
+  }
 
-.accordion-item{
-background:var(--white);
-border-radius:16px;
-margin-bottom:14px;
-overflow:hidden;
-box-shadow:0 6px 20px rgba(74,46,53,0.05);
-}
-.accordion-header{
-display:flex;
-align-items:center;
-gap:16px;
-padding:22px 24px;
-cursor:pointer;
-user-select:none;
-}
-.accordion-header .num{
-font-family:'Cormorant Garamond', serif;
-font-style:italic;
-font-size:15px;
-color:var(--accent);
-min-width:24px;
-}
-.accordion-header .title{
-font-family:'Cormorant Garamond', serif;
-font-weight:500;
-font-size:22px;
-flex:1;
-}
-.accordion-header .arrow{
-font-size:14px;
-color:var(--accent);
-transition:transform 0.25s ease;
-}
-.accordion-item.open .arrow{ transform:rotate(180deg); }
-.accordion-body{
-max-height:0;
-overflow:hidden;
-transition:max-height 0.3s ease;
-padding:0 24px;
-}
-.accordion-item.open .accordion-body{
-max-height:200px;
-padding:0 24px 22px;
-}
-.accordion-body p{ font-size:15.5px; color:#5c4348; }
+  details.rule{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:14px;
+    margin-bottom:12px;
+    padding:0;
+    overflow:hidden;
+  }
+  details.rule summary{
+    list-style:none;
+    cursor:pointer;
+    padding:18px 20px;
+    font-family:'Cormorant Garamond',serif;
+    font-weight:700;
+    font-size:20px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  details.rule summary::-webkit-details-marker{display:none;}
+  details.rule summary .num{
+    font-family:'Manrope',sans-serif;
+    font-weight:800;
+    font-size:14px;
+    color:var(--accent);
+    min-width:26px;
+  }
+  details.rule summary .chev{margin-left:auto;font-size:14px;color:var(--ink-soft);transition:transform .2s;}
+  details.rule[open] summary .chev{transform:rotate(180deg);}
+  .rule-body{padding:0 20px 22px;}
+  .rule-body p{margin:0 0 14px;}
+  .rule-body h4{
+    font-family:'Manrope',sans-serif;
+    font-size:15px;
+    font-weight:800;
+    margin:18px 0 8px;
+  }
+  .rule-body ul, .rule-body li{margin:0 0 6px;}
+  .rule-body ul{padding-left:20px;}
 
-.technique-block{
-background:var(--white);
-border-radius:20px;
-padding:36px 30px;
-margin:36px 0;
-box-shadow:0 10px 32px rgba(74,46,53,0.07);
-}
-.technique-block h2{
-font-family:'Cormorant Garamond', serif;
-font-style:italic;
-font-weight:500;
-font-size:26px;
-margin-bottom:20px;
-text-align:center;
-}
-.step{ margin-bottom:18px; }
-.step .step-num{
-font-family:'Cormorant Garamond', serif;
-color:var(--accent);
-font-style:italic;
-font-size:15px;
-}
-.step .step-text{ font-size:15.5px; color:#5c4348; margin-top:4px; }
-.main-note{
-font-family:'Cormorant Garamond', serif;
-font-style:italic;
-font-size:17px;
-text-align:center;
-margin-top:22px;
-padding-top:20px;
-border-top:1px solid var(--accent-soft);
-}
+  .resistance{
+    background:var(--amber-bg);
+    border:1px solid var(--amber-border);
+    color:var(--amber-text);
+    border-radius:10px;
+    padding:14px 16px;
+    font-size:15.5px;
+    margin:16px 0;
+  }
+  .resistance b{display:block;margin-bottom:4px;}
 
-.bonus{
-background:var(--white);
-border-radius:18px;
-padding:28px 26px;
-margin-bottom:36px;
-box-shadow:0 6px 20px rgba(74,46,53,0.05);
-}
-.bonus .label{ font-size:13px; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent); margin-bottom:8px; }
-.bonus h3{ font-family:'Cormorant Garamond', serif; font-weight:500; font-size:22px; margin-bottom:10px; }
-.bonus p{ font-size:15.5px; color:#5c4348; }
+  .note{
+    font-style:italic;
+    color:var(--ink-soft);
+    font-size:15px;
+    border-left:2px solid var(--line);
+    padding-left:14px;
+    margin-top:14px;
+  }
 
-footer{
-text-align:center;
-padding:40px 24px;
-font-size:13px;
-color:#a3818a;
-position:relative;
-z-index:1;
-}
-footer .handle{
-font-family:'Cormorant Garamond', serif;
-font-style:italic;
-font-size:16px;
-color:var(--dark);
-display:block;
-margin-bottom:10px;
-}
+  .bonus{
+    background:#fff;
+    border:1px dashed var(--line);
+    border-radius:14px;
+    padding:20px 22px;
+    margin:28px 0;
+  }
+  .bonus h3{font-family:'Cormorant Garamond',serif;font-size:22px;margin:0 0 8px;}
 
-@media (max-width:480px){
-h1{ font-size:36px; }
-.accordion-header .title{ font-size:19px; }
-}
+  .cta{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:26px 22px;
+    margin:28px 0;
+    text-align:center;
+  }
+  .cta h3{font-family:'Cormorant Garamond',serif;font-size:24px;margin:0 0 10px;}
+  .cta p{color:var(--ink-soft);margin:0 0 18px;}
+  .cta-buttons{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
+  .cta-btn{
+    display:inline-block;
+    font-family:'Manrope',sans-serif;
+    font-weight:700;
+    font-size:15px;
+    text-decoration:none;
+    padding:13px 22px;
+    border-radius:24px;
+    color:#fff;
+  }
+  .cta-tg{background:#2AABEE;}
+  .cta-wa{background:#25D366;}
+  .cta-btn:hover{opacity:.9;}
+
+  /* Дневник */
+  .diary{
+    margin-top:44px;
+  }
+  .diary h2{
+    font-family:'Cormorant Garamond',serif;
+    font-size:28px;
+    margin:0 0 6px;
+  }
+  .diary .hint{color:var(--ink-soft);font-size:15px;margin-bottom:18px;}
+  .diary-table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:#fff;}
+  table.diary-table{border-collapse:collapse;width:100%;min-width:560px;font-size:13.5px;}
+  table.diary-table th, table.diary-table td{
+    border-bottom:1px solid var(--line);
+    padding:8px 6px;
+    text-align:center;
+  }
+  table.diary-table th{
+    font-family:'Manrope',sans-serif;
+    font-weight:700;
+    color:var(--ink-soft);
+    font-size:12px;
+  }
+  table.diary-table td.rulename{
+    text-align:left;
+    font-weight:600;
+    max-width:170px;
+    font-size:13px;
+  }
+  table.diary-table input[type=checkbox]{
+    width:18px;height:18px;
+    accent-color:var(--accent);
+    cursor:pointer;
+  }
+  .diary-controls{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:14px;
+    font-size:14px;
+    color:var(--ink-soft);
+  }
+  .diary-controls button{
+    font-family:'Manrope',sans-serif;
+    font-size:13px;
+    font-weight:700;
+    background:transparent;
+    border:1px solid var(--line);
+    color:var(--ink-soft);
+    padding:8px 14px;
+    border-radius:20px;
+    cursor:pointer;
+  }
+  .diary-controls button:hover{background:var(--line);}
+  .streak{font-weight:700;color:var(--accent);}
+
+  footer{
+    text-align:center;
+    color:var(--ink-soft);
+    font-size:13px;
+    margin-top:50px;
+    padding-top:20px;
+    border-top:1px solid var(--line);
+  }
 </style>
 </head>
 <body>
 
-<div class="circle c1"></div>
-<div class="circle c2"></div>
-<div class="circle c3"></div>
+<div class="author-line">Полянинова Бэлла Леонидовна. Авторский продукт. Все права защищены</div>
 
-<header>
-<div class="eyebrow">Полная версия</div>
-<h1>Правила в дом</h1>
-<p class="subtitle">Все десять правил и техника, как ввести правило и удержать его — без скандалов и уговоров.</p>
-</header>
+<div class="wrap">
 
-<section>
+  <header class="hero">
+    <div class="kicker">Полная версия</div>
+    <h1>Правила в дом</h1>
+    <p class="subtitle">Двенадцать правил, техника, как их вводить и удерживать, и дневник на 14 дней — без скандалов и уговоров.</p>
+  </header>
 
-<div class="accordion-item">
-<div class="accordion-header" onclick="this.parentElement.classList.toggle('open')">
-<span class="num">01</span>
-<span class="title">Встал — заправил</span>
-<span class="arrow">▾</span>
-</div>
-<div class="accordion-body">
-<p>Утро начинается не с телефона. Встал с кровати — сразу заправил. Не после завтрака, не «попозже». 2 минуты — и день начат правильно.</p>
-</div>
+  <div class="intro">
+    <h2>Почему короткие команды работают, а длинные — нет</h2>
+    <p>Ребёнок не игнорирует вас специально, когда после третьей просьбы забывает первую. У детей ограниченный объём рабочей памяти — места, где временно держится инструкция, пока её выполняешь. Чем младше ребёнок, тем меньше шагов он может удержать одновременно:</p>
+    <ul>
+      <li>3–4 года — одна-две простые просьбы за раз</li>
+      <li>5–6 лет — уже можно две-три, но без лишних деталей</li>
+      <li>7–8 лет — три-четыре, если они привычные и не сказаны все сразу одной длинной фразой</li>
+    </ul>
+    <p>Поэтому вместо «иди переодевайся, потом мой руки, потом бери вилку и садись кушать» — говорим по одному действию за раз: «Переодевайся к ужину, пожалуйста». Ребёнок переоделся — тогда: «Теперь помой руки». Каждая команда — то, что он реально может выполнить и не забыть по пути.</p>
+  </div>
+
+  <div class="rules-title">Правила</div>
+
+  <!-- 01 -->
+  <details class="rule" open>
+    <summary><span class="num">01</span> Утро — режим и заправленная постель <span class="chev">▾</span></summary>
+    <div class="rule-body">
+      <p>Утро ребёнка определяется не будильником, а тем, во сколько он лёг. Ребёнку, который ещё спит днём, нужно 8–10 часов ночного сна плюс 1–1,5 часа дневного. Если ребёнок встаёт в 6 утра, отсчитайте назад нужное количество часов — это и есть время отбоя, а не «как получится».</p>
+      <p>Жёсткий распорядок нужен не потому, что взрослым так удобнее. Маленький ребёнок физически не может сам оценить, отдохнул он или нет — эту оценку за него делает режим.</p>
+      <h4>Первое действие утра — заправить постель</h4>
+      <p>Это не про порядок в комнате. Это маленький ритуал, с которого начинается день — и со временем именно он помогает ребёнку собраться с мыслями перед садом или школой, ещё до завтрака. Первые разы может не получаться идеально — расправьте одеяло вместе, включите короткую песенку или стишок.</p>
+      <div class="resistance">
+        <b>⚠️ Будет сопротивление</b>
+        Самое частое — не от ребёнка, а от вас: «пусть поспит ещё пять минут». У режима нет исключений «сегодня». Сдвигая подъём время от времени, вы за неделю теряете сам распорядок.
+      </div>
+      <p class="note">После подъёма и заправленной постели — 15 минут на сборы: то, что уже приготовлено с вечера, а не то, что ищется на бегу.</p>
+    </div>
+  </details>
+
+  <!-- 02 -->
+  <details class="rule">
+    <summary><span class="num">02</span> Обувь чистится с вечера <span class="chev">▾</span></summary>
+    <div class="rule-body">
+      <p>Вымытые кроссовки или почищенные ботинки стоят у двери с вечера, на своём «домике» — коврике, полке или подставке, где всегда стоит обувь и больше ничего. Утром — просто надел и вышел, без поисков щётки и без грязи на бегу.</p>
+      <h4>Как учим — не приказом, а показом</h4>
+      <p>Сначала вы чистите обувь сами при ребёнке, проговаривая вслух: «Разулись — сразу вытираем, пока грязь не засохла». Дальше — ребёнок держит щётку, вы направляете руку. Только когда движение знакомо — ребёнок делает это сам, а вы просто напоминаете момент: «Разулись».</p>
+      <p>Дошкольнику проще, если это превращено в маленький ритуал сразу на входе — не «потом, в комнате», а прямо у двери, пока не снял куртку.</p>
+      <div class="resistance">
+        <b>⚠️ Будет сопротивление</b>
+        «Я потом почищу» вечером быстро превращается в «уже некогда» утром. Одна фраза: «Обувь чистим сразу, как разулись» — и не переносим на утро ни разу.
+      </div>
+      <p class="note">Обувь на своём месте с вечера экономит не только время — ребёнок с порога видит понятный порядок действий: разулся → почистил → на место, и это встраивается в общий принцип «взял — верни» из правила 6.</p>
+    </div>
+  </details>
+
+  <!-- 03 -->
+  <details class="rule">
+    <summary><span class="num">03</span> Гаджеты уходят за час до сна <span class="chev">▾</span></summary>
+    <div class="rule-body">
+      <p>За час до сна экранное время заканчивается — это часть режима, а не наказание. Экран мешает организму вырабатывать мелатонин — гормон, который сигналит мозгу, что пора спать. Чем позже убран экран, тем дольше ребёнок на самом деле будет засыпать, даже лёжа в темноте с закрытыми глазами.</p>
+      <p>Гаджет не остаётся в комнате ребёнка на ночь. Уходит в коробку, коробка — на подзарядку, в присутствии родителя: ребёнок видит, что гаджет действительно убран, а не спрятан «пока мама не видит».</p>
+      <h4>Дневной лимит — не запрет, а форма</h4>
+      <p>Наша рекомендация: 20–30 минут в день, и не в последний час перед сном. Это не жёсткий научный стандарт — это разумная граница, которая учитывает и потребность ребёнка отдохнуть головой, и реальность семьи.</p>
+      <div class="resistance">
+        <b>⚠️ Будет сопротивление</b>
+        «Ещё одну серию», «пять минуточек» — предупреждайте один раз заранее, до начала просмотра: «Мультик до без десяти восемь, потом коробка» — и не торгуйтесь в моменте.
+      </div>
+    </div>
+  </details>
+
+  <!-- 04 -->
+  <details class="rule">
+    <summary><span class="num">04</span> Уборка — каждый вечер, 20:30–20:45 <span class="chev">▾</span></summary>
+    <div class="rule-body">
+      <p>Если часы показывают 20:30 — убираем. Не «когда доиграешь» и не «когда домашка», а по времени, каждый день одинаково.</p>
+      <h4>До 6–7 лет — игрушки</h4>
+      <p>В свободном доступе — 5–7 игрушек: 3 развивающие и 1–2 интерактивные. Комплект меняется раз в 5 дней, остальное убрано и не на виду. Убираем по категориям: мягкие игрушки «идут спать» в свою коробку, машинки «едут в гараж» на свою полку, развивающие — в свой ящик. Первое время убираем вместе, читаем стишок, рассказываем короткую сказку про то, как игрушки идут спать, или включаем песенку. Уборка всегда сопровождается чем-то приятным — не тишиной и не спешкой.</p>
+      <div class="resistance">
+        <b>⚠️ Будет сопротивление</b>
+        «Я ещё играю» — не спорьте, превращайте уборку в продолжение игры: «Мишка уже зевает, пора его укладывать», «Машинки едут в гараж, ты за рулём».
+      </div>
+      <p class="note">Дошкольнику и младшему школьнику проще следовать правилу, когда оно превращено в маленький ритуал с ролями («едут», «спят»), а не в требование «наведи порядок». Через несколько недель совместной уборки ребёнок начинает убирать часть игрушек сам — это признак, что можно постепенно отходить в сторону, а не контролировать каждый раз.</p>
+      <h4>От 8–9 лет — свой стол и своя комната</h4>
+      <p>Тот же принцип «у каждой вещи своё место», только предметы школьные: карандаши — в одну коробку, ручки — в другую, ластики и фломастеры — каждое в свою секцию, тетради — в стопку по предметам, учебники — на полку, мусор со стола — сразу в корзину. Смысл не в том, чтобы стол был идеально пуст, а в том, чтобы ребёнок точно знал, где лежит каждая вещь — и мог найти её через месяц, а не искал по всей комнате перед контрольной.</p>
+      <h4>Одежда — по тому же принципу</h4>
+      <p>Грязное — сразу в бельевую корзину, не на стул. Чистое — сразу на плечики в шкаф, не стопкой на кресле.</p>
+      <div class="resistance">
+        <b>⚠️ Будет сопротивление</b>
+        Стул с наваленной одеждой — самый частый обход правила. Одна фраза: «У одежды два места — шкаф или корзина. Стул — не место».
+      </div>
+      <p class="note">Уборка не должна занимать больше 10–15 минут, если у каждой категории вещей есть постоянное место. Если каждый раз выходит полчаса и слёзы — вероятно, мест слишком мало, и это стоит пересмотреть вместе с ребёнком, а не требовать большего терпения.</p>
+    </div>
+  </details>
+
+  <!-- 05 -->
+  <details class="rule">
+    <summary><span class="num">05</span> Рюкзак и форма — с вечера <span class="chev">▾</span></summary>
+    <div class="rule-body">
+      <p>День не заканчивается, когда ребёнок лёг спать — он заканчивается, когда всё готово на завтра. Одежда, обувь, рюкзак или портфель собираются вечером, а не утром. Это про завершённость: дела сегодняшнего дня подведены к итогу, и голова освобождается для сна, а не занята мыслью «а вдруг мы что-то забыли».</p>
+      <p>Правило без исключений «сегодня не надо» — даже если завтра выходной. Одежда для прогулки готовится так же, как школьная форма в будний день.</p>
+      <p>5 минут вечером — ребёнок сам (или с вашей помощью) складывает нужное на завтра, вешает одежду, ставит у двери вычищенную обувь. Проговорите вслух зачем: «мы готовим всё сейчас, чтобы утром не искать и не нервничать».</p>
+      <div class="resistance">
+        <b>⚠️ Будет сопротивление</b>
+        «Я устал», «давай завтра утром» — особенно вечером. Не спорьте: «Сначала рюкзак — потом отдых». Один пропуск «сегодня и так поздно» — и правило перестаёт быть правилом уже на второй раз.
+      </div>
+    </div>
+  </details>
+
+  <!-- 06 -->
+  <details class="rule">
+    <summary><span class="num">06</span> Взял — верни на место <span class="chev">▾</span></summary>
+    <div class="rule-body">
+      <p>У каждой вещи должен быть свой «домик» — понятное ребёнку слово. Не «положи, где стояло», а «отнеси машинку в её домик», «пульт едет в свой домик рядом с телевизором», «зубная щётка возвращается в свой стаканчик».</p>
+      <h4>Как учим — не приказом, а показом</h4>
+      <p>Сначала вы делаете это сами при ребёнке, вслух проговаривая: «Я попила чай — чашка едет в свой домик, в раковину». Дальше — делаете вместе: вы берёте вещь, ребёнок относит её в «домик». Только когда этот шаг получается уверенно — ребёнок делает всё целиком сам.</p>
+      <p>Дошкольнику проще, если «домик» вещи виден и физически понятен — низкая полка, конкретная коробка, крючок на его высоте, а не общий ящик, куда что-то теряется из виду. Ребёнок быстрее усваивает правило, если сам может дотянуться и увидеть, куда вещь встаёт на место.</p>
+      <div class="resistance">
+        <b>⚠️ Будет сопротивление</b>
+        Ребёнок бросит вещь на полпути и убежит играть. Не относите за него — одна фраза: «Твоя машинка ещё не в домике» — и подождите, не начиная следующее дело, пока это не будет сделано. Если сделать это за ребёнка «чтобы не тянуть», правило перестаёт быть правилом с первого же раза.
+      </div>
+      <p class="note">Это не борьба за порядок ради порядка. Ребёнку, у которого вещи имеют свои понятные места, проще концентрироваться и меньше поводов для тревоги.</p>
+    </div>
+  </details>
+
+  <!-- 07 -->
+  <details class="rule">
+    <summary><span class="num">07</span> Грязное бельё — в корзину сразу <span class="chev">▾</span></summary>
+    <div class="rule-body">
+      <p>Носки отдельно, нижнее бельё отдельно — всё сразу в корзину для белья, свой «домик» для грязной одежды. Не на полу, не на стуле. 10 секунд — и половины беспорядка нет.</p>
+      <h4>Как учим — не приказом, а показом</h4>
+      <p>Первое время снимаете вещь вместе с ребёнком и сами относите её к корзине, проговаривая: «Снял — сразу сюда». Дальше — ребёнок несёт вещь сам, вы просто рядом. Корзина должна быть на высоте, до которой ребёнок реально достаёт, иначе правило будет невыполнимо физически, а не по вине характера.</p>
+      <div class="resistance">
+        <b>⚠️ Будет сопротивление</b>
+        Вещь «на один раз ещё надену» остаётся на стуле. Одна фраза без объяснений заново: «Снял — значит в корзину», и не делаем исключение «ну это же чистое почти».
+      </div>
+      <p class="note">Это та же логика «взял — верни на место» из правила 6, только для одежды: у чистого и грязного — два разных, но одинаково понятных ребёнку места.</p>
+    </div>
+  </details>
+
+  <!-- 08 -->
+  <details class="rule">
+    <summary><span class="num">08</span> Посуда — сразу после еды <span class="chev">▾</span></summary>
+    <div class="rule-body">
+      <p>Поел — отнёс тарелку в раковину. Не «потом». Чистая кухня собирает голову и возвращает ощущение порядка всей семье — а ребёнок с раннего возраста учится, что еда заканчивается не тогда, когда он встал из-за стола, а когда тарелка оказалась на месте.</p>
+      <h4>Как учим — не приказом, а показом</h4>
+      <p>Сначала относите тарелку сами при ребёнке, проговаривая: «Поел — тарелка едет в раковину». Дальше — ребёнок несёт свою тарелку сам, даже если она лёгкая пластиковая, а вы страхуете рядом. Для самых маленьких подойдёт низкая полка или контейнер рядом со столом, а не сама раковина — чтобы действие было физически посильным.</p>
+      <div class="resistance">
+        <b>⚠️ Будет сопротивление</b>
+        «Я доем позже» оставляет тарелку на столе на часы. Одна фраза: «Встал из-за стола — тарелка в раковину», без напоминаний по кругу.
+      </div>
+      <p class="note">И снова тот же принцип: взял — используешь — вернул. Ребёнку легче удерживать одно общее правило про любые предметы в доме, чем десять разных правил для разных вещей.</p>
+    </div>
+  </details>
+
+  <!-- 09 -->
+  <details class="rule">
+    <summary><span class="num">09</span> 30 минут вместе каждый день <span class="chev">▾</span></summary>
+    <div class="rule-body">
+      <p>Разбиваем на три блока по 10 минут — не абстрактный разговор «ни о чём», а с конкретной задачей в каждом блоке.</p>
+      <h4>Блок 1 — что произошло за день, через непрямые вопросы</h4>
+      <p>Ребёнок не может ответить на «что было хорошего, что плохого» — это слишком абстрактно. Вместо этого — вопросы через игру или третье лицо:</p>
+      <ul>
+        <li>«Если бы твоим другом был Бэтмен и мог забрать одного человека из вашей группы, чтобы его там больше не было, — кого бы ты выбрал? А что он делает, что тебе так не нравится?»</li>
+        <li>«Если бы у тебя была волшебная палочка на один день в садике — что бы ты изменил?»</li>
+        <li>«Кто сегодня был самым смешным в группе? А самым грустным?»</li>
+        <li>«Если бы твой день был как мультик — какая серия сегодня была: весёлая, страшная, скучная?»</li>
+        <li>«Что бы твоя любимая игрушка рассказала маме, если бы была с тобой в садике весь день?»</li>
+      </ul>
+      <h4>Блок 2 — не хвалим, а рассказываем, что ребёнок сделал</h4>
+      <p>Не «ты молодец», а конкретное действие: «Ты сегодня хорошо прыгал на одной ножке» вместо «ты такой сильный». Если ребёнок говорит «я ничего хорошего не сделал» — напомните конкретный момент: «А помнишь, как ты сам завязал шнурки утром?»</p>
+      <h4>Блок 3 — общее дело, а не разговор</h4>
+      <ul>
+        <li>«Я готовлю салат, хочешь порезать огурцы, пока я режу помидоры?»</li>
+        <li>Вместе сложить чистое бельё — ребёнок подаёт, вы складываете</li>
+        <li>Полить цветы по очереди</li>
+        <li>Разобрать почту или посылку вместе</li>
+        <li>Просто вместе накрыть на стол к ужину</li>
+      </ul>
+      <div class="resistance">
+        <b>⚠️ Будет сопротивление</b>
+        Ребёнок ответит односложно или скажет «не хочу говорить». Не настаивайте на всех трёх блоках сразу — начните с одного, который лучше заходит.
+      </div>
+    </div>
+  </details>
+
+  <!-- 10 -->
+  <details class="rule">
+    <summary><span class="num">10</span> Правило выходного дня <span class="chev">▾</span></summary>
+    <div class="rule-body">
+      <p>Выходной — не «каждый сам по себе» и не бабушка с дедушкой по умолчанию. У семьи есть план, и он обсуждается заранее. Не обязательно на весь день и не обязательно далеко — кукольный театр, парк, зоопарк или просто плед и термос в беседке во дворе, даже в прохладную погоду.</p>
+      <p>Если решили в воскресенье пойти в зоопарк — говорите об этом несколько дней подряд, почитайте книжку про животных, которых там увидите. Ребёнок предвкушает событие, а не узнаёт о нём за дверью.</p>
+      <p>Если ребёнок в течение недели попросил что-то — не даём сразу: «Отличная идея, сделаем это в воскресенье» — и с этого момента это общий план.</p>
+      <div class="resistance">
+        <b>⚠️ Будет сопротивление</b>
+        «Хочу сейчас, а не в воскресенье» — одна фраза: «Значит, это будет наш план на воскресенье» — и возвращаемся к разговору о плане, только когда решите сами.
+      </div>
+      <p class="note">Смысл правила не в том, чтобы ребёнок «заслуживал» события ожиданием. Смысл в том, что спланированное время с семьёй ощущается ценнее, чем случайно возникшее — а обсуждение вслух того, что будет, даёт ребёнку возможность порепетировать событие в голове заранее.</p>
+    </div>
+  </details>
+
+  <!-- 11 -->
+  <details class="rule">
+    <summary><span class="num">11</span> Покупки — по расписанию <span class="chev">▾</span></summary>
+    <div class="rule-body">
+      <p>Игрушка или подарок появляется два раза в месяц — привязано к авансу и зарплате родителей, а не к моменту, когда ребёнок захотел. Можно вводить с 3–5 лет.</p>
+      <p>Показываем календарь — бумажный или в телефоне. Отмечаем две даты в месяц. Ребёнок видит: вот сегодня, а вот та точка на календаре, когда можно будет выбрать. Сумма заранее определена и озвучена — ребёнок в её рамках выбирает сам.</p>
+      <h4>Почему это работает не с первого раза</h4>
+      <p>Первое время будет сопротивление в магазине — это нормально, и не повод отменять правило. Спокойная фраза: «Помнишь, у нас с тобой правило — следующая покупка такого-то числа» — и не вступаем в переговоры дальше. Со временем, когда ребёнок видит, что дата действительно наступает и обещание выполняется, необходимость требовать здесь и сейчас у него просто отпадает — он знает, что и так получит своё, просто не сегодня.</p>
+      <div class="resistance">
+        <b>⚠️ Будет сопротивление</b>
+        Слёзы или крик в магазине в первые разы. Не сдавайтесь и не покупайте «чтобы прекратить сцену» — это самое разрушительное для правила действие: ребёнок один раз получает подтверждение, что крик работает, и правило перестаёт работать вообще.
+      </div>
+      <p class="note">Правило не про экономию и не про «нет» — про то, что у денег есть форма и правила, а не безграничный источник по первому требованию. Это то же самое умение, которое потом пригодится ребёнку во взрослой жизни при планировании бюджета.</p>
+    </div>
+  </details>
+
+  <!-- 12 -->
+  <details class="rule">
+    <summary><span class="num">12</span> Узнавание нового — история дня <span class="chev">▾</span></summary>
+    <div class="rule-body">
+      <p>Каждый день — короткая история с уроком внутри. Не лекция про «что такое хорошо», а рассказ, где вывод ребёнок делает сам через сюжет.</p>
+      <p>Раньше это делали бабушки и сказки: «Мойдодыр» учил про грязные руки, «Машенька и медведь» — что нельзя отбиваться от группы в лесу, если пошли по ягоды или грибы. Принцип тот же, просто сюжеты нужны новые, под сегодняшнюю жизнь ребёнка: нельзя есть немытые фрукты и ягоды с земли, нельзя переходить дорогу, если взрослый разговорился с кем-то и отвлёкся, нельзя открывать дверь незнакомому человеку, даже если он говорит, что он от мамы.</p>
+      <p>Историю не обязательно придумывать самой — можно попросить у голосового помощника или найти готовую сказку с похожим уроком. Важна не оригинальность, а то, что происходит после рассказа.</p>
+      <h4>Главное — не сама история, а то, что после неё</h4>
+      <p>Расскажите — и вслух проговорите, к чему это в жизни ребёнка. Не формулируйте мораль напрямую («вот видишь, надо было...»), а через вопрос: «А как ты думаешь, что нужно было сделать девочке, чтобы не заблудиться?» Ребёнок сам произносит вывод — а то, что он сформулировал сам, запоминается лучше, чем то, что ему сказали.</p>
+      <div class="resistance">
+        <b>⚠️ Будет сопротивление</b>
+        Ребёнок может слушать невнимательно или просить мультик вместо истории. Не превращайте это в обязаловку с давлением — 3–5 минут вечером, не больше, и лучше пропустить один день, чем сделать из этого скучную рутину, которую ребёнок начнёт избегать.
+      </div>
+    </div>
+  </details>
+
+  <div class="bonus">
+    <h3>Бонус: помощь по дому — это норма</h3>
+    <p>Вынести мусор, помыть полы, вытереть пыль — это не «помощь маме», это участие в жизни семьи. Дети от 6 лет уже готовы к своей зоне ответственности.</p>
+  </div>
+
+  <div class="diary">
+    <h2>Дневник на 14 дней</h2>
+    <p class="hint">Отмечайте каждый день, какие правила соблюдены. Первые устойчивые 14 дней — это начало, а не финал: если у ребёнка самоконтроль ещё формируется, может понадобиться больше времени — и это не повод отменять правило.</p>
+    <div class="diary-table-wrap">
+      <table class="diary-table" id="diaryTable">
+        <thead>
+          <tr>
+            <th style="text-align:left;">Правило</th>
+            <!-- дни добавляются скриптом -->
+          </tr>
+        </thead>
+        <tbody id="diaryBody"></tbody>
+      </table>
+    </div>
+    <div class="diary-controls">
+      <span>Отмечено: <span class="streak" id="streakCount">0</span> из <span id="streakTotal">0</span></span>
+      <button id="resetDiary">Сбросить дневник</button>
+    </div>
+  </div>
+
+  <div class="cta">
+    <h3>Нужен разбор именно вашей ситуации?</h3>
+    <p>Если после гайда остались вопросы или хочется разобрать вашу семью отдельно — можно обсудить это на консультации.</p>
+    <div class="cta-buttons">
+      <a class="cta-btn cta-tg" href="https://t.me/bella_psychologist" target="_blank" rel="noopener">Написать в Telegram</a>
+      <a class="cta-btn cta-wa" href="https://wa.me/79880051025" target="_blank" rel="noopener">Написать в WhatsApp</a>
+    </div>
+  </div>
+
+  <footer>
+    @bella.psychologist © Полянинова Бэлла Леонидовна, 2024–2026<br>
+    Все права защищены. Копирование и распространение без разрешения автора запрещено.
+  </footer>
+
 </div>
 
-<div class="accordion-item">
-<div class="accordion-header" onclick="this.parentElement.classList.toggle('open')">
-<span class="num">02</span>
-<span class="title">Утро — не для сборов</span>
-<span class="arrow">▾</span>
-</div>
-<div class="accordion-body">
-<p>Утром надеваем то, что уже готово. Одежда, рюкзак, обувь — всё собирается с вечера. 15–20 минут вечером — и утро свободно.</p>
-</div>
-</div>
+<script>
+  const RULES = [
+    "Утро — режим и постель",
+    "Обувь с вечера",
+    "Гаджеты за час до сна",
+    "Уборка вечером",
+    "Рюкзак и форма",
+    "Взял — верни на место",
+    "Бельё в корзину",
+    "Посуда сразу",
+    "30 минут вместе",
+    "Выходной день",
+    "Покупки по расписанию",
+    "История дня"
+  ];
+  const DAYS = 14;
+  const STORAGE_KEY = "pravila_v_dom_diary_v1";
 
-<div class="accordion-item">
-<div class="accordion-header" onclick="this.parentElement.classList.toggle('open')">
-<span class="num">03</span>
-<span class="title">Обувь чистится с вечера</span>
-<span class="arrow">▾</span>
-</div>
-<div class="accordion-body">
-<p>Вымытые кроссовки или почищенные ботинки стоят у двери. Утром просто надел — и вышел.</p>
-</div>
-</div>
+  function loadState(){
+    try{
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if(raw) return JSON.parse(raw);
+    }catch(e){}
+    return {};
+  }
+  function saveState(state){
+    try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }catch(e){}
+  }
 
-<div class="accordion-item">
-<div class="accordion-header" onclick="this.parentElement.classList.toggle('open')">
-<span class="num">04</span>
-<span class="title">Гаджеты уходят в 21:30</span>
-<span class="arrow">▾</span>
-</div>
-<div class="accordion-body">
-<p>После 21:30 все телефоны идут на зарядку. Это не наказание — это время для отдыха. Мозг должен успеть успокоиться перед сном.</p>
-</div>
-</div>
+  let state = loadState();
 
-<div class="accordion-item">
-<div class="accordion-header" onclick="this.parentElement.classList.toggle('open')">
-<span class="num">05</span>
-<span class="title">Уборка — каждый вечер</span>
-<span class="arrow">▾</span>
-</div>
-<div class="accordion-body">
-<p>С 20:30 до 21:00 каждая вещь возвращается на место. У малышей — игрушки по корзинам. У подростков — порядок в комнате. В выходные — влажная уборка.</p>
-</div>
-</div>
+  function buildTable(){
+    const thead = document.querySelector('#diaryTable thead tr');
+    for(let d=1; d<=DAYS; d++){
+      const th = document.createElement('th');
+      th.textContent = d;
+      thead.appendChild(th);
+    }
+    const tbody = document.getElementById('diaryBody');
+    RULES.forEach((name, ri) => {
+      const tr = document.createElement('tr');
+      const tdName = document.createElement('td');
+      tdName.className = 'rulename';
+      tdName.textContent = name;
+      tr.appendChild(tdName);
+      for(let d=1; d<=DAYS; d++){
+        const td = document.createElement('td');
+        const cb = document.createElement('input');
+        cb.type = 'checkbox';
+        const key = ri + '_' + d;
+        cb.checked = !!state[key];
+        cb.addEventListener('change', () => {
+          state[key] = cb.checked;
+          saveState(state);
+          updateCounter();
+        });
+        td.appendChild(cb);
+        tr.appendChild(td);
+      }
+      tbody.appendChild(tr);
+    });
+  }
 
-<div class="accordion-item">
-<div class="accordion-header" onclick="this.parentElement.classList.toggle('open')">
-<span class="num">06</span>
-<span class="title">Рюкзак и форма — с вечера</span>
-<span class="arrow">▾</span>
-</div>
-<div class="accordion-body">
-<p>5 минут вечером — сложил всё необходимое, повесил одежду. Завтра ничего не придётся искать в панике.</p>
-</div>
-</div>
+  function updateCounter(){
+    const total = RULES.length * DAYS;
+    let done = 0;
+    Object.values(state).forEach(v => { if(v) done++; });
+    document.getElementById('streakCount').textContent = done;
+    document.getElementById('streakTotal').textContent = total;
+  }
 
-<div class="accordion-item">
-<div class="accordion-header" onclick="this.parentElement.classList.toggle('open')">
-<span class="num">07</span>
-<span class="title">Взял — положи на место</span>
-<span class="arrow">▾</span>
-</div>
-<div class="accordion-body">
-<p>Открыл — закрой. Взял — верни. Ключи в миску у двери, одежда в шкаф, вещи на полку. Когда у каждой вещи есть место — в голове тоже спокойнее.</p>
-</div>
-</div>
+  document.getElementById('resetDiary').addEventListener('click', () => {
+    if(confirm('Очистить весь дневник за 14 дней?')){
+      state = {};
+      saveState(state);
+      document.querySelectorAll('#diaryBody input[type=checkbox]').forEach(cb => cb.checked = false);
+      updateCounter();
+    }
+  });
 
-<div class="accordion-item">
-<div class="accordion-header" onclick="this.parentElement.classList.toggle('open')">
-<span class="num">08</span>
-<span class="title">Грязное бельё — в корзину сразу</span>
-<span class="arrow">▾</span>
-</div>
-<div class="accordion-body">
-<p>Носки отдельно, нижнее бельё отдельно — всё сразу в корзину. Не на полу, не на стуле. 10 секунд — и половины беспорядка нет.</p>
-</div>
-</div>
-
-<div class="accordion-item">
-<div class="accordion-header" onclick="this.parentElement.classList.toggle('open')">
-<span class="num">09</span>
-<span class="title">Посуда — сразу после еды</span>
-<span class="arrow">▾</span>
-</div>
-<div class="accordion-body">
-<p>Поел — отнёс тарелку. Не «потом». Чистая кухня собирает голову и возвращает ощущение порядка.</p>
-</div>
-</div>
-
-<div class="accordion-item">
-<div class="accordion-header" onclick="this.parentElement.classList.toggle('open')">
-<span class="num">10</span>
-<span class="title">30 минут вместе каждый день</span>
-<span class="arrow">▾</span>
-</div>
-<div class="accordion-body">
-<p>За ужином или после — время разговора. Что хорошего было сегодня? Что было трудно? Без оценок, без нотаций. Просто рассказать и услышать.</p>
-</div>
-</div>
-
-<div class="technique-block">
-<h2>Как ввести правило и удержать его</h2>
-<div class="step">
-<div class="step-num">1</div>
-<div class="step-text"><strong>Выберите одно правило.</strong> Не все сразу. Одно — и только его на две недели. Мозг не принимает много нового сразу.</div>
-</div>
-<div class="step">
-<div class="step-num">2</div>
-<div class="step-text"><strong>Объявите спокойно — один раз.</strong> «У нас теперь есть правило: рюкзак собираем с вечера. Всегда.» Без обсуждения. Просто информируете.</div>
-</div>
-<div class="step">
-<div class="step-num">3</div>
-<div class="step-text"><strong>Держите правило без лекций.</strong> Забыл — одно спокойное напоминание. Не объяснение, не упрёк. Просто название правила.</div>
-</div>
-<div class="step">
-<div class="step-num">4</div>
-<div class="step-text"><strong>Правила можно пересматривать.</strong> Раз в месяц: «Как работает это правило? Что изменим?» Не слабость — уважение к ребёнку.</div>
-</div>
-<div class="main-note">Правило работает не потому, что ребёнок согласился. А потому что вы спокойно его держите. Как только правило меняется от истерики — оно перестаёт быть правилом.</div>
-</div>
-
-<div class="bonus">
-<div class="label">Бонус</div>
-<h3>Помощь по дому — это норма</h3>
-<p>Вынести мусор, помыть полы, вытереть пыль — это не «помощь маме», это участие в жизни семьи. Дети от 6 лет уже готовы к своей зоне ответственности.</p>
-</div>
-
-</section>
-
-<footer>
-<span class="handle">@bella.psychologist</span>
-© Полянинова Бэлла Леонидовна, 2024–2025<br>
-Все права защищены. Копирование и распространение без разрешения автора запрещено.
-</footer>
+  buildTable();
+  updateCounter();
+</script>
 
 </body>
 </html>
