@@ -1,240 +1,225 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Правила в дом — Гайд для родителей</title>
+<title>Правила в дом — гайд для родителей — Бэлла Полянинова</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg: #FDF0F3;
-    --accent: #C9848F;
-    --accent-soft: #e9c6cc;
-    --dark: #4A2E35;
-    --white: #ffffff;
+    --bg:#FAFAF8;
+    --ink:#1E1B16;
+    --ink-soft:#5B5650;
+    --line:#E7E2D8;
+    --accent:#8B4A3C;
+    --amber-bg:#FFF4DE;
+    --amber-border:#E8C27A;
+    --amber-text:#6B4E1E;
   }
-  *{ box-sizing:border-box; margin:0; padding:0; }
+  *{box-sizing:border-box;}
   body{
+    margin:0;
     background:var(--bg);
-    color:var(--dark);
-    font-family:'Jost', sans-serif;
-    font-weight:300;
+    color:var(--ink);
+    font-family:'Manrope',sans-serif;
+    font-size:17px;
     line-height:1.65;
-    overflow-x:hidden;
-    position:relative;
+    padding:0 0 60px;
   }
-  .circle{
-    position:absolute;
-    border-radius:50%;
-    background:var(--accent-soft);
-    opacity:0.35;
-    z-index:0;
-  }
-  .c1{ width:340px; height:340px; top:-120px; right:-100px; }
-  .c2{ width:220px; height:220px; top:900px; left:-80px; opacity:0.25;}
-  .c3{ width:280px; height:280px; bottom:200px; right:-120px; opacity:0.2;}
-  header{
-    text-align:center;
-    padding:64px 24px 40px;
-    position:relative;
-    z-index:1;
-  }
-  .eyebrow{
+  .wrap{max-width:600px;margin:0 auto;padding:0 20px;}
+  .author-line{
+    font-family:'Manrope',sans-serif;
     font-size:13px;
-    letter-spacing:0.12em;
-    text-transform:uppercase;
-    color:var(--accent);
-  }
-  h1{
-    font-family:'Cormorant Garamond', serif;
-    font-style:italic;
-    font-weight:500;
-    font-size:52px;
-    margin:12px 0 8px;
-  }
-  .subtitle{
-    font-size:16px;
-    max-width:480px;
-    margin:0 auto 28px;
-    color:#7a5a61;
-  }
-  .lede{
-    font-family:'Cormorant Garamond', serif;
-    font-size:22px;
-    font-style:italic;
-    max-width:520px;
-    margin:0 auto;
-    color:var(--dark);
-  }
-  section{
-    max-width:640px;
-    margin:0 auto;
-    padding:40px 24px;
-    position:relative;
-    z-index:1;
-  }
-  .rule-card{
-    background:var(--white);
-    border-radius:18px;
-    padding:32px 30px;
-    margin-bottom:24px;
-    box-shadow:0 8px 30px rgba(74,46,53,0.06);
-  }
-  .rule-number{
-    font-family:'Cormorant Garamond', serif;
-    font-style:italic;
-    font-size:15px;
-    color:var(--accent);
-    letter-spacing:0.05em;
-  }
-  .rule-title{
-    font-family:'Cormorant Garamond', serif;
-    font-weight:500;
-    font-size:28px;
-    margin:6px 0 12px;
-  }
-  .rule-text{
-    font-size:16px;
-    color:#5c4348;
-  }
-  .divider{
-    margin:48px 0 40px;
-    color:var(--dark);
-  }
-  .divider .accent-line{
-    width:40px;
-    height:1px;
-    background:var(--accent);
-    margin:0 auto 32px;
-  }
-  .divider-lead{
-    font-family:'Cormorant Garamond', serif;
-    font-style:italic;
-    font-size:21px;
-    line-height:1.65;
-    margin-bottom:20px;
+    color:var(--ink-soft);
     text-align:center;
+    padding:14px 20px;
+    border-bottom:1px solid var(--line);
   }
-  .divider-body{
-    font-size:16px;
-    color:#5c4348;
-    line-height:1.75;
+  header.hero{padding:44px 0 20px;text-align:center;}
+  .kicker{font-size:14px;color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;}
+  h1{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:700;
+    font-size:44px;
+    line-height:1.15;
+    margin:0 0 14px;
+  }
+  .subtitle{color:var(--ink-soft);font-size:18px;max-width:460px;margin:0 auto;}
+
+  section{margin:34px 0;}
+  h2{
+    font-family:'Cormorant Garamond',serif;
+    font-size:26px;
+    margin:0 0 14px;
+  }
+  p{margin:0 0 14px;}
+  .pain p{margin:0 0 8px;}
+  .pain{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:22px 22px;
+  }
+
+  ul.list{margin:0 0 14px;padding-left:20px;}
+  ul.list li{margin-bottom:6px;}
+
+  .example{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:20px 22px;
     margin-bottom:16px;
   }
-  .divider-close{
-    font-family:'Cormorant Garamond', serif;
-    font-style:italic;
-    font-size:20px;
-    color:var(--dark);
+  .example h3{
+    font-family:'Cormorant Garamond',serif;
+    font-size:21px;
+    margin:0 0 10px;
+  }
+  .script{
+    background:var(--amber-bg);
+    border:1px solid var(--amber-border);
+    color:var(--amber-text);
+    border-radius:10px;
+    padding:14px 16px;
+    font-size:15.5px;
+    margin:12px 0;
+  }
+
+  .cta-block{
     text-align:center;
-    margin-top:28px;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:30px 24px;
+    margin:34px 0;
   }
-  .offer-box{
-    background:var(--white);
-    border-radius:20px;
-    padding:40px 32px;
-    text-align:center;
-    box-shadow:0 12px 40px rgba(74,46,53,0.09);
+  .price{
+    font-family:'Cormorant Garamond',serif;
+    font-size:34px;
+    font-weight:700;
+    margin:6px 0 18px;
   }
-  .offer-eyebrow{
-    font-size:12px;
-    letter-spacing:0.1em;
-    text-transform:uppercase;
-    color:var(--accent);
-    margin-bottom:10px;
-  }
-  .offer-box p{
-    font-size:17px;
-    margin-bottom:24px;
-    color:var(--dark);
-  }
-  .cta-button{
+  .price span{font-size:16px;color:var(--ink-soft);font-family:'Manrope',sans-serif;font-weight:600;display:block;margin-bottom:2px;}
+  .cta-btn{
     display:inline-block;
-    background:var(--dark);
-    color:var(--white);
-    text-decoration:none;
-    font-family:'Jost', sans-serif;
-    font-weight:400;
+    font-family:'Manrope',sans-serif;
+    font-weight:800;
     font-size:16px;
-    letter-spacing:0.02em;
-    padding:16px 36px;
-    border-radius:30px;
-    transition:background 0.25s ease, transform 0.25s ease;
-  }
-  .cta-button:hover{
+    text-decoration:none;
+    padding:15px 30px;
+    border-radius:26px;
     background:var(--accent);
-    transform:translateY(-2px);
+    color:#fff;
   }
-  .price-note{
-    font-size:13px;
-    color:#a3818a;
-    margin-top:16px;
+  .cta-btn:hover{opacity:.9;}
+  .cta-note{font-size:13.5px;color:var(--ink-soft);margin-top:14px;}
+
+  .closing{
+    text-align:center;
+    font-family:'Cormorant Garamond',serif;
+    font-size:22px;
+    font-style:italic;
+    color:var(--ink);
+    margin:40px 0;
   }
+
   footer{
     text-align:center;
-    padding:48px 24px 40px;
+    color:var(--ink-soft);
     font-size:13px;
-    color:#a3818a;
-    position:relative;
-    z-index:1;
-  }
-  footer .handle{
-    font-family:'Cormorant Garamond', serif;
-    font-style:italic;
-    font-size:16px;
-    color:var(--dark);
-    display:block;
-    margin-bottom:10px;
-  }
-  @media (max-width:480px){
-    h1{ font-size:38px; }
-    .rule-title{ font-size:24px; }
-    .offer-box{ padding:32px 22px; }
+    margin-top:40px;
+    padding-top:20px;
+    border-top:1px solid var(--line);
   }
 </style>
 </head>
 <body>
-<div class="circle c1"></div>
-<div class="circle c2"></div>
-<div class="circle c3"></div>
-<header>
-  <div class="eyebrow">Гайд для родителей</div>
-  <h1>Правила в дом</h1>
-  <p class="subtitle">Готовые формулировки для семьи. Без споров, без объяснений, без потери нервов.</p>
-  <p class="lede">Правило работает, когда оно конкретное. «Убирай игрушки» — не работает. «С 20:30 до 21:00 мягкие игрушки в корзину, машинки на полку» — работает.</p>
-</header>
-<section>
-  <div class="rule-card">
-    <div class="rule-number">Правило 04</div>
-    <div class="rule-title">Гаджеты уходят в 21:30</div>
-    <p class="rule-text">После 21:30 все телефоны идут на зарядку. Это не наказание — это время для отдыха. Мозг должен успеть успокоиться перед сном.</p>
+
+<div class="author-line">Полянинова Бэлла Леонидовна. Авторский продукт. Все права защищены</div>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="kicker">Гайд для семьи</div>
+    <h1>Правила в дом</h1>
+    <p class="subtitle">Для родителей, которые устали каждый день спорить об одном и том же</p>
+  </header>
+
+  <section class="pain">
+    <p>Ребёнок снова просит телефон перед сном.</p>
+    <p>Игрушки опять лежат по всей комнате.</p>
+    <p>На просьбу помочь по дому начинается торг: «потом», «не хочу», «а почему я?».</p>
+    <p>Вы объясняете спокойно, потом строже, потом уже срываетесь — и вечером чувствуете не победу, а усталость.</p>
+  </section>
+
+  <section>
+    <p>Чаще всего проблема не в том, что ребёнок «плохой», «ленивый» или «ничего не понимает». Проблема в том, что дома нет понятного правила, которое взрослый сам может удержать.</p>
+    <p>Не просьбы на бегу. Не длинные объяснения после ссоры. Не наказание, придуманное в раздражении.</p>
+    <p>А простое семейное правило: что именно происходит, когда, в каком порядке и какими словами взрослый это говорит.</p>
+  </section>
+
+  <section>
+    <h2>Что внутри гайда</h2>
+    <p>В полной версии «Правила в дом» собраны <b>12 семейных правил</b> для обычных ситуаций, где родители чаще всего теряют силы: гаджеты перед сном, игрушки и уборка, помощь по дому, вечерний порядок, разговоры без нотаций, покупки и просьбы, выходной день, границы, торг, сопротивление ребёнка и ежедневные повторяющиеся споры.</p>
+    <p>К каждому правилу вы получаете не только идею, но и готовые слова: как сказать ребёнку, как ввести правило, как повторить его без крика и что делать, когда ребёнок проверяет, правда ли теперь дома будет новый порядок.</p>
+  </section>
+
+  <section>
+    <h2>Пример из гайда</h2>
+    <div class="example">
+      <h3>Правило: гаджеты уходят за час до сна</h3>
+      <p>После — все телефоны идут на зарядку. Это не наказание. Это время для отдыха, потому что мозгу нужно успеть успокоиться перед сном.</p>
+      <p>Важно не просто сказать: «Хватит сидеть в телефоне». Так ребёнок слышит запрет — и почти сразу начинает спорить.</p>
+      <p>Лучше, когда дома есть правило:</p>
+      <div class="script">«Телефон заряжается через час после ужина. Сейчас ты можешь выбрать: поставить его сам или я помогу. Завтра он снова будет у тебя».</div>
+      <p>Так у ребёнка остаётся выбор, но не исчезает порядок.</p>
+    </div>
+
+    <div class="example">
+      <h3>Ещё один пример: 30 минут вместе каждый день</h3>
+      <p>За ужином или после него появляется короткое время разговора. Без оценок, без допроса, без нотаций.</p>
+      <p>Можно спросить не «в лоб», а через игру: «Если бы твоим другом был Бэтмен и мог забрать одного человека из вашей группы — кого бы ты выбрал?» Ребёнку проще рассказать о себе через кого-то другого, чем ответить на прямое «что случилось плохого».</p>
+      <p>Это правило нужно не для красивой семейной картинки. Оно помогает ребёнку привыкать: дома можно говорить, а взрослый не сразу ругает, исправляет и читает лекцию.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Кому подойдёт этот гайд</h2>
+    <p>Этот гайд подойдёт вам, если дома часто повторяются одни и те же споры: про телефон, уборку, уроки, помощь, режим, просьбы и «ну ещё пять минут».</p>
+    <p>Он особенно полезен, если вы уже пробовали объяснять, уговаривать, запрещать, стыдить, обещать наказание, но через несколько дней всё возвращалось обратно.</p>
+    <p>Гайд не обещает, что ребёнок за один вечер станет удобным и послушным. Он даёт другое: понятный порядок для взрослого. Когда родитель понимает, что говорить и как удерживать правило, дома становится меньше хаоса, торга и случайных решений на эмоциях.</p>
+  </section>
+
+  <section>
+    <h2>Что вы получите после оплаты</h2>
+    <p>Полную версию гайда «Правила в дом»:</p>
+    <ul class="list">
+      <li>12 готовых семейных правил</li>
+      <li>понятные формулировки для разговора с ребёнком</li>
+      <li>технику введения правила без крика и долгих объяснений</li>
+      <li>подсказки, что делать, когда ребёнок сопротивляется</li>
+      <li>дневник на 14 дней, чтобы отмечать, что уже закрепилось</li>
+      <li>бонус о том, как приучить ребёнка к посильной помощи по дому</li>
+    </ul>
+    <p>Это не лекция о воспитании. Это практический материал для семьи, где взрослые устали каждый день начинать один и тот же спор сначала.</p>
+  </section>
+
+  <div class="cta-block">
+    <div class="price"><span>Полная версия гайда «Правила в дом»</span>690 ₽</div>
+    <a class="cta-btn" href="https://app.lava.top/products/ba73809b-bf72-4e0f-b8dd-88a6575a437e" target="_blank" rel="noopener">Получить все 12 правил</a>
+    <p class="cta-note">Цифровой продукт. Доступ открывается сразу после оплаты.</p>
   </div>
-  <div class="rule-card">
-    <div class="rule-number">Правило 10</div>
-    <div class="rule-title">30 минут вместе каждый день</div>
-    <p class="rule-text">За ужином или после — время разговора. Что хорошего было сегодня? Что было трудно? Без оценок, без нотаций. Просто рассказать и услышать.</p>
-  </div>
-  <div class="divider">
-    <div class="accent-line"></div>
-    <p class="divider-lead">Эти два правила нужны не для того, чтобы вы просто прочитали и сказали: «Хорошо бы так жить».</p>
-    <p class="divider-body">Они показывают главный принцип: ребёнку нужны не длинные объяснения, а понятные правила, которые взрослый сам способен удержать.</p>
-    <p class="divider-body">Проблема начинается там, где правило вроде есть, но каждый вечер превращается в новый спор. Сегодня гаджеты до 21:30, завтра «ну ладно, ещё десять минут», послезавтра слёзы, торг, обида, и взрослый снова сдаётся.</p>
-    <p class="divider-body">В полной версии «Правила в дом» я собрала 10 правил, которые помогают убрать ежедневный торг: что говорить, как вводить, как удерживать и что делать, когда ребёнок проверяет вас на прочность.</p>
-    <p class="divider-body">Это не лекция о воспитании. Это готовые формулировки для обычной семьи, где взрослые устали спорить об одном и том же.</p>
-    <p class="divider-close">Нам нужны правила. Всегда.</p>
-  </div>
-  <div class="offer-box">
-    <div class="offer-eyebrow">Десять правил</div>
-    <p>Полная версия «Правила в дом» — все 10 правил, техника внедрения и бонус о том, как приучить ребёнка к посильной помощи по дому.</p>
-    <a href="https://app.lava.top/products/ba73809b-bf72-4e0f-b8dd-88a6575a437e" class="cta-button">Получить все 10 правил — 690 ₽</a>
-    <div class="price-note">Цифровой продукт — доступен сразу после оплаты</div>
-  </div>
-</section>
-<footer>
-  <span class="handle">@bella.psychologist</span>
-  © Полянинова Бэлла Леонидовна, 2024–2025<br>
-  Все права защищены. Копирование и распространение без разрешения автора запрещено.
-</footer>
+
+  <p class="closing">Нам нужны правила. Всегда.</p>
+
+  <footer>
+    @bella.psychologist<br>
+    Полянинова Бэлла Леонидовна, психолог
+  </footer>
+
+</div>
+
 </body>
 </html>
