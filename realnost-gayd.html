@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Реальность</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
   body {
     font-family:'Manrope', sans-serif;
     background:#FAFAF8;
-    background-image:radial-gradient(circle at 15% 8%, rgba(177,29,42,.04), transparent 45%);
+    background-image:radial-gradient(circle at 15% 8%, rgba(30,138,76,.04), transparent 45%);
     color:#1a1a1a;
     line-height:1.65;
     font-size:17px;
@@ -26,13 +26,13 @@
   }
   header { text-align:center; padding:32px 0 40px; }
   h1 {
-    font-family:'Cormorant Garamond', serif;
+    font-family:'Oswald', sans-serif;
     font-weight:700;
     font-size:48px;
     color:#141414;
     letter-spacing:-.01em;
   }
-  .rule-line { width:64px; height:3px; background:#B11D2A; margin:26px auto 0; opacity:.7; border-radius:2px; }
+  .rule-line { width:64px; height:3px; background:#1E8A4C; margin:26px auto 0; opacity:.7; border-radius:2px; }
 
   .opening p { font-size:19px; margin-bottom:20px; }
 
@@ -43,7 +43,7 @@
     margin:32px 0;
   }
   .diagnostic h3 {
-    font-family:'Cormorant Garamond', serif;
+    font-family:'Oswald', sans-serif;
     font-size:28px;
     margin-bottom:10px;
     line-height:1.3;
@@ -120,18 +120,18 @@
   .two-questions { margin-top:32px; display:flex; flex-direction:column; gap:18px; }
   .q-card {
     background:#fff;
-    border-left:4px solid #B11D2A;
+    border-left:4px solid #1E8A4C;
     border-radius:4px 16px 16px 4px;
     padding:22px 24px;
     box-shadow:0 4px 16px rgba(20,20,20,.05);
   }
   .q-label {
-    font-family:'Cormorant Garamond', serif;
+    font-family:'Oswald', sans-serif;
     font-size:14px;
     font-weight:700;
     text-transform:uppercase;
     letter-spacing:.1em;
-    color:#B11D2A;
+    color:#1E8A4C;
     margin-bottom:8px;
   }
   .q-text { font-size:18px; line-height:1.5; }
@@ -144,10 +144,10 @@
     margin:44px 0;
   }
   .divider span { width:40px; height:1px; background:#d3cfc3; }
-  .divider i { width:6px; height:6px; border-radius:50%; background:#B11D2A; opacity:.6; }
+  .divider i { width:6px; height:6px; border-radius:50%; background:#1E8A4C; opacity:.6; }
 
   .bridge {
-    font-family:'Cormorant Garamond', serif;
+    font-family:'Oswald', sans-serif;
     font-size:26px;
     font-weight:600;
     line-height:1.45;
@@ -156,12 +156,25 @@
     color:#141414;
   }
 
+  .inside-list { margin-top:20px; }
+  .inside-item { display:flex; gap:16px; padding:16px 0; border-bottom:1px solid #e4e1d8; }
+  .inside-item:last-child { border-bottom:none; }
+  .inside-num { font-family:'Oswald', sans-serif; font-size:22px; font-weight:700; color:#1E8A4C; flex-shrink:0; width:28px; }
+  .inside-text { font-size:16px; line-height:1.5; }
+
+  .for-you-if { margin-top:16px; }
+  .for-you-if p { font-size:17px; line-height:1.55; margin-bottom:14px; padding-left:22px; position:relative; }
+  .for-you-if p::before { content:'—'; position:absolute; left:0; color:#1E8A4C; }
+
+  .result-block { font-size:17px; line-height:1.6; margin-top:8px; }
+  .result-block .closing-line { font-family:'Oswald', sans-serif; font-size:20px; margin-top:18px; text-align:center; }
+
   .sample-label {
     text-align:center;
     font-size:13px;
     text-transform:uppercase;
     letter-spacing:.08em;
-    color:#B11D2A;
+    color:#1E8A4C;
     font-weight:700;
     margin-bottom:16px;
   }
@@ -178,10 +191,10 @@
     margin-bottom:14px;
   }
   .rule-num {
-    font-family:'Cormorant Garamond', serif;
+    font-family:'Oswald', sans-serif;
     font-size:26px;
     font-weight:700;
-    color:#B11D2A;
+    color:#1E8A4C;
   }
   .rule-title { font-size:18px; font-weight:700; }
   .rule p { font-size:16px; margin-bottom:14px; }
@@ -203,7 +216,7 @@
     color:#5c4a1e;
   }
   .diary-q {
-    font-family:'Cormorant Garamond', serif;
+    font-family:'Oswald', sans-serif;
     font-style:italic;
     font-size:18px;
     margin-top:14px;
@@ -214,27 +227,27 @@
     margin-top:12px;
     text-align:center;
     padding:44px 30px;
-    background:linear-gradient(160deg, #1c1c1c, #0d0d0d);
+    background:linear-gradient(160deg, #17301F, #0B1E12);
     color:#FAFAF8;
     border-radius:24px;
     box-shadow:0 12px 32px rgba(0,0,0,.18);
   }
   .cta-block h3 {
-    font-family:'Cormorant Garamond', serif;
+    font-family:'Oswald', sans-serif;
     font-size:32px;
     margin-bottom:16px;
   }
   .cta-block p { font-size:17px; margin-bottom:24px; opacity:.88; line-height:1.55; }
   .cta-button {
     display:inline-block;
-    background:#B11D2A;
+    background:#1E8A4C;
     color:#fff;
     font-weight:700;
     padding:16px 34px;
     border-radius:30px;
     text-decoration:none;
     font-size:17px;
-    box-shadow:0 8px 20px rgba(177,29,42,.35);
+    box-shadow:0 8px 20px rgba(30,138,76,.35);
   }
   .cta-note {
     font-size:13px;
@@ -260,28 +273,37 @@
   }
 
   function calcQuiz() {
-    const total = 7;
+    const total = 8;
     const answered = Object.keys(answers).length;
     if (answered < total) {
       const el = document.getElementById('quizResult');
       el.className = 'quiz-result show mid';
-      el.textContent = 'Ответьте на все семь пунктов, чтобы увидеть результат.';
+      el.textContent = 'Отметьте все восемь пунктов, чтобы увидеть результат.';
       el.scrollIntoView({behavior:'smooth', block:'center'});
       return;
     }
-    let count = 0;
-    Object.values(answers).forEach(a => { if (a === 'Да') count++; });
+    const counts = {'Да':0, 'Нет':0, 'Не знаю':0};
+    Object.values(answers).forEach(a => { counts[a] = (counts[a] || 0) + 1; });
+
+    const texts = {
+      'Да': 'Больше всего у вас ответов «Да» (' + counts['Да'] + ' из 8). Это значит, что вы уже видите происходящее и понимаете, почему он раз за разом поступает именно так. Дело не в том, чтобы разглядеть это ещё раз, а в том, что вы будете делать с тем, что уже знаете.',
+      'Не знаю': 'Больше всего у вас ответов «Не знаю» (' + counts['Не знаю'] + ' из 8). Похоже, вы пока не до конца доверяете собственным наблюдениям и сомневаетесь в выводах. Прежде чем решать, стоит присмотреться внимательнее — не к его словам, а к тому, что повторяется на деле.',
+      'Нет': 'Больше всего у вас ответов «Нет» (' + counts['Нет'] + ' из 8). Возможно, вам повезло: то, что происходит между вами, не настолько тяжело, и договориться будет проще, чем вы опасались.'
+    };
+    const toneClass = {'Да':'high', 'Не знаю':'mid', 'Нет':'low'};
+
+    const maxCount = Math.max(counts['Да'], counts['Нет'], counts['Не знаю']);
+    const leaders = Object.keys(counts).filter(k => counts[k] === maxCount);
+
     const el = document.getElementById('quizResult');
-    let tier, text;
-    if (count <= 2) {
-      tier = 'low';
-      text = 'Ответов «да»: ' + count + ' из 7. Пока это не система — скорее отдельные моменты. Но привычка ждать формируется быстро, стоит последить за собой.';
-    } else if (count <= 4) {
-      tier = 'mid';
-      text = 'Ответов «да»: ' + count + ' из 7. Заметный сигнал. Часть вашей жизни уже строится вокруг обещаний, а не вокруг того, что происходит на самом деле.';
+    let text, tier;
+    if (leaders.length === 1) {
+      text = texts[leaders[0]];
+      tier = toneClass[leaders[0]];
     } else {
-      tier = 'high';
-      text = 'Ответов «да»: ' + count + ' из 7. Вы не с человеком живёте. Вы живёте с его будущей версией, которую сочинили сами.';
+      text = 'У вас поровну ответов «' + leaders.join('» и «') + '» (по ' + maxCount + ' из 8). Это тоже результат: ' +
+             leaders.map(l => texts[l].replace(/^Больше всего у вас ответов «[^»]+» \([^)]*\)\.\s*/, '')).join(' При этом, с другой стороны: ');
+      tier = toneClass[leaders[0]];
     }
     el.className = 'quiz-result show ' + tier;
     el.textContent = text;
@@ -308,7 +330,7 @@
 
   <div class="diagnostic">
     <h3>Вы ждёте будущего или живёте настоящим?</h3>
-    <div class="hint">Прочитайте каждую сцену и ответьте — Да, Нет или Не знаю — а после нажмите «Посчитать».</div>
+    <div class="hint">Прочитайте каждую сцену и честно отметьте — Да, Нет или Не знаю. Это не тест с правильным ответом, а способ увидеть, какой ответ у вас перевешивает.</div>
     <div class="quiz-list">
       <div class="quiz-item">
         <div class="quiz-q">За ужином он снова говорит: «Вот закончится этот тяжёлый период, и наша жизнь наконец изменится». Вы слышите эти слова уже не первый год, но снова ловите себя на мысли: «Наверное, на этот раз всё получится».</div>
@@ -366,8 +388,16 @@
           <button type="button" class="opt" onclick="selectOpt(this)">Не знаю</button>
         </div>
       </div>
+      <div class="quiz-item">
+        <div class="quiz-q">Когда вы злитесь на его поступок, разговор быстро превращается в разговор о том, что вы слишком остро реагируете.</div>
+        <div class="quiz-opts" data-q="8">
+          <button type="button" class="opt" onclick="selectOpt(this)">Да</button>
+          <button type="button" class="opt" onclick="selectOpt(this)">Нет</button>
+          <button type="button" class="opt" onclick="selectOpt(this)">Не знаю</button>
+        </div>
+      </div>
     </div>
-    <button class="quiz-btn" onclick="calcQuiz()">Посчитать</button>
+    <button class="quiz-btn" onclick="calcQuiz()">Посмотреть результат</button>
     <div class="quiz-result" id="quizResult"></div>
 
     <div class="two-questions">
@@ -379,20 +409,58 @@
         <div class="q-label">Вопрос второй</div>
         <div class="q-text">Он хоть раз показывал делом, пусть в малом, что способен на то, чего вы ждёте? Или эту способность вы придумали сами и одолжили ему.</div>
       </div>
+      <div class="q-card">
+        <div class="q-label">Вопрос третий</div>
+        <div class="q-text">Когда вы не получаете то, что хотите, в конкретной ситуации — что вы делаете дальше? Уговариваете себя, что получится в следующий раз. Или смотрите на факт, который есть сейчас, и решаете, что делать именно с ним.</div>
+      </div>
     </div>
   </div>
 
   <div class="divider"><span></span><i></i><span></span></div>
 
   <div class="bridge">
-    Дальше — не про то, как заставить его стать другим.<br>Вот с чего начинается другой путь.
+    Материал «Реальность» поможет вам сделать первый шаг к ясности.
   </div>
 
+  <section class="opening">
+    <h3 style="font-family:'Oswald', sans-serif; font-size:24px; margin-bottom:16px;">Внутри материала «Я выбираю реальность»</h3>
+    <div class="inside-list">
+      <div class="inside-item"><div class="inside-num">1</div><div class="inside-text">Самодиагностика «Узнаёте себя?» — 7 сцен, чтобы увидеть, сколько из них на самом деле про вас.</div></div>
+      <div class="inside-item"><div class="inside-num">2</div><div class="inside-text">5 вопросов с практикой — реальные психологические механизмы (ошибка невозвратных затрат, оптимистическое смещение и другие), которые объясняют, почему вы продолжаете ждать, и что сделать с этим сегодня же.</div></div>
+      <div class="inside-item"><div class="inside-num">3</div><div class="inside-text">Чек-лист «Почему вы продолжаете ждать» — 4 скрытые причины, которые держат вас рядом не любовью, а инерцией.</div></div>
+      <div class="inside-item"><div class="inside-num">4</div><div class="inside-text">«Сколько стоит ваше ожидание» — 10 вещей, которые вы откладываете прямо сейчас, пока ждёте его.</div></div>
+      <div class="inside-item"><div class="inside-num">5</div><div class="inside-text">Упражнение «Кто этот человек» — два списка: какой он по фактам и каким вы его надеетесь увидеть, чтобы понять, на каком из двух держатся отношения.</div></div>
+      <div class="inside-item"><div class="inside-num">6</div><div class="inside-text">«Индекс ожидания» — сколько ваших сегодняшних решений зависит от его будущих перемен.</div></div>
+      <div class="inside-item"><div class="inside-num">7</div><div class="inside-text">10 правил в 3 этапах — с разбором ловушки, конкретным действием на сегодня и вопросом, который стоит задать себе.</div></div>
+    </div>
+  </section>
+
+  <div class="divider"><span></span><i></i><span></span></div>
+
+  <section class="opening">
+    <h3 style="font-family:'Oswald', sans-serif; font-size:24px; margin-bottom:8px;">Этот материал для вас, если</h3>
+    <div class="for-you-if">
+      <p>Вы устали ждать, когда человек станет другим.</p>
+      <p>Вы часто объясняете его поступки вместо того, чтобы смотреть на них прямо.</p>
+      <p>Вы не понимаете, где терпение, а где потеря себя.</p>
+      <p>Вы боитесь признать, что всё может не измениться.</p>
+      <p>Вы хотите не скандала, не ультиматума и не очередного разговора по кругу, а ясности.</p>
+    </div>
+  </section>
+
+  <div class="divider"><span></span><i></i><span></span></div>
+
+  <section class="opening result-block">
+    <h3 style="font-family:'Oswald', sans-serif; font-size:24px; margin-bottom:8px;">Что будет результатом</h3>
+    <p>После прохождения материала у вас будет не абстрактное «надо подумать», а понятная точка: что происходит сейчас, на что вы больше не хотите закрывать глаза и какой первый шаг вам нужен дальше.</p>
+    <p class="closing-line">Реальность может быть неприятной.<br>Но она честнее, чем годы ожидания.</p>
+  </section>
+
   <div class="cta-block">
-    <h3>Я выбираю реальность</h3>
-    <p>Диагностика показывает, где вы сейчас. Практика — что делать дальше: как перестать достраивать его будущую версию, как построить свою жизнь отдельно от его решений, и как принять решение — остаться на новых условиях или уйти.</p>
-    <p style="font-size:15px;opacity:.75;">Восемь правил. Три этапа пути от ожидания к своей собственной жизни.</p>
-    <a class="cta-button" href="https://app.lava.top/products/73f02385-d323-4e45-b43b-95ad33752cab" target="_blank">Получить навсегда доступ к продукту за 690 руб.</a>
+    <h3>Получить доступ</h3>
+    <p>Материал работает прямо в браузере. Можно открыть с телефона или компьютера.</p>
+    <p style="font-size:15px;opacity:.75;">Доступ навсегда — 990 ₽.</p>
+    <a class="cta-button" href="https://app.lava.top/products/73f02385-d323-4e45-b43b-95ad33752cab" target="_blank">Получить доступ к материалу «Реальность»</a>
   </div>
 
 </div>
