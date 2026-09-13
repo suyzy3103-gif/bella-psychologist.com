@@ -59,6 +59,25 @@
     font-weight:600;
   }
   .quiz-list { margin-top:8px; }
+  .progress-wrap { margin-bottom:22px; }
+  .progress-count { font-size:13px; font-weight:700; color:#5a5a56; margin-bottom:8px; text-transform:uppercase; letter-spacing:.05em; }
+  .progress-track { width:100%; height:6px; background:#e4e1d8; border-radius:4px; overflow:hidden; }
+  .progress-fill { height:100%; width:12.5%; background:#1E8A4C; border-radius:4px; transition:width .3s ease; }
+  .quiz-nav { display:flex; gap:10px; margin-top:6px; }
+  .nav-btn {
+    flex:1;
+    padding:15px 6px;
+    font-family:'Manrope', sans-serif;
+    font-weight:700;
+    font-size:15px;
+    border-radius:12px;
+    border:1.5px solid #dedad0;
+    background:#fff;
+    color:#5a5a56;
+    cursor:pointer;
+  }
+  .nav-btn.next { background:#141414; border-color:#141414; color:#fff; }
+  .nav-btn:disabled { opacity:.4; cursor:not-allowed; }
   .quiz-item {
     padding:28px 0;
     border-bottom:1px solid #e4e1d8;
@@ -262,26 +281,73 @@
 </style>
 
 <script>
+  const quizQuestions = [
+    "За ужином он снова говорит: «Вот закончится этот тяжёлый период, и наша жизнь наконец изменится». Вы слышите эти слова уже не первый год, но снова ловите себя на мысли: «Наверное, на этот раз всё получится».",
+    "Он снова не сделал того, что обещал. Прежде чем услышать его объяснение, вы уже сами нашли причину, почему сейчас у него не получилось.",
+    "Вы всё чаще откладываете свои желания. Поездку, отпуск, ремонт, серьёзный разговор. Кажется, что сейчас неподходящее время, а потом обязательно станет легче.",
+    "Одного хорошего вечера хватает, чтобы снова поверить, что теперь всё будет по-другому. Хотя до этого были недели или месяцы, когда ничего не менялось.",
+    "Когда кто-то спрашивает о вашем мужчине, вы замечаете странную вещь. Вы чаще рассказываете о том, каким он обязательно станет, чем о том, какой он сегодня.",
+    "Проходит несколько месяцев. Один сложный период заканчивается, но почти сразу появляется следующий. Разговоры о новой жизни остаются прежними.",
+    "Иногда вам хочется задать всего один вопрос: «Какой ты видишь нашу жизнь через пять лет?» Но внутри появляется страх, что честный ответ окажется совсем не таким, каким вы его представляли.",
+    "Когда вы злитесь на его поступок, разговор быстро превращается в разговор о том, что вы слишком остро реагируете."
+  ];
   const answers = {};
+  let currentQ = 0;
+
+  function startTest() {
+    document.getElementById('startTestBtn').style.display = 'none';
+    const diag = document.getElementById('diagnosticSection');
+    diag.style.display = 'block';
+    renderQuestion();
+    diag.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+
+  function renderQuestion() {
+    const total = quizQuestions.length;
+    document.getElementById('quizQText').textContent = quizQuestions[currentQ];
+    document.getElementById('progressCount').textContent = 'Вопрос ' + (currentQ + 1) + ' из ' + total;
+    document.getElementById('progressFill').style.width = Math.round(((currentQ + 1) / total) * 100) + '%';
+
+    document.querySelectorAll('#quizOptsWrap .opt').forEach(o => {
+      o.classList.remove('active');
+      if (answers[currentQ] === o.textContent.trim()) o.classList.add('active');
+    });
+
+    document.getElementById('backBtn').disabled = (currentQ === 0);
+    const nextBtn = document.getElementById('nextBtn');
+    nextBtn.disabled = !answers.hasOwnProperty(currentQ);
+    nextBtn.textContent = (currentQ === total - 1) ? 'Посмотреть результат' : 'Далее';
+  }
 
   function selectOpt(btn) {
-    const group = btn.parentElement;
-    const qId = group.getAttribute('data-q');
-    group.querySelectorAll('.opt').forEach(o => o.classList.remove('active'));
+    answers[currentQ] = btn.textContent.trim();
+    document.querySelectorAll('#quizOptsWrap .opt').forEach(o => o.classList.remove('active'));
     btn.classList.add('active');
-    answers[qId] = btn.textContent.trim();
+    document.getElementById('nextBtn').disabled = false;
+  }
+
+  function nextQuestion() {
+    if (currentQ < quizQuestions.length - 1) {
+      currentQ++;
+      renderQuestion();
+      document.getElementById('diagnosticSection').scrollIntoView({behavior:'smooth', block:'start'});
+    } else {
+      calcQuiz();
+    }
+  }
+
+  function prevQuestion() {
+    if (currentQ > 0) {
+      currentQ--;
+      renderQuestion();
+      document.getElementById('diagnosticSection').scrollIntoView({behavior:'smooth', block:'start'});
+    }
   }
 
   function calcQuiz() {
-    const total = 8;
-    const answered = Object.keys(answers).length;
-    if (answered < total) {
-      const el = document.getElementById('quizResult');
-      el.className = 'quiz-result show mid';
-      el.textContent = 'Отметьте все восемь пунктов, чтобы увидеть результат.';
-      el.scrollIntoView({behavior:'smooth', block:'center'});
-      return;
-    }
+    document.getElementById('quizCardWrap').style.display = 'none';
+    document.getElementById('quizNav').style.display = 'none';
+
     const counts = {'Да':0, 'Нет':0, 'Не знаю':0};
     Object.values(answers).forEach(a => { counts[a] = (counts[a] || 0) + 1; });
 
@@ -308,6 +374,14 @@
     el.className = 'quiz-result show ' + tier;
     el.textContent = text;
     el.scrollIntoView({behavior:'smooth', block:'center'});
+
+    document.getElementById('unlockBtn').style.display = 'block';
+  }
+
+  function unlockSolution() {
+    const after = document.getElementById('afterResult');
+    after.style.display = 'block';
+    after.scrollIntoView({behavior:'smooth', block:'start'});
   }
 </script>
 </head>
@@ -326,80 +400,39 @@
     <p>Вы даже говорите с ним об этом прямо. И каждый раз в ответ — не отказ, а надежда: «Да, конечно, обязательно». «Вот только съезжу с друзьями на рыбалку — и всё будет по-другому». «Дай мне ещё немного времени, я правда хочу измениться».</p>
     <p>Эти слова слышат тысячи женщин — и слышат почти одними и теми же фразами. Обещание есть каждый раз. Действия — нет ни разу.</p>
     <p>А где-то глубже сидит вопрос ещё горше: а вдруг он вообще способен измениться — просто не ради вас. Так тоже бывает: человек годами не менялся в одних отношениях и вдруг меняется в следующих. Это не значит, что вы сделали что-то не так. Это значит, что изменения начинаются не от того, что партнёр просит или ждёт, а от того, что человек сам этого хочет — для себя, а не по чьему-то требованию.</p>
+    <button class="quiz-btn" id="startTestBtn" onclick="startTest()">Начать тест</button>
   </section>
 
-  <div class="diagnostic">
+  <div class="diagnostic" id="diagnosticSection" style="display:none;">
     <h3>Вы ждёте будущего или живёте настоящим?</h3>
     <div class="hint">Прочитайте каждую сцену и честно отметьте — Да, Нет или Не знаю. Это не тест с правильным ответом, а способ увидеть, какой ответ у вас перевешивает.</div>
-    <div class="quiz-list">
-      <div class="quiz-item">
-        <div class="quiz-q">За ужином он снова говорит: «Вот закончится этот тяжёлый период, и наша жизнь наконец изменится». Вы слышите эти слова уже не первый год, но снова ловите себя на мысли: «Наверное, на этот раз всё получится».</div>
-        <div class="quiz-opts" data-q="1">
-          <button type="button" class="opt" onclick="selectOpt(this)">Да</button>
-          <button type="button" class="opt" onclick="selectOpt(this)">Нет</button>
-          <button type="button" class="opt" onclick="selectOpt(this)">Не знаю</button>
-        </div>
-      </div>
-      <div class="quiz-item">
-        <div class="quiz-q">Он снова не сделал того, что обещал. Прежде чем услышать его объяснение, вы уже сами нашли причину, почему сейчас у него не получилось.</div>
-        <div class="quiz-opts" data-q="2">
-          <button type="button" class="opt" onclick="selectOpt(this)">Да</button>
-          <button type="button" class="opt" onclick="selectOpt(this)">Нет</button>
-          <button type="button" class="opt" onclick="selectOpt(this)">Не знаю</button>
-        </div>
-      </div>
-      <div class="quiz-item">
-        <div class="quiz-q">Вы всё чаще откладываете свои желания. Поездку, отпуск, ремонт, серьёзный разговор. Кажется, что сейчас неподходящее время, а потом обязательно станет легче.</div>
-        <div class="quiz-opts" data-q="3">
-          <button type="button" class="opt" onclick="selectOpt(this)">Да</button>
-          <button type="button" class="opt" onclick="selectOpt(this)">Нет</button>
-          <button type="button" class="opt" onclick="selectOpt(this)">Не знаю</button>
-        </div>
-      </div>
-      <div class="quiz-item">
-        <div class="quiz-q">Одного хорошего вечера хватает, чтобы снова поверить, что теперь всё будет по-другому. Хотя до этого были недели или месяцы, когда ничего не менялось.</div>
-        <div class="quiz-opts" data-q="4">
-          <button type="button" class="opt" onclick="selectOpt(this)">Да</button>
-          <button type="button" class="opt" onclick="selectOpt(this)">Нет</button>
-          <button type="button" class="opt" onclick="selectOpt(this)">Не знаю</button>
-        </div>
-      </div>
-      <div class="quiz-item">
-        <div class="quiz-q">Когда кто-то спрашивает о вашем мужчине, вы замечаете странную вещь. Вы чаще рассказываете о том, каким он обязательно станет, чем о том, какой он сегодня.</div>
-        <div class="quiz-opts" data-q="5">
-          <button type="button" class="opt" onclick="selectOpt(this)">Да</button>
-          <button type="button" class="opt" onclick="selectOpt(this)">Нет</button>
-          <button type="button" class="opt" onclick="selectOpt(this)">Не знаю</button>
-        </div>
-      </div>
-      <div class="quiz-item">
-        <div class="quiz-q">Проходит несколько месяцев. Один сложный период заканчивается, но почти сразу появляется следующий. Разговоры о новой жизни остаются прежними.</div>
-        <div class="quiz-opts" data-q="6">
-          <button type="button" class="opt" onclick="selectOpt(this)">Да</button>
-          <button type="button" class="opt" onclick="selectOpt(this)">Нет</button>
-          <button type="button" class="opt" onclick="selectOpt(this)">Не знаю</button>
-        </div>
-      </div>
-      <div class="quiz-item">
-        <div class="quiz-q">Иногда вам хочется задать всего один вопрос: «Какой ты видишь нашу жизнь через пять лет?» Но внутри появляется страх, что честный ответ окажется совсем не таким, каким вы его представляли.</div>
-        <div class="quiz-opts" data-q="7">
-          <button type="button" class="opt" onclick="selectOpt(this)">Да</button>
-          <button type="button" class="opt" onclick="selectOpt(this)">Нет</button>
-          <button type="button" class="opt" onclick="selectOpt(this)">Не знаю</button>
-        </div>
-      </div>
-      <div class="quiz-item">
-        <div class="quiz-q">Когда вы злитесь на его поступок, разговор быстро превращается в разговор о том, что вы слишком остро реагируете.</div>
-        <div class="quiz-opts" data-q="8">
+
+    <div class="progress-wrap">
+      <div class="progress-count" id="progressCount">Вопрос 1 из 8</div>
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    </div>
+
+    <div id="quizCardWrap">
+      <div class="quiz-item" style="border-bottom:none; padding-top:8px;">
+        <div class="quiz-q" id="quizQText"></div>
+        <div class="quiz-opts" id="quizOptsWrap">
           <button type="button" class="opt" onclick="selectOpt(this)">Да</button>
           <button type="button" class="opt" onclick="selectOpt(this)">Нет</button>
           <button type="button" class="opt" onclick="selectOpt(this)">Не знаю</button>
         </div>
       </div>
     </div>
-    <button class="quiz-btn" onclick="calcQuiz()">Посмотреть результат</button>
-    <div class="quiz-result" id="quizResult"></div>
 
+    <div class="quiz-nav" id="quizNav">
+      <button type="button" class="nav-btn back" id="backBtn" onclick="prevQuestion()" disabled>Назад</button>
+      <button type="button" class="nav-btn next" id="nextBtn" onclick="nextQuestion()" disabled>Далее</button>
+    </div>
+
+    <div class="quiz-result" id="quizResult"></div>
+    <button class="quiz-btn" id="unlockBtn" style="display:none;" onclick="unlockSolution()">Узнать, как решить проблему</button>
+  </div>
+
+  <div id="afterResult" style="display:none;">
     <div class="two-questions">
       <div class="q-card">
         <div class="q-label">Вопрос первый</div>
@@ -414,7 +447,6 @@
         <div class="q-text">Когда вы не получаете то, что хотите, в конкретной ситуации — что вы делаете дальше? Уговариваете себя, что получится в следующий раз. Или смотрите на факт, который есть сейчас, и решаете, что делать именно с ним.</div>
       </div>
     </div>
-  </div>
 
   <div class="divider"><span></span><i></i><span></span></div>
 
@@ -461,6 +493,8 @@
     <p>Материал работает прямо в браузере. Можно открыть с телефона или компьютера.</p>
     <p style="font-size:15px;opacity:.75;">Доступ навсегда — 990 ₽.</p>
     <a class="cta-button" href="https://app.lava.top/products/73f02385-d323-4e45-b43b-95ad33752cab" target="_blank">Получить доступ к материалу «Реальность»</a>
+  </div>
+
   </div>
 
 </div>
