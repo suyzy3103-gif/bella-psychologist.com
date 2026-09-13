@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Я выбираю реальность</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
   body {
@@ -24,7 +24,7 @@
   }
   header { text-align:center; padding:32px 0 40px; }
   h1 {
-    font-family:'Cormorant Garamond', serif;
+    font-family:'Oswald', sans-serif;
     font-weight:700;
     font-size:44px;
     line-height:1.15;
@@ -33,18 +33,18 @@
   .subtitle {
     font-size:16px;
     font-weight:600;
-    color:#B11D2A;
+    color:#1E8A4C;
     margin-top:10px;
     letter-spacing:.02em;
     text-transform:uppercase;
   }
-  .rule-line { width:56px; height:3px; background:#B11D2A; margin:24px auto 0; opacity:.6; }
+  .rule-line { width:56px; height:3px; background:#1E8A4C; margin:24px auto 0; opacity:.6; }
 
   .opening p { font-size:18px; margin-bottom:18px; }
   .opening { padding-bottom:8px; }
 
   .bridge {
-    font-family:'Cormorant Garamond', serif;
+    font-family:'Oswald', sans-serif;
     font-size:24px;
     font-weight:600;
     line-height:1.4;
@@ -68,8 +68,23 @@
   .deep-section.tone-mint h3 { color:#256B47; }
   .deep-section.tone-peach h3 { color:#B0611F; }
   .deep-section.tone-sky h3 { color:#265E8C; }
+
+  .practice-card { border-radius:18px; padding:26px 22px; margin-bottom:18px; border:1px solid transparent; }
+  .practice-card.tone-lavender { background:#F1EDFA; border-color:#E1D8F2; }
+  .practice-card.tone-mint { background:#E9F5EE; border-color:#D5EBDF; }
+  .practice-card.tone-peach { background:#FDF0E6; border-color:#F5DDC6; }
+  .practice-card.tone-sky { background:#E9F3FB; border-color:#CFE3F5; }
+  .practice-card.tone-sand { background:#FBF3E6; border-color:#F0DFC0; }
+  .practice-title { font-family:'Oswald', sans-serif; font-size:19px; font-weight:600; margin-bottom:14px; color:#141414; }
+  .q-chip { background:#EAF1EE; color:#1E5C3A; border-radius:12px; padding:14px 16px; font-size:16px; line-height:1.5; margin-bottom:12px; }
+  .practice-chip { border-radius:12px; padding:14px 16px; font-size:15px; line-height:1.5; }
+  .practice-chip .practice-tag { display:block; margin-bottom:5px; text-transform:uppercase; font-size:12px; letter-spacing:.06em; font-weight:700; }
+  .practice-chip.amber { background:#FBF0DD; color:#5c4a1e; }
+  .practice-chip.amber .practice-tag { color:#B0611F; }
+  .practice-chip.red { background:#FBEAEA; color:#7a1c22; }
+  .practice-chip.red .practice-tag { color:#8a1f27; }
   .deep-section h3 {
-    font-family:'Cormorant Garamond', serif;
+    font-family:'Oswald', sans-serif;
     font-size:24px;
     margin-bottom:14px;
   }
@@ -93,12 +108,12 @@
     cursor:pointer;
   }
   .cost-item:last-child { border-bottom:none; }
-  .cost-item input { width:19px; height:19px; accent-color:#B11D2A; }
+  .cost-item input { width:19px; height:19px; accent-color:#1E8A4C; }
   .cost-counter {
     margin-top:16px;
     font-size:14px;
     font-weight:700;
-    color:#B11D2A;
+    color:#1E8A4C;
     text-align:right;
   }
 
@@ -124,14 +139,14 @@
   }
   .exercise-question {
     margin-top:18px;
-    font-family:'Cormorant Garamond', serif;
+    font-family:'Oswald', sans-serif;
     font-style:italic;
     font-size:18px;
   }
 
   .index-scale input[type="range"] {
     width:100%;
-    accent-color:#B11D2A;
+    accent-color:#1E8A4C;
     margin:10px 0;
   }
   .index-labels {
@@ -157,7 +172,7 @@
     margin:28px 0;
   }
   .diagnostic h3 {
-    font-family:'Cormorant Garamond', serif;
+    font-family:'Oswald', sans-serif;
     font-size:28px;
     margin-bottom:6px;
   }
@@ -175,7 +190,7 @@
     box-shadow:0 3px 12px rgba(20,20,20,.05);
     cursor:pointer;
   }
-  .check-card input { width:22px; height:22px; margin-top:1px; accent-color:#B11D2A; flex-shrink:0; }
+  .check-card input { width:22px; height:22px; margin-top:1px; accent-color:#1E8A4C; flex-shrink:0; }
   .check-card span { font-size:16px; line-height:1.5; }
   .check-lavender { background:#fff; }
   .check-lavender input { accent-color:#6A4FB5; }
@@ -216,7 +231,7 @@
   .q-blue-light { background:#E4F0FA; }
   .q-blue-deep { background:#CFE2F5; }
   .q-label {
-    font-family:'Cormorant Garamond', serif;
+    font-family:'Oswald', sans-serif;
     font-size:14px;
     font-weight:700;
     text-transform:uppercase;
@@ -227,12 +242,12 @@
   .q-text { font-size:16px; line-height:1.5; color:#1a2a38; }
 
   .stage-title {
-    font-family:'Cormorant Garamond', serif;
+    font-family:'Oswald', sans-serif;
     font-size:15px;
     font-weight:700;
     text-transform:uppercase;
     letter-spacing:.08em;
-    color:#B11D2A;
+    color:#1E8A4C;
     text-align:center;
     margin:52px 0 8px;
   }
@@ -252,7 +267,7 @@
   .stage-rose { background:#FBEEEA; }
   .stage-blue .stage-title { color:#265E8C; }
   .stage-sand .stage-title { color:#B0611F; }
-  .stage-rose .stage-title { color:#B11D2A; }
+  .stage-rose .stage-title { color:#1E8A4C; }
   .stage-blue .rule, .stage-sand .rule, .stage-rose .rule { border-bottom-color:rgba(20,20,20,.08); }
 
   .rule { border-bottom:1px solid #e4e1d8; }
@@ -265,10 +280,10 @@
     user-select:none;
   }
   .rule-num {
-    font-family:'Cormorant Garamond', serif;
+    font-family:'Oswald', sans-serif;
     font-size:26px;
     font-weight:700;
-    color:#B11D2A;
+    color:#1E8A4C;
     min-width:32px;
   }
   .rule-title {
@@ -316,7 +331,7 @@
     color:#5c4a1e;
   }
   .diary-q {
-    font-family:'Cormorant Garamond', serif;
+    font-family:'Oswald', sans-serif;
     font-style:italic;
     font-size:18px;
     margin-top:14px;
@@ -354,7 +369,7 @@
 
   <header>
     <h1>Я выбираю реальность</h1>
-    <div class="subtitle">9 правил, после которых вы перестанете ждать человека, которого не существует</div>
+    <div class="subtitle">10 правил, после которых вы перестанете ждать человека, которого не существует</div>
     <div class="rule-line"></div>
   </header>
 
@@ -381,13 +396,34 @@
     <div class="quiz-result" id="diagResult"></div>
 
     <div class="two-questions">
-      <div class="q-card q-blue-light">
-        <div class="q-label">Вопрос первый</div>
-        <div class="q-text">То, чего вы ждёте, — в его силах вообще? Или это уровень, до которого он по своему складу не дотягивается — не потому что ленится, а потому что не так устроен.</div>
+      <div class="practice-card tone-lavender">
+        <div class="practice-title">1. Ошибка невозвратных затрат</div>
+        <div class="q-chip">Что вас держит рядом — то, что вы получаете сейчас, или то, сколько лет вы уже вложили?</div>
+        <div class="practice-chip amber"><span class="practice-tag">Практика</span>Отдельно, без учёта прошлого, опишите на бумаге, что вы получаете от отношений сегодня. Решение стоит принимать по этому списку, а не по количеству прожитых лет.</div>
       </div>
-      <div class="q-card q-blue-deep">
-        <div class="q-label">Вопрос второй</div>
-        <div class="q-text">Он хоть раз показывал делом, пусть в малом, что способен на то, чего вы ждёте? Или эту способность вы придумали сами и одолжили ему.</div>
+
+      <div class="practice-card tone-mint">
+        <div class="practice-title">2. Оптимистическое смещение</div>
+        <div class="q-chip">Вы верите, что станет легче, потому что видите этому доказательства — или потому что так думать легче?</div>
+        <div class="practice-chip red"><span class="practice-tag">Практика</span>Вспомните последние три раза, когда говорили себе «скоро станет легче». В скольких из них легче стало само, без вашего участия?</div>
+      </div>
+
+      <div class="practice-card tone-peach">
+        <div class="practice-title">3. Страх неизвестности</div>
+        <div class="q-chip">Что пугает вас больше — то, что происходит сейчас, или то, что будет, если вы это измените?</div>
+        <div class="practice-chip amber"><span class="practice-tag">Практика</span>Опишите оба сценария по пунктам, а не общими словами «станет хуже» — что конкретно изменится в каждом.</div>
+      </div>
+
+      <div class="practice-card tone-sky">
+        <div class="practice-title">4. Механизм надежды через редкое подкрепление</div>
+        <div class="q-chip">Хорошие моменты между его обещаниями делают вас счастливее — или просто снова заставляют ждать следующего?</div>
+        <div class="practice-chip red"><span class="practice-tag">Практика</span>После следующего «хорошего вечера» отследите, сколько дней вы снова провели в ожидании, а не в том, что происходит по факту.</div>
+      </div>
+
+      <div class="practice-card tone-sand">
+        <div class="practice-title">5. Взгляд со стороны</div>
+        <div class="q-chip">Если бы подруга рассказала вам вашу историю слово в слово — что бы вы ей посоветовали?</div>
+        <div class="practice-chip amber"><span class="practice-tag">Практика</span>Запишите этот совет одним предложением. Потом перечитайте его так, будто он адресован вам.</div>
       </div>
     </div>
   </div>
@@ -602,6 +638,21 @@
       <div class="today-box"><b>Сегодня:</b> запишите для себя, без черновика для него, — что вы выбираете сейчас, при том человеке, какой он есть сегодня.</div>
       <div class="resistance"><b>Будет сопротивление.</b> Страх, что назвать выбор вслух — значит сделать его необратимым. Это не так. Выбор можно пересматривать, но он должен быть назван честно.</div>
       <div class="diary-q">Вы сегодня строите жизнь с человеком, которого видите каждый день, или продолжаете ждать того, кого всё ещё нет?</div>
+    </div></div>
+  </div>
+
+  <div class="rule">
+    <div class="rule-head" onclick="toggleRule(this)">
+      <div class="rule-num">10</div>
+      <div class="rule-title">Возвращайте разговор к поступку</div>
+      <div class="chevron">⌄</div>
+    </div>
+    <div class="rule-body"><div class="rule-body-inner">
+      <h4>Ловушка</h4>
+      <p>Он опоздал, забыл, не сделал — а через пять минут вы уже оправдываетесь за то, что расстроились. Тема сместилась с его поступка на вашу реакцию, и вы этого даже не заметили.</p>
+      <div class="today-box"><b>Сегодня:</b> в следующий раз, когда почувствуете, что разговор уходит в «ты слишком остро реагируешь», одной фразой верните его назад: «Мы сейчас не про то, как я отреагировала. Мы про то, что ты сделал».</div>
+      <div class="resistance"><b>Будет сопротивление.</b> Он может сказать, что вы придираетесь или переводите стрелки. Это тот же приём в обратную сторону — поддаваться не стоит.</div>
+      <div class="diary-q">Сколько раз последний разговор о его поступке заканчивался обсуждением вашего характера?</div>
     </div></div>
   </div>
   </div>
