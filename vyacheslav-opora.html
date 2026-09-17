@@ -101,6 +101,24 @@
   .hist-bar{ height:100%; background:var(--accent); border-radius:6px; }
   .hist-val{ width:20px; text-align:right; font-weight:700; color:var(--text); }
   .empty-hint{ color:var(--muted); font-size:14.5px; font-style:italic; }
+  .quad-square{
+    display:grid; grid-template-columns:1fr 1fr; gap:0; margin:16px 0 4px;
+    border:2px solid var(--accent); border-radius:12px; overflow:hidden;
+  }
+  .quad-cell{ padding:16px; background:#FCFBF9; position:relative; }
+  .quad-cell.tl, .quad-cell.tr{ border-bottom:2px solid var(--accent); }
+  .quad-cell.tl, .quad-cell.bl{ border-right:2px solid var(--accent); }
+  .quad-cell label{ margin-top:0; padding-right:26px; display:block; }
+  .quad-num{
+    position:absolute; top:12px; right:14px; width:22px; height:22px; border-radius:50%;
+    background:var(--accent); color:#fff; font-size:12.5px; font-weight:700;
+    display:flex; align-items:center; justify-content:center;
+  }
+  @media (max-width:480px){
+    .quad-square{ grid-template-columns:1fr; }
+    .quad-cell.tl, .quad-cell.bl{ border-right:none; }
+    .quad-cell.tl, .quad-cell.tr, .quad-cell.bl{ border-bottom:2px solid var(--accent); }
+  }
   /* reframe cards */
   .card-grid{ display:grid; gap:12px; }
   .flip-card{
@@ -263,6 +281,41 @@
       <h2 style="font-size:20px;">Записи по опорам</h2>
       <div id="supportList"><div class="empty-hint">Записей пока нет.</div></div>
     </div>
+  </section>
+
+  <!-- КВАДРАТ ДЕКАРТА -->
+  <section class="block">
+    <h2>Квадрат Декарта — решение о возвращении</h2>
+    <p>Быстрый ответ на вопрос «вернуться или нет» обычно даёт только одна сторона — та, что громче звучит в моменте. Здесь вопрос разложен на четыре стороны сразу. Заполните все четыре — сохранится автоматически.</p>
+    <div class="amber">
+      <b>Возможное сопротивление</b>
+      «Я и так знаю ответ» — вероятно, знаете. Но пока ответ не разложен на все четыре стороны, легко принять решение под влиянием только одной сильной эмоции, а через неделю о нём пожалеть.
+    </div>
+
+    <div class="quad-square">
+      <div class="quad-cell tl">
+        <span class="quad-num">1</span>
+        <label>Что будет, если вы вернётесь в отношения</label>
+        <textarea id="dc_q1" placeholder="Плюсы и последствия возвращения"></textarea>
+      </div>
+      <div class="quad-cell tr">
+        <span class="quad-num">2</span>
+        <label>Что будет, если вы не вернётесь</label>
+        <textarea id="dc_q2" placeholder="Что изменится, если решите не возвращаться"></textarea>
+      </div>
+      <div class="quad-cell bl">
+        <span class="quad-num">3</span>
+        <label>Чего не будет (что вы потеряете), если вернётесь</label>
+        <textarea id="dc_q3" placeholder="От чего придётся отказаться ради возвращения"></textarea>
+      </div>
+      <div class="quad-cell br">
+        <span class="quad-num">4</span>
+        <label>Чего не будет (что останется недоступным), если не вернётесь</label>
+        <textarea id="dc_q4" placeholder="Что останется недоступным, если не вернётесь"></textarea>
+      </div>
+    </div>
+    <button class="btn" onclick="saveDescartes()">Сохранить квадрат</button>
+    <div class="save-note" id="dcNote"></div>
   </section>
 
   <!-- ДНЕВНИК -->
@@ -519,6 +572,25 @@
     document.getElementById('iceNote').textContent = days.length ? 'Последняя отметка: ' + days[days.length - 1] : '';
   }
   renderIce();
+
+  // ---- квадрат Декарта ----
+  const LS_DESCARTES = 'vsl_descartes';
+  const dcFields = ['dc_q1', 'dc_q2', 'dc_q3', 'dc_q4'];
+  function loadDescartes(){
+    try{ return JSON.parse(localStorage.getItem(LS_DESCARTES)) || {}; }catch(e){ return {}; }
+  }
+  (function initDescartes(){
+    const data = loadDescartes();
+    dcFields.forEach(id => {
+      if (data[id]) document.getElementById(id).value = data[id];
+    });
+  })();
+  function saveDescartes(){
+    const data = {};
+    dcFields.forEach(id => { data[id] = document.getElementById(id).value; });
+    localStorage.setItem(LS_DESCARTES, JSON.stringify(data));
+    document.getElementById('dcNote').textContent = 'Сохранено.';
+  }
 </script>
 
 </body>
