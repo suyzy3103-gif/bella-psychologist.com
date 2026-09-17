@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Конфликт — Бэлла Полянинова</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAF8;
+    --text: #1c1c1e;
+    --muted: #666664;
+    --card-bg: #ffffff;
+    --border: #e7e3d8;
+    --spor-bg: #EAF3EC;
+    --spor-border: #B9D6C2;
+    --konflikt-bg: #F7E1E1;
+    --konflikt-border: #C25C52;
+    --loud-bg: #EAF0F7;
+    --loud-border: #9FB8D6;
+    --pink-bg: #FBEAF0;
+    --pink-border: #DDA7BE;
+    --accent: #A81C2A;
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Manrope', sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    padding-bottom: 40px;
+  }
+  .authorline {
+    text-align: center;
+    font-size: 12.5px;
+    letter-spacing: .3px;
+    color: var(--muted);
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 20px; }
+  header.hero { padding: 40px 0 24px; text-align: center; }
+  header.hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 1.25;
+    margin: 0 0 14px;
+  }
+  header.hero p.sub {
+    color: var(--muted);
+    font-size: 16.5px;
+    line-height: 1.6;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+  section { margin: 34px 0; }
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    font-size: 24px;
+    margin: 0 0 14px;
+  }
+  h2.centered { text-align: center; }
+  p { margin: 0 0 16px; }
+
+  .loud {
+    background: var(--loud-bg);
+    border: 1.5px solid var(--loud-border);
+    border-radius: 14px;
+    padding: 20px 22px;
+    margin: 18px 0;
+  }
+  .konflikt-scene {
+    background: var(--konflikt-bg);
+    border: 1.5px solid var(--konflikt-border);
+    border-radius: 14px;
+    padding: 20px 22px;
+    margin: 18px 0;
+  }
+  .spor-scene {
+    background: var(--spor-bg);
+    border: 1.5px solid var(--spor-border);
+    border-radius: 14px;
+    padding: 20px 22px;
+    margin: 18px 0;
+  }
+  .pink {
+    background: var(--pink-bg);
+    border: 1.5px solid var(--pink-border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin: 16px 0;
+  }
+  .block-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    font-size: 20px;
+    display: block;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  /* виджет самопроверки */
+  .options { display:flex; flex-direction:column; gap:12px; margin: 20px 0 0; }
+  .option {
+    display: block; cursor: pointer; border-radius: 14px;
+    padding: 18px 20px; border: 1.5px solid transparent;
+    font-size: 16.5px; line-height: 1.5; position: relative;
+    transition: transform .15s ease;
+  }
+  .option:hover { transform: translateY(-1px); }
+  .option input { position:absolute; opacity:0; pointer-events:none; }
+  .option.o1 { background:#F3ECDD; border-color:#D9C9A3; }
+  .option.o2 { background:#F7E3E6; border-color:#E3AEB6; }
+  .option.o3 { background:#F6D3D0; border-color:#D98B85; }
+  .option.o4 { background:#F0BDB8; border-color:#C25C52; }
+  .option.selected { box-shadow: 0 0 0 2.5px var(--text) inset; }
+  .number {
+    display:inline-flex; align-items:center; justify-content:center;
+    width:24px; height:24px; border-radius:50%;
+    background:rgba(0,0,0,.12); font-size:13px; font-weight:700;
+    margin-right:12px; vertical-align:middle;
+  }
+  .reflection {
+    margin-top:16px; padding:18px 20px; border-radius:14px;
+    background:var(--card-bg); border:1px solid var(--border);
+    font-size:15.5px; line-height:1.6; display:none;
+  }
+  .reflection.visible { display:block; }
+  .reflection .tag { display:block; font-family:'Cormorant Garamond', serif; font-weight:700; font-size:18px; margin-bottom:6px; }
+  .reset {
+    display:none; margin-top:14px; background:none; border:none;
+    color:var(--muted); font-size:14px; text-decoration:underline;
+    cursor:pointer; padding:0;
+  }
+  .reset.visible { display:inline-block; }
+
+  /* дыхание */
+  .breathing {
+    display:flex; justify-content:center; gap:10px; margin: 18px 0 4px;
+    flex-wrap: wrap;
+  }
+  .breathing span {
+    background: #fff; border: 1.5px solid var(--loud-border);
+    border-radius: 20px; padding: 8px 16px; font-size: 14.5px; font-weight: 600;
+  }
+
+  .cta-final {
+    background: var(--konflikt-bg);
+    border: 1.5px solid var(--konflikt-border);
+    border-radius: 16px;
+    padding: 24px 22px;
+    text-align: left;
+    margin-top: 30px;
+  }
+  .cta-final p { margin-bottom: 10px; font-size: 17px; }
+  .cta-final .rule { font-family:'Cormorant Garamond', serif; font-weight:700; font-size:21px; color: var(--accent); }
+  .cta-final a.buy {
+    display: inline-block;
+    margin-top: 14px;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 14px 26px;
+    border-radius: 26px;
+    text-decoration: none;
+  }
+
+  footer { text-align:center; font-size:12.5px; color:var(--muted); padding:36px 20px 20px; }
+
+  @media (max-width: 480px) {
+    header.hero h1 { font-size: 27px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="authorline">Полянинова Бэлла Леонидовна. Материал автора. Все права защищены.</div>
+
+<div class="wrap">
+
+<header class="hero">
+  <h1>Конфликт</h1>
+  <p class="sub">Почему одна и та же ссора возвращается снова — и что с этим можно сделать уже сегодня.</p>
+</header>
+
+<section>
+  <div class="loud">
+    <p>Иногда дело даже не в партнёре и не в конкретном поводе. Просто плохой день, накопившаяся усталость, ощущение, что всё держится на вас одной — и первое, что попадается под руку, получает всю накопившуюся раздражённость. Усталость может усиливать раздражение, но не исключает недовольства конкретным поступком партнёра.</p>
+    <p>Если вы узнали в этом описании себя — прежде чем разбираться в конкретном конфликте, стоит честно ответить: я сейчас злюсь на него, или я просто вымотана, и он оказался рядом первым?</p>
+  </div>
+
+  <p>Сколько видов бытовых конфликтов вы могли бы назвать? Два, три?</p>
+  <p>Знаете ли вы, чем конфликт отличается от спора? Большинство скажет — не знает. И это нормально: этому нигде не учат.</p>
+
+  <p>Вот одна из самых частых сцен.</p>
+
+  <div class="konflikt-scene">
+    <p style="margin-bottom:0;">Вы приходите домой. На кухне гора посуды с утра. Партнёр смотрит сериал. Вы говорите: «Ты издеваешься?» — слышите в ответ: «Я думал, ты помоешь, у тебя был перерыв».</p>
+  </div>
+
+  <p>Наверняка вы такое переживали не раз.</p>
+  <p>Обратите внимание не на посуду, а на то, что вы почувствовали в этот момент. Злость? Обиду, что снова всё на вас? Ощущение, что вас не замечают? А теперь — как вы обычно поступаете дальше? Молчите и копите? Срываетесь и потом жалеете? Пытаетесь объяснить — и не находите слов?</p>
+  <p>Это не мелочь про посуду. Это конкретный, узнаваемый вид конфликта — и у него есть имя, причина и рабочее решение. Так же, как и ещё у десяти похожих ситуаций, которые повторяются в семейных отношениях.</p>
+</section>
+
+<section>
+  <h2 class="centered">Прежде чем начать разговор</h2>
+  <p>В тот момент, когда вы уже набираете воздух, чтобы сказать партнёру, какой он не такой, — остановитесь на секунду и выберите то, что честнее всего описывает, чего вы хотите от этой ситуации.</p>
+
+  <div class="options" id="options">
+    <label class="option o1" data-key="1">
+      <input type="radio" name="choice">
+      <span class="number">1</span>Показать, что мне больно
+    </label>
+    <label class="option o2" data-key="2">
+      <input type="radio" name="choice">
+      <span class="number">2</span>Показать, что партнёр плохой
+    </label>
+    <label class="option o3" data-key="3">
+      <input type="radio" name="choice">
+      <span class="number">3</span>Показать, что только на мне всё держится
+    </label>
+    <label class="option o4" data-key="4">
+      <input type="radio" name="choice">
+      <span class="number">4</span>Показать свою значимость — что без меня никто не справится
+    </label>
+  </div>
+  <div class="reflection" id="reflection"></div>
+  <button class="reset" id="reset">Выбрать заново</button>
+</section>
+
+<section>
+  <p>Ответ на этот вопрос сам по себе не решает конфликт, но меняет то, что вы скажете дальше. Одно дело — сказать «мне больно, когда так происходит», и совсем другое — доказывать, что партнёр плохой человек. Первое можно услышать. Второе почти всегда встречает защиту, а не понимание.</p>
+
+  <div class="loud">
+    <span class="block-title">Если эмоции всё же захлёстывают</span>
+    <p>Сделайте четыре медленных цикла дыхания:</p>
+    <div class="breathing">
+      <span>вдох — 4 счёта</span>
+      <span>задержка — 4 счёта</span>
+      <span>выдох — 4 счёта</span>
+      <span>задержка — 4 счёта</span>
+    </div>
+    <p style="margin-top:14px; margin-bottom:0;">Попробуйте сделать паузу перед ответом, не требуя от себя немедленно успокоиться.</p>
+  </div>
+
+  <p>Это работает именно в тот момент, когда вас захлёстывает — но это не решение самого конфликта из сцены выше. Это только первая помощь для той конкретной ситуации, где вас накрывает и вы теряете контроль над словами. У других видов конфликта — совсем другая логика. Например, там, где конфликт превращается в соревнование, кто больше устал, дыхание не поможет — там нужно останавливать не эмоцию, а сам спор о том, кто ценнее.</p>
+</section>
+
+<section>
+  <p>Похожая история случается не только из-за посуды.</p>
+
+  <div class="spor-scene">
+    <p style="margin-bottom:0;">Один родитель разрешает, второй тут же отменяет — и ребёнок быстро учится, к кому идти за нужным ответом. Знакомо? Причина обычно не в ребёнке, а в том, что взрослые не договорились между собой заранее.</p>
+  </div>
+
+  <div class="spor-scene">
+    <p style="margin-bottom:0;">Или — мама приезжает без звонка, начинает советовать, как вести хозяйство, а партнёр говорит: «ну она же с добром». Это тоже не про доброту, а про то же самое неназванное правило: кто в вашем доме решает, что происходит в вашем доме.</p>
+  </div>
+
+  <p>Похожие ссоры могут возникать по разным причинам. В одной ситуации ожидания остались невысказанными, в другой человек нарушил обещание, в третьей разговор превратился в соревнование. Поэтому прежде чем выбирать, что говорить и делать, важно разобраться, какой конфликт происходит между вами.</p>
+</section>
+
+<div class="cta-final">
+  <p>Практикум «Выход из конфликта» — для ситуаций, где разговор с близким человеком снова идёт по кругу: вы объясняете, доказываете, напоминаете, злитесь, а потом всё повторяется.</p>
+  <p>Внутри — разборы десяти частых конфликтов, готовые фразы для трудного разговора, ответы на возражения и правила, которые можно предложить близкому человеку. Вы сможете выбрать свою ситуацию, понять, какое невидимое правило поддерживает спор, и подготовиться к разговору так, чтобы он не закончился очередным подсчётом, кто больше устал и кто больше сделал.</p>
+  <p>Отдельно есть раздел о родительских разногласиях и раздел о насилии и угрозах, где главный вопрос — не разговор, а безопасность и специализированная помощь.</p>
+  <p>«Выход из конфликта» — это не про то, как победить близкого человека в споре. Это про то, как перестать ходить по кругу и наконец назвать правила, по которым вы живёте.</p>
+  <p class="rule" style="margin-bottom:0;">Нам нужны правила. Всегда.</p>
+  <a class="buy" href="https://app.lava.top/products/d1193fb1-a958-4720-a94c-c4bdca5c2ab0" target="_blank" rel="noopener">Выход из конфликта — 2900 ₽</a>
+  <p style="margin-top:10px; margin-bottom:0; font-size:14px; color:var(--muted);">Доступ навсегда. Материал работает прямо в браузере — с телефона или компьютера, скачивать ничего не нужно.</p>
+</div>
+
+</div>
+
+<footer>© Полянинова Бэлла Леонидовна, 2024–2026. Все права защищены.</footer>
+
+<script>
+  const texts = {
+    "1": { tag: "Мне больно", body: "Это можно сказать прямо, и это почти всегда слышат. «Мне было тяжело, когда так случилось» — фраза, после которой разговор может продолжиться, а не превратиться в оборону." },
+    "2": { tag: "Партнёр плохой", body: "Это редко приводит к решению. Как только разговор превращается в оценку личности, партнёр перестаёт слышать суть и начинает защищаться — и тема, из-за которой всё началось, теряется." },
+    "3": { tag: "Только на мне всё держится", body: "Стоит отделить усталость от факта: если нагрузка правда легла на вас — это повод для честного разговора о распределении, а не для доказательства через ссору." },
+    "4": { tag: "Моя значимость", body: "Если за раздражением стоит страх быть незамеченной — вам нужно не выиграть спор, а услышать в ответ, что ваш вклад видят. Это два разных запроса, и решаются они по-разному." }
+  };
+  const options = document.querySelectorAll('.option');
+  const reflection = document.getElementById('reflection');
+  const resetBtn = document.getElementById('reset');
+  options.forEach(opt => {
+    opt.addEventListener('click', () => {
+      options.forEach(o => o.classList.remove('selected'));
+      opt.classList.add('selected');
+      const data = texts[opt.getAttribute('data-key')];
+      reflection.innerHTML = '<span class="tag">' + data.tag + '</span>' + data.body;
+      reflection.classList.add('visible');
+      resetBtn.classList.add('visible');
+    });
+  });
+  resetBtn.addEventListener('click', () => {
+    options.forEach(o => o.classList.remove('selected'));
+    reflection.classList.remove('visible');
+    resetBtn.classList.remove('visible');
+  });
+</script>
+
+</body>
+</html>
