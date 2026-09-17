@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Опора в тяжёлый момент</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAF7F2;
+    --card:#FFFFFF;
+    --text:#2B2A28;
+    --muted:#6b6660;
+    --accent:#8B2635;
+    --accent-soft:#F3E4E6;
+    --amber-bg:#FFF6E0;
+    --amber-border:#E8B94A;
+    --line:#E7E1D8;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:'Manrope', sans-serif; font-size:17px; line-height:1.6;
+    padding-bottom:90px;
+  }
+  .attribution{
+    text-align:center; font-size:13px; color:var(--muted);
+    padding:14px 20px; border-bottom:1px solid var(--line); letter-spacing:.3px;
+  }
+  .wrap{ max-width:640px; margin:0 auto; padding:28px 20px 40px; }
+  h1{
+    font-family:'Cormorant Garamond', serif; font-weight:700;
+    font-size:36px; text-align:center; margin:10px 0 6px; color:var(--accent);
+  }
+  .subtitle{ text-align:center; color:var(--muted); font-size:16px; margin-bottom:28px; }
+  h2{
+    font-family:'Cormorant Garamond', serif; font-weight:700; font-size:24px;
+    color:var(--accent); margin:0 0 12px;
+  }
+  p{ margin:0 0 12px; }
+  .intro{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:20px; margin-bottom:24px;
+  }
+  section.block{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:22px; margin-bottom:20px;
+  }
+  details{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    margin-bottom:14px; padding:0; overflow:hidden;
+  }
+  summary{
+    cursor:pointer; padding:18px 20px; font-family:'Cormorant Garamond', serif;
+    font-weight:700; font-size:20px; color:var(--accent); list-style:none;
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  summary::-webkit-details-marker{ display:none; }
+  summary:after{ content:"+"; font-size:22px; color:var(--muted); font-family:'Manrope',sans-serif; }
+  details[open] summary:after{ content:"–"; }
+  .details-body{ padding:0 20px 22px; }
+  .amber{
+    background:var(--amber-bg); border:1px solid var(--amber-border);
+    border-radius:10px; padding:14px 16px; margin-top:14px; font-size:15.5px;
+  }
+  .amber b{ display:block; margin-bottom:4px; color:#8a6a17; }
+  label{ display:block; font-weight:600; margin:14px 0 6px; font-size:15.5px; }
+  textarea, input[type=text]{
+    width:100%; border:1px solid var(--line); border-radius:10px; padding:12px;
+    font-family:'Manrope',sans-serif; font-size:16px; resize:vertical; background:#FCFBF9;
+  }
+  textarea{ min-height:70px; }
+  .save-note{ font-size:13px; color:var(--muted); margin-top:6px; }
+  /* check-in */
+  .mood-row{ display:flex; align-items:center; gap:12px; margin:10px 0 6px; }
+  input[type=range]{ flex:1; accent-color:var(--accent); }
+  .mood-value{ font-weight:700; font-size:20px; color:var(--accent); width:34px; text-align:center; }
+  .chips{ display:flex; flex-wrap:wrap; gap:8px; margin:10px 0 4px; }
+  .chip{
+    border:1px solid var(--line); background:#FCFBF9; border-radius:20px;
+    padding:8px 14px; font-size:14.5px; cursor:pointer; user-select:none;
+  }
+  .chip.selected{ background:var(--accent); border-color:var(--accent); color:#fff; }
+  .btn{
+    background:var(--accent); color:#fff; border:none; border-radius:10px;
+    padding:13px 20px; font-size:16px; font-weight:700; cursor:pointer; margin-top:14px;
+    font-family:'Manrope',sans-serif;
+  }
+  .btn:hover{ opacity:.92; }
+  .reframe-result{
+    margin-top:16px; padding:16px; border-radius:10px; background:var(--accent-soft);
+    border-left:4px solid var(--accent); font-family:'Cormorant Garamond', serif;
+    font-size:19px; display:none;
+  }
+  /* history bars */
+  .history{ margin-top:18px; }
+  .hist-row{ display:flex; align-items:center; gap:10px; margin-bottom:6px; font-size:13.5px; color:var(--muted); }
+  .hist-date{ width:78px; flex-shrink:0; }
+  .hist-bar-bg{ flex:1; background:#EFEAE2; border-radius:6px; height:14px; overflow:hidden; }
+  .hist-bar{ height:100%; background:var(--accent); border-radius:6px; }
+  .hist-val{ width:20px; text-align:right; font-weight:700; color:var(--text); }
+  .empty-hint{ color:var(--muted); font-size:14.5px; font-style:italic; }
+  /* reframe cards */
+  .card-grid{ display:grid; gap:12px; }
+  .flip-card{
+    border:1px solid var(--line); border-radius:10px; padding:16px; background:#FCFBF9;
+    cursor:pointer;
+  }
+  .flip-card .neg{ font-weight:700; }
+  .flip-card .pos{
+    display:none; margin-top:10px; padding-top:10px; border-top:1px dashed var(--line);
+    color:var(--accent); font-family:'Cormorant Garamond', serif; font-size:18px;
+  }
+  .flip-card.open .pos{ display:block; }
+  .flip-card .hint{ font-size:12.5px; color:var(--muted); margin-top:6px; }
+  /* diary */
+  .diary-entry{
+    border-bottom:1px solid var(--line); padding:12px 0; font-size:15.5px;
+  }
+  .diary-entry:last-child{ border-bottom:none; }
+  .diary-date{ font-size:12.5px; color:var(--muted); margin-bottom:4px; }
+  footer{
+    text-align:center; font-size:12.5px; color:var(--muted); padding:30px 20px 10px;
+  }
+  .sticky-cta{
+    position:fixed; bottom:0; left:0; right:0; background:#fff;
+    border-top:1px solid var(--line); padding:12px 16px; display:flex; gap:10px;
+    justify-content:center; box-shadow:0 -4px 14px rgba(0,0,0,.06); z-index:50;
+  }
+  .sticky-cta a{
+    flex:1; max-width:220px; text-align:center; text-decoration:none;
+    background:var(--accent); color:#fff; padding:11px 10px; border-radius:20px;
+    font-weight:700; font-size:14.5px;
+  }
+  .sticky-cta a.alt{ background:#3a3a3c; }
+  @media (max-width:420px){
+    h1{ font-size:30px; }
+    .sticky-cta a{ font-size:13px; padding:11px 8px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="attribution">Полянинова Бэлла Леонидовна. Авторский продукт. Все права защищены</div>
+
+<div class="wrap">
+
+  <h1>Опора в тяжёлый момент</h1>
+  <div class="subtitle">Личная практика для Вячеслава</div>
+
+  <div class="intro">
+    <p>Здравствуйте, Вячеслав.</p>
+    <p>Этот материал сделан под вашу конкретную ситуацию. Здесь три части: короткая проверка состояния, которую можно проходить в любой день — сегодня легче, завтра тяжелее, и это нормально; взгляд с другой стороны на мысли, которые обычно звучат как приговор себе; и пошаговая практика на тот момент, когда становится особенно тяжело.</p>
+    <p>Не нужно проходить всё сразу. Откройте то, что нужно именно сейчас.</p>
+  </div>
+
+  <!-- ПРОВЕРКА СОСТОЯНИЯ -->
+  <section class="block">
+    <h2>Как вы сегодня</h2>
+    <p>Коротко и честно. Это не тест на правильный ответ — это отметка, чтобы через неделю увидеть движение, а не гадать по памяти.</p>
+
+    <label>Насколько тяжело сейчас (0 — спокойно, 10 — очень тяжело)</label>
+    <div class="mood-row">
+      <input type="range" id="moodRange" min="0" max="10" value="5">
+      <div class="mood-value" id="moodValue">5</div>
+    </div>
+
+    <label>Что сегодня спровоцировало тяжесть больше всего</label>
+    <div class="chips" id="triggerChips">
+      <div class="chip" data-t="Воспоминание">Воспоминание</div>
+      <div class="chip" data-t="Одиночество вечером">Одиночество вечером</div>
+      <div class="chip" data-t="Мысли о её решении">Мысли о её решении</div>
+      <div class="chip" data-t="Ничего конкретного">Ничего конкретного</div>
+    </div>
+
+    <label>Если хотите — одной фразой, что случилось (необязательно)</label>
+    <input type="text" id="moodNote" placeholder="Например: увидел фото из поездки">
+
+    <button class="btn" onclick="saveCheckin()">Сохранить отметку</button>
+
+    <div class="reframe-result" id="triggerReframe"></div>
+
+    <div class="history" id="history">
+      <h2 style="margin-top:22px; font-size:20px;">Ваши последние отметки</h2>
+      <div id="historyList"><div class="empty-hint">Пока нет ни одной отметки. Первая появится здесь после сохранения.</div></div>
+    </div>
+  </section>
+
+  <!-- ПЕРЕВОРОТ -->
+  <details>
+    <summary>Взгляд с другой стороны</summary>
+    <div class="details-body">
+      <p>Нажмите на любую мысль — рядом появится то же самое качество, но с другой стороны. Это не отменяет боль, но не даёт мысли звучать как единственная правда о вас.</p>
+      <div class="card-grid" id="reframeCards"></div>
+    </div>
+  </details>
+
+  <!-- ЛИЧНЫЕ ПРАВИЛА -->
+  <details>
+    <summary>Ваши личные правила</summary>
+    <div class="details-body">
+      <p>У вас есть набор правил, дальше которых вы не готовы двигаться в отношениях. Они не про обиду и не про то, чтобы наказать. Они про границу, ниже которой близость перестаёт быть безопасной для вас.</p>
+      <ul style="padding-left:20px; margin:0 0 14px;">
+        <li style="margin-bottom:8px;">Измена.</li>
+        <li style="margin-bottom:8px;">Обман.</li>
+        <li style="margin-bottom:8px;">Использование вас как финансовую подушку.</li>
+        <li style="margin-bottom:8px;">Использование вашего положения и известности для продвижения себя по социальной лестнице.</li>
+        <li style="margin-bottom:8px;">Публичное обесценивание вас или неуважение к вам перед людьми, которые вас знают.</li>
+        <li style="margin-bottom:8px;">Давление на чувство вины или ревность ради собственной выгоды.</li>
+      </ul>
+      <p>Когда в шаге 4 практики вы формулируете «для меня неприемлемо следующее…» — сверяйтесь с этим списком. Если хотя бы один пункт нарушен, возвращение само по себе не отменяет нарушения.</p>
+
+      <h2 style="font-size:20px; margin-top:20px;">Что для вас приемлемо и не является нарушением</h2>
+      <p>Тревога иногда объявляет нарушением то, что им не является. Этот список — чтобы отличать одно от другого.</p>
+      <ul style="padding-left:20px; margin:0 0 14px;">
+        <li style="margin-bottom:8px;">Общение и дружба с другими людьми, включая противоположный пол, без скрытности.</li>
+        <li style="margin-bottom:8px;">Занятость на работе и поздние мероприятия, если о них известно заранее и без обмана.</li>
+        <li style="margin-bottom:8px;">Открыто обсуждённая пауза или дистанция в отношениях.</li>
+        <li style="margin-bottom:8px;">Разногласия и конфликт — это часть отношений, а не нарушение границы.</li>
+        <li style="margin-bottom:8px;">Сомнение или колебание партнёра само по себе, если оно не сопровождается обманом.</li>
+      </ul>
+      <p>Если сомневаетесь, было ли нарушение — сверьтесь с обоими списками: было ли здесь то, что вы обозначили как недопустимое, или тревога ищет повод там, где повода нет.</p>
+      <p>Можете ли вы сами нарушить эти правила? Список описывает действия других людей по отношению к вам, а не обязательство, за невыполнение которого вы должны себя наказывать. Он помогает видеть ситуацию яснее — окончательное решение в каждом конкретном случае всё равно остаётся за вами.</p>
+    </div>
+  </details>
+
+  <!-- ПРАКТИКА -->
+  <h2 style="margin-top:26px;">Практика на тяжёлый момент</h2>
+  <p style="color:var(--muted); font-size:15px; margin-bottom:16px;">Задача на ближайшие полчаса — пройти этот эпизод, не требуя от себя немедленно перестать любить или скучать. Открывайте шаги по порядку.</p>
+
+  <div id="steps"></div>
+
+  <!-- ОПОРЫ -->
+  <section class="block">
+    <h2>Опоры, которые сейчас работают на вас</h2>
+    <p>Помимо работы с тяжёлыми моментами, важно каждый день отмечать то, что подтверждает: вы заботитесь о себе и жизнь продолжается идти своим чередом.</p>
+
+    <label>Забота о теле — питание, тренировки, прогресс похудения</label>
+    <textarea id="sup_body" placeholder="Например: сегодня придерживался плана, минус 0,3 кг за неделю"></textarea>
+
+    <label>Работа — репетиции, выступления, мероприятия</label>
+    <textarea id="sup_work" placeholder="Например: была репетиция к корпоративу, прошло собранно"></textarea>
+
+    <label>Поддержка друзей и близких</label>
+    <textarea id="sup_friends" placeholder="Например: созвонился с другом, стало легче"></textarea>
+
+    <div class="amber" style="margin-top:20px;">
+      <b>Отдельная практика — утреннее ледяное озеро</b>
+      Вы уже делали это раньше, и это работает для вас. На ближайшие полторы недели, пока острая фаза не пройдёт, стоит съездить туда как можно чаще — в идеале каждое утро. Смена состояния через холод и движение помогает не залипать в тяжёлых мыслях и возвращает ощущение собранности.
+    </div>
+    <label style="margin-top:14px;">Отметка за сегодня</label>
+    <button class="btn" id="iceBtn" onclick="markIceDay()">Сегодня съездил</button>
+    <div class="save-note" id="iceNote" style="margin-top:8px;"></div>
+    <div class="hist-bar-bg" style="margin-top:10px; height:16px;">
+      <div class="hist-bar" id="iceBar" style="width:0%;"></div>
+    </div>
+    <div class="save-note" id="iceCount">0 из ориентировочных 10 дней</div>
+
+    <button class="btn" style="margin-top:18px;" onclick="saveSupportDay()">Сохранить запись дня</button>
+
+    <div class="history" style="margin-top:20px;">
+      <h2 style="font-size:20px;">Записи по опорам</h2>
+      <div id="supportList"><div class="empty-hint">Записей пока нет.</div></div>
+    </div>
+  </section>
+
+  <!-- ДНЕВНИК -->
+  <details>
+    <summary>Дневник записей</summary>
+    <div class="details-body">
+      <p style="font-size:14.5px; color:var(--muted);">Здесь собираются ваши сохранённые записи по шагам практики.</p>
+      <div id="diaryList"><div class="empty-hint">Записей пока нет.</div></div>
+    </div>
+  </details>
+
+  <footer>© Полянинова Бэлла Леонидовна, 2024–2025. Все права защищены.</footer>
+</div>
+
+<div class="sticky-cta">
+  <a href="https://t.me/bella_psychologist" target="_blank">Написать в Telegram</a>
+  <a class="alt" href="https://wa.me/79880051025" target="_blank">Написать в WhatsApp</a>
+</div>
+
+<script>
+  const LS_CHECKINS = 'vsl_checkins';
+  const LS_DIARY = 'vsl_diary';
+
+  // ---- mood check-in ----
+  const moodRange = document.getElementById('moodRange');
+  const moodValue = document.getElementById('moodValue');
+  moodRange.addEventListener('input', () => moodValue.textContent = moodRange.value);
+
+  let selectedTrigger = null;
+  document.querySelectorAll('#triggerChips .chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('#triggerChips .chip').forEach(c => c.classList.remove('selected'));
+      chip.classList.add('selected');
+      selectedTrigger = chip.dataset.t;
+    });
+  });
+
+  const triggerReframes = {
+    'Воспоминание': 'Вы помните детали, потому что умеете по-настоящему присутствовать в отношениях. Это качество, а не слабость.',
+    'Одиночество вечером': 'Сегодня вечером никто не мешает вам заняться тем, на что раньше не хватало времени.',
+    'Мысли о её решении': 'Её решение говорит о её выборе в моменте. Оно не является итоговой оценкой вас как человека.',
+    'Ничего конкретного': 'Иногда тяжесть приходит без явного повода — это тоже проходит, как проходило раньше.'
+  };
+
+  function loadCheckins(){
+    try{ return JSON.parse(localStorage.getItem(LS_CHECKINS)) || []; }catch(e){ return []; }
+  }
+  function saveCheckin(){
+    const entries = loadCheckins();
+    const entry = {
+      date: new Date().toLocaleDateString('ru-RU', {day:'2-digit', month:'2-digit'}),
+      mood: parseInt(moodRange.value, 10),
+      trigger: selectedTrigger || 'не указано',
+      note: document.getElementById('moodNote').value.trim()
+    };
+    entries.push(entry);
+    localStorage.setItem(LS_CHECKINS, JSON.stringify(entries));
+    document.getElementById('moodNote').value = '';
+    renderHistory();
+    if (selectedTrigger && triggerReframes[selectedTrigger]){
+      const box = document.getElementById('triggerReframe');
+      box.textContent = triggerReframes[selectedTrigger];
+      box.style.display = 'block';
+    }
+  }
+  function renderHistory(){
+    const entries = loadCheckins().slice(-10);
+    const list = document.getElementById('historyList');
+    if (!entries.length){
+      list.innerHTML = '<div class="empty-hint">Пока нет ни одной отметки. Первая появится здесь после сохранения.</div>';
+      return;
+    }
+    list.innerHTML = entries.map(e => `
+      <div class="hist-row">
+        <div class="hist-date">${e.date}</div>
+        <div class="hist-bar-bg"><div class="hist-bar" style="width:${e.mood*10}%"></div></div>
+        <div class="hist-val">${e.mood}</div>
+      </div>`).join('');
+  }
+  renderHistory();
+
+  // ---- reframe cards ----
+  const reframePairs = [
+    { neg: 'Я слишком зациклен на прошлом', pos: 'Зато вы умеете ценить то, что было важным, а не отбрасывать легко.' },
+    { neg: 'Я слишком остро всё чувствую', pos: 'Зато вы способны на настоящую близость, а не на равнодушие.' },
+    { neg: 'Мне трудно оставаться одному', pos: 'Зато вы цените отношения и не разучились быть рядом с другим человеком.' },
+    { neg: 'Я не могу перестать об этом думать', pos: 'Зато у вас есть внимание к деталям — его можно постепенно направить на другую задачу.' },
+    { neg: 'Мне тяжело отпустить', pos: 'Зато вы не бросаете людей и дела на полпути.' }
+  ];
+  const cardGrid = document.getElementById('reframeCards');
+  reframePairs.forEach(p => {
+    const div = document.createElement('div');
+    div.className = 'flip-card';
+    div.innerHTML = `<div class="neg">«${p.neg}»</div><div class="pos">${p.pos}</div><div class="hint">нажмите, чтобы увидеть другую сторону</div>`;
+    div.addEventListener('click', () => div.classList.toggle('open'));
+    cardGrid.appendChild(div);
+  });
+
+  // ---- practice steps ----
+  const steps = [
+    {
+      title: 'Шаг 1. Назовите то, что происходит',
+      body: `<p>Запишите время и закончите предложение: «Сейчас мне стало особенно тяжело после того, как…». Оцените силу переживания от нуля до десяти. Укажите конкретный повод: воспоминание, фотография, одиночество вечером, мысль о её поездке. Не начинайте сейчас разбирать все пять лет отношений.</p>`,
+      resist: 'Вы можете подумать: «Зачем записывать очевидное, я и так знаю, что мне плохо». Запись нужна не для того чтобы сообщить вам новость, а чтобы через полчаса увидеть, что изменилось.',
+      placeholder: 'Сейчас мне стало особенно тяжело после того, как…'
+    },
+    {
+      title: 'Шаг 2. Отделите известное от того, что представляете',
+      body: `<p>Напишите три предложения: «Я достоверно знаю, что…», «Сейчас я представляю, что…», «Из этого я делаю вывод о себе, что…». Последние два предложения не становятся фактами только потому, что вызывают сильную боль.</p>`,
+      resist: 'Резистентность: «Но я уверен, что представляю правду, а не додумываю». Уверенность в момент сильной боли — не доказательство точности.',
+      placeholder: 'Я достоверно знаю, что… / Я представляю, что… / Я делаю вывод, что…'
+    },
+    {
+      title: 'Шаг 3. Выясните, что должно исправить её возвращение',
+      body: `<p>Закончите фразу: «Я хочу, чтобы она вернулась, потому что тогда…». Проверьте две версии: «Я хочу продолжать именно эти отношения» и «Я хочу перестать чувствовать, что меня заменили». Обе могут быть верны, но требуют отдельного разбора.</p>`,
+      resist: 'Резистентность: «Это же очевидно, зачем формулировать». Пока цель не названа словами, её легко подменить смутным «лишь бы вернулась».',
+      placeholder: 'Я хочу, чтобы она вернулась, потому что тогда…'
+    },
+    {
+      title: 'Шаг 4. Проверьте цену решения, которое сейчас кажется спасением',
+      body: `<p>Ответьте письменно: «Что станет легче сразу после возвращения?», «Что останется болезненным после первого облегчения?», «На что мне придётся согласиться ради продолжения отношений?». Затем допишите: «Для меня неприемлемо следующее… Поэтому сейчас я выбираю…».</p>`,
+      resist: 'Резистентность: «Хочется поскорее принять решение, а не взвешивать». Именно спешка обычно приводит к тому же тупику.',
+      placeholder: 'Что станет легче… / Что останется болезненным… / Для меня неприемлемо…'
+    },
+    {
+      title: 'Шаг 5. Проверьте мысль о собственной ненужности',
+      body: `<p>Закончите: «То, что она ушла, для меня означает, что я…», затем «Какие факты о моей жизни остаются верными независимо от её выбора?» — запишите три конкретных факта о поступках, способностях, отношениях с людьми.</p>`,
+      resist: 'Резистентность: «Мне не до философии, мне плохо». Мысль о собственной ненужности как раз и делает боль тяжелее, чем сама потеря.',
+      placeholder: 'То, что она ушла, означает для меня… / Факты, которые остаются верными: 1) 2) 3)'
+    },
+    {
+      title: 'Шаг 6. Выполните заранее выбранное действие',
+      body: `<p>Закройте записи и на двадцать минут займитесь конкретным делом: пройдитесь, примите душ, приготовьте еду или позвоните близкому человеку. Для разговора можно использовать фразу: «Мне сейчас очень тяжело от ревности. Побудьте со мной на связи, пожалуйста, без советов о том, как её вернуть».</p>`,
+      resist: 'Резистентность: «Двадцать минут ничего не изменят». Они и не должны — задача пройти этот отрезок, а не решить всё сразу.',
+      placeholder: 'Какое действие вы выбрали и как всё прошло'
+    },
+    {
+      title: 'Шаг 7. Оцените состояние повторно',
+      body: `<p>Снова поставьте оценку от нуля до десяти и запишите: «Что сейчас изменилось?», «Что мне необходимо на ближайший час?». При прежней интенсивности боли повторите простое действие или обратитесь за поддержкой — продолжать письменный разбор через силу не требуется.</p>`,
+      resist: 'Резистентность: «Раз легче не стало, всё бессмысленно». Иногда правильный шаг — это просто повторить действие или позвонить, а не искать новое решение.',
+      placeholder: 'Что сейчас изменилось… / Что мне нужно на ближайший час…'
+    }
+  ];
+
+  const stepsWrap = document.getElementById('steps');
+  steps.forEach((s, i) => {
+    const det = document.createElement('details');
+    det.innerHTML = `
+      <summary>${s.title}</summary>
+      <div class="details-body">
+        ${s.body}
+        <div class="amber"><b>Возможное сопротивление</b>${s.resist}</div>
+        <label>Ваша запись</label>
+        <textarea id="step_${i}" placeholder="${s.placeholder}"></textarea>
+        <button class="btn" onclick="saveStep(${i}, '${s.title.replace(/'/g, "\\'")}')">Сохранить в дневник</button>
+        <div class="save-note" id="note_${i}"></div>
+      </div>`;
+    stepsWrap.appendChild(det);
+  });
+
+  function loadDiary(){
+    try{ return JSON.parse(localStorage.getItem(LS_DIARY)) || []; }catch(e){ return []; }
+  }
+  function saveStep(i, title){
+    const text = document.getElementById('step_' + i).value.trim();
+    if (!text) return;
+    const diary = loadDiary();
+    diary.push({
+      date: new Date().toLocaleDateString('ru-RU', {day:'2-digit', month:'2-digit', year:'numeric'}),
+      title, text
+    });
+    localStorage.setItem(LS_DIARY, JSON.stringify(diary));
+    document.getElementById('note_' + i).textContent = 'Сохранено.';
+    renderDiary();
+  }
+  function renderDiary(){
+    const diary = loadDiary();
+    const list = document.getElementById('diaryList');
+    if (!diary.length){
+      list.innerHTML = '<div class="empty-hint">Записей пока нет.</div>';
+      return;
+    }
+    list.innerHTML = diary.slice().reverse().map(d => `
+      <div class="diary-entry">
+        <div class="diary-date">${d.date} — ${d.title}</div>
+        <div>${d.text}</div>
+      </div>`).join('');
+  }
+  renderDiary();
+
+  // ---- опоры: тело / работа / друзья ----
+  const LS_SUPPORT = 'vsl_support';
+  function loadSupport(){
+    try{ return JSON.parse(localStorage.getItem(LS_SUPPORT)) || []; }catch(e){ return []; }
+  }
+  function saveSupportDay(){
+    const fields = [
+      { key:'sup_body', label:'Забота о теле' },
+      { key:'sup_work', label:'Работа' },
+      { key:'sup_friends', label:'Поддержка друзей' }
+    ];
+    const date = new Date().toLocaleDateString('ru-RU', {day:'2-digit', month:'2-digit', year:'numeric'});
+    const entries = loadSupport();
+    let addedAny = false;
+    fields.forEach(f => {
+      const el = document.getElementById(f.key);
+      const text = el.value.trim();
+      if (text){
+        entries.push({ date, label:f.label, text });
+        el.value = '';
+        addedAny = true;
+      }
+    });
+    if (addedAny){
+      localStorage.setItem(LS_SUPPORT, JSON.stringify(entries));
+      renderSupport();
+    }
+  }
+  function renderSupport(){
+    const entries = loadSupport();
+    const list = document.getElementById('supportList');
+    if (!entries.length){
+      list.innerHTML = '<div class="empty-hint">Записей пока нет.</div>';
+      return;
+    }
+    list.innerHTML = entries.slice().reverse().map(e => `
+      <div class="diary-entry">
+        <div class="diary-date">${e.date} — ${e.label}</div>
+        <div>${e.text}</div>
+      </div>`).join('');
+  }
+  renderSupport();
+
+  // ---- ледяное озеро: стрик ----
+  const LS_ICE = 'vsl_ice_days';
+  const ICE_TARGET = 10;
+  function loadIce(){
+    try{ return JSON.parse(localStorage.getItem(LS_ICE)) || []; }catch(e){ return []; }
+  }
+  function markIceDay(){
+    const today = new Date().toLocaleDateString('ru-RU', {day:'2-digit', month:'2-digit', year:'numeric'});
+    const days = loadIce();
+    if (!days.includes(today)){
+      days.push(today);
+      localStorage.setItem(LS_ICE, JSON.stringify(days));
+    }
+    renderIce();
+  }
+  function renderIce(){
+    const days = loadIce();
+    const pct = Math.min(100, Math.round(days.length / ICE_TARGET * 100));
+    document.getElementById('iceBar').style.width = pct + '%';
+    document.getElementById('iceCount').textContent = days.length + ' из ориентировочных ' + ICE_TARGET + ' дней';
+    document.getElementById('iceNote').textContent = days.length ? 'Последняя отметка: ' + days[days.length - 1] : '';
+  }
+  renderIce();
+</script>
+
+</body>
+</html>
