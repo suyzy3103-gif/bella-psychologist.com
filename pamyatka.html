@@ -74,13 +74,13 @@
 
   <section class="decoder">
     <h2>Разобрать ответы клиента</h2>
-    <p class="muted">Вставьте сообщение из WhatsApp или введите баллы вручную.</p>
+    <p class="muted">Вставьте сообщение из WhatsApp или введите вручную баллы (в сумме 30) либо проценты с экрана теста (в сумме 100).</p>
     <textarea id="paste" placeholder="Здравствуйте. Я прошла тест. Имя: ..."></textarea>
     <div class="scores">
-      <label><span><i style="background:var(--c-O)"></i>Опора</span><input type="number" min="0" max="30" id="in-O" inputmode="numeric"></label>
-      <label><span><i style="background:var(--c-S)"></i>Сила</span><input type="number" min="0" max="30" id="in-S" inputmode="numeric"></label>
-      <label><span><i style="background:var(--c-P)"></i>Порядок</span><input type="number" min="0" max="30" id="in-P" inputmode="numeric"></label>
-      <label><span><i style="background:var(--c-R)"></i>Решение</span><input type="number" min="0" max="30" id="in-R" inputmode="numeric"></label>
+      <label><span><i style="background:var(--c-O)"></i>Опора</span><input type="number" min="0" max="100" id="in-O" inputmode="numeric"></label>
+      <label><span><i style="background:var(--c-S)"></i>Сила</span><input type="number" min="0" max="100" id="in-S" inputmode="numeric"></label>
+      <label><span><i style="background:var(--c-P)"></i>Порядок</span><input type="number" min="0" max="100" id="in-P" inputmode="numeric"></label>
+      <label><span><i style="background:var(--c-R)"></i>Решение</span><input type="number" min="0" max="100" id="in-R" inputmode="numeric"></label>
     </div>
     <button class="btn" id="decode">Показать тип клиента</button>
     <div class="verdict" id="verdict"></div>
@@ -193,16 +193,22 @@ $("paste").addEventListener("input",()=>{
 $("decode").onclick=()=>{
   const sc={}; let sum=0;
   for(const k of ORDER){const v=parseInt($("in-"+k).value,10);if(isNaN(v)){show("Заполните баллы по всем четырём типам.");return;}sc[k]=v;sum+=v;}
-  if(sum!==30){show("Сумма баллов должна быть 30, сейчас "+sum+". Проверьте цифры.");return;}
+  let note="";
+  if(sum>=97&&sum<=103){
+    ORDER.forEach(k=>sc[k]=Math.round(sc[k]*30/sum));
+    const tot=ORDER.reduce((x,k)=>x+sc[k],0);
+    const top=[...ORDER].sort((a,b)=>sc[b]-sc[a])[0]; sc[top]+=30-tot;
+    note='<br><span class="muted">Введены проценты. В баллах: '+ORDER.map(k=>T[k].name+" "+sc[k]).join(", ")+'.</span>';
+  } else if(sum!==30){show("Введите баллы из сообщения WhatsApp (в сумме 30) или проценты с экрана теста (в сумме 100). Сейчас сумма "+sum+".");return;}
   const s=[...ORDER].sort((a,b)=>sc[b]-sc[a]); const [a,b]=s;
   document.querySelectorAll(".tab").forEach(x=>x.classList.remove("hint"));
   if(ORDER.every(k=>sc[k]>=6&&sc[k]<=9)){
-    show('<span class="big">Тип не выражен</span>Баллы распределены ровно. Определите подход по первому разговору.');
+    show('<span class="big">Тип не выражен</span>Баллы распределены ровно. Определите подход по первому разговору.'+note);
   } else if(sc[a]-sc[b]<=2){
-    show('<span class="big">'+T[a].name+' и '+T[b].name+'</span>Смешанный профиль. Начните на языке типа «'+T[a].name+'», предложение сделайте на языке типа «'+T[b].name+'». Обе карточки отмечены ниже.');
+    show('<span class="big">'+T[a].name+' и '+T[b].name+'</span>Смешанный профиль. Начните на языке типа «'+T[a].name+'», предложение сделайте на языке типа «'+T[b].name+'». Обе карточки отмечены ниже.'+note);
     mark([a,b]); open(a,true);
   } else {
-    show('<span class="big">'+T[a].name+'</span>Ведущий тип, '+Math.round(sc[a]/30*100)+'%. Второй по силе: «'+T[b].name+'». Карточка открыта ниже.');
+    show('<span class="big">'+T[a].name+'</span>Ведущий тип, '+Math.round(sc[a]/30*100)+'%. Второй по силе: «'+T[b].name+'». Карточка открыта ниже.'+note);
     mark([a]); open(a,true);
   }
 };
