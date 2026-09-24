@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Памятка специалиста</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ECE8F1; --surface:#FBFAFD; --ink:#26202F; --muted:#6E6679;
+    --plum:#5A3868; --line:#D6CFDE; --gold:#A8854F;
+    --c-O:#8C6BA8; --c-S:#B35C4A; --c-P:#4F6E96; --c-R:#C58B3A;
+    --t-O:#EFE7F5; --t-S:#F6E4DF; --t-P:#E2EAF3; --t-R:#F7EBDA;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  *,*::before,*::after{box-sizing:inherit}
+  html,body{margin:0}
+  body{background:var(--bg);color:var(--ink);font-family:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:640px;margin:0 auto;padding:28px 18px 48px}
+  h1,h2,h3,.big{font-family:"Cormorant Garamond",Georgia,"Times New Roman",serif;font-weight:600;letter-spacing:-.01em}
+  h1{font-size:40px;line-height:1.08;margin:18px 0 10px}
+  p{margin:0 0 12px}
+  .muted{color:var(--muted)}
+
+  .decoder{background:var(--surface);border-radius:18px;padding:18px;margin:22px 0 28px}
+  .decoder h2{font-size:26px;margin:0 0 6px}
+  textarea{width:100%;font:inherit;font-size:15px;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);min-height:92px;resize:vertical}
+  textarea:focus,input:focus{outline:none;border-color:var(--plum)}
+  .scores{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+  .scores label{font-size:13px;font-weight:600;display:flex;flex-direction:column;gap:4px}
+  .scores label span{display:flex;align-items:center;gap:6px}
+  .scores label i{width:9px;height:9px;border-radius:50%}
+  .scores input{width:100%;font:inherit;padding:10px;border:1.5px solid var(--line);border-radius:10px;text-align:center;background:#fff;color:var(--ink)}
+  .verdict{margin-top:14px;padding:14px 16px;border-radius:12px;background:var(--bg);display:none}
+  .verdict.on{display:block}
+  .verdict .big{font-size:28px;line-height:1.1;display:block;margin-bottom:4px}
+  .btn{font:inherit;font-weight:600;padding:12px 16px;border:0;border-radius:12px;background:var(--plum);color:#fff;cursor:pointer;margin-top:12px;width:100%}
+
+  .tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);padding:10px 0;z-index:2}
+  .tab{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:12px;padding:10px 4px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px}
+  .tab i{width:12px;height:12px;border-radius:50%}
+  .tab small{font-weight:400;color:var(--muted);font-size:12px}
+  .tab.on{border-width:2px}
+  .tab.hint{box-shadow:0 0 0 3px var(--gold)}
+  .tab:focus-visible,.btn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+
+  .card{display:none;border-radius:20px;padding:22px 20px;margin-top:6px}
+  .card.on{display:block}
+  .card h2{font-size:44px;line-height:1;margin:0}
+  .card .color{font-size:15px;color:var(--muted);margin:6px 0 16px}
+  .thought{font-family:"Cormorant Garamond",Georgia,serif;font-size:24px;line-height:1.25;margin:0 0 18px;padding-left:14px;border-left:3px solid}
+  .card h3{font-size:22px;margin:20px 0 6px}
+  .card ul{margin:0;padding-left:20px}
+  .card li{margin-bottom:5px}
+  .markers{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+  .markers span{background:#fff;border-radius:20px;padding:5px 11px;font-size:14px}
+  .say li::marker{content:"+  ";font-weight:600}
+  .dont li::marker{content:"−  ";font-weight:600}
+  .border{margin-top:18px;background:#fff;border-radius:12px;padding:12px 14px;font-size:15px}
+
+  .foot{margin-top:30px;font-size:14px;color:var(--muted)}
+  .foot h3{font-family:"Cormorant Garamond",Georgia,serif;font-size:22px;color:var(--ink);margin:0 0 6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Памятка специалиста</h1>
+  <p class="muted">Четыре типа клиентов: кто это, чего хочет, как с ним говорить. Тип описывает состояние человека сейчас, а не характер навсегда.</p>
+
+  <section class="decoder">
+    <h2>Разобрать ответы клиента</h2>
+    <p class="muted">Вставьте сообщение из WhatsApp или введите баллы вручную.</p>
+    <textarea id="paste" placeholder="Здравствуйте. Я прошла тест. Имя: ..."></textarea>
+    <div class="scores">
+      <label><span><i style="background:var(--c-O)"></i>Опора</span><input type="number" min="0" max="30" id="in-O" inputmode="numeric"></label>
+      <label><span><i style="background:var(--c-S)"></i>Сила</span><input type="number" min="0" max="30" id="in-S" inputmode="numeric"></label>
+      <label><span><i style="background:var(--c-P)"></i>Порядок</span><input type="number" min="0" max="30" id="in-P" inputmode="numeric"></label>
+      <label><span><i style="background:var(--c-R)"></i>Решение</span><input type="number" min="0" max="30" id="in-R" inputmode="numeric"></label>
+    </div>
+    <button class="btn" id="decode">Показать тип клиента</button>
+    <div class="verdict" id="verdict"></div>
+  </section>
+
+  <nav class="tabs" id="tabs"></nav>
+  <div id="cards"></div>
+
+  <section class="foot">
+    <h3>Если профиль смешанный</h3>
+    <p>Два типа почти равны. Начните разговор на языке первого, предложение сделайте на языке второго. Например, «Опора и Порядок»: сначала успокоить, затем дать ясный план по шагам.</p>
+    <h3>Общие границы</h3>
+    <p>Не пугать клиента и не использовать его тревогу для продажи. Не обещать гарантированных изменений в жизни или в поведении других людей. Если человек в остром кризисе или говорит об угрозе жизни и здоровью, мягко направить его к врачу или психологу.</p>
+    <p>Если впечатление от разговора расходится с цифрами теста, доверяйте разговору.</p>
+  </section>
+</div>
+
+<script>
+const T = {
+ O:{name:"Опора", color:"Фиолетовый",
+  who:"Человек в тревоге или неопределённости. Ищет защиту и знак, что всё наладится. Нередко надеется, что специалист возьмёт ситуацию на себя.",
+  thought:"«Скажите, что мне сделать, чтобы всё наладилось».",
+  wants:["почувствовать защиту и спокойствие","получить один простой и понятный шаг","опереться на сильного и тёплого специалиста","ощутить, что она не одна"],
+  acts:["долго рассказывает, просит подтверждения","возвращается с уточнениями после встречи","быстро привязывается к специалисту","осторожна с ценой, выбирает недорогие форматы"],
+  markers:["знак","судьба","помогите","не знаю, что делать","всё будет хорошо?","защита","страшно"],
+  say:["«Вы пришли вовремя»","«С этим можно работать»","«Давайте начнём с одного шага»","«На этом этапе я с вами»"],
+  dont:["пугающие формулировки о порче, сглазе, беде","«всё изменится за одну встречу»","сложные термины и длинные объяснения","давление сроками и ценой"],
+  offer:"Короткую встречу, простую практику, регулярную поддержку, закрытое сообщество, недорогой первый формат.",
+  buy:"Покупает эмоционально, но осторожно. Решает доверие и тепло, а не описание метода.",
+  border:"Этот клиент легко верит. Не создавайте зависимость и не обещайте чуда."},
+ S:{name:"Сила", color:"Красный",
+  who:"Человек, который хочет вернуть контроль и перестать проигрывать. Ценит силу, статус и быстрые действия.",
+  thought:"«Покажите, как вернуть силу и получить своё».",
+  wants:["влияние и уважение","ощущение победы","свободу решать самой","быстрое заметное изменение"],
+  acts:["говорит резко, может перебивать","проверяет специалиста на прочность","решает быстро, на эмоциях","требует гарантий"],
+  markers:["надоело","сколько можно","хочу, чтобы он...","как вернуть","мне нужно быстро","гарантируете?"],
+  say:["«Скажу прямо»","«Вот где вы теряете влияние»","«Решение за вами»","«Это сильный шаг»"],
+  dont:["неуверенное «может быть, попробуем»","долгое описание программы и этапов","поддержку мести или вреда другому человеку","спор за лидерство в разговоре"],
+  offer:"Личную встречу, срочный разбор, интенсивную индивидуальную работу. Говорить о том, какой она станет, а не о количестве встреч.",
+  buy:"Покупает импульсивно. Высокая цена может привлекать как признак статуса.",
+  border:"Не подогревайте агрессию и не беритесь за запросы навредить другому человеку или подчинить его."},
+ P:{name:"Порядок", color:"Синий",
+  who:"Человек, уставший от хаоса. Хочет понять, как поступить правильно. Боится ошибиться и чувствует ответственность за близких.",
+  thought:"«Объясните, как поступить правильно».",
+  wants:["ясные правила и последовательность","стабильность и предсказуемость","сохранить семью и отношения","чистую совесть"],
+  acts:["задаёт много уточняющих вопросов","долго решается, сравнивает","записывает и выполняет задания точно","остаётся надолго, если доверяет"],
+  markers:["как правильно","можно ли","что я делаю не так","должна","положено","по порядку"],
+  say:["«Работа идёт в три этапа»","«Вот что стоит делать, а вот чего не нужно»","«Вы действуете ответственно»","«Я пришлю рекомендации письменно»"],
+  dont:["резкость и провокации","«всё изменится мгновенно»","размытые ответы без плана","перенос договорённостей без объяснений"],
+  offer:"Серию встреч с понятным графиком, пошаговую программу, письменные рекомендации после встречи.",
+  buy:"Покупает обдуманно. Важны опыт, структура работы и понятная цена.",
+  border:"Не усиливайте чувство вины. Такой клиент и так строг к себе."},
+ R:{name:"Решение", color:"Оранжевый",
+  who:"Человек, который ценит время и конкретику. Пришёл решить задачу, а не обсуждать чувства.",
+  thought:"«Покажите, что я получу и сколько времени сэкономлю».",
+  wants:["понятный исход встречи","экономию времени и сил","свободу выбора между вариантами","качество жизни"],
+  acts:["сравнивает специалистов, спрашивает про опыт","задаёт деловые вопросы о формате","ценит пунктуальность","может сомневаться в методе"],
+  markers:["конкретно","сколько времени","какие шансы","что это даст","варианты","эффективно"],
+  say:["«За одну встречу определим ваш следующий шаг»","«Вот три варианта и чем они отличаются»","«Вам не придётся перебирать всё самой»","«Начнём с главного»"],
+  dont:["воду и долгие вступления","туманные формулировки без сути","давление на эмоции","«просто доверьтесь»"],
+  offer:"Работу под конкретную задачу, сопровождение, премиальные форматы с личным вниманием.",
+  buy:"Покупает осознанно и готова платить высокий чек, если видит ясную пользу.",
+  border:"Не обещайте точных гарантий исхода. Такой клиент запомнит обещание дословно."}
+};
+const ORDER=["O","S","P","R"];
+const $=id=>document.getElementById(id);
+const list=a=>"<ul>"+a.map(x=>"<li>"+x+"</li>").join("")+"</ul>";
+
+ORDER.forEach(k=>{
+  const t=T[k];
+  const b=document.createElement("button");
+  b.className="tab"; b.dataset.k=k;
+  b.innerHTML='<i style="background:var(--c-'+k+')"></i>'+t.name+'<small>'+t.color.toLowerCase()+'</small>';
+  b.onclick=()=>open(k);
+  $("tabs").appendChild(b);
+
+  const c=document.createElement("article");
+  c.className="card"; c.id="card-"+k; c.style.background="var(--t-"+k+")";
+  c.innerHTML=
+   '<h2 style="color:var(--c-'+k+')">'+t.name+'</h2>'+
+   '<p class="color">'+t.color+' уровень</p>'+
+   '<p class="thought" style="border-color:var(--c-'+k+')">'+t.thought+'</p>'+
+   '<h3>Кто это</h3><p>'+t.who+'</p>'+
+   '<h3>Чего хочет</h3>'+list(t.wants)+
+   '<h3>Как ведёт себя</h3>'+list(t.acts)+
+   '<h3>Слова в речи клиента</h3><div class="markers">'+t.markers.map(m=>"<span>"+m+"</span>").join("")+'</div>'+
+   '<h3>Что говорить</h3><div class="say">'+list(t.say)+'</div>'+
+   '<h3>Чего не говорить</h3><div class="dont">'+list(t.dont)+'</div>'+
+   '<h3>Что предлагать</h3><p>'+t.offer+'</p>'+
+   '<h3>Как покупает</h3><p>'+t.buy+'</p>'+
+   '<div class="border"><strong>Граница.</strong> '+t.border+'</div>';
+  $("cards").appendChild(c);
+});
+
+function open(k,scroll){
+  document.querySelectorAll(".tab").forEach(b=>{b.classList.toggle("on",b.dataset.k===k);b.style.borderColor=b.dataset.k===k?"var(--c-"+k+")":"";});
+  document.querySelectorAll(".card").forEach(c=>c.classList.toggle("on",c.id==="card-"+k));
+  if(scroll) $("tabs").scrollIntoView({behavior:"smooth"});
+}
+open("O");
+
+$("paste").addEventListener("input",()=>{
+  const s=$("paste").value;
+  ORDER.forEach(k=>{
+    const m=s.match(new RegExp(T[k].name+"\\s*[-–—:]\\s*(\\d+)","i"));
+    if(m) $("in-"+k).value=m[1];
+  });
+});
+
+$("decode").onclick=()=>{
+  const sc={}; let sum=0;
+  for(const k of ORDER){const v=parseInt($("in-"+k).value,10);if(isNaN(v)){show("Заполните баллы по всем четырём типам.");return;}sc[k]=v;sum+=v;}
+  if(sum!==30){show("Сумма баллов должна быть 30, сейчас "+sum+". Проверьте цифры.");return;}
+  const s=[...ORDER].sort((a,b)=>sc[b]-sc[a]); const [a,b]=s;
+  document.querySelectorAll(".tab").forEach(x=>x.classList.remove("hint"));
+  if(ORDER.every(k=>sc[k]>=6&&sc[k]<=9)){
+    show('<span class="big">Тип не выражен</span>Баллы распределены ровно. Определите подход по первому разговору.');
+  } else if(sc[a]-sc[b]<=2){
+    show('<span class="big">'+T[a].name+' и '+T[b].name+'</span>Смешанный профиль. Начните на языке типа «'+T[a].name+'», предложение сделайте на языке типа «'+T[b].name+'». Обе карточки отмечены ниже.');
+    mark([a,b]); open(a,true);
+  } else {
+    show('<span class="big">'+T[a].name+'</span>Ведущий тип, '+Math.round(sc[a]/30*100)+'%. Второй по силе: «'+T[b].name+'». Карточка открыта ниже.');
+    mark([a]); open(a,true);
+  }
+};
+function show(h){$("verdict").innerHTML=h;$("verdict").classList.add("on");}
+function mark(ks){document.querySelectorAll(".tab").forEach(x=>{if(ks.includes(x.dataset.k))x.classList.add("hint");});}
+</script>
+</body>
+</html>
