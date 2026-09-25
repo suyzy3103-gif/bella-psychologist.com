@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Тест: что вам сейчас важнее всего в отношениях</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F6F4EF; --surface:#FFFFFF; --ink:#0E1F3D; --muted:#5E6B80;
+    --navy:#0E1F3D; --blue:#2E4C7A; --sky:#A8CBEE; --line:#DCE3EC; --soft:#E8F0F9;
+    --grad:linear-gradient(135deg,#0E1F3D 0%,#2E4C7A 55%,#A8CBEE 100%);
+    --c-o:#8C6BA8; --c-s:#B35C4A; --c-p:#2E4C7A; --c-r:#C58B3A;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  *,*::before,*::after{box-sizing:inherit}
+  html,body{margin:0;height:100%}
+  body{background:var(--bg);color:var(--ink);font-family:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:560px;margin:0 auto;padding:28px 20px 40px;min-height:100%;display:flex;flex-direction:column}
+  h1,h2,.q-text,.lead-name{font-family:"Cormorant Garamond",Georgia,"Times New Roman",serif;font-weight:600;letter-spacing:-.01em}
+  .hero{background:var(--grad);color:#fff;border-radius:22px;padding:26px 22px 24px;margin-top:10px}
+  .hero .by{font-size:13px;letter-spacing:.08em;text-transform:uppercase;opacity:.85}
+  .hero h1{font-size:38px;line-height:1.08;margin:12px 0 0}
+  p{margin:0 0 14px}
+  .intro{margin-top:22px}
+  .muted{color:var(--muted)}
+  .screen{display:none;flex:1;flex-direction:column}
+  .screen.on{display:flex}
+  label{display:block;font-weight:600;margin:20px 0 8px;font-size:15px}
+  input[type=text]{width:100%;font:inherit;padding:14px 16px;border:1.5px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink)}
+  input[type=text]:focus{outline:none;border-color:var(--blue)}
+  .btn{display:block;width:100%;font:inherit;font-weight:600;padding:16px 20px;border:0;border-radius:14px;background:var(--navy);color:#fff;cursor:pointer;margin-top:20px;text-align:center;text-decoration:none}
+  .btn.wa{background:#2E7D5B}
+  .btn.ghost{background:transparent;color:var(--blue);border:1.5px solid var(--blue)}
+  .btn:focus-visible,.opt:focus-visible,.back:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
+  .err{color:#A2412F;font-size:14px;min-height:20px;margin-top:6px}
+  .top{display:flex;align-items:center;gap:14px;margin-bottom:26px}
+  .back{background:none;border:0;font:inherit;color:var(--blue);font-weight:600;padding:6px 0;cursor:pointer}
+  .back[hidden]{visibility:hidden;display:inline}
+  .progress{flex:1;height:5px;background:var(--line);border-radius:3px;overflow:hidden}
+  .progress i{display:block;height:100%;background:var(--grad);width:0;transition:width .3s ease}
+  .count{font-size:14px;color:var(--muted);white-space:nowrap}
+  .q-text{font-size:29px;line-height:1.18;margin:0 0 26px}
+  .opts{display:flex;flex-direction:column;gap:10px}
+  .opt{display:flex;gap:14px;align-items:flex-start;text-align:left;width:100%;font:inherit;color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:15px 16px;cursor:pointer;transition:border-color .15s,background .15s}
+  .opt b{font-family:"Cormorant Garamond",Georgia,serif;font-size:21px;line-height:1.1;color:var(--blue);min-width:16px}
+  .opt:hover{border-color:var(--blue)}
+  .opt.sel{background:var(--soft);border-color:var(--blue)}
+  .res-intro{font-size:15px;color:var(--muted);margin-top:24px}
+  .lead-name{font-size:clamp(36px,10.5vw,54px);overflow-wrap:break-word;line-height:1;margin:6px 0 18px;color:var(--navy)}
+  .spectrum{display:flex;height:18px;border-radius:9px;overflow:hidden;margin:6px 0 14px}
+  .spectrum span{height:100%}
+  .legend{display:grid;grid-template-columns:1fr 1fr;gap:8px 18px;margin-bottom:28px;font-size:15px}
+  .legend div{display:flex;align-items:center;gap:8px}
+  .legend i{width:10px;height:10px;border-radius:50%;flex:none}
+  .legend strong{margin-left:auto;font-weight:600}
+  .desc{background:var(--surface);border-radius:16px;padding:20px;margin-bottom:12px;border-left:4px solid var(--blue)}
+  .desc h2{font-size:26px;margin:0 0 8px}
+  .desc p{margin:0}
+  .next{background:var(--soft);border-radius:16px;padding:18px 20px;margin-top:8px;font-size:16px}
+  .note{font-size:14px;color:var(--muted);margin-top:14px}
+  .sign{font-size:14px;color:var(--muted);margin-top:26px;text-align:center}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <section class="screen on" id="s-start">
+    <div class="hero">
+      <div class="by">Бэлла Леонидовна · психолог</div>
+      <h1>Что вам сейчас важнее всего в отношениях</h1>
+    </div>
+    <div class="intro">
+      <p>Тридцать вопросов о семье, детях, партнёре, родственниках и о том, как вы принимаете решения. Это займёт 7-10 минут.</p>
+      <p class="muted">Правильных и неправильных ответов нет. В каждом вопросе выберите вариант, который ближе всего к вам сейчас, даже если подходят несколько.</p>
+    </div>
+    <label for="name">Как к вам обращаться</label>
+    <input type="text" id="name" autocomplete="given-name" placeholder="Ваше имя">
+    <div class="err" id="err"></div>
+    <button class="btn" id="startBtn">Начать тест</button>
+  </section>
+
+  <section class="screen" id="s-quiz">
+    <div class="top">
+      <button class="back" id="backBtn">Назад</button>
+      <div class="progress"><i id="bar"></i></div>
+      <span class="count" id="count"></span>
+    </div>
+    <h2 class="q-text" id="qText"></h2>
+    <div class="opts" id="opts"></div>
+  </section>
+
+  <section class="screen" id="s-result">
+    <p class="res-intro" id="resIntro"></p>
+    <div class="lead-name" id="leadName"></div>
+    <div class="spectrum" id="spectrum"></div>
+    <div class="legend" id="legend"></div>
+    <div id="descs"></div>
+    <div class="next">Отправьте ваши ответы Бэлле Леонидовне. Она посмотрит профиль и подскажет, с чего лучше начать в вашей ситуации.</div>
+    <a class="btn wa" id="waBtn" target="_blank" rel="noopener">Отправить ответы в WhatsApp</a>
+    <p class="note">Откроется WhatsApp с готовым сообщением. Останется нажать «Отправить».</p>
+    <button class="btn ghost" id="againBtn">Пройти заново</button>
+    <p class="sign">С уважением, Бэлла Леонидовна</p>
+  </section>
+</div>
+<script>
+const WA_NUMBER = "79880051025";
+const TYPES = {
+  O:{name:"Опора",   color:"var(--c-o)", text:"Сейчас вам важнее всего почувствовать опору и спокойствие. Хорошее начало - один понятный шаг и поддержка, без резких перемен."},
+  S:{name:"Сила",    color:"var(--c-s)", text:"Сейчас вам важно вернуть себе право решать и чтобы ваши слова принимали всерьёз. Вам подойдёт прямой разговор о том, где вы отдаёте свою силу."},
+  P:{name:"Порядок", color:"var(--c-p)", text:"Сейчас вам нужны ясные правила: где ваша ответственность, а где уже нет. Вам подойдёт работа с понятной структурой и шагами."},
+  R:{name:"Решение", color:"var(--c-r)", text:"Сейчас вам важно разобраться быстро и не тратить силы на бесконечные попытки. Вам подойдёт работа под конкретную задачу."}
+};
+const ORDER=["O","S","P","R"];
+const Q = [["Партнёр снова не сделал то, о чём вы договорились. Вы:", [["думаете, как устроить всё так, чтобы больше от этого не зависеть", "R"], ["сразу говорите прямо, что так больше не будет", "S"], ["расстраиваетесь и надеетесь, что он сам поймёт, как вам тяжело", "O"], ["напоминаете о договорённости и о том, как принято в вашей семье", "P"]]], ["Подросток грубит в ответ на вашу просьбу. Ваша первая реакция:", [["твёрдо обозначаете, кто в доме принимает решения", "S"], ["вводите понятное правило и последствия", "P"], ["ищете способ договориться, который сработает быстрее всего", "R"], ["ищете слова, после которых он наконец начнёт слушать", "O"]]], ["Родственники вмешиваются в вашу семью: советы, визиты без предупреждения. Вы:", [["говорите открыто, что решения в вашей семье принимаете вы", "S"], ["терпите, чтобы не испортить отношения, и ждёте, что всё наладится само", "O"], ["сокращаете общение до того объёма, который вам удобен", "R"], ["договариваетесь о правилах: когда можно приезжать и о чём советовать", "P"]]], ["Когда в отношениях начинается кризис, вам больше всего хочется:", [["быстро разобраться и принять решение", "R"], ["понять, как поступить правильно, чтобы не разрушить семью", "P"], ["чтобы кто-то сказал, что всё будет хорошо", "O"], ["вернуть себе уверенность и право решать", "S"]]], ["Что для вас главное в психологе:", [["опыт, образование и понятный метод", "P"], ["тепло и ощущение, что вас понимают", "O"], ["прямота и твёрдая позиция", "S"], ["умение быстро увидеть суть", "R"]]], ["Вас просят о помощи в неудобный момент. Вы:", [["соглашаетесь, потому что так положено", "P"], ["оцениваете, во что вам обойдётся согласие, и решаете", "R"], ["соглашаетесь, чтобы не остаться без поддержки близких", "O"], ["отказываете, если вам это не подходит", "S"]]], ["В ссоре с партнёром вы чаще:", [["отстаиваете свою позицию до конца", "S"], ["ищете выход с наименьшими потерями", "R"], ["опираетесь на то, как должно быть в семье", "P"], ["замолкаете и ждёте, что он первым сделает шаг", "O"]]], ["Какая фраза вам ближе:", [["«Жизнь слишком коротка для бесконечных ссор»", "R"], ["«Главное, чтобы близкие были рядом»", "O"], ["«В семье должны быть правила»", "P"], ["«Я имею право решать за себя»", "S"]]], ["Ребёнок не хочет делать уроки. Вы:", [["настаиваете, пока не сделает", "S"], ["вводите распорядок и следите за ним", "P"], ["переживаете и ищете совет, как на него повлиять", "O"], ["ищете то, что быстро даст отдачу: договор, помощь, мотивацию", "R"]]], ["Что раздражает вас в специалисте сильнее всего:", [["неуверенность и отсутствие прямого ответа", "S"], ["долгие объяснения без сути", "R"], ["опоздания и нарушение договорённостей", "P"], ["холодность и формальность", "O"]]], ["Вас обидел близкий человек. Вы:", [["решаете, сколько сил готовы вкладывать в эти отношения дальше", "R"], ["ищете поддержки у тех, кто вас понимает", "O"], ["говорите об этом сразу, иногда резко", "S"], ["спокойно объясняете, что так поступать нельзя", "P"]]], ["Как вы относитесь к семейным традициям:", [["сохраняю те, что полезны семье сейчас", "R"], ["оставляю те, что нравятся мне", "S"], ["соблюдаю, традиции держат порядок", "P"], ["в них я чувствую защиту и принадлежность к своим", "O"]]], ["Партнёр принял важное решение без вас. Вы:", [["оцениваете последствия и решаете, что делать дальше", "R"], ["предлагаете договориться, какие решения принимаются только вместе", "P"], ["тревожитесь, что вы отдаляетесь друг от друга", "O"], ["требуете, чтобы с вами советовались", "S"]]], ["Вы устали от того, что всё держится на вас. Вы:", [["заявляете, что дальше так не будет", "S"], ["делегируете или платите за помощь, чтобы освободить время", "R"], ["мечтаете, чтобы кто-то пришёл и помог", "O"], ["распределяете обязанности и закрепляете их", "P"]]], ["Что вы хотите получить от консультации:", [["уверенность в своих силах", "S"], ["решение за одну-две встречи", "R"], ["ясный план, как действовать", "P"], ["спокойствие и надежду", "O"]]], ["Вы узнали, что близкий человек вам солгал. Первая мысль:", [["«Как теперь жить и кому верить»", "O"], ["«Я больше не позволю так с собой обращаться»", "S"], ["«Нарушено главное правило наших отношений»", "P"], ["«Нужно понять, что из этого следует и что я буду делать»", "R"]]], ["Как вы решаете, покупать ли программу или консультацию:", [["по ощущению: моё или не моё", "O"], ["сравниваю цену и пользу", "R"], ["быстро, если чувствую уверенность", "S"], ["долго изучаю опыт специалиста и программу", "P"]]], ["Подросток хочет больше свободы. Вы:", [["даёте свободу там, где это оправдано, и смотрите, как он справляется", "R"], ["боитесь, что с ним что-то случится", "O"], ["оставляете последнее слово за собой", "S"], ["договариваетесь о правилах: время, связь, ответственность", "P"]]], ["Отзывы других клиентов для вас:", [["важны как конкретные истории: что было и что изменилось", "R"], ["важны, потому что там люди с похожей болью", "O"], ["важны как подтверждение надёжности специалиста", "P"], ["почти не важны, вы решаете сами", "S"]]], ["Психолог дал вам задание на дом. Вы:", [["выполняете то, что считаете полезным", "R"], ["делаете так, как считаете нужным", "S"], ["выполняете точно, как сказано", "P"], ["выполняете, если оно простое и понятное", "O"]]], ["Хорошая семья для вас - это семья:", [["где тепло, спокойно и все вместе", "O"], ["где у каждого своя роль и есть договорённости", "P"], ["где вас уважают и считаются с вашим мнением", "S"], ["где каждый может расти и строить свою жизнь", "R"]]], ["Коллега перекладывает на вас свою работу. Вы:", [["прямо отказываете", "S"], ["соглашаетесь, чтобы не портить отношения в коллективе", "O"], ["соглашаетесь, только если это выгодно и вам", "R"], ["напоминаете, кто за что отвечает", "P"]]], ["Ситуация в отношениях затягивается. Вы:", [["меняете подход", "R"], ["берёте ситуацию в свои руки", "S"], ["терпеливо делаете то, что должны", "P"], ["ждёте подходящего момента", "O"]]], ["Что ближе к вам, когда речь о чувстве вины:", [["виню себя за невыполненные обязанности", "P"], ["боюсь, что близкие отвернутся", "O"], ["жалею о времени и силах, потраченных впустую", "R"], ["чувствую её редко", "S"]]], ["Если отношения зашли в тупик, вам важнее:", [["сохранить семью, если есть хоть какая-то возможность", "P"], ["не остаться в одиночестве", "O"], ["выйти из ситуации с достоинством", "S"], ["трезво оценить варианты и выбрать лучший", "R"]]], ["Чего вам сейчас больше всего не хватает:", [["времени и сил", "R"], ["уважения со стороны близких", "S"], ["порядка в доме и в отношениях", "P"], ["уверенности, что всё будет хорошо", "O"]]], ["Как вы говорите с ребёнком о правилах:", [["прошу мягко и боюсь его расстроить", "O"], ["говорю твёрдо, без обсуждения", "S"], ["договариваемся о том, что работает для всех", "R"], ["объясняю, почему так правильно", "P"]]], ["Что мотивирует вас сильнее:", [["желание, чтобы близкие были в безопасности", "O"], ["желание доказать, на что вы способны", "S"], ["чувство долга", "P"], ["возможность вырасти", "R"]]], ["Какую книгу вы выберете:", [["«Правила счастливой семьи»", "P"], ["«Как отстоять себя в отношениях»", "S"], ["«Как тратить силы на главное»", "R"], ["«Вы не одни: как пережить трудный период»", "O"]]], ["После консультации вы хотите уйти с ощущением:", [["«я знаю, чего стою»", "S"], ["«мне стало спокойнее»", "O"], ["«я понимаю, что делать дальше»", "P"], ["«вопрос решён, время потрачено не зря»", "R"]]]];
+const LETTERS=["А","Б","В","Г"];
+let name="",i=0,answers=new Array(Q.length).fill(null),locked=false;
+const $=id=>document.getElementById(id);
+function show(id){document.querySelectorAll(".screen").forEach(s=>s.classList.remove("on"));$(id).classList.add("on");window.scrollTo(0,0);}
+$("startBtn").onclick=()=>{
+  name=$("name").value.trim();
+  if(!name){$("err").textContent="Введите имя, чтобы Бэлла Леонидовна понимала, от кого сообщение.";$("name").focus();return;}
+  $("err").textContent="";i=0;answers.fill(null);show("s-quiz");render();
+};
+$("name").addEventListener("keydown",e=>{if(e.key==="Enter")$("startBtn").click();});
+function render(){
+  const [text,opts]=Q[i];
+  $("qText").textContent=text;
+  $("count").textContent=(i+1)+" из "+Q.length;
+  $("bar").style.width=(i/Q.length*100)+"%";
+  $("backBtn").hidden=i===0;
+  const box=$("opts");box.innerHTML="";
+  opts.forEach((o,k)=>{
+    const b=document.createElement("button");
+    b.className="opt"+(answers[i]===k?" sel":"");
+    b.innerHTML="<b>"+LETTERS[k]+"</b><span></span>";
+    b.querySelector("span").textContent=o[0];
+    b.onclick=()=>pick(k,b);
+    box.appendChild(b);
+  });
+  locked=false;
+}
+function pick(k,btn){
+  if(locked)return;locked=true;answers[i]=k;
+  document.querySelectorAll(".opt").forEach(x=>x.classList.remove("sel"));btn.classList.add("sel");
+  setTimeout(()=>{if(i<Q.length-1){i++;render();window.scrollTo(0,0);}else finish();},260);
+}
+$("backBtn").onclick=()=>{if(i>0){i--;render();}};
+function finish(){
+  const sc={O:0,S:0,P:0,R:0};
+  answers.forEach((k,q)=>{sc[Q[q][1][k][1]]++;});
+  const sorted=[...ORDER].sort((a,b)=>sc[b]-sc[a]);const [a,b]=sorted;
+  const blurred=ORDER.every(t=>sc[t]>=6&&sc[t]<=9);
+  let head,show2=[],waLead;
+  if(blurred){head="Сбалансированный профиль";show2=[a,b];waLead="Ведущий тип: не выражен";$("resIntro").textContent=name+", у вас нет одного ярко выраженного типа";}
+  else if(sc[a]-sc[b]<=2){head=TYPES[a].name+" и "+TYPES[b].name;show2=[a,b];waLead="Смешанный профиль: "+TYPES[a].name+" и "+TYPES[b].name;$("resIntro").textContent=name+", у вас два ведущих типа";}
+  else{head=TYPES[a].name;show2=[a];waLead="Ведущий тип: "+TYPES[a].name;$("resIntro").textContent=name+", ваш ведущий тип";}
+  $("leadName").textContent=head;
+  const sp=$("spectrum"),lg=$("legend");sp.innerHTML="";lg.innerHTML="";
+  sorted.forEach(t=>{
+    const pct=Math.round(sc[t]/Q.length*100);
+    if(sc[t]>0){const s=document.createElement("span");s.style.width=(sc[t]/Q.length*100)+"%";s.style.background=TYPES[t].color;sp.appendChild(s);}
+    const d=document.createElement("div");
+    d.innerHTML='<i style="background:'+TYPES[t].color+'"></i><span>'+TYPES[t].name+'</span><strong>'+pct+'%</strong>';
+    lg.appendChild(d);
+  });
+  const ds=$("descs");ds.innerHTML="";
+  show2.forEach(t=>{const c=document.createElement("div");c.className="desc";c.style.borderLeftColor=TYPES[t].color;c.innerHTML="<h2></h2><p></p>";c.querySelector("h2").textContent=TYPES[t].name;c.querySelector("p").textContent=TYPES[t].text;ds.appendChild(c);});
+  const scoreLine=sorted.map(t=>TYPES[t].name+" - "+sc[t]).join(", ");
+  const msg="Здравствуйте, Бэлла Леонидовна. Мои ответы по тесту.\nИмя: "+name+"\n"+scoreLine+"\n"+waLead;
+  $("waBtn").href="https://wa.me/"+WA_NUMBER+"?text="+encodeURIComponent(msg);
+  $("bar").style.width="100%";show("s-result");
+}
+$("againBtn").onclick=()=>{show("s-start");};
+</script>
+</body>
+</html>
