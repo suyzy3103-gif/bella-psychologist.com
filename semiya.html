@@ -4,833 +4,329 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Семья в приоритете</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Roboto+Condensed:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
+  * { margin:0; padding:0; box-sizing:border-box; }
   :root {
-    --blush: #eef2ea;
-    --blush-deep: #a9bfa0;
-    --rose: #7c9473;
-    --rose-dark: #4f6b47;
-    --text: #232a1f;
-    --text-light: #5f6b57;
-    --white: #fbfaf6;
-    --line: rgba(122, 148, 115, 0.25);
+    --blue: #1D4ED8;
+    --blue-dark: #15306E;
+    --blue-soft: #EAF1FF;
+    --green: #157A5B;
+    --green-soft: #E6F5EE;
+    --amber-soft: #FFF4DB;
+    --amber: #B7791F;
+    --text: #14213D;
+    --muted: #4A5878;
+    --bg: #F7F9FD;
+    --white: #FFFFFF;
+    --line: #D6E0F2;
   }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Roboto Condensed', sans-serif; font-size: 18px; line-height: 1.6;
+         color: var(--text); background: var(--bg); padding-bottom: 96px; }
+  em, i { font-style: normal; }
+  .wrap { max-width: 640px; margin: 0 auto; padding: 0 20px; }
+  .copyright { text-align:center; font-size:13px; color:var(--muted); padding:12px 20px;
+               border-bottom:1px solid var(--line); background:var(--white); }
+  h1, h2, h3, .oswald { font-family: 'Oswald', sans-serif; font-weight: 600; letter-spacing: .3px; }
 
-  body {
-    font-family: 'Jost', sans-serif;
-    background: var(--white);
-    color: var(--text);
-    min-height: 100vh;
-    overflow-x: hidden;
-    font-size: 16px;
-  }
+  /* HERO */
+  .hero { background: linear-gradient(170deg, var(--blue-dark) 0%, var(--blue) 100%);
+          color: #fff; padding: 52px 0 48px; text-align: center; }
+  .eyebrow { font-family:'Oswald',sans-serif; font-weight:500; font-size:14px; letter-spacing:3px;
+             text-transform:uppercase; opacity:.8; margin-bottom:18px; }
+  .hero h1 { font-size: 40px; line-height: 1.12; text-transform: uppercase; margin-bottom: 18px; }
+  .hero h1 span { color: #8FE3C0; }
+  .hero p { font-size: 19px; opacity: .92; max-width: 460px; margin: 0 auto 28px; }
 
-  .screen {
-    display: none;
-    min-height: 100vh;
-    flex-direction: column;
-    animation: fadeIn 0.4s ease;
-  }
-  .screen.active { display: flex; }
+  .btn { display:block; width:100%; text-align:center; text-decoration:none; cursor:pointer; border:none;
+         font-family:'Oswald',sans-serif; font-weight:500; font-size:17px; letter-spacing:1px;
+         text-transform:uppercase; padding:17px 20px; border-radius:12px; transition:transform .15s, opacity .15s; }
+  .btn:active { transform: scale(.98); }
+  .btn-white { background:#fff; color:var(--blue-dark); max-width:360px; margin:0 auto; }
+  .btn-blue { background:var(--blue); color:#fff; }
+  .btn-green { background:var(--green); color:#fff; }
+  .btn-ghost { background:transparent; color:var(--blue); border:2px solid var(--blue); }
 
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
+  section { padding: 44px 0; }
+  .label { font-family:'Oswald',sans-serif; font-weight:500; font-size:13px; letter-spacing:2.5px;
+           text-transform:uppercase; color:var(--green); margin-bottom:8px; }
+  h2 { font-size: 30px; line-height: 1.18; color: var(--blue-dark); margin-bottom: 18px; }
+  p + p { margin-top: 14px; }
+  .lead { font-size: 20px; font-weight: 500; }
 
-  /* ── INTRO ── */
-  #screen-intro {
-    background: linear-gradient(160deg, var(--blush) 0%, var(--white) 65%);
-    justify-content: center;
-    align-items: center;
-    padding: 52px 32px;
-    text-align: center;
-  }
+  .list-help { list-style:none; margin: 16px 0; }
+  .list-help li { padding: 6px 0 6px 30px; position: relative; font-weight: 500; }
+  .list-help li::before { content:''; position:absolute; left:4px; top:15px; width:12px; height:12px;
+                          border-radius:3px; background:var(--blue); }
 
-  .intro-eyebrow {
-    font-size: 12px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--rose);
-    font-weight: 300;
-    margin-bottom: 28px;
-  }
+  .quote { background: var(--white); border-left: 5px solid var(--blue); border-radius: 0 12px 12px 0;
+           padding: 18px 20px; margin: 22px 0; font-size: 20px; font-weight: 700; color: var(--blue-dark); }
 
-  .intro-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 56px;
-    font-weight: 300;
-    line-height: 1.05;
-    color: var(--text);
-    margin-bottom: 10px;
-  }
-  .intro-title em { font-style: italic; color: var(--rose); }
+  .alt { background: var(--white); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
 
-  .intro-sub {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 19px;
-    font-style: italic;
-    font-weight: 300;
-    color: var(--text-light);
-    line-height: 1.55;
-    max-width: 310px;
-    margin: 0 auto 40px;
-  }
+  .check { list-style:none; }
+  .check li { background: var(--blue-soft); border-radius: 12px; padding: 14px 16px 14px 52px;
+              margin-bottom: 10px; position: relative; font-weight: 500; }
+  .check li::before { content:'✓'; position:absolute; left:16px; top:13px; width:24px; height:24px;
+                      border-radius:50%; background:var(--green); color:#fff; font-size:14px;
+                      display:flex; align-items:center; justify-content:center; font-weight:700; }
 
-  .divider { width: 40px; height: 1px; background: var(--blush-deep); margin: 0 auto 36px; }
+  .path { display:grid; gap:10px; margin-top:20px; }
+  .path div { display:flex; gap:14px; align-items:center; background:var(--white); border:1px solid var(--line);
+              border-radius:12px; padding:14px 16px; font-weight:500; }
+  .path b { font-family:'Oswald',sans-serif; font-size:22px; color:#fff; background:var(--blue);
+            min-width:40px; height:40px; border-radius:10px; display:flex; align-items:center; justify-content:center; }
 
-  .intro-body {
-    font-size: 15px;
-    font-weight: 300;
-    line-height: 1.9;
-    color: var(--text-light);
-    max-width: 340px;
-    margin: 0 auto 44px;
-  }
-  .intro-body strong { color: var(--rose-dark); font-weight: 500; }
+  /* STEPS */
+  .step { background: var(--white); border:1px solid var(--line); border-radius: 18px; padding: 26px 22px;
+          margin-bottom: 22px; box-shadow: 0 6px 20px rgba(21,48,110,.06); scroll-margin-top: 16px; }
+  .step-head { display:flex; gap:14px; align-items:center; margin-bottom:14px; }
+  .step-num { font-family:'Oswald',sans-serif; font-size:26px; color:#fff; background:var(--blue);
+              width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .step-head small { display:block; font-family:'Oswald',sans-serif; font-size:13px; letter-spacing:2px;
+                     text-transform:uppercase; color:var(--green); }
+  .step-head h3 { font-size: 25px; color: var(--blue-dark); line-height:1.15; }
+  .box { border-radius: 12px; padding: 16px 18px; margin-top: 16px; }
+  .box-blue { background: var(--blue-soft); }
+  .box-green { background: var(--green-soft); }
+  .box-amber { background: var(--amber-soft); }
+  .box-title { font-family:'Oswald',sans-serif; font-weight:500; font-size:14px; letter-spacing:1.5px;
+               text-transform:uppercase; margin-bottom:6px; }
+  .box-blue .box-title { color: var(--blue); }
+  .box-green .box-title { color: var(--green); }
+  .box-amber .box-title { color: var(--amber); }
+  .phrase { font-weight: 700; font-size: 19px; color: var(--text); }
+  .phrase + .phrase { margin-top: 8px; }
+  textarea { width:100%; min-height:90px; margin-top:16px; padding:14px; border:2px solid var(--line); border-radius:12px;
+             font-family:'Roboto Condensed',sans-serif; font-size:17px; color:var(--text); resize:vertical; background:var(--bg); }
+  textarea:focus { outline:none; border-color: var(--blue); }
+  .q { font-family:'Oswald',sans-serif; font-weight:500; font-size:16px; margin:20px 0 10px; color:var(--muted);
+       text-transform:uppercase; letter-spacing:1px; }
+  .choice { display:grid; gap:10px; }
 
-  .btn-start {
-    background: var(--rose-dark);
-    color: var(--white);
-    font-family: 'Jost', sans-serif;
-    font-size: 13px;
-    font-weight: 400;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    padding: 18px 48px;
-    border: none;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-  .btn-start:hover { background: var(--rose); }
+  /* OFFER */
+  .offer { background: linear-gradient(170deg, var(--blue-dark), var(--blue)); color:#fff; border-radius: 20px;
+           padding: 30px 22px; margin-top: 24px; }
+  .offer .label { color: #8FE3C0; }
+  .offer h2 { color:#fff; }
+  .offer ul { list-style:none; margin: 18px 0 22px; }
+  .offer li { padding: 8px 0 8px 30px; position:relative; border-bottom:1px solid rgba(255,255,255,.15); }
+  .offer li::before { content:''; position:absolute; left:4px; top:17px; width:12px; height:12px; border-radius:50%; background:#8FE3C0; }
+  .price { font-family:'Oswald',sans-serif; font-size:44px; line-height:1; margin-bottom:6px; }
+  .price-note { opacity:.85; margin-bottom: 20px; }
 
-  /* ── MENU ── */
-  #screen-menu {
-    background: linear-gradient(160deg, var(--blush) 0%, var(--white) 55%);
-    padding: 48px 28px 52px;
-    flex-direction: column;
-  }
+  .consult { background: var(--white); border:2px solid var(--green); border-radius:18px; padding:26px 22px; margin-top:26px; }
+  .consult h3 { font-size:24px; color:var(--green); margin-bottom:8px; }
+  .msg { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:18px; }
+  .tg { background:#2AABEE; color:#fff; }
+  .wa { background:#25D366; color:#fff; }
+  .sign { text-align:center; margin-top: 36px; color: var(--muted); font-weight:500; }
 
-  .menu-eyebrow {
-    font-size: 12px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--rose);
-    font-weight: 300;
-    margin-bottom: 12px;
-  }
+  /* STICKY */
+  .sticky { position:fixed; left:0; right:0; bottom:0; background:var(--white); border-top:1px solid var(--line);
+            box-shadow:0 -6px 20px rgba(21,48,110,.08); padding:10px 14px; z-index:50; }
+  .sticky-in { max-width:640px; margin:0 auto; display:flex; align-items:center; gap:12px; }
+  .sticky-text { flex:1; min-width:0; line-height:1.25; }
+  .sticky-text b { font-family:'Oswald',sans-serif; font-weight:500; color:var(--blue-dark); font-size:16px; display:block; }
+  .sticky-text span { font-size:14px; color:var(--muted); }
+  .sticky .btn { width:auto; padding:13px 18px; font-size:15px; white-space:nowrap; }
 
-  .menu-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 34px;
-    font-weight: 300;
-    color: var(--text);
-    line-height: 1.2;
-    margin-bottom: 8px;
-  }
-
-  .menu-hint {
-    font-size: 14px;
-    font-weight: 300;
-    color: var(--text-light);
-    margin-bottom: 36px;
-    line-height: 1.6;
-  }
-
-  .step-card {
-    background: var(--white);
-    border: 1px solid var(--line);
-    padding: 20px 20px 20px 24px;
-    margin-bottom: 12px;
-    cursor: pointer;
-    transition: all 0.25s ease;
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    position: relative;
-  }
-  .step-card::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 3px;
-    background: var(--blush-deep);
-    transition: background 0.25s;
-  }
-  .step-card:hover { border-color: var(--rose); background: var(--blush); }
-  .step-card:hover::before { background: var(--rose); }
-
-  .step-card-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 36px;
-    font-weight: 300;
-    color: var(--blush-deep);
-    line-height: 1;
-    flex-shrink: 0;
-    transition: color 0.25s;
-    min-width: 28px;
-  }
-  .step-card:hover .step-card-num { color: var(--rose); }
-
-  .step-card-info { flex: 1; }
-
-  .step-card-label {
-    font-size: 11px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--rose);
-    font-weight: 300;
-    margin-bottom: 4px;
-  }
-
-  .step-card-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
-    font-weight: 400;
-    color: var(--text);
-    line-height: 1.2;
-  }
-
-  .step-card-desc {
-    font-size: 13px;
-    font-weight: 300;
-    color: var(--text-light);
-    margin-top: 4px;
-    line-height: 1.5;
-  }
-
-  .step-card-arrow {
-    font-size: 20px;
-    color: var(--blush-deep);
-    flex-shrink: 0;
-    transition: color 0.25s, transform 0.25s;
-  }
-  .step-card:hover .step-card-arrow { color: var(--rose); transform: translateX(3px); }
-
-  /* ── STEP SCREENS ── */
-  .step-header {
-    background: var(--blush);
-    padding: 24px 28px 22px;
-    border-bottom: 1px solid var(--line);
-    flex-shrink: 0;
-  }
-
-  .step-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 18px;
-  }
-
-  .btn-back {
-    font-size: 12px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--rose);
-    background: none;
-    border: none;
-    font-family: 'Jost', sans-serif;
-    font-weight: 300;
-    cursor: pointer;
-    padding: 0;
-    transition: color 0.2s;
-  }
-  .btn-back:hover { color: var(--rose-dark); }
-
-  .btn-menu {
-    font-size: 12px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--text-light);
-    background: none;
-    border: 1px solid var(--line);
-    font-family: 'Jost', sans-serif;
-    font-weight: 300;
-    cursor: pointer;
-    padding: 7px 14px;
-    transition: all 0.2s;
-  }
-  .btn-menu:hover { border-color: var(--rose); color: var(--rose); }
-
-  .step-lbl {
-    font-size: 11px;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    color: var(--rose);
-    font-weight: 300;
-    margin-bottom: 6px;
-  }
-
-  .step-ttl {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 32px;
-    font-weight: 400;
-    color: var(--text);
-    line-height: 1.15;
-  }
-
-  /* ── STEP BODY ── */
-  .step-body {
-    flex: 1;
-    padding: 30px 28px 44px;
-    overflow-y: auto;
-  }
-
-  .ctx {
-    font-size: 15px;
-    font-weight: 300;
-    line-height: 1.85;
-    color: var(--text-light);
-    margin-bottom: 26px;
-    padding-left: 16px;
-    border-left: 2px solid var(--blush-deep);
-  }
-
-  .icard {
-    background: var(--blush);
-    padding: 22px;
-    margin-bottom: 20px;
-    position: relative;
-  }
-  .icard::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 3px;
-    background: var(--rose);
-  }
-
-  .icard-lbl {
-    font-size: 11px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--rose);
-    font-weight: 300;
-    margin-bottom: 10px;
-  }
-
-  .icard-text {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 20px;
-    font-style: italic;
-    line-height: 1.6;
-    color: var(--text);
-  }
-
-  .phrase {
-    background: var(--white);
-    border: 1px solid var(--line);
-    padding: 14px 18px;
-    margin-top: 14px;
-    font-size: 15px;
-    font-weight: 300;
-    line-height: 1.7;
-    color: var(--text);
-  }
-  .phrase-lbl {
-    display: block;
-    font-size: 11px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--rose);
-    font-weight: 300;
-    margin-bottom: 8px;
-  }
-
-  .note-lbl {
-    font-size: 11px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--rose);
-    font-weight: 300;
-    margin-bottom: 10px;
-  }
-
-  textarea {
-    width: 100%;
-    min-height: 88px;
-    padding: 14px 16px;
-    border: 1px solid var(--line);
-    background: var(--blush);
-    font-family: 'Jost', sans-serif;
-    font-size: 15px;
-    font-weight: 300;
-    color: var(--text);
-    resize: none;
-    outline: none;
-    line-height: 1.7;
-    transition: border-color 0.2s;
-    margin-bottom: 26px;
-  }
-  textarea::placeholder { color: var(--blush-deep); }
-  textarea:focus { border-color: var(--rose); }
-
-  .sep { width: 100%; height: 1px; background: var(--line); margin: 4px 0 24px; }
-
-  .sec-ttl {
-    font-size: 12px;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    color: var(--text-light);
-    font-weight: 300;
-    margin-bottom: 14px;
-  }
-
-  .rbtn {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 18px 18px;
-    border: 1px solid var(--line);
-    background: var(--white);
-    font-family: 'Jost', sans-serif;
-    font-size: 15px;
-    font-weight: 300;
-    color: var(--text);
-    text-align: left;
-    cursor: pointer;
-    transition: all 0.25s;
-    margin-bottom: 10px;
-  }
-  .rbtn:hover { border-color: var(--rose); background: var(--blush); }
-  .rbtn.yes { border-left: 3px solid #7aab8a; }
-  .rbtn.no  { border-left: 3px solid var(--blush-deep); }
-  .rbtn-icon { font-size: 18px; flex-shrink: 0; }
-
-  .btn-next {
-    display: block;
-    width: 100%;
-    background: var(--rose-dark);
-    color: var(--white);
-    font-family: 'Jost', sans-serif;
-    font-size: 13px;
-    font-weight: 400;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    padding: 18px 24px;
-    border: none;
-    cursor: pointer;
-    transition: background 0.3s;
-    text-align: center;
-    margin-top: 6px;
-  }
-  .btn-next:hover { background: var(--rose); }
-
-  /* WA card */
-  .wa-card {
-    background: #f0f7f1;
-    border: 1px solid #c5dfc9;
-    padding: 20px;
-    margin-bottom: 20px;
-  }
-  .wa-lbl { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #4a8a5a; font-weight: 300; margin-bottom: 10px; }
-  .wa-text { font-family: 'Cormorant Garamond', serif; font-size: 19px; font-style: italic; line-height: 1.6; color: var(--text); }
-  .wa-ex { background: white; border: 1px solid #c5dfc9; padding: 14px 18px; margin-top: 12px; font-size: 15px; font-weight: 300; line-height: 1.7; color: var(--text); }
-
-  /* RESULT */
-  #screen-result {
-    background: linear-gradient(160deg, var(--blush) 0%, var(--white) 60%);
-    justify-content: center;
-    align-items: center;
-    padding: 52px 32px;
-    text-align: center;
-  }
-  .res-icon { width: 68px; height: 68px; border-radius: 50%; background: var(--blush-deep); display: flex; align-items: center; justify-content: center; margin: 0 auto 28px; font-size: 24px; }
-  .res-title { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; line-height: 1.2; margin-bottom: 16px; }
-  .res-text { font-size: 15px; font-weight: 300; line-height: 1.9; color: var(--text-light); max-width: 320px; margin: 0 auto 36px; }
-  .author { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--rose); margin-top: 44px; font-weight: 300; }
-
-  /* ── STICKY BAR (переработано: светлый стиль, без тёмного блока) ── */
-  .sticky-wrap {
-    position: fixed;
-    bottom: 0; left: 0; right: 0;
-    z-index: 999;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 -4px 20px rgba(44,31,28,0.10);
-  }
-
-  .sticky-row {
-    padding: 13px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 14px;
-  }
-
-  /* верхняя плашка — платный продукт, светлая, тонкая линия сверху вместо тёмного блока */
-  .sticky-premium {
-    background: var(--white);
-    border-top: 1px solid var(--line);
-  }
-  .sticky-premium-text { flex: 1; min-width: 0; }
-  .sticky-premium-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 21px;
-    font-weight: 500;
-    color: var(--text);
-    line-height: 1.25;
-    margin-bottom: 5px;
-  }
-  .sticky-premium-sub {
-    font-size: 13.5px;
-    font-weight: 400;
-    color: var(--text-light);
-    line-height: 1.45;
-  }
-  .sticky-premium-btn {
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    padding: 15px 22px;
-    background: var(--rose-dark);
-    color: var(--white);
-    font-family: 'Jost', sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 1.3px;
-    text-transform: uppercase;
-    text-decoration: none;
-    white-space: nowrap;
-    transition: background 0.2s;
-  }
-  .sticky-premium-btn:hover { background: var(--rose); }
-
-  /* нижняя плашка — экспресс-консультация, компактная, без дублирования текста */
-  .sticky-consult {
-    background: var(--rose-dark);
-  }
-  .sticky-consult-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 16px;
-    font-weight: 400;
-    color: var(--white);
-    line-height: 1.25;
-    margin-bottom: 2px;
-  }
-  .sticky-consult-sub {
-    font-size: 11px;
-    font-weight: 300;
-    color: rgba(253,250,248,0.7);
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-  }
-  .sticky-btns { display: flex; gap: 8px; flex-shrink: 0; }
-  .sticky-btn {
-    width: 42px; height: 42px;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    text-decoration: none;
-    transition: opacity 0.2s, transform 0.2s;
-    flex-shrink: 0;
-  }
-  .sticky-btn:hover { opacity: 0.85; transform: scale(1.06); }
-  .sticky-btn.tg { background: #2AABEE; }
-  .sticky-btn.wa { background: #25D366; }
-
-  body { padding-bottom: 132px; }
-
+  @media (max-width: 380px) { .hero h1 { font-size: 34px; } h2 { font-size: 26px; } }
 </style>
 </head>
 <body>
 
-<!-- ВВОДНЫЙ ЭКРАН -->
-<div id="screen-intro" class="screen active">
-  <p class="intro-eyebrow" style="margin-top:52px;">Стратегия поведения</p>
-  <h1 class="intro-title">Семья<br>в <em>приоритете</em></h1>
-  <p class="intro-sub">Для тех, кто хочет быть на первом месте в жизни собственного мужа</p>
-  <div class="divider"></div>
-  <p class="intro-body">
-    Он помогает всем — потому что там его <strong>видят и ценят</strong>.<br><br>
-    Дома всё воспринимается как само собой разумеющееся.<br><br>
-    Эта стратегия меняет именно это — шаг за шагом, без скандалов и ультиматумов.
-  </p>
-  <button class="btn-start" onclick="goTo('screen-menu')">Начать</button>
-</div>
+<div class="copyright">Полянинова Бэлла Леонидовна. Авторский продукт. Все права защищены</div>
 
-<!-- МЕНЮ ШАГОВ -->
-<div id="screen-menu" class="screen">
-  <div style="padding: 48px 28px 0;">
-    <p class="menu-eyebrow">Семья в приоритете</p>
-    <h2 class="menu-title">Выберите шаг</h2>
-    <p class="menu-hint">Начните с любого — хоть с первого, хоть с третьего.</p>
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Стратегия поведения · Семья в приоритете</div>
+    <h1>Он всем помогает.<br><span>Только не дома</span></h1>
+    <p>Три шага, которые возвращают семью в зону его внимания. Без скандалов, ультиматумов и бесконечного «ну пожалуйста».</p>
+    <a href="#start" class="btn btn-white">Начать</a>
   </div>
-  <div style="padding: 0 28px 52px; flex:1;">
+</header>
 
-    <div class="step-card" onclick="goTo('screen-s1')">
-      <div class="step-card-num">1</div>
-      <div class="step-card-info">
-        <p class="step-card-label">Шаг первый</p>
-        <p class="step-card-title">Личный запрос</p>
-        <p class="step-card-desc">Одно дело — один срок — одно предложение</p>
+<section id="start">
+  <div class="wrap">
+    <div class="label">Знакомая картина</div>
+    <h2>Там он взрослый и надёжный. А дома?</h2>
+    <p class="lead">Есть мужчины, которые умеют быть очень включёнными. Просто не в своей семье.</p>
+    <ul class="list-help">
+      <li>На работе он ответственный</li>
+      <li>Друзьям поможет</li>
+      <li>К родителям съездит</li>
+      <li>Коллеге объяснит</li>
+      <li>Кому-то починит, отвезёт, организует, решит</li>
+    </ul>
+    <p>А дома его каждый раз нужно заново просить, напоминать и доказывать, что семье тоже нужно его внимание.</p>
+    <div class="quote">Почему там он собранный, а дома всё должно само держаться на вас?</div>
+    <p>Чаще всего дело не в том, что он не умеет заботиться. Дело в том, что дома его вклад давно воспринимается как обязанность, а вне дома - как ценность.</p>
+    <p>Там его благодарят, замечают, ждут. А дома всё растворяется в фоне: дети, быт, усталость, «почему опять я должна напоминать».</p>
+    <p>И тогда он идёт за ощущением значимости туда, где его легче получить.</p>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="label">Для кого этот материал</div>
+    <h2>Это про вас, когда</h2>
+    <ul class="check">
+      <li>Вы устали просить о том, что он мог бы заметить сам</li>
+      <li>Вам обидно, что чужим людям он помогает быстрее, чем собственной семье</li>
+      <li>Скандалить вы не хотите, но и молча тянуть всё на себе больше не можете</li>
+      <li>Вы видите, что он способен на ответственность, просто дома её не включает</li>
+      <li>Вам нужен понятный порядок действий, а не очередное «поговорите спокойно»</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="label">Логика стратегии</div>
+    <h2>Не просить громче. Менять способ входа в его внимание</h2>
+    <p>Здесь не будет советов бегать за мужчиной, хвалить его за каждую тарелку или становиться удобнее.</p>
+    <p>Будет порядок из трёх шагов. Каждый следующий нужен, когда предыдущий не сработал.</p>
+    <div class="path">
+      <div><b>1</b>Личный конкретный запрос</div>
+      <div><b>2</b>Другая подача, когда первая просьба не дошла</div>
+      <div><b>3</b>Среда признания: дома его вклад начинает иметь значение</div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+
+    <div class="step" id="step1">
+      <div class="step-head"><div class="step-num">1</div><div><small>Шаг первый</small><h3>Личный запрос</h3></div></div>
+      <p>Не «ты никогда» и не «опять». Одно дело, один срок, одно предложение. Выберите спокойный момент: не вечером после работы и не во время еды.</p>
+      <div class="box box-blue">
+        <div class="box-title">Как говорить</div>
+        <p>Конкретно. Без объяснений, зачем это нужно. Без истории о том, как давно это висит.</p>
       </div>
-      <div class="step-card-arrow">›</div>
-    </div>
-
-    <div class="step-card" onclick="goTo('screen-s2')">
-      <div class="step-card-num">2</div>
-      <div class="step-card-info">
-        <p class="step-card-label">Шаг второй</p>
-        <p class="step-card-title">Другая подача</p>
-        <p class="step-card-desc">Другой момент, короче формулировка</p>
+      <div class="box box-green">
+        <div class="box-title">Пример фразы</div>
+        <div class="phrase">«В субботу утром нужно прибить полку. Ты сделаешь?»</div>
       </div>
-      <div class="step-card-arrow">›</div>
-    </div>
-
-    <div class="step-card" onclick="goTo('screen-s4')">
-      <div class="step-card-num">3</div>
-      <div class="step-card-info">
-        <p class="step-card-label">Шаг третий</p>
-        <p class="step-card-title">Среда признания</p>
-        <p class="step-card-desc">Называть его вклад вслух — без похвалы, как факт</p>
-      </div>
-      <div class="step-card-arrow">›</div>
-    </div>
-
-  </div>
-</div>
-
-<!-- ШАГ 1 -->
-<div id="screen-s1" class="screen">
-  <div class="step-header">
-    <div class="step-nav">
-      <button class="btn-back" onclick="goTo('screen-menu')">← Все шаги</button>
-      <button class="btn-menu" onclick="goTo('screen-menu')">Меню</button>
-    </div>
-    <p class="step-lbl">Шаг первый</p>
-    <h2 class="step-ttl">Личный запрос</h2>
-  </div>
-  <div class="step-body">
-    <p class="ctx">Не «ты никогда», не «опять». Одно конкретное дело — один срок — одно предложение. Спокойный момент: не вечером после работы, не во время еды.</p>
-
-    <div class="icard">
-      <p class="icard-lbl">Как говорить</p>
-      <p class="icard-text">Конкретно. Без объяснений зачем. Без истории о том, как давно это висит.</p>
-      <div class="phrase"><span class="phrase-lbl">Пример фразы</span>«В субботу утром нужно прибить полку. Ты сделаешь?»</div>
-    </div>
-
-    <p class="note-lbl">Ваш запрос — запишите</p>
-    <textarea placeholder="Напишите здесь, о чём вы попросите..."></textarea>
-
-    <div class="sep"></div>
-    <p class="sec-ttl">Как он отреагировал?</p>
-    <button class="rbtn yes" onclick="goTo('screen-done')"><span class="rbtn-icon">✓</span><span>Сделал — всё получилось</span></button>
-    <button class="rbtn no"  onclick="goTo('screen-s2')"><span class="rbtn-icon">→</span><span>Не сделал — шаг второй</span></button>
-  </div>
-</div>
-
-<!-- ШАГ 2 -->
-<div id="screen-s2" class="screen">
-  <div class="step-header">
-    <div class="step-nav">
-      <button class="btn-back" onclick="goTo('screen-menu')">← Все шаги</button>
-      <button class="btn-menu" onclick="goTo('screen-menu')">Меню</button>
-    </div>
-    <p class="step-lbl">Шаг второй</p>
-    <h2 class="step-ttl">Другой момент,<br>другая подача</h2>
-  </div>
-  <div class="step-body">
-    <p class="ctx">Это не повтор и не напоминание. Он уже не слышит привычную просьбу — она идёт фоном. Нужна пересборка: другое время, другая интонация, короче формулировка.</p>
-
-    <div class="icard">
-      <p class="icard-lbl">Что изменить</p>
-      <p class="icard-text">Другое время суток. Короче формулировка. Одно предложение — почему это важно. Только одно.</p>
-      <div class="phrase"><span class="phrase-lbl">Пример фразы</span>«Полка нужна до конца недели. Это важно для меня.»</div>
-    </div>
-
-    <p class="note-lbl">Новая формулировка</p>
-    <textarea placeholder="Как скажете иначе..."></textarea>
-
-    <div class="sep"></div>
-    <p class="sec-ttl">Как он отреагировал?</p>
-    <button class="rbtn yes" onclick="goTo('screen-done')"><span class="rbtn-icon">✓</span><span>Сделал — всё получилось</span></button>
-    <button class="rbtn no"  onclick="goTo('screen-s4')"><span class="rbtn-icon">→</span><span>Не сделал — шаг третий</span></button>
-  </div>
-</div>
-
-<!-- ШАГ 3 (было: шаг 4, Среда признания) -->
-<div id="screen-s4" class="screen">
-  <div class="step-header">
-    <div class="step-nav">
-      <button class="btn-back" onclick="goTo('screen-menu')">← Все шаги</button>
-      <button class="btn-menu" onclick="goTo('screen-menu')">Меню</button>
-    </div>
-    <p class="step-lbl">Шаг третий</p>
-    <h2 class="step-ttl">Среда признания</h2>
-  </div>
-  <div class="step-body">
-    <p class="ctx">Он ищет признание снаружи — потому что дома всё воспринимается как норма. Этот шаг меняет это — без давления и без манипуляции.</p>
-
-    <div class="icard">
-      <p class="icard-lbl">Что делать</p>
-      <p class="icard-text">Начните называть вслух то, что он уже делает. Любую мелочь. Не похвала — фиксация факта и его значение для вас.</p>
-      <div class="phrase">
-        <span class="phrase-lbl">Примеры</span>
-        «Купил картошку — ты облегчил мне вечер.»<br><br>
-        «Отвёз детей — у меня освободился час. Спасибо.»<br><br>
-        «Хорошо, что успел до закрытия. Это было важно.»
+      <textarea data-key="semiya_step1" placeholder="Запишите, о чём вы попросите и когда"></textarea>
+      <div class="q">Как он отреагировал?</div>
+      <div class="choice">
+        <a href="#done" class="btn btn-green">Сделал</a>
+        <a href="#step2" class="btn btn-ghost">Не сделал - к шагу 2</a>
       </div>
     </div>
 
-    <div class="icard">
-      <p class="icard-lbl">Как не надо</p>
-      <p class="icard-text">Не «молодец», не «наконец-то», не «видишь, можешь же». Только нейтральная фиксация и её значение для вас.</p>
-    </div>
-
-    <div class="sep"></div>
-    <p class="sec-ttl">Что происходит дома?</p>
-    <button class="rbtn yes" onclick="goTo('screen-result')"><span class="rbtn-icon">✓</span><span>Он начал делать больше</span></button>
-    <button class="rbtn no"  onclick="goTo('screen-premium')"><span class="rbtn-icon">→</span><span>Пока ничего не изменилось</span></button>
-  </div>
-</div>
-
-<!-- ПРЕМИУМ-ПРЕДЛОЖЕНИЕ (было: шаг 5, Разговор о приоритетах) -->
-<div id="screen-premium" class="screen">
-  <div class="step-header">
-    <div class="step-nav">
-      <button class="btn-back" onclick="goTo('screen-menu')">← Все шаги</button>
-      <button class="btn-menu" onclick="goTo('screen-menu')">Меню</button>
-    </div>
-    <p class="step-lbl">Если три шага не сдвинули ситуацию</p>
-    <h2 class="step-ttl">Разговор<br>о приоритетах</h2>
-  </div>
-  <div class="step-body">
-    <p class="ctx">Это не значит, что метод не работает. Это значит, что в вашем случае есть своя причина — и дальше начинается более глубокий разговор.</p>
-
-    <div class="icard">
-      <p class="icard-lbl">Что внутри</p>
-      <p class="icard-text">Один вопрос, который вскрывает истинное место семьи в его жизни — с разбором, что делать с любым ответом. Плюс четыре типа мужчин и сценарии для случаев, когда предыдущие шаги не сработали, и шесть практик на каждый день для закрепления.</p>
-    </div>
-
-    <div class="sep"></div>
-
-    <div style="text-align:center; margin-bottom:24px;">
-      <p style="font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:400; color:var(--text); margin-bottom:6px;">Забота возвращается в дом</p>
-      <p style="font-size:15px; font-weight:300; color:var(--rose-dark);">990 ₽</p>
-    </div>
-
-    <a href="https://app.lava.top/products/a4dee9c8-a40d-4384-a16d-96b6573e030e" target="_blank" class="btn-next" style="text-decoration:none; display:block;">Открыть →</a>
-  </div>
-</div>
-
-<!-- ЕСЛИ СДЕЛАЛ -->
-<div id="screen-done" class="screen">
-  <div class="step-header">
-    <div class="step-nav">
-      <button class="btn-back" onclick="goTo('screen-menu')">← Все шаги</button>
-      <button class="btn-menu" onclick="goTo('screen-menu')">Меню</button>
-    </div>
-    <p class="step-lbl">Он сделал</p>
-    <h2 class="step-ttl">Важно — что теперь</h2>
-  </div>
-  <div class="step-body">
-    <p class="ctx">Это не финал — это начало. Сейчас важно закрепить. Иначе через неделю всё вернётся.</p>
-
-    <div class="icard">
-      <p class="icard-lbl">Ваше действие</p>
-      <p class="icard-text">Назовите его вклад вслух. Не хвалите как ребёнка — фиксируйте как факт.</p>
-      <div class="phrase"><span class="phrase-lbl">Пример фразы</span>«Мне важно, что ты это сделал. Это облегчило мне день.»</div>
-    </div>
-
-    <p class="ctx" style="margin-top:0;">Одного предложения достаточно. Именно это он ищет снаружи — а вы только что дали ему это дома.</p>
-
-    <button class="btn-next" onclick="goTo('screen-s4')">Перейти к закреплению →</button>
-  </div>
-</div>
-
-<!-- ФИНАЛ -->
-<div id="screen-result" class="screen">
-  <div style="flex:1; display:flex; flex-direction:column; align-items:center; padding:52px 28px 56px; background:linear-gradient(160deg,var(--blush) 0%,var(--white) 60%);">
-
-    <!-- Завершение -->
-    <div style="text-align:center; margin-bottom:44px;">
-      <div class="res-icon">✦</div>
-      <h2 class="res-title">Это не про мусор<br>и не про <em style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--rose);">полку</em></h2>
-      <div class="divider" style="margin-top:16px;"></div>
-      <p class="res-text">Вы меняли не его привычку. Вы меняли среду, в которой он существует рядом с вами.<br><br>Когда дом становится местом, где его видят — он начинает ставить дом первым.</p>
-      <button class="btn-start" onclick="goTo('screen-menu')" style="font-size:12px; padding:14px 32px;">Вернуться к шагам</button>
-    </div>
-
-    <!-- Разделитель -->
-    <div style="width:100%; height:1px; background:var(--line); margin-bottom:40px;"></div>
-
-    <!-- Экспресс-разбор -->
-    <div style="width:100%; max-width:400px;">
-      <p style="font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--rose); font-weight:300; margin-bottom:16px; text-align:center;">Если стратегия не сдвинула ситуацию</p>
-
-      <div style="background:var(--blush); padding:28px 24px; position:relative; margin-bottom:28px;">
-        <div style="position:absolute; top:0; left:0; width:3px; height:100%; background:var(--rose);"></div>
-        <p style="font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:300; line-height:1.5; color:var(--text); margin-bottom:14px;">Это не значит, что метод не работает. Это значит, что в вашем случае есть своя причина.</p>
-        <p style="font-size:14px; font-weight:300; line-height:1.85; color:var(--text-light);">Семейный сценарий, детская история, соревнование — то, что не видно снаружи и не решается общей инструкцией. Именно это мы разбираем вместе.</p>
+    <div class="step" id="step2">
+      <div class="step-head"><div class="step-num">2</div><div><small>Шаг второй</small><h3>Другой момент, другая подача</h3></div></div>
+      <p>Это не повтор и не напоминание. Привычную просьбу он уже не слышит, она идёт фоном. Нужна пересборка: другое время, другая интонация, короче формулировка.</p>
+      <div class="box box-blue">
+        <div class="box-title">Что изменить</div>
+        <p>Время суток. Длину фразы. Добавьте одно предложение о том, почему это важно. Только одно.</p>
       </div>
-
-      <div style="text-align:center; margin-bottom:28px;">
-        <p style="font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:400; color:var(--text); margin-bottom:6px;">Экспресс-разбор вашей ситуации</p>
-        <p style="font-size:13px; font-weight:300; color:var(--text-light); letter-spacing:1px;">60 минут с психологом</p>
+      <div class="box box-green">
+        <div class="box-title">Пример фразы</div>
+        <div class="phrase">«Полка нужна до конца недели. Это важно для меня.»</div>
       </div>
-
-      <!-- Кнопки -->
-      <a href="https://t.me/bella_psychologist" target="_blank"
-         style="display:flex; align-items:center; justify-content:center; gap:12px; width:100%; padding:18px 24px; background:#2AABEE; color:white; font-family:'Jost',sans-serif; font-size:14px; font-weight:400; letter-spacing:1.5px; text-transform:uppercase; text-decoration:none; margin-bottom:12px; transition:opacity 0.2s;">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.8 13.9l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.835.952l.013-.293z"/></svg>
-        Написать в Telegram
-      </a>
-
-      <a href="https://wa.me/79880051025" target="_blank"
-         style="display:flex; align-items:center; justify-content:center; gap:12px; width:100%; padding:18px 24px; background:#25D366; color:white; font-family:'Jost',sans-serif; font-size:14px; font-weight:400; letter-spacing:1.5px; text-transform:uppercase; text-decoration:none; transition:opacity 0.2s;">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M12.031 0C5.384 0 .001 5.383.001 12.031c0 2.122.557 4.112 1.528 5.837L0 24l6.306-1.653A11.974 11.974 0 0012.031 24C18.678 24 24 18.617 24 11.969 24 5.322 18.678 0 12.031 0zm6.051 16.708c-.253.714-1.467 1.32-2.028 1.374-.521.05-1.01.247-3.402-.708-2.86-1.143-4.695-4.058-4.836-4.245-.14-.187-1.148-1.527-1.148-2.912s.727-2.059.985-2.34c.258-.28.562-.35.75-.35l.538.01c.173.007.405-.066.633.483.235.563.797 1.947.867 2.087.07.14.117.303.023.487-.094.184-.14.298-.28.46l-.422.49c-.14.14-.286.292-.123.573.163.28.724 1.194 1.554 1.933 1.067.952 1.967 1.246 2.247 1.386.28.14.443.117.607-.07.163-.187.7-.817.887-1.097.187-.28.374-.234.633-.14.258.093 1.644.775 1.924.915.28.14.467.21.537.327.07.117.07.677-.183 1.337z"/></svg>
-        Написать в WhatsApp
-      </a>
-
-      <p class="author" style="margin-top:36px; text-align:center;">Бэлла Леонидовна Полянинова</p>
+      <textarea data-key="semiya_step2" placeholder="Ваша новая формулировка"></textarea>
+      <div class="q">Как он отреагировал?</div>
+      <div class="choice">
+        <a href="#done" class="btn btn-green">Сделал</a>
+        <a href="#step3" class="btn btn-ghost">Не сделал - к шагу 3</a>
+      </div>
     </div>
 
+    <div class="step" id="step3">
+      <div class="step-head"><div class="step-num">3</div><div><small>Шаг третий</small><h3>Среда признания</h3></div></div>
+      <p>Он ищет признание снаружи, потому что дома всё воспринимается как норма. Этот шаг меняет обстановку дома, без давления и без манипуляции.</p>
+      <div class="box box-blue">
+        <div class="box-title">Что делать</div>
+        <p>Называйте вслух то, что он уже делает. Любую мелочь. Не похвала, а фиксация факта и его значения для вас.</p>
+      </div>
+      <div class="box box-green">
+        <div class="box-title">Примеры</div>
+        <div class="phrase">«Купил картошку - ты облегчил мне вечер.»</div>
+        <div class="phrase">«Отвёз детей - у меня освободился час. Спасибо.»</div>
+        <div class="phrase">«Хорошо, что успел до закрытия. Это было важно.»</div>
+      </div>
+      <div class="box box-amber">
+        <div class="box-title">Как не надо</div>
+        <p>Не «молодец», не «наконец-то», не «видишь, можешь же». Только спокойная фиксация.</p>
+      </div>
+      <textarea data-key="semiya_step3" placeholder="Что он сделал на этой неделе и что вы ему сказали"></textarea>
+      <div class="q">Что происходит дома?</div>
+      <div class="choice">
+        <a href="#done" class="btn btn-green">Он начал делать больше</a>
+        <a href="#deeper" class="btn btn-ghost">Пока ничего не изменилось</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="done">
+  <div class="wrap">
+    <div class="label">Он сделал</div>
+    <h2>Теперь главное - закрепить</h2>
+    <p>Это не финал, а начало. Без закрепления через неделю всё вернётся на прежнее место.</p>
+    <div class="box box-green">
+      <div class="box-title">Ваше действие</div>
+      <div class="phrase">«Мне важно, что ты это сделал. Это облегчило мне день.»</div>
+    </div>
+    <p style="margin-top:16px">Одного предложения достаточно. Именно это он искал снаружи, а теперь получает дома.</p>
+    <p>Дальше важно, чтобы новый порядок стал привычкой, а не разовой удачей. Для этого в полной версии есть практики на каждый день.</p>
+  </div>
+</section>
+
+<section id="deeper" class="alt">
+  <div class="wrap">
+    <div class="label">Он не сделал</div>
+    <h2>Это тоже информация</h2>
+    <p>Значит, дело не в формулировке просьбы. Вероятно, в вашей семье уже закрепился порядок, где дом держится на вас, а он включает ответственность только там, где получает признание, статус или ощущение нужности.</p>
+    <p class="lead" style="margin-top:14px">Тогда разбирать нужно не отдельную просьбу, а всю систему.</p>
+
+    <div class="offer" id="offer">
+      <div class="label">Полная версия</div>
+      <h2>Забота возвращается в дом</h2>
+      <p>Почему мужчина бывает включённым для всех, кроме своей семьи, какие сценарии это поддерживают и что делать, когда обычные просьбы уже не работают.</p>
+      <ul>
+        <li>Один вопрос, который показывает настоящее место семьи в его приоритетах, и что делать с любым ответом</li>
+        <li>Четыре типа мужского поведения и подход к каждому</li>
+        <li>Шесть практик на каждый день, чтобы новый порядок удержался</li>
+      </ul>
+      <div class="price">990 ₽</div>
+      <div class="price-note">Перестать просить по кругу и начать менять сам семейный порядок.</div>
+      <a href="https://app.lava.top/products/a4dee9c8-a40d-4384-a16d-96b6573e030e" target="_blank" class="btn btn-white" style="max-width:none">Открыть полную версию за 990 ₽</a>
+    </div>
+
+    <div class="consult">
+      <h3>Экспресс-разбор вашей ситуации</h3>
+      <p><b>60 минут с психологом.</b> Семейный сценарий, детская история, соревнование между супругами - то, что не видно снаружи и не решается общей инструкцией. Это мы разбираем вместе.</p>
+      <div class="msg">
+        <a href="https://t.me/bella_psychologist" target="_blank" class="btn tg">Telegram</a>
+        <a href="https://wa.me/79880051025" target="_blank" class="btn wa">WhatsApp</a>
+      </div>
+    </div>
+
+    <div class="sign">С уважением, Бэлла Леонидовна</div>
+  </div>
+</section>
+
+<div class="sticky">
+  <div class="sticky-in">
+    <div class="sticky-text"><b>Забота возвращается в дом</b><span>Полная версия · 990 ₽</span></div>
+    <a href="https://app.lava.top/products/a4dee9c8-a40d-4384-a16d-96b6573e030e" target="_blank" class="btn btn-blue">Открыть</a>
   </div>
 </div>
 
 <script>
-  function goTo(id) {
-    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-    window.scrollTo(0, 0);
-  }
+  document.querySelectorAll('textarea[data-key]').forEach(function (t) {
+    try { t.value = localStorage.getItem(t.dataset.key) || ''; } catch (e) {}
+    t.addEventListener('input', function () { try { localStorage.setItem(t.dataset.key, t.value); } catch (e) {} });
+  });
 </script>
-
-<!-- ФИКСИРОВАННЫЙ БЛОК: ОБЕ ПЛАШКИ, СВЕТЛЫЙ СТИЛЬ -->
-<div class="sticky-wrap">
-
-  <!-- ПОЛНАЯ ВЕРСИЯ -->
-  <div class="sticky-row sticky-premium">
-    <div class="sticky-premium-text">
-      <p class="sticky-premium-title">Забота возвращается в дом</p>
-      <p class="sticky-premium-sub">990 ₽ — шаг к отношениям, где помощь и забота о вас и семье стоят на первом месте</p>
-    </div>
-    <a href="https://app.lava.top/products/a4dee9c8-a40d-4384-a16d-96b6573e030e" target="_blank" class="sticky-premium-btn">
-      Открыть →
-    </a>
-  </div>
-
-  <!-- ЭКСПРЕСС-РАЗБОР -->
-  <div class="sticky-row sticky-consult">
-    <div>
-      <p class="sticky-consult-title">Экспресс-разбор ситуации</p>
-      <p class="sticky-consult-sub">60 минут с психологом</p>
-    </div>
-    <div class="sticky-btns">
-      <a href="https://t.me/bella_psychologist" target="_blank" class="sticky-btn tg" title="Telegram">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.8 13.9l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.835.952l.013-.293z"/></svg>
-      </a>
-      <a href="https://wa.me/79880051025" target="_blank" class="sticky-btn wa" title="WhatsApp">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12.031 0C5.384 0 .001 5.383.001 12.031c0 2.122.557 4.112 1.528 5.837L0 24l6.306-1.653A11.974 11.974 0 0012.031 24C18.678 24 24 18.617 24 11.969 24 5.322 18.678 0 12.031 0zm6.051 16.708c-.253.714-1.467 1.32-2.028 1.374-.521.05-1.01.247-3.402-.708-2.86-1.143-4.695-4.058-4.836-4.245-.14-.187-1.148-1.527-1.148-2.912s.727-2.059.985-2.34c.258-.28.562-.35.75-.35l.538.01c.173.007.405-.066.633.483.235.563.797 1.947.867 2.087.07.14.117.303.023.487-.094.184-.14.298-.28.46l-.422.49c-.14.14-.286.292-.123.573.163.28.724 1.194 1.554 1.933 1.067.952 1.967 1.246 2.247 1.386.28.14.443.117.607-.07.163-.187.7-.817.887-1.097.187-.28.374-.234.633-.14.258.093 1.644.775 1.924.915.28.14.467.21.537.327.07.117.07.677-.183 1.337z"/></svg>
-      </a>
-    </div>
-  </div>
-</div>
 <script src="consent.js" defer></script>
 </body>
 </html>
