@@ -11,128 +11,92 @@
     --bg:#F4F8FC;
     --ink:#1E2B38;
     --ink-soft:#4A5A68;
-    --blue-bg:#D6E6F5;   --blue-ac:#3E6B9C;
-    --rose-bg:#F3D6E3;   --rose-ac:#B8557E;
-    --violet-bg:#E4DBF5; --violet-ac:#6E56A8;
-    --teal-bg:#D3ECE9;   --teal-ac:#2E8C86;
-    --green-bg:#DCEEDA;  --green-ac:#4A8C63;
-    --card-shadow: 0 2px 14px rgba(30,43,56,.06);
+    --blue:#3E6B9C;  --blue-bg:#E7F0FA;
+    --rose:#B8557E;  --rose-bg:#FBEAF1;
+    --violet:#6E56A8;--violet-bg:#F1ECFA;
+    --teal:#2E8C86;  --teal-bg:#E4F4F2;
+    --green:#4A8C63; --green-bg:#E9F6E7;
+    --shadow:0 2px 14px rgba(30,43,56,.06);
   }
   *{box-sizing:border-box;}
-  body{
-    margin:0;
-    background:var(--bg);
-    color:var(--ink);
-    font-family:'Manrope',sans-serif;
-    -webkit-font-smoothing:antialiased;
-  }
-  .wrap{ max-width:640px; margin:0 auto; padding:48px 24px 64px; }
-  .eyebrow{
-    font-size:12px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase;
-    color:var(--blue-ac); text-align:center; margin-bottom:18px; line-height:1.6;
-  }
-  h1{
-    font-family:'Playfair Display',serif; font-weight:700; font-size:34px; line-height:1.28;
-    text-align:center; margin:0 0 16px; color:var(--ink);
-  }
-  .subtitle{
-    text-align:center; font-size:17px; font-weight:600; color:var(--ink-soft);
-    margin:0 0 36px; line-height:1.5;
-  }
-  .intro{ margin-bottom:32px; }
-  .intro p{ font-size:17px; line-height:1.7; margin:0 0 16px; }
-  .quote-lines p{ margin:0 0 6px; font-weight:600; color:var(--blue-ac); }
-  .quote-lines{ margin:0 0 18px; }
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Manrope',sans-serif;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:640px;margin:0 auto;padding:44px 20px 64px;}
+  p{font-size:17px;line-height:1.7;margin:0 0 14px;}
+  b{font-weight:800;}
 
-  .qlist{ display:flex; flex-direction:column; gap:14px; }
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--blue);text-align:center;margin-bottom:18px;line-height:1.6;}
+  h1{font-family:'Playfair Display',serif;font-weight:700;font-size:33px;line-height:1.28;text-align:center;margin:0 0 14px;}
+  .subtitle{text-align:center;font-size:17px;font-weight:600;color:var(--ink-soft);margin:0 0 34px;line-height:1.5;}
 
-  details.card{ border-radius:18px; box-shadow:var(--card-shadow); overflow:hidden; background:#fff; }
-  details.card > summary{
-    list-style:none; cursor:pointer; display:flex; align-items:center; gap:14px;
-    padding:20px 22px; font-weight:700; font-size:17px; line-height:1.4;
-  }
-  details.card > summary::-webkit-details-marker{ display:none; }
-  .num{
-    flex:0 0 auto; width:34px; height:34px; border-radius:50%;
-    display:flex; align-items:center; justify-content:center;
-    font-family:'Playfair Display',serif; font-weight:700; font-size:16px; color:#fff;
-  }
-  .chev{ margin-left:auto; flex:0 0 auto; width:20px; height:20px; transition:transform .25s ease; opacity:.55; }
-  details[open] .chev{ transform:rotate(180deg); }
+  .lines{margin:0 0 18px;padding:16px 18px;background:#fff;border-radius:14px;box-shadow:var(--shadow);}
+  .lines p{margin:0 0 6px;font-weight:600;}
+  .lines p:last-child{margin-bottom:0;}
+  .lines.blue p{color:var(--blue);}
 
-  .body{ padding:20px 22px 24px 70px; font-size:17px; line-height:1.7; }
-  .body p{ margin:0 0 14px; }
-  .body p:last-child{ margin-bottom:0; }
-  .example{ border-radius:12px; padding:14px 16px; font-size:16px; line-height:1.6; margin:4px 0 14px; }
-  .example b{ font-weight:800; }
-  .example .old{ display:block; margin-top:8px; font-weight:600; }
-  .opt{ display:block; margin:0 0 6px; }
-  .opt:last-child{ margin-bottom:0; }
+  .q{background:#fff;border-radius:18px;box-shadow:var(--shadow);margin:0 0 18px;overflow:hidden;}
+  .q-head{display:flex;align-items:center;gap:14px;padding:18px 20px;font-weight:800;font-size:18px;line-height:1.4;}
+  .num{flex:0 0 auto;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;font-size:16px;color:#fff;}
+  .q-body{padding:18px 20px 20px;}
+  .q-body p:last-child{margin-bottom:0;}
+  .box{border-radius:12px;padding:14px 16px;margin:4px 0 16px;}
+  .box p{font-size:16.5px;margin:0 0 8px;}
+  .box p:last-child{margin-bottom:0;}
+  .fill{font-weight:700;}
 
-  .c1 .num{ background:var(--rose-ac); }   .c1 summary{ background:var(--rose-bg); }   .c1 .example{ background:#FBEAF1; color:#7A3455; }
-  .c2 .num{ background:var(--violet-ac); } .c2 summary{ background:var(--violet-bg); } .c2 .example{ background:#F1ECFA; color:#4A3878; }
-  .c3 .num{ background:var(--teal-ac); }   .c3 summary{ background:var(--teal-bg); }   .c3 .example{ background:#E4F4F2; color:#1F5F5B; }
-  .c4 .num{ background:var(--blue-ac); }   .c4 summary{ background:var(--blue-bg); }   .c4 .example{ background:#E7F0FA; color:#2C4F72; }
-  .c5 .num{ background:var(--green-ac); }  .c5 summary{ background:var(--green-bg); }  .c5 .example{ background:#E9F6E7; color:#356247; }
+  .q1 .q-head{background:#F3D6E3;} .q1 .num{background:var(--rose);}   .q1 .box{background:var(--rose-bg);color:#7A3455;}
+  .q2 .q-head{background:#E4DBF5;} .q2 .num{background:var(--violet);} .q2 .box{background:var(--violet-bg);color:#4A3878;}
+  .q3 .q-head{background:#D3ECE9;} .q3 .num{background:var(--teal);}   .q3 .box{background:var(--teal-bg);color:#1F5F5B;}
+  .q4 .q-head{background:#D6E6F5;} .q4 .num{background:var(--blue);}   .q4 .box{background:var(--blue-bg);color:#2C4F72;}
+  .q5 .q-head{background:#DCEEDA;} .q5 .num{background:var(--green);}  .q5 .box{background:var(--green-bg);color:#356247;}
 
-  .stop{
-    background:#fff; border-left:4px solid var(--blue-ac); border-radius:4px 18px 18px 4px;
-    box-shadow:var(--card-shadow); padding:24px 24px 22px; margin:28px 0;
-  }
-  .stop h2{
-    font-family:'Playfair Display',serif; font-size:23px; font-weight:700; margin:0 0 14px; color:var(--blue-ac);
-  }
-  .stop p{ font-size:17px; line-height:1.7; margin:0 0 14px; }
-  .stop p:last-child{ margin-bottom:0; }
-  .sit-list{ list-style:none; margin:0 0 16px; padding:0; }
-  .sit-list li{
-    font-size:16px; line-height:1.6; padding:12px 14px; margin:0 0 8px;
-    border-radius:12px; background:#EEF4FB;
-  }
-  .sit-list li b{ display:block; color:var(--blue-ac); }
-  .next{ font-weight:700; color:var(--ink-soft); }
+  .sit{margin:0 0 12px;}
+  .sit b{display:block;margin-bottom:2px;}
 
-  .divider{ height:1px; background:linear-gradient(to right, transparent, #C7D6E4, transparent); margin:40px 0 34px; }
+  .stop{background:#fff;border-left:4px solid var(--violet);border-radius:4px 16px 16px 4px;box-shadow:var(--shadow);padding:18px 20px;margin:0 0 18px;}
+  .stop p{margin:0;}
+  .stop .t{font-family:'Playfair Display',serif;font-weight:700;font-size:21px;color:var(--violet);margin-bottom:6px;}
 
-  .closing h2{
-    font-family:'Playfair Display',serif; font-size:26px; font-weight:700; text-align:center; margin:0 0 20px;
-  }
-  .closing p{ font-size:17px; line-height:1.7; margin:0 0 16px; }
-  .slogan-sub{ text-align:center; font-weight:800; font-size:18px !important; color:var(--blue-ac); margin:-10px 0 22px !important; line-height:1.45; }
-  .lead{
-    font-weight:700; font-size:18px; color:var(--blue-ac); text-align:center;
-    background:#fff; border-radius:16px; box-shadow:var(--card-shadow); padding:18px 20px; margin:0 0 22px;
-  }
-  .topic-list{ list-style:none; margin:0 0 20px; padding:0; }
-  .topic-list li{
-    font-size:16.5px; line-height:1.6; padding:10px 0 10px 24px; position:relative; border-bottom:1px solid #E3ECF5;
-  }
-  .topic-list li:last-child{ border-bottom:none; }
-  .topic-list li:before{
-    content:""; position:absolute; left:4px; top:20px; width:8px; height:8px; border-radius:50%; background:var(--blue-ac);
-  }
-  .note{ font-size:15.5px !important; color:var(--ink-soft); }
-  .price{ text-align:center; font-weight:800; font-size:19px; margin:26px 0 0 !important; }
+  .bridge{text-align:center;margin:30px 0 8px;}
+  .bridge p{font-weight:700;}
+  .bridge .big{font-size:19px;color:var(--blue);}
 
-  .cta-block{ text-align:center; margin:18px 0 8px; }
-  .cta-btn{
-    display:inline-block; background:var(--blue-ac); color:#fff; font-weight:700; font-size:17px;
-    padding:17px 30px; border-radius:30px; text-decoration:none; line-height:1.35;
-    box-shadow:0 6px 20px rgba(62,107,156,.28);
-  }
+  .divider{height:1px;background:linear-gradient(to right,transparent,#C7D6E4,transparent);margin:34px 0 30px;}
 
-  .slogan{
-    text-align:center; font-family:'Playfair Display',serif; font-weight:700; font-size:19px;
-    color:var(--blue-ac); margin:44px 0 6px;
-  }
-  .sign{ text-align:center; font-size:15px; color:var(--ink-soft); margin:0; }
+  h2{font-family:'Playfair Display',serif;font-size:27px;font-weight:700;text-align:center;margin:0 0 8px;line-height:1.3;}
+  h3{font-size:19px;font-weight:800;margin:30px 0 12px;color:var(--blue);}
+  .slogan-sub{text-align:center;font-weight:800;font-size:18px;color:var(--blue);margin:0 0 22px;line-height:1.45;}
+
+  .list{list-style:none;margin:0 0 18px;padding:0;}
+  .list li{font-size:16.5px;line-height:1.6;padding:9px 0 9px 22px;position:relative;border-bottom:1px solid #E3ECF5;}
+  .list li:last-child{border-bottom:none;}
+  .list li:before{content:"";position:absolute;left:3px;top:19px;width:8px;height:8px;border-radius:50%;background:var(--blue);}
+
+  details.pick{background:#fff;border-radius:14px;box-shadow:var(--shadow);margin:0 0 10px;overflow:hidden;}
+  details.pick summary{list-style:none;cursor:pointer;padding:16px 18px;font-weight:700;font-size:16.5px;line-height:1.45;display:flex;gap:12px;align-items:center;background:var(--blue-bg);}
+  details.pick summary::-webkit-details-marker{display:none;}
+  details.pick summary span{flex:1;}
+  .chev{flex:0 0 auto;width:20px;height:20px;opacity:.55;transition:transform .25s;}
+  details[open] .chev{transform:rotate(180deg);}
+  details.pick .in{padding:16px 18px 6px;}
+
+  .note{background:#fff;border-radius:14px;box-shadow:var(--shadow);padding:16px 18px;margin:24px 0 0;}
+  .note p{font-size:16px;color:var(--ink-soft);}
+  .note p:last-child{margin-bottom:0;}
+  .price{text-align:center;font-weight:800;font-size:19px;margin:24px 0 0;}
+  .price span{display:block;font-weight:600;font-size:16px;color:var(--ink-soft);}
+
+  .cta-block{text-align:center;margin:22px 0 8px;}
+  .cta-btn{display:inline-block;background:var(--blue);color:#fff;font-weight:700;font-size:17px;padding:17px 28px;border-radius:30px;text-decoration:none;line-height:1.35;box-shadow:0 6px 20px rgba(62,107,156,.28);}
+
+  .slogan{text-align:center;font-family:'Playfair Display',serif;font-weight:700;font-size:19px;color:var(--blue);margin:44px 0 6px;}
+  .sign{text-align:center;font-size:15px;color:var(--ink-soft);margin:0;}
 
   @media (max-width:480px){
-    h1{ font-size:27px; }
-    .body{ padding-left:18px; padding-right:18px; }
-    details.card > summary{ padding:16px; font-size:16.5px; gap:10px; }
-    .num{ width:28px; height:28px; font-size:14px; }
-    .stop{ padding:20px 18px; }
+    h1{font-size:27px;}
+    h2{font-size:24px;}
+    .q-head{padding:16px;font-size:16.5px;gap:10px;}
+    .num{width:28px;height:28px;font-size:14px;}
+    .q-body{padding:16px;}
   }
 </style>
 </head>
@@ -141,134 +105,272 @@
 
   <div class="eyebrow">Полянинова Бэлла Леонидовна · Психолог · Все права защищены</div>
   <h1>Почему вы всё понимаете,<br>но снова поступаете по-старому</h1>
-  <p class="subtitle">Пять вопросов, которые показывают, какое старое правило управляет вашими решениями</p>
+  <p class="subtitle">Пять вопросов, которые покажут, какое старое правило управляет вашими решениями.</p>
 
-  <div class="intro">
-    <p>Вы можете заранее решить:</p>
-    <div class="quote-lines">
-      <p>«В этот раз я не соглашусь».</p>
-      <p>«В этот раз не промолчу».</p>
-      <p>«В этот раз не буду всё брать на себя».</p>
-    </div>
-    <p>А потом муж недоволен. Мама обиделась. Свекровь говорит: «Я же как лучше». На работе просят «только один раз». И вы снова делаете так, как уже не хотели.</p>
-    <p>Дело не в слабом характере. В этот момент вами управляет старое правило. Когда-то оно стало нормой и теперь включается быстрее, чем ваше решение.</p>
-    <p>Пять вопросов ниже покажут, какое это правило. А в конце я покажу, что поставить вместо него.</p>
+  <p>Вы можете заранее решить:</p>
+  <div class="lines blue">
+    <p>«В этот раз я не соглашусь».</p>
+    <p>«В этот раз не промолчу».</p>
+    <p>«В этот раз не буду всё брать на себя».</p>
+    <p>«В этот раз не стану оправдываться».</p>
+    <p>«В этот раз выберу то, что важно мне».</p>
   </div>
 
-  <div class="qlist">
+  <p>А потом муж недоволен.<br>Мама обиделась.<br>Свекровь говорит: «Я же как лучше».<br>На работе просят «только один раз».<br>Ребёнок спорит, и у вас уже нет сил объяснять.</p>
+  <p><b>И вы снова делаете так, как уже не хотели.</b></p>
+  <p>Дело не в слабом характере. В этот момент часто включается старое правило. Когда-то оно помогало сохранить отношения, спокойствие, одобрение или ощущение контроля. А теперь срабатывает быстрее, чем ваше новое решение.</p>
+  <p>Ответьте на пять вопросов ниже. Они помогут увидеть, где именно вы теряете своё решение и какое правило вам нужно поставить вместо старого.</p>
 
-    <details class="card c1" open>
-      <summary><span class="num">1</span><span>Где вы уже решили, но снова отступили?</span><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary>
-      <div class="body">
-        <p>Вспомните один конкретный эпизод, не всю жизнь. Хотели отказать, но согласились. Хотели сказать, что вам неприятно, но промолчали. Решили не спасать взрослого человека, но снова всё исправили.</p>
-        <div class="example"><b>Запишите:</b> Я хотела ____________, но в итоге ____________.</div>
-        <p>Посмотрите на момент, где вы свернули со своего решения. Именно там включается старое правило.</p>
+  <div class="divider"></div>
+
+  <!-- Вопрос 1 -->
+  <div class="q q1">
+    <div class="q-head"><span class="num">1</span><span>Где вы уже решили, но снова отступили?</span></div>
+    <div class="q-body">
+      <p>Вспомните один конкретный эпизод. Не всю жизнь, а один момент.</p>
+      <div class="box">
+        <p>Вы хотели отказать, но согласились.</p>
+        <p>Хотели сказать, что вам неприятно, но промолчали.</p>
+        <p>Решили не спасать взрослого человека, но снова всё исправили.</p>
+        <p>Хотели отдохнуть, но занялись чужими делами.</p>
+        <p>Хотели выбрать своё, но снова поставили себя в конец очереди.</p>
       </div>
-    </details>
+      <p>Запишите:</p>
+      <div class="box"><p class="fill">Я хотела ______________, но в итоге ______________.</p></div>
+      <p>Теперь посмотрите не на всю ситуацию, а на один момент: где вы свернули со своего решения?</p>
+      <p>Обычно именно там включается старое правило.</p>
+    </div>
+  </div>
 
-    <details class="card c2" open>
-      <summary><span class="num">2</span><span>Какая ситуация повторяется у вас чаще?</span><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary>
-      <div class="body">
-        <p>Выберите не ту, что звучит красивее, а ту, что происходит на самом деле.</p>
-        <div class="example"><b>1. Я соглашаюсь, хотя хотела отказать.</b> Человек ждёт, обижается, торопит, и вы соглашаетесь. А потом злитесь на него и на себя.<span class="old">Старое правило: «Если я откажу, меня сочтут плохой и эгоистичной».</span></div>
-        <div class="example"><b>2. Я беру на себя чужую ответственность.</b> Другой взрослый не сделал, забыл, не решил. Вам проще исправить самой. Снаружи это забота, внутри усталость: «Опять мне».<span class="old">Старое правило: «Если я не проконтролирую, всё развалится».</span></div>
-        <div class="example"><b>3. Я молчу, чтобы не стало хуже.</b> Вас задели, вы не согласны, но молчите, потому что боитесь ссоры и холодности. Конфликта нет, а тяжесть остаётся.<span class="old">Старое правило: «Лучше промолчать, чем испортить отношения».</span></div>
-        <div class="example"><b>4. Я оправдываюсь, когда мной недовольны.</b> Вы приняли простое решение. Человек недоволен, и вы начинаете объяснять, доказывать, смягчать.<span class="old">Старое правило: «Если мной недовольны, я должна срочно всё исправить».</span></div>
-        <div class="example"><b>5. Я откладываю свои желания.</b> Отдых, деньги на себя, обучение, время. Каждый раз находится что-то важнее, и ваше желание снова переносится.<span class="old">Старое правило: «Моё можно потом, когда всем будет хорошо».</span></div>
+  <!-- Вопрос 2 -->
+  <div class="q q2">
+    <div class="q-head"><span class="num">2</span><span>Какая ситуация повторяется у вас чаще?</span></div>
+    <div class="q-body">
+      <p>Выберите один пункт. Не тот, который звучит правильнее, а тот, который действительно чаще происходит в вашей жизни.</p>
+      <div class="box">
+        <p class="sit"><b>1. Я соглашаюсь, хотя хотела отказать.</b>Вам неудобно, тяжело или просто не хочется. Но человек ждёт, обижается, торопит - и вы соглашаетесь.</p>
+        <p class="sit"><b>2. Я беру на себя чужую ответственность.</b>Другой взрослый человек не сделал, забыл, не решил. Вам проще исправить самой, чем ждать, объяснять или выдерживать последствия.</p>
+        <p class="sit"><b>3. Я молчу, чтобы не стало хуже.</b>Вас задели, вы не согласны, но говорите: «Всё нормально». Конфликта нет, а тяжесть остаётся.</p>
+        <p class="sit"><b>4. Я оправдываюсь, когда мной недовольны.</b>Вы приняли простое решение, но чужое недовольство заставляет вас объяснять, доказывать, смягчать и сомневаться.</p>
+        <p class="sit"><b>5. Я откладываю свои желания.</b>Отдых, деньги на себя, обучение, помощь, тишина, время. Каждый раз находится что-то важнее, и ваше желание снова переносится.</p>
       </div>
-    </details>
-
+    </div>
   </div>
 
   <div class="stop">
-    <h2>Остановитесь здесь</h2>
-    <p>Посмотрите на ситуацию, которую выбрали. Скорее всего, вы знаете, как правильно. Но в момент давления включается не знание, а старое правило. И пока нового правила нет, вы будете возвращаться в ту же точку.</p>
-    <p>Для этого я создала «Кодекс правил для женщин». Это 38 правил на ситуации, где женщина чаще всего теряет своё решение. Каждое разобрано: почему оно нужно, где применяется, что делать и какое сопротивление вас ждёт.</p>
-    <p><b>Для вашей ситуации в нём есть:</b></p>
-    <ul class="sit-list">
-      <li><b>Соглашаетесь, хотя хотели отказать</b>правила про отказ без оправданий и чувство вины</li>
-      <li><b>Берёте на себя чужое</b>правила про то, где ваша ответственность, а где чужая</li>
-      <li><b>Молчите, чтобы не стало хуже</b>правила про спокойный разговор и несогласие</li>
-      <li><b>Оправдываетесь, когда вами недовольны</b>правила про чужое недовольство и опору на своё решение</li>
-      <li><b>Откладываете свои желания</b>правила про время, деньги и отдых</li>
-    </ul>
-    <p class="next">Ниже ещё три вопроса. А в конце - новые правила для вашей повторяющейся ситуации.</p>
+    <p class="t">Остановитесь здесь.</p>
+    <p>Запомните номер, который выбрали. Дальше вы будете смотреть именно на эту ситуацию.</p>
   </div>
 
-  <div class="qlist">
-
-    <details class="card c3">
-      <summary><span class="num">3</span><span>Чего вы боитесь, если поступите по-новому?</span><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary>
-      <div class="body">
-        <p>Старое правило держится не просто так. Когда-то оно защищало вас от чего-то важного. Закончите фразу для своей ситуации:</p>
-        <div class="example">Если я поступлю по-новому, я боюсь ____________.</div>
-        <p>У одной это страх конфликта. У другой - страх быть плохой. У третьей - страх остаться одной или потерять контроль.</p>
-        <p>Поэтому простого совета мало. Женщина не просто «не умеет отказать». Она боится того, что случится после отказа.</p>
+  <!-- Вопрос 3 -->
+  <div class="q q3">
+    <div class="q-head"><span class="num">3</span><span>Чего вы боитесь, если поступите по-новому?</span></div>
+    <div class="q-body">
+      <p>Старое правило держится не просто так. Оно когда-то помогало вам не потерять что-то важное: отношения, спокойствие, одобрение, ощущение контроля, образ хорошей жены, дочери, матери или женщины.</p>
+      <p>Закончите фразу:</p>
+      <div class="box"><p class="fill">Если я поступлю по-новому, я боюсь ______________.</p></div>
+      <p>Например:</p>
+      <div class="box">
+        <p>Если я откажу, я боюсь, что меня сочтут плохой.</p>
+        <p>Если я не проконтролирую, я боюсь, что всё развалится.</p>
+        <p>Если я скажу прямо, я боюсь ссоры.</p>
+        <p>Если я не буду оправдываться, я боюсь холодности.</p>
+        <p>Если я выберу своё, я боюсь, что меня назовут эгоисткой.</p>
       </div>
-    </details>
+      <p>Вот почему простого совета обычно мало.</p>
+      <p>Женщина не просто «не умеет отказать». Она боится того, что случится после отказа.</p>
+      <p>Не просто «молчит». Она боится последствий своих слов.</p>
+      <p>Не просто «всё тянет на себе». Она живёт по правилу, где безопасность держится на её постоянном контроле.</p>
+    </div>
+  </div>
 
-    <details class="card c4">
-      <summary><span class="num">4</span><span>Какое правило поставить вместо старого?</span><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary>
-      <div class="body">
-        <p>Не лозунг вроде «Я выбираю себя» или «Я никому ничего не должна». Когда на вас обижаются и торопят, лозунги не помогают. Нужно правило, на которое можно опереться в конкретной ситуации:</p>
-        <div class="example">
-          <span class="opt">Отказ не требует доказательства, что я хороший человек.</span>
-          <span class="opt">Я могу помогать, но не обязана жить вместо другого взрослого.</span>
-          <span class="opt">Мой спокойный голос не разрушает отношения.</span>
-          <span class="opt">Чужое недовольство не отменяет моего решения.</span>
-          <span class="opt">Моё желание не обязано ждать, пока все будут довольны.</span>
-        </div>
-        <p>Такие правила меняют поведение не резко и не волшебно. Но они дают порядок там, где вы раньше терялись.</p>
+  <!-- Вопрос 4 -->
+  <div class="q q4">
+    <div class="q-head"><span class="num">4</span><span>Какое старое правило включается в вашей ситуации?</span></div>
+    <div class="q-body">
+      <p>Попробуйте закончить одну из фраз:</p>
+      <div class="box">
+        <p class="fill">Я должна соглашаться, потому что ______________.</p>
+        <p class="fill">Я должна всё контролировать, потому что ______________.</p>
+        <p class="fill">Я должна молчать, потому что ______________.</p>
+        <p class="fill">Я должна оправдываться, потому что ______________.</p>
+        <p class="fill">Я должна откладывать своё, потому что ______________.</p>
       </div>
-    </details>
-
-    <details class="card c5">
-      <summary><span class="num">5</span><span>Вспомните ли вы новое правило в нужный момент?</span><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary>
-      <div class="body">
-        <p>Представьте: муж недоволен, мама обиделась, ребёнок спорит. Всё происходит быстро, на вас смотрят и ждут ответа.</p>
-        <p>Ответьте честно:</p>
-        <div class="example">
-          <span class="opt">Я успею остановиться и вспомнить своё правило сама.</span>
-          <span class="opt">Скорее всего, вспомню уже потом, когда всё случится.</span>
-          <span class="opt">Мне нужна подсказка, которая будет под рукой заранее.</span>
-        </div>
-        <p>Второй и третий ответ - не слабость. Под давлением трудно спокойно рассуждать. Поэтому правило важно не просто помнить, а иметь готовым и разобранным заранее.</p>
+      <p>Не ищите красивый ответ. Найдите настоящий.</p>
+      <p>Например:</p>
+      <div class="box">
+        <p>«Я должна соглашаться, потому что иначе меня не будут любить».</p>
+        <p>«Я должна всё контролировать, потому что на других нельзя положиться».</p>
+        <p>«Я должна молчать, потому что иначе начнётся ссора».</p>
+        <p>«Я должна оправдываться, потому что недовольство другого человека опасно».</p>
+        <p>«Я должна отложить своё, потому что хорошая женщина сначала думает обо всех».</p>
       </div>
-    </details>
+      <p>Вот здесь становится видно главное.</p>
+      <p><b>Вы можете принимать новое решение головой. Но в реальной ситуации продолжаете жить по старому правилу.</b></p>
+    </div>
+  </div>
 
+  <!-- Вопрос 5 -->
+  <div class="q q5">
+    <div class="q-head"><span class="num">5</span><span>Что обычно возвращает вас к старому правилу?</span></div>
+    <div class="q-body">
+      <p>Подумайте о ситуации, которую выбрали во втором вопросе.</p>
+      <p>Что чаще всего сбивает вас с нового решения?</p>
+      <div class="box">
+        <p>Человек обижается.</p>
+        <p>Вас торопят.</p>
+        <p>Вы чувствуете вину.</p>
+        <p>Вы устали и соглашаетесь, чтобы быстрее закончить разговор.</p>
+        <p>Вам говорят: «Ты изменилась».</p>
+        <p>Вы боитесь, что после вашего отказа отношения испортятся.</p>
+        <p>Вам кажется, что проще сделать самой, чем объяснять ещё раз.</p>
+      </div>
+      <p>Запишите:</p>
+      <div class="box"><p class="fill">Меня чаще всего возвращает к старому правилу ______________.</p></div>
+      <p>Это важный ответ.</p>
+      <p>Потому что правило нужно не для спокойного вечера, когда вы всё понимаете. Правило нужно в тот момент, когда на вас давят, ждут, обижаются или возвращают в старую роль.</p>
+      <p>Именно там красивые фразы обычно не помогают.</p>
+      <div class="lines">
+        <p>«Я выбираю себя».</p>
+        <p>«Я достойна лучшего».</p>
+        <p>«Я никому ничего не должна».</p>
+      </div>
+      <p>Они могут звучать правильно. Но в живом разговоре женщина часто снова теряется.</p>
+      <p>Нужно не общее обещание себе.<br>Нужно понятное правило, на которое можно опереться.</p>
+      <p>Например:</p>
+      <div class="box">
+        <p>Отказ не требует доказательства, что я хороший человек.</p>
+        <p>Я могу помогать, но не обязана жить вместо другого взрослого человека.</p>
+        <p>Мой спокойный голос не разрушает отношения.</p>
+        <p>Чужое недовольство не отменяет моего решения.</p>
+        <p>Моё желание не обязано ждать, пока все остальные будут довольны.</p>
+      </div>
+      <p>Это не волшебные фразы. Они не меняют жизнь за один вечер. Но они дают внутренний порядок там, где раньше вы каждый раз терялись.</p>
+    </div>
+  </div>
+
+  <div class="bridge">
+    <p>Вы уже увидели не просто повторяющуюся ситуацию.</p>
+    <p class="big">Вы увидели место, где вы теряете своё решение.</p>
+    <p>Именно для таких моментов создан «Кодекс правил для женщин».</p>
   </div>
 
   <div class="divider"></div>
 
-  <div class="closing">
-    <h2>Кодекс правил для женщин</h2>
-    <p class="slogan-sub">Новые правила для вашей повторяющейся ситуации</p>
+  <h2>Кодекс правил для женщин</h2>
+  <p class="slogan-sub">Новые правила для вашей повторяющейся ситуации.</p>
 
-    <p class="lead">«Кодекс» и есть такая подсказка. Правила в нём разобраны заранее, и открыть нужное можно с телефона в ту минуту, когда оно понадобилось.</p>
-
-    <p>Одно правило вы, возможно, уже сформулировали. Но в жизни ситуаций больше. Вас будут торопить, на вас обидятся, вам скажут: «Ты изменилась». Без готовых правил вы почти автоматически вернётесь к старым.</p>
-
-    <p><b>В «Кодексе»:</b></p>
-    <ul class="topic-list">
-      <li>38 правил: отказ, ответственность, деньги, обязанности в семье, дети, родственники, отдых и желания;</li>
-      <li>в каждом правиле - почему оно нужно, бытовые ситуации, что делать и блок «Будет сопротивление»;</li>
-      <li>практика «Четыре колонки», чтобы разобраться в себе, когда эмоции мешают;</li>
-      <li>дневник на неделю, чтобы замечать, где вы уже поступаете по-новому.</li>
-    </ul>
-
-    <p><b>Как пользоваться:</b> не нужно читать всё за один вечер. Начните с ситуации, которую выбрали выше. Найдите своё правило и неделю наблюдайте, где оно появляется в жизни.</p>
-
-    <p class="note">Это материал для самостоятельной работы. Он не заменяет консультацию, когда история сложная или конфликт острый. Но он наводит первый порядок там, где вы устали каждый раз начинать с нуля.</p>
-
-    <p class="price">Стоимость - 3590 ₽. Доступ сразу после оплаты.</p>
+  <p>«Кодекс» создан для женщины, которая уже увидела своё старое правило и хочет поставить вместо него новое.</p>
+  <div class="lines">
+    <p>Не общие слова про любовь к себе.</p>
+    <p>Не мотивационные фразы.</p>
+    <p>Не советы, которые легко читать и трудно вспомнить в нужный момент.</p>
   </div>
+  <p>Внутри - 38 правил для ситуаций, где женщина чаще всего теряет своё решение: отказ, вина, чужое недовольство, ответственность, деньги, обязанности в семье, дети, родственники, отдых и желания.</p>
+  <p>Каждое правило разобрано так, чтобы вы понимали:</p>
+  <ul class="list">
+    <li>зачем оно нужно;</li>
+    <li>в какой ситуации его применять;</li>
+    <li>что делать;</li>
+    <li>почему может появиться сопротивление;</li>
+    <li>куда вас будет тянуть обратно.</li>
+  </ul>
+
+  <h3>Откройте пункт, который вы выбрали</h3>
+
+  <details class="pick">
+    <summary><span>Если вы выбрали пункт 1: «Я соглашаюсь, хотя хотела отказать»</span><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary>
+    <div class="in">
+      <p>Вам нужны правила про отказ, объяснения, вину и страх быть плохой.</p>
+      <p>Потому что в момент просьбы вы можете не успеть вспомнить всё, что понимаете. Человек ждёт ответа, вам неудобно, и старое правило снова говорит: «Согласись, так будет спокойнее».</p>
+      <p>В «Кодексе» вы сможете разобрать, как не соглашаться автоматически и не оправдываться только потому, что другому человеку неудобно услышать ваш отказ.</p>
+    </div>
+  </details>
+
+  <details class="pick">
+    <summary><span>Если вы выбрали пункт 2: «Я беру на себя чужую ответственность»</span><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary>
+    <div class="in">
+      <p>Вам нужны правила про контроль, обязанности, помощь и последствия.</p>
+      <p>Привычка всё исправлять часто кажется заботой. Но со временем она превращается в усталость и злость: «Ну конечно, опять мне».</p>
+      <p>В «Кодексе» вы сможете отделить, где ваша настоящая ответственность, а где чужая часть, которую вы снова взяли на себя.</p>
+    </div>
+  </details>
+
+  <details class="pick">
+    <summary><span>Если вы выбрали пункт 3: «Я молчу, чтобы не стало хуже»</span><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary>
+    <div class="in">
+      <p>Вам нужны правила про разговор, несогласие и страх конфликта.</p>
+      <p>Молчание может казаться способом сохранить мир. Но если вы всё время молчите там, где вас задевают, внутри копится не мир, а напряжение.</p>
+      <p>В «Кодексе» вы сможете увидеть, где молчание действительно помогает остановиться, а где оно уже работает против вас.</p>
+    </div>
+  </details>
+
+  <details class="pick">
+    <summary><span>Если вы выбрали пункт 4: «Я оправдываюсь, когда мной недовольны»</span><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary>
+    <div class="in">
+      <p>Вам нужны правила про чужое недовольство, внутреннюю опору и право не отменять своё решение из-за чужой реакции.</p>
+      <p>Потому что недовольство другого человека ещё не означает, что вы сделали что-то плохое.</p>
+      <p>В «Кодексе» вы сможете различать, где действительно стоит поговорить, а где вы снова пытаетесь заслужить спокойствие другого человека.</p>
+    </div>
+  </details>
+
+  <details class="pick">
+    <summary><span>Если вы выбрали пункт 5: «Я откладываю свои желания»</span><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary>
+    <div class="in">
+      <p>Вам нужны правила про отдых, деньги, время, просьбы и право быть не только полезной.</p>
+      <p>Женщина может годами быть нужной всем, кроме самой себя.</p>
+      <p>В «Кодексе» вы сможете увидеть, где ваши желания постоянно уходят в конец очереди, и какие правила нужны, чтобы они начали появляться в реальных решениях.</p>
+    </div>
+  </details>
+
+  <h3>Что входит в «Кодекс»</h3>
+  <ul class="list">
+    <li>38 правил для повторяющихся ситуаций.</li>
+    <li>Разбор каждого правила: зачем оно нужно, где применяется, что делать и какое сопротивление может появиться.</li>
+    <li>Практика «Четыре колонки», чтобы увидеть старое правило и поставить новое.</li>
+    <li>Дневник на неделю, чтобы замечать, где вы уже поступаете по-новому.</li>
+  </ul>
+
+  <h3>Кому особенно подойдёт</h3>
+  <p>Этот материал подойдёт вам, если вы часто понимаете всё уже после разговора.</p>
+  <div class="lines">
+    <p>Когда надо было отказать - согласились.</p>
+    <p>Когда надо было сказать прямо - промолчали.</p>
+    <p>Когда надо было остановиться - снова всё сделали сами.</p>
+    <p>Когда надо было выбрать своё - отложили.</p>
+    <p>Когда другой человек был недоволен - начали оправдываться.</p>
+  </div>
+  <p>«Кодекс» нужен не для того, чтобы стать жёсткой.<br>Он нужен, чтобы у вас появилось правило в тот момент, когда раньше вы терялись.</p>
+
+  <h3>Как пользоваться</h3>
+  <p>Не нужно читать всё за один вечер.</p>
+  <ul class="list">
+    <li>Начните с ситуации, которую выбрали выше.</li>
+    <li>Найдите правило, которое к ней относится.</li>
+    <li>Запишите своё старое правило.</li>
+    <li>Выберите новое.</li>
+    <li>И неделю наблюдайте, где оно может появиться в вашей жизни.</li>
+  </ul>
+  <p>Так вы перестаёте каждый раз начинать с нуля.</p>
+
+  <div class="cta-block">
+    <a class="cta-btn" href="https://app.lava.top/products/a4aab5e3-188d-41fc-9aae-58a642655786" target="_blank">Получить «Кодекс правил для женщин» - 3590 ₽</a>
+  </div>
+
+  <div class="note">
+    <p><b>Важно</b></p>
+    <p>Это материал для самостоятельной работы. Он не заменяет консультацию, если у вас сложная семейная история, острый конфликт или много повторяющихся ситуаций сразу.</p>
+    <p>Но он помогает навести первый порядок там, где вы уже устали всё понимать - и всё равно возвращаться в одну и ту же точку.</p>
+  </div>
+
+  <p class="price">Стоимость - 3590 ₽.<span>Доступ сразу после оплаты.</span></p>
 
   <div class="cta-block">
     <a class="cta-btn" href="https://app.lava.top/products/a4aab5e3-188d-41fc-9aae-58a642655786" target="_blank">Получить «Кодекс правил для женщин» - 3590 ₽</a>
   </div>
 
   <p class="slogan">Нам нужны правила. Всегда.</p>
-  <p class="sign">С уважением, Бэлла Леонидовна</p>
+  <p class="sign">С уважением,<br>Бэлла Леонидовна</p>
 
 </div>
 <script src="consent.js" defer></script>
