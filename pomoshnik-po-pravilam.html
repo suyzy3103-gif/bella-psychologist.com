@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Помощник по правилам - Бэлла Полянинова</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FDF0F3;
+  --accent:#C9848F;
+  --accent-deep:#B0606E;
+  --accent-soft:#e9c6cc;
+  --dark:#4A2E35;
+  --text:#5c4348;
+  --white:#ffffff;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{overflow-x:hidden;}
+body{background:var(--bg);color:var(--dark);font-family:'Jost',sans-serif;font-weight:300;font-size:17px;line-height:1.65;overflow-x:hidden;position:relative;}
+.circle{position:absolute;border-radius:50%;background:var(--accent-soft);opacity:.35;z-index:0;pointer-events:none;}
+.c1{width:340px;height:340px;top:-120px;right:-100px;}
+.c2{width:220px;height:220px;top:1400px;left:-80px;opacity:.25;}
+.c3{width:280px;height:280px;top:3200px;right:-120px;opacity:.2;}
+.author-line{position:relative;z-index:1;text-align:center;font-size:13px;color:#a3818a;padding:14px 20px;border-bottom:1px solid var(--accent-soft);}
+
+header{text-align:center;padding:52px 24px 30px;position:relative;z-index:1;}
+.eyebrow{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-deep);font-weight:500;}
+h1{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:48px;line-height:1.1;margin:12px 0 10px;}
+.subtitle{font-size:17px;max-width:480px;margin:0 auto;color:#7a5a61;}
+
+section{max-width:640px;margin:0 auto;padding:16px 22px;position:relative;z-index:1;}
+
+.start{background:var(--white);border-radius:18px;padding:24px 24px;box-shadow:0 6px 20px rgba(74,46,53,.05);}
+.start p{color:var(--text);margin-bottom:10px;}
+.start p:last-child{margin-bottom:0;}
+.start b{color:var(--dark);font-weight:600;}
+
+h2{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:30px;line-height:1.2;text-align:center;margin:30px 0 16px;}
+
+details.rule{background:var(--white);border-radius:16px;margin-bottom:14px;overflow:hidden;box-shadow:0 6px 20px rgba(74,46,53,.05);}
+details.rule summary{list-style:none;display:flex;align-items:center;gap:16px;padding:22px 22px;cursor:pointer;user-select:none;}
+details.rule summary::-webkit-details-marker{display:none;}
+summary:focus-visible{outline:2px solid var(--accent-deep);outline-offset:-2px;border-radius:16px;}
+.num{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:var(--accent-deep);min-width:24px;}
+.title{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:23px;line-height:1.2;flex:1;}
+.arrow{font-size:14px;color:var(--accent);transition:transform .25s ease;}
+details.rule[open] .arrow{transform:rotate(180deg);}
+.body{padding:0 22px 24px;}
+.body p{color:var(--text);margin-bottom:12px;}
+.body .base{font-weight:400;color:var(--dark);}
+.body h4{font-size:14px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-deep);margin:18px 0 6px;}
+.game,.say,.res,.nohelp{border-radius:12px;padding:14px 16px;margin:12px 0;font-size:16.5px;}
+.game b,.say b,.res b,.nohelp b{display:block;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;}
+.game{background:#F2ECFF;color:#3E2F66;}
+.game b{color:#6A4FC0;}
+.say{background:var(--white);border:1px solid var(--accent-soft);border-left:4px solid var(--accent-deep);font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:600;line-height:1.35;color:var(--dark);}
+.say b{font-family:'Jost',sans-serif;color:var(--accent-deep);}
+.res{background:#FFF4C9;border:1px solid #F3CF4E;color:#5E4600;}
+.res b{color:#9A6B00;}
+.nohelp{background:#E9F7F1;border:1px solid #9ED9C2;color:#1E5444;}
+.nohelp b{color:#2C7A61;}
+
+.block{background:var(--white);border-radius:20px;padding:32px 26px;margin:30px 0;box-shadow:0 10px 32px rgba(74,46,53,.07);}
+.block h2{margin-top:0;}
+.step{margin-bottom:16px;}
+.step-num{font-family:'Cormorant Garamond',serif;color:var(--accent-deep);font-style:italic;font-size:18px;}
+.step-text{color:var(--text);margin-top:2px;}
+.step-text strong{color:var(--dark);font-weight:600;}
+.main-note{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;line-height:1.4;text-align:center;margin-top:20px;padding-top:18px;border-top:1px solid var(--accent-soft);}
+
+.stars p{color:var(--text);margin-bottom:10px;}
+.stars ul{list-style:none;margin:12px 0 4px;}
+.stars li{padding:8px 0 8px 30px;position:relative;color:var(--text);border-top:1px solid #f3dfe3;}
+.stars li::before{content:"★";position:absolute;left:4px;top:7px;color:#E8B730;font-size:18px;}
+
+.diary-wrap{overflow-x:auto;border:1px solid var(--accent-soft);border-radius:14px;background:#fff;margin-top:14px;}
+table{border-collapse:collapse;width:100%;min-width:600px;font-size:13px;}
+th,td{border-bottom:1px solid #f3dfe3;padding:7px 4px;text-align:center;}
+th{color:#a3818a;font-weight:500;font-size:12px;}
+td.rn{text-align:left;padding-left:12px;font-weight:500;color:var(--dark);white-space:nowrap;}
+.star-btn{width:28px;height:28px;border:none;background:none;font-size:20px;line-height:1;color:#ead7db;cursor:pointer;}
+.star-btn.on{color:#E8B730;}
+.star-btn:focus-visible{outline:2px solid var(--accent-deep);border-radius:6px;}
+.diary-ctrl{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-size:14px;color:#7a5a61;}
+.diary-ctrl button{font-family:'Jost',sans-serif;font-size:13px;background:none;border:1px solid var(--accent-soft);color:#7a5a61;padding:7px 14px;border-radius:20px;cursor:pointer;}
+
+.bonus .label{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-deep);font-weight:500;margin-bottom:8px;}
+.bonus h3{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:24px;margin-bottom:10px;}
+.bonus p{color:var(--text);}
+
+.next{background:linear-gradient(160deg,#F7DCE2 0%,#EDE3FF 100%);border-radius:22px;padding:32px 26px;margin:30px 0;}
+.next .label{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-deep);font-weight:500;}
+.next h2{text-align:left;margin:8px 0 14px;}
+.next p{color:var(--text);margin-bottom:12px;}
+.next .scene{background:rgba(255,255,255,.6);border-radius:12px;padding:14px 16px;color:var(--dark);font-weight:400;}
+.next b{font-weight:600;color:var(--dark);}
+.next ul{margin:6px 0 18px 20px;color:var(--text);}
+.next li{margin-bottom:6px;}
+.next-btn{display:block;text-align:center;background:var(--accent-deep);color:#fff;text-decoration:none;font-weight:500;font-size:17px;padding:16px 20px;border-radius:30px;box-shadow:0 8px 20px rgba(176,96,110,.25);}
+.next-btn:focus-visible{outline:3px solid var(--dark);outline-offset:2px;}
+
+footer{text-align:center;padding:30px 24px 50px;font-size:13px;color:#a3818a;position:relative;z-index:1;}
+footer .handle{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--dark);display:block;margin-bottom:10px;}
+.closing{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:24px;text-align:center;color:var(--dark);margin:10px 0 0;}
+
+@media (max-width:480px){
+  h1{font-size:38px;}
+  .title{font-size:20px;}
+  details.rule summary{padding:20px 18px;gap:12px;}
+  .body{padding:0 18px 22px;}
+}
+
+.pain{background:var(--white);border-radius:18px;padding:22px 24px;box-shadow:0 6px 20px rgba(74,46,53,.05);}
+.pain p{margin:0 0 6px;color:var(--dark);font-weight:400;}
+.lead{color:var(--text);margin:18px 0 10px;}
+.lead b{color:var(--dark);font-weight:600;}
+.gift-kicker{display:block;text-align:center;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#6A4FC0;font-weight:600;margin:34px 0 4px;}
+.gift-kicker + h2{margin-top:4px;}
+.inside ol{margin:10px 0 14px 22px;color:var(--text);}
+.inside ol li{margin-bottom:4px;}
+.inside ul{list-style:none;margin:8px 0 0;}
+.inside ul li{padding:8px 0 8px 26px;position:relative;color:var(--text);border-top:1px solid #f3dfe3;}
+.inside ul li::before{content:"✓";position:absolute;left:4px;top:8px;color:var(--accent-deep);font-weight:600;}
+.inside p{color:var(--text);}
+.three{text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;line-height:1.45;color:var(--dark);margin:14px 0 0;}
+.cta{text-align:center;background:linear-gradient(160deg,#F7DCE2 0%,#EDE3FF 100%);border-radius:22px;padding:32px 24px;margin:30px 0 16px;}
+.cta .price{font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:600;color:var(--dark);line-height:1;margin:8px 0 6px;}
+.cta .price-sub{font-size:15px;color:#7a5a61;margin-bottom:20px;}
+.cta .note{font-size:13.5px;color:#7a5a61;margin-top:12px;}
+.full-link{text-align:center;font-size:15px;color:#7a5a61;margin:6px 0 24px;}
+.full-link a{color:var(--accent-deep);font-weight:500;}
+</style>
+</head>
+<body>
+
+<div class="circle c1"></div>
+<div class="circle c2"></div>
+<div class="circle c3"></div>
+
+<div class="author-line">Полянинова Бэлла Леонидовна. Авторский продукт. Все права защищены</div>
+
+<header>
+  <div class="eyebrow">Помощник для родителей</div>
+  <h1>Помощник по правилам</h1>
+  <p class="subtitle">Одно готовое правило в подарок. Попробуйте его сегодня вечером.</p>
+</header>
+
+<section>
+  <div class="pain">
+    <p>Вы напоминаете.</p>
+    <p>Повторяете.</p>
+    <p>Просите ещё раз.</p>
+    <p>Объясняете очевидное.</p>
+    <p>А потом голос всё равно становится громче.</p>
+  </div>
+
+  <p class="lead">Дома всё держится не на правилах, а на вашем терпении. Пока правила нет, каждый вечер начинается новый торг. Ребёнок проверяет не вас, а есть ли дома правило, которое взрослый способен удержать спокойно.</p>
+  <p class="lead"><b>Родитель с правилом не повышает голос. Ему незачем.</b> Он не уговаривает и не доказывает. Он спокойно говорит готовую фразу.</p>
+
+  <span class="gift-kicker">Подарок</span>
+  <h2>Правило, которое можно ввести сегодня</h2>
+
+  <details class="rule" open>
+    <summary><span class="num">★</span><span class="title">Гаджеты уходят за час до сна</span><span class="arrow">▾</span></summary>
+    <div class="body">
+      <p class="base">Телефон и планшет убираются за час до сна и идут на зарядку. Это не наказание, это время отдыха: мозгу нужно успеть успокоиться перед сном.</p>
+      <h4>Как учим</h4>
+      <p>Гаджет не остаётся в комнате ребёнка на ночь. Он уходит в коробку на зарядку при вас, чтобы ребёнок видел: телефон действительно убран.</p>
+      <div class="game"><b>Играем</b>«Телефон идёт спать»: у телефона есть своя «кроватка» - коробка. Ребёнок сам укладывает его, накрывает салфеткой и говорит: «Спокойной ночи». Можно поставить песочные часы: досыпалось - телефон ложится спать.</div>
+      <div class="say"><b>Скажите так</b>«Через десять минут телефон идёт спать».</div>
+      <div class="res"><b>Будет сопротивление</b>«Ещё пять минуточек». Не торгуйтесь. Предупредите один раз заранее, до начала: «Мультик до восьми, потом коробка». И в восемь: «Мы договорились. Телефон идёт спать».</div>
+      <div class="nohelp"><b>Если не помогло</b>«Ты можешь уложить его сам, или я помогу». Спокойно подождите. Если начинается истерика, телефон всё равно уходит, а завтра снова будет у ребёнка. Одна уступка - и правило перестаёт работать.</div>
+    </div>
+  </details>
+
+  <div class="block inside">
+    <h2>Это одно правило из десяти</h2>
+    <p>В «Правилах в дом. Базовая» - десять правил для ежедневного порядка в доме:</p>
+    <ol>
+      <li>Встал - заправил</li>
+      <li>Утро - не для сборов</li>
+      <li>Обувь чистится с вечера</li>
+      <li>Гаджеты уходят за час до сна</li>
+      <li>Уборка - каждый вечер</li>
+      <li>Рюкзак и форма - с вечера</li>
+      <li>Взял - положи на место</li>
+      <li>Грязное бельё - в корзину сразу</li>
+      <li>Посуда - сразу после еды</li>
+      <li>30 минут вместе каждый день</li>
+    </ol>
+    <p>К каждому правилу, как в подарке выше:</p>
+    <ul>
+      <li>как учим ребёнка, чтобы правило не осталось словами;</li>
+      <li>игра, с которой малыш делает всё охотнее;</li>
+      <li>готовая фраза, которую не нужно придумывать;</li>
+      <li>что делать, когда ребёнок говорит «не хочу», «потом», «ещё пять минут»;</li>
+      <li>как спокойно удержать правило, если не помогло.</li>
+    </ul>
+    <p style="margin-top:14px;">И ещё: техника, как ввести правило за две недели, дневник со звёздочками, которые ребёнок отмечает сам, и маленькие награды без сладостей.</p>
+  </div>
+
+  <div class="block">
+    <h2>Как пользоваться</h2>
+    <p style="color:var(--text);">Не открывайте сразу все правила. Выберите одно место, где дома больше всего напряжения: утро, гаджеты, уборка, рюкзак, посуда или вещи на местах. Откройте только это правило и держите его две недели.</p>
+    <p class="three">Одно правило.<br>Одна спокойная фраза.<br>Две недели практики.</p>
+  </div>
+
+  <div class="cta">
+    <div class="label" style="font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-deep);font-weight:500;">«Правила в дом. Базовая»</div>
+    <div class="price">690 ₽</div>
+    <div class="price-sub">10 правил порядка с готовыми фразами и играми</div>
+    <a class="next-btn" href="https://app.lava.top/products/1388be7b-a1ec-463f-9f4d-5b50c01ad8db" target="_blank" rel="noopener">Получить 10 правил за 690 ₽</a>
+    <div class="note">Цифровой продукт. Доступ открывается сразу после оплаты.</div>
+  </div>
+
+  <p class="full-link">Нужна сразу вся система, включая правило-запрет: что делать, когда ребёнок бьёт или оскорбляет родителей? <a href="https://app.lava.top/products/ba73809b-bf72-4e0f-b8dd-88a6575a437e" target="_blank" rel="noopener">Полная версия за 1990 ₽</a></p>
+
+  <p class="closing">Нам нужны правила. Всегда.</p>
+</section>
+
+<footer>
+  <span class="handle">@bella.psychologist</span>
+  © Полянинова Бэлла Леонидовна, 2024-2026<br>
+  Все права защищены. Копирование и распространение без разрешения автора запрещено.
+</footer>
+
+</body>
+</html>
