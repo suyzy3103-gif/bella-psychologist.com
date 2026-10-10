@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Правила в дом. Базовая версия - Бэлла Полянинова</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FDF0F3;
+  --accent:#C9848F;
+  --accent-deep:#B0606E;
+  --accent-soft:#e9c6cc;
+  --dark:#4A2E35;
+  --text:#5c4348;
+  --white:#ffffff;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{overflow-x:hidden;}
+body{background:var(--bg);color:var(--dark);font-family:'Jost',sans-serif;font-weight:300;font-size:17px;line-height:1.65;overflow-x:hidden;position:relative;}
+.circle{position:absolute;border-radius:50%;background:var(--accent-soft);opacity:.35;z-index:0;pointer-events:none;}
+.c1{width:340px;height:340px;top:-120px;right:-100px;}
+.c2{width:220px;height:220px;top:1400px;left:-80px;opacity:.25;}
+.c3{width:280px;height:280px;top:3200px;right:-120px;opacity:.2;}
+.author-line{position:relative;z-index:1;text-align:center;font-size:13px;color:#a3818a;padding:14px 20px;border-bottom:1px solid var(--accent-soft);}
+
+header{text-align:center;padding:52px 24px 30px;position:relative;z-index:1;}
+.eyebrow{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-deep);font-weight:500;}
+h1{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:48px;line-height:1.1;margin:12px 0 10px;}
+.subtitle{font-size:17px;max-width:480px;margin:0 auto;color:#7a5a61;}
+
+section{max-width:640px;margin:0 auto;padding:16px 22px;position:relative;z-index:1;}
+
+.start{background:var(--white);border-radius:18px;padding:24px 24px;box-shadow:0 6px 20px rgba(74,46,53,.05);}
+.start p{color:var(--text);margin-bottom:10px;}
+.start p:last-child{margin-bottom:0;}
+.start b{color:var(--dark);font-weight:600;}
+
+h2{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:30px;line-height:1.2;text-align:center;margin:30px 0 16px;}
+
+details.rule{background:var(--white);border-radius:16px;margin-bottom:14px;overflow:hidden;box-shadow:0 6px 20px rgba(74,46,53,.05);}
+details.rule summary{list-style:none;display:flex;align-items:center;gap:16px;padding:22px 22px;cursor:pointer;user-select:none;}
+details.rule summary::-webkit-details-marker{display:none;}
+summary:focus-visible{outline:2px solid var(--accent-deep);outline-offset:-2px;border-radius:16px;}
+.num{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:var(--accent-deep);min-width:24px;}
+.title{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:23px;line-height:1.2;flex:1;}
+.arrow{font-size:14px;color:var(--accent);transition:transform .25s ease;}
+details.rule[open] .arrow{transform:rotate(180deg);}
+.body{padding:0 22px 24px;}
+.body p{color:var(--text);margin-bottom:12px;}
+.body .base{font-weight:400;color:var(--dark);}
+.body h4{font-size:14px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-deep);margin:18px 0 6px;}
+.game,.say,.res,.nohelp{border-radius:12px;padding:14px 16px;margin:12px 0;font-size:16.5px;}
+.game b,.say b,.res b,.nohelp b{display:block;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;}
+.game{background:#F2ECFF;color:#3E2F66;}
+.game b{color:#6A4FC0;}
+.say{background:var(--white);border:1px solid var(--accent-soft);border-left:4px solid var(--accent-deep);font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:600;line-height:1.35;color:var(--dark);}
+.say b{font-family:'Jost',sans-serif;color:var(--accent-deep);}
+.res{background:#FFF4C9;border:1px solid #F3CF4E;color:#5E4600;}
+.res b{color:#9A6B00;}
+.nohelp{background:#E9F7F1;border:1px solid #9ED9C2;color:#1E5444;}
+.nohelp b{color:#2C7A61;}
+
+.block{background:var(--white);border-radius:20px;padding:32px 26px;margin:30px 0;box-shadow:0 10px 32px rgba(74,46,53,.07);}
+.block h2{margin-top:0;}
+.step{margin-bottom:16px;}
+.step-num{font-family:'Cormorant Garamond',serif;color:var(--accent-deep);font-style:italic;font-size:18px;}
+.step-text{color:var(--text);margin-top:2px;}
+.step-text strong{color:var(--dark);font-weight:600;}
+.main-note{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;line-height:1.4;text-align:center;margin-top:20px;padding-top:18px;border-top:1px solid var(--accent-soft);}
+
+.stars p{color:var(--text);margin-bottom:10px;}
+.stars ul{list-style:none;margin:12px 0 4px;}
+.stars li{padding:8px 0 8px 30px;position:relative;color:var(--text);border-top:1px solid #f3dfe3;}
+.stars li::before{content:"★";position:absolute;left:4px;top:7px;color:#E8B730;font-size:18px;}
+
+.diary-wrap{overflow-x:auto;border:1px solid var(--accent-soft);border-radius:14px;background:#fff;margin-top:14px;}
+table{border-collapse:collapse;width:100%;min-width:600px;font-size:13px;}
+th,td{border-bottom:1px solid #f3dfe3;padding:7px 4px;text-align:center;}
+th{color:#a3818a;font-weight:500;font-size:12px;}
+td.rn{text-align:left;padding-left:12px;font-weight:500;color:var(--dark);white-space:nowrap;}
+.star-btn{width:28px;height:28px;border:none;background:none;font-size:20px;line-height:1;color:#ead7db;cursor:pointer;}
+.star-btn.on{color:#E8B730;}
+.star-btn:focus-visible{outline:2px solid var(--accent-deep);border-radius:6px;}
+.diary-ctrl{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-size:14px;color:#7a5a61;}
+.diary-ctrl button{font-family:'Jost',sans-serif;font-size:13px;background:none;border:1px solid var(--accent-soft);color:#7a5a61;padding:7px 14px;border-radius:20px;cursor:pointer;}
+
+.bonus .label{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-deep);font-weight:500;margin-bottom:8px;}
+.bonus h3{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:24px;margin-bottom:10px;}
+.bonus p{color:var(--text);}
+
+.next{background:linear-gradient(160deg,#F7DCE2 0%,#EDE3FF 100%);border-radius:22px;padding:32px 26px;margin:30px 0;}
+.next .label{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-deep);font-weight:500;}
+.next h2{text-align:left;margin:8px 0 14px;}
+.next p{color:var(--text);margin-bottom:12px;}
+.next .scene{background:rgba(255,255,255,.6);border-radius:12px;padding:14px 16px;color:var(--dark);font-weight:400;}
+.next b{font-weight:600;color:var(--dark);}
+.next ul{margin:6px 0 18px 20px;color:var(--text);}
+.next li{margin-bottom:6px;}
+.next-btn{display:block;text-align:center;background:var(--accent-deep);color:#fff;text-decoration:none;font-weight:500;font-size:17px;padding:16px 20px;border-radius:30px;box-shadow:0 8px 20px rgba(176,96,110,.25);}
+.next-btn:focus-visible{outline:3px solid var(--dark);outline-offset:2px;}
+
+footer{text-align:center;padding:30px 24px 50px;font-size:13px;color:#a3818a;position:relative;z-index:1;}
+footer .handle{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--dark);display:block;margin-bottom:10px;}
+.closing{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:24px;text-align:center;color:var(--dark);margin:10px 0 0;}
+
+@media (max-width:480px){
+  h1{font-size:38px;}
+  .title{font-size:20px;}
+  details.rule summary{padding:20px 18px;gap:12px;}
+  .body{padding:0 18px 22px;}
+}
+</style>
+</head>
+<body>
+
+<div class="circle c1"></div>
+<div class="circle c2"></div>
+<div class="circle c3"></div>
+
+<div class="author-line">Полянинова Бэлла Леонидовна. Авторский продукт. Все права защищены</div>
+
+<header>
+  <div class="eyebrow">Базовая версия</div>
+  <h1>Правила в дом</h1>
+  <p class="subtitle">Десять правил порядка в доме. К каждому - что сказать, как превратить в игру и что делать, когда ребёнок сопротивляется.</p>
+</header>
+
+<section>
+  <div class="start">
+    <p>Вам не нужно ничего придумывать. Здесь уже есть готовые слова и игры на каждый день.</p>
+    <p><b>Как начать:</b> откройте правило, которое больше всего утомляет вашу семью. Прочитайте, что сказать. Начните сегодня вечером.</p>
+    <p>Одно правило на две недели. Не все сразу.</p>
+  </div>
+
+  <h2>Десять правил</h2>
+
+  <details class="rule" open>
+    <summary><span class="num">01</span><span class="title">Встал - заправил</span><span class="arrow">▾</span></summary>
+    <div class="body">
+      <p class="base">Утро начинается не с телефона. Встал с кровати - сразу заправил. Не после завтрака, не «попозже». Две минуты - и день начат.</p>
+      <h4>Как учим</h4>
+      <p>Первую неделю заправляйте вместе. Вы держите один край одеяла, ребёнок другой. Не переделывайте за ним, если получилось криво. Кривовато, но сам - это и есть успех.</p>
+      <div class="game"><b>Играем</b>«Постель-бутерброд»: простыня - хлеб, одеяло - сыр, подушка - помидор сверху. Ребёнок собирает бутерброд по порядку. Или соревнование: кто быстрее - вы взбиваете подушку, он расправляет одеяло.</div>
+      <div class="say"><b>Скажите так</b>«Встал - заправил. Потом завтрак».</div>
+      <div class="res"><b>Будет сопротивление</b>«Не хочу», «потом». Не спорьте. Возьмите свой край одеяла: «Мой край готов, твоя очередь». Часто сопротивление идёт и от взрослого: «пусть поспит ещё пять минут». Сдвигая подъём время от времени, вы за неделю теряете сам распорядок.</div>
+      <div class="nohelp"><b>Если не помогло</b>Спокойно держите порядок: «Сначала постель, потом завтрак». Без крика и без лекций. Завтрак никуда не денется, он просто начнётся после постели.</div>
+    </div>
+  </details>
+  <details class="rule">
+    <summary><span class="num">02</span><span class="title">Утро - не для сборов</span><span class="arrow">▾</span></summary>
+    <div class="body">
+      <p class="base">Утром надеваем то, что уже готово. Одежда, рюкзак, обувь - всё собирается с вечера. Пятнадцать минут вечером - и утро свободно.</p>
+      <h4>Как учим</h4>
+      <p>Вечером выберите одежду вместе. Маленькому ребёнку дайте выбор из двух вещей: «Синяя кофта или зелёная?» Выбор вечером, а не утром.</p>
+      <div class="game"><b>Играем</b>«Сложи человечка»: вечером разложите одежду на стуле или на полу в форме человечка - кофта, штаны, носки. Утром ребёнок «оживляет» человечка и надевает его на себя.</div>
+      <div class="say"><b>Скажите так</b>«Что завтра наденет твой человечек?»</div>
+      <div class="res"><b>Будет сопротивление</b>Утром ребёнок хочет другое платье или другую футболку. Не начинайте переговоры: «Выбор мы сделали вечером. Утром надеваем то, что выбрали».</div>
+      <div class="nohelp"><b>Если не помогло</b>Вечером дайте больше власти в выборе: пусть сам выберет из трёх вещей и сам сложит человечка. Чем больше решил вечером, тем меньше спорит утром.</div>
+    </div>
+  </details>
+  <details class="rule">
+    <summary><span class="num">03</span><span class="title">Обувь чистится с вечера</span><span class="arrow">▾</span></summary>
+    <div class="body">
+      <p class="base">Вымытые кроссовки или почищенные ботинки стоят у двери, на своём «домике» - коврике или полке. Утром просто надел и вышел.</p>
+      <h4>Как учим</h4>
+      <p>Сначала чистите сами при ребёнке и проговариваете: «Разулись - сразу вытираем». Потом ребёнок держит щётку, вы направляете руку. Только когда движение знакомо, он делает сам.</p>
+      <div class="game"><b>Играем</b>«Обувная автомойка»: ребёнок - мастер на мойке, ботинки - машины, которые заезжают помыться. Помыл - отогнал машину на парковку, на коврик у двери.</div>
+      <div class="say"><b>Скажите так</b>«Разулись - почистили - в домик».</div>
+      <div class="res"><b>Будет сопротивление</b>«Я потом почищу» вечером быстро превращается в «уже некогда» утром. Одна фраза: «Обувь чистим сразу, как разулись» - и не переносим на утро.</div>
+      <div class="nohelp"><b>Если не помогло</b>Не чистите за ребёнка утром в спешке. Спокойно скажите: «Вчера не почистили, сегодня идём так. Вечером помоем вместе». Маленькое последствие учит лучше длинного объяснения.</div>
+    </div>
+  </details>
+  <details class="rule">
+    <summary><span class="num">04</span><span class="title">Гаджеты уходят за час до сна</span><span class="arrow">▾</span></summary>
+    <div class="body">
+      <p class="base">Телефон и планшет убираются за час до сна и идут на зарядку. Это не наказание, это время отдыха: мозгу нужно успеть успокоиться перед сном.</p>
+      <h4>Как учим</h4>
+      <p>Гаджет не остаётся в комнате ребёнка на ночь. Он уходит в коробку на зарядку при вас, чтобы ребёнок видел: телефон действительно убран.</p>
+      <div class="game"><b>Играем</b>«Телефон идёт спать»: у телефона есть своя «кроватка» - коробка. Ребёнок сам укладывает его, накрывает салфеткой и говорит: «Спокойной ночи». Можно поставить песочные часы: досыпалось - телефон ложится спать.</div>
+      <div class="say"><b>Скажите так</b>«Через десять минут телефон идёт спать».</div>
+      <div class="res"><b>Будет сопротивление</b>«Ещё пять минуточек». Не торгуйтесь. Предупредите один раз заранее, до начала: «Мультик до восьми, потом коробка». И в восемь: «Мы договорились. Телефон идёт спать».</div>
+      <div class="nohelp"><b>Если не помогло</b>«Ты можешь уложить его сам, или я помогу». Спокойно подождите. Если начинается истерика, телефон всё равно уходит, а завтра снова будет у ребёнка. Одна уступка - и правило перестаёт работать.</div>
+    </div>
+  </details>
+  <details class="rule">
+    <summary><span class="num">05</span><span class="title">Уборка - каждый вечер</span><span class="arrow">▾</span></summary>
+    <div class="body">
+      <p class="base">В одно и то же время, например с 20:30 до 20:45, каждая вещь возвращается на место. У малышей - игрушки по корзинам. У школьников - порядок на столе и в комнате.</p>
+      <h4>Как учим</h4>
+      <p>Первое время убирайте вместе. Мягкие игрушки «идут спать» в свою коробку, машинки «едут в гараж» на полку. Уборка сопровождается приятным: стишком, сказкой или песенкой, а не тишиной и спешкой.</p>
+      <div class="game"><b>Играем</b>«Успеем до конца песни?»: включите любимую песню ребёнка, и пока она играет, все игрушки должны оказаться в домиках. Успели - победа всей команды.</div>
+      <div class="say"><b>Скажите так</b>«Песня началась. Игрушки едут домой».</div>
+      <div class="res"><b>Будет сопротивление</b>«Я ещё играю». Не спорьте, превратите уборку в продолжение игры: «Мишка уже зевает, пора его укладывать», «Машинки едут в гараж, ты за рулём».</div>
+      <div class="nohelp"><b>Если не помогло</b>Игрушки, которые остались на полу, «уезжают отдыхать» в отдельную коробку на один день. Без злости и без угроз, просто так устроен порядок. Завтра они вернутся.</div>
+    </div>
+  </details>
+  <details class="rule">
+    <summary><span class="num">06</span><span class="title">Рюкзак и форма - с вечера</span><span class="arrow">▾</span></summary>
+    <div class="body">
+      <p class="base">Пять минут вечером: сложил всё нужное на завтра, повесил одежду. Утром ничего не придётся искать в панике.</p>
+      <h4>Как учим</h4>
+      <p>Сделайте короткий список с картинками и повесьте рядом с рюкзаком. Для малыша это одежда для сада, для школьника - пенал, тетради, сменка. Первые разы собираете вместе.</p>
+      <div class="game"><b>Играем</b>«Проверка пилота»: перед вылетом пилот проверяет самолёт. Ребёнок по списку называет каждую вещь: «Пенал - на месте. Тетради - на месте». Всё проверено - самолёт готов к вылету.</div>
+      <div class="say"><b>Скажите так</b>«Сначала рюкзак, потом отдых».</div>
+      <div class="res"><b>Будет сопротивление</b>«Я устал», «давай утром». Особенно вечером. Не спорьте: «Сначала рюкзак, потом отдых». Правило без исключений, даже когда завтра выходной: одежда для прогулки готовится так же.</div>
+      <div class="nohelp"><b>Если не помогло</b>Не дособирайте рюкзак за ребёнка утром. Забыл тетрадь - получил замечание учителя. Пока цена ошибки маленькая, пусть она случится. Вечером спокойно разберите: «Что поможет не забыть в следующий раз?»</div>
+    </div>
+  </details>
+  <details class="rule">
+    <summary><span class="num">07</span><span class="title">Взял - положи на место</span><span class="arrow">▾</span></summary>
+    <div class="body">
+      <p class="base">Открыл - закрой. Взял - верни. Ключи в коробку для ключей или на крючок для ключей у двери, одежда в шкаф, вещи на полку. Когда у каждой вещи есть место, в голове тоже спокойнее.</p>
+      <h4>Как учим</h4>
+      <p>У каждой вещи должен быть свой «домик», понятный ребёнку: низкая полка, коробка, крючок на его высоте. Сначала делаете сами и проговариваете: «Чашка едет в свой домик». Потом вместе. Потом сам.</p>
+      <div class="game"><b>Играем</b>«Потеряшки»: вещь, которая лежит не на месте, - потеряшка, она скучает по дому. Ребёнок - спасатель, который отвозит потеряшек домой, пока вы считаете до десяти.</div>
+      <div class="say"><b>Скажите так</b>«Твоя машинка ещё не в домике».</div>
+      <div class="res"><b>Будет сопротивление</b>Ребёнок бросит вещь на полпути и убежит играть. Не относите за него. Одна фраза: «Твоя машинка ещё не в домике» - и подождите, не начиная следующее дело.</div>
+      <div class="nohelp"><b>Если не помогло</b>Если сделать за ребёнка, «чтобы не тянуть», правило перестаёт работать с первого же раза. Ждите спокойно. Чем реже вы уступаете, тем быстрее ребёнок начинает возвращать вещи сам.</div>
+    </div>
+  </details>
+  <details class="rule">
+    <summary><span class="num">08</span><span class="title">Грязное бельё - в корзину сразу</span><span class="arrow">▾</span></summary>
+    <div class="body">
+      <p class="base">Носки отдельно, бельё отдельно - всё сразу в корзину. Не на полу и не на стуле. Десять секунд - и половины беспорядка нет.</p>
+      <h4>Как учим</h4>
+      <p>Корзина должна стоять там, где ребёнок раздевается, и на высоте, до которой он достаёт. Иначе правило невыполнимо физически, а не по вине характера.</p>
+      <div class="game"><b>Играем</b>«Баскетбол»: носки - мячи, корзина - кольцо. Попал с одного шага - одно очко, с двух шагов - два. Промахнулся - поднял и бросаешь снова.</div>
+      <div class="say"><b>Скажите так</b>«Снял - значит в корзину».</div>
+      <div class="res"><b>Будет сопротивление</b>Вещь «на один раз ещё надену» остаётся на стуле. Одна фраза без новых объяснений: «Снял - значит в корзину». Не делайте исключение «ну это же почти чистое».</div>
+      <div class="nohelp"><b>Если не помогло</b>Не собирайте вещи за ребёнком. Перед сном: «Проверка корзины. Всё ли твоё на месте?» Пусть найдёт и донесёт сам.</div>
+    </div>
+  </details>
+  <details class="rule">
+    <summary><span class="num">09</span><span class="title">Посуда - сразу после еды</span><span class="arrow">▾</span></summary>
+    <div class="body">
+      <p class="base">Поел - отнёс тарелку. Не «потом». Еда заканчивается не тогда, когда встал из-за стола, а когда тарелка оказалась на месте.</p>
+      <h4>Как учим</h4>
+      <p>Сначала относите тарелку сами при ребёнке: «Поел - тарелка едет в раковину». Потом ребёнок несёт свою, даже лёгкую пластиковую, а вы рядом. Для самых маленьких подойдёт низкая полка рядом со столом.</p>
+      <div class="game"><b>Играем</b>«Официант»: ребёнок - официант в ресторане. Он принимает пустую тарелку у «гостя» и несёт её на «кухню». Можно носить и свою, и папину чашку.</div>
+      <div class="say"><b>Скажите так</b>«Встал из-за стола - тарелка в раковину».</div>
+      <div class="res"><b>Будет сопротивление</b>«Я потом доем» - и тарелка стоит на столе часами. Одна фраза: «Встал из-за стола - тарелка в раковину». Без напоминаний по кругу.</div>
+      <div class="nohelp"><b>Если не помогло</b>Не уносите тарелку за ребёнком. Следующая еда или угощение - после того, как предыдущая тарелка на месте. Спокойно, без упрёка.</div>
+    </div>
+  </details>
+  <details class="rule">
+    <summary><span class="num">10</span><span class="title">30 минут вместе каждый день</span><span class="arrow">▾</span></summary>
+    <div class="body">
+      <p class="base">За ужином или после - время разговора. Без оценок и без нотаций. Просто рассказать и услышать.</p>
+      <h4>Как учим</h4>
+      <p>Разбейте время на три части по десять минут. Первая - разговор о дне. Вторая - вы рассказываете, что ребёнок сделал сегодня. Третья - общее дело: вместе накрыть на стол, полить цветы, порезать салат.</p>
+      <div class="game"><b>Играем</b>Ребёнку трудно ответить на «что было хорошего». Спрашивайте через игру: «Если бы у тебя была волшебная палочка на один день в садике, что бы ты изменил?», «Если бы твой день был мультиком, какая сегодня была серия: весёлая, страшная или скучная?»</div>
+      <div class="say"><b>Скажите так</b>Не «ты молодец», а конкретно: «Ты сегодня сам завязал шнурки».</div>
+      <div class="res"><b>Будет сопротивление</b>Ребёнок ответит односложно или скажет «не хочу говорить». Не настаивайте на всех трёх частях сразу. Начните с одной, которая лучше получается.</div>
+      <div class="nohelp"><b>Если не помогло</b>Перенесите разговор в общее дело. Многие дети охотнее говорят, когда руки заняты, а взрослый не смотрит в упор: за лепкой, за готовкой, в машине.</div>
+    </div>
+  </details>
+
+  <div class="block">
+    <h2>Как ввести правило и удержать его</h2>
+    <div class="step"><div class="step-num">1</div><div class="step-text"><strong>Выберите одно правило.</strong> Не все сразу. Одно - и только его на две недели. Ребёнку трудно принять много нового сразу.</div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-text"><strong>Объявите спокойно, один раз.</strong> «У нас теперь есть правило: рюкзак собираем с вечера. Всегда». Без обсуждения. Просто сообщаете.</div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-text"><strong>Держите правило без лекций.</strong> Забыл - одно спокойное напоминание. Не объяснение и не упрёк. Просто название правила.</div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-text"><strong>Правила можно пересматривать.</strong> Раз в месяц: «Как работает это правило? Что изменим?» Это не слабость, это уважение к ребёнку.</div></div>
+    <div class="main-note">Правило работает не потому, что ребёнок согласился. А потому что вы спокойно его держите. Как только правило меняется от истерики, оно перестаёт быть правилом.</div>
+  </div>
+
+  <div class="block stars">
+    <h2>Звёздочки вместо уговоров</h2>
+    <p>Маленьким детям легче, когда успех видно глазами. Выполнил правило - получил звёздочку в дневнике ниже. Отмечайте вместе с ребёнком, пусть он сам нажимает на звезду.</p>
+    <p>Семь звёздочек подряд по одному правилу - маленький приятный бонус:</p>
+    <ul>
+      <li>ребёнок сам выбирает сказку на ночь;</li>
+      <li>прыгаем на одной ножке до садика или до школы;</li>
+      <li>вместе печём печенье в выходной;</li>
+      <li>ребёнок выбирает мультфильм для всей семьи.</li>
+    </ul>
+    <p>Сладости в награду лучше не использовать: так ребёнок привыкает, что еда - это способ заслужить одобрение. Когда правило стало привычкой, звёздочки можно тихо убрать.</p>
+  </div>
+
+  <div class="block">
+    <h2>Дневник на 14 дней</h2>
+    <p style="color:var(--text);text-align:center;">Нажмите на звезду, когда правило выполнено. Отметки сохраняются на этом телефоне.</p>
+    <div class="diary-wrap">
+      <table id="diary"><thead><tr><th style="text-align:left;padding-left:12px;">Правило</th></tr></thead><tbody></tbody></table>
+    </div>
+    <div class="diary-ctrl">
+      <span>Звёздочек: <b id="cnt">0</b></span>
+      <button id="reset" type="button">Очистить</button>
+    </div>
+  </div>
+
+  <div class="block bonus">
+    <div class="label">Бонус</div>
+    <h3>Помощь по дому - это норма</h3>
+    <p>Вынести мусор, помыть полы, вытереть пыль - это не «помощь маме», это участие в жизни семьи. Дети от шести лет уже готовы к своей зоне ответственности.</p>
+  </div>
+
+  <div class="next">
+    <div class="label">Следующий шаг</div>
+    <h2>Когда одного правила уже мало</h2>
+    <p>Базовая версия помогает навести порядок в ежедневных делах: постель, одежда, обувь, гаджеты, уборка, рюкзак, вещи на местах, бельё, посуда и время вместе. С этих правил удобно начать.</p>
+    <p>Но в семье бывают ситуации сложнее.</p>
+    <p class="scene">Ребёнок не просто не убрал игрушки, а ударил маму.<br>Не просто просит купить что-то в магазине, а требует, спорит и не принимает отказ.<br>Не просто обижается, а кричит, пинает, оскорбляет и проверяет, где заканчивается ваше «нет».</p>
+    <p>В такие моменты родителю нужно не больше терпения. Ему нужны ясные слова и правило, которое можно удержать спокойно.</p>
+    <p><b>В полной версии «Правил в дом»:</b></p>
+    <ul>
+      <li>правило-запрет: что делать, когда ребёнок бьёт, пинает или оскорбляет родителей, и какое наказание должно следовать;</li>
+      <li>двенадцать правил, как говорить с ребёнком без критики и сравнений, с готовыми фразами;</li>
+      <li>правила для выходного дня и покупок по расписанию, чтобы магазин не превращался в торг;</li>
+      <li>памятка для печати «Что ребёнок может делать сам: от 3 до 6 лет».</li>
+    </ul>
+    <p>Вы уже начали с одного правила. Следующий шаг - собрать всю систему.</p>
+    <a class="next-btn" href="https://app.lava.top/products/ba73809b-bf72-4e0f-b8dd-88a6575a437e" target="_blank" rel="noopener">Перейти к полной версии за 1990 ₽</a>
+  </div>
+
+  <p class="closing">Нам нужны правила. Всегда.</p>
+</section>
+
+<footer>
+  <span class="handle">@bella.psychologist</span>
+  © Полянинова Бэлла Леонидовна, 2024-2026<br>
+  Все права защищены. Копирование и распространение без разрешения автора запрещено.
+</footer>
+
+<script>
+(function(){
+  var NAMES = ["Постель", "Одежда с вечера", "Обувь", "Гаджеты", "Уборка", "Рюкзак", "Взял - положи", "Бельё", "Посуда", "30 минут вместе"];
+  var DAYS = 14, KEY = "pravila_bazovaya_diary_v1", s = {};
+  try { s = JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e) { s = {}; }
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(s)); } catch(e) {} }
+  var head = document.querySelector('#diary thead tr'), body = document.querySelector('#diary tbody');
+  for (var d = 1; d <= DAYS; d++) { var th = document.createElement('th'); th.textContent = d; head.appendChild(th); }
+  function count(){ var n = 0; for (var k in s) if (s[k]) n++; document.getElementById('cnt').textContent = n; }
+  NAMES.forEach(function(name, r){
+    var tr = document.createElement('tr'), td = document.createElement('td');
+    td.className = 'rn'; td.textContent = name; tr.appendChild(td);
+    for (var d = 1; d <= DAYS; d++) {
+      (function(key, dayNum){
+        var c = document.createElement('td'), b = document.createElement('button');
+        b.type = 'button'; b.className = 'star-btn' + (s[key] ? ' on' : ''); b.textContent = '★';
+        b.setAttribute('aria-label', name + ', день ' + dayNum);
+        b.setAttribute('aria-pressed', s[key] ? 'true' : 'false');
+        b.addEventListener('click', function(){
+          s[key] = !s[key]; b.classList.toggle('on', s[key]);
+          b.setAttribute('aria-pressed', s[key] ? 'true' : 'false'); save(); count();
+        });
+        c.appendChild(b); tr.appendChild(c);
+      })(r + '_' + d, d);
+    }
+    body.appendChild(tr);
+  });
+  document.getElementById('reset').addEventListener('click', function(){
+    if (confirm('Очистить все звёздочки?')) { s = {}; save(); document.querySelectorAll('.star-btn').forEach(function(b){ b.classList.remove('on'); b.setAttribute('aria-pressed','false'); }); count(); }
+  });
+  count();
+})();
+</script>
+
+</body>
+</html>
