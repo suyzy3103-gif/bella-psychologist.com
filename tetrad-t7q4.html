@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<style>[hidden]{display:none!important}body{margin:0}img{max-width:100%}</style>
+</head>
+<body>
+<title>Мои правила воздуха</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: одна колонка, как тетрадь. Наверху формула, ниже крючки, правила-карточки, план, дневник. */
+:root{
+  --bg:#eef2f4; --paper:#f8fafb; --ink:#1f2a33; --muted:#5d6b76; --line:#d3dce2;
+  --accent:#3f6f8a; --accent-soft:#dde9f0; --warn:#8a5a3f; --warn-soft:#f3e7df;
+  --display:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --body:"Manrope",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#141b21; --paper:#1b242b; --ink:#e4ebf0; --muted:#9aa9b4; --line:#2e3a43;
+  --accent:#8fbcd4; --accent-soft:#223643; --warn:#d9a585; --warn-soft:#3a2b22; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141b21; --paper:#1b242b; --ink:#e4ebf0; --muted:#9aa9b4; --line:#2e3a43;
+  --accent:#8fbcd4; --accent-soft:#223643; --warn:#d9a585; --warn-soft:#3a2b22; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6}
+.wrap{max-width:640px;margin:0 auto;padding-inline:18px;padding-block:28px 60px;display:flex;flex-direction:column;gap:44px}
+h1,h2{font-family:var(--display);font-weight:600;text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:2.6rem}
+h2{font-size:1.9rem}
+p{margin:0}
+.eyebrow{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
+section{display:flex;flex-direction:column;gap:16px}
+.lead{color:var(--muted)}
+
+.hero{display:flex;flex-direction:column;gap:18px}
+.formula{font-family:var(--display);font-style:italic;font-size:1.55rem;line-height:1.35;border-left:2px solid var(--accent);padding-left:16px}
+.formula span{display:block}
+
+.first{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:22px 18px}
+.shift{display:flex;flex-direction:column;gap:4px;font-family:var(--display);font-size:1.45rem;line-height:1.3;padding-block:6px}
+.shift .no{color:var(--muted);text-decoration:line-through;text-decoration-thickness:1px}
+.shift .yes{color:var(--accent);font-style:italic;font-weight:600}
+.key{font-weight:600;border-left:2px solid var(--accent);padding-left:14px}
+.hooks{display:flex;flex-direction:column;gap:8px}
+.hook{display:flex;gap:12px;align-items:flex-start;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:13px 14px;cursor:pointer;text-align:left;font:inherit;color:inherit;width:100%}
+.hook:focus-visible,.rule summary:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.box{flex:none;width:20px;height:20px;border:1.5px solid var(--muted);border-radius:5px;margin-top:2px;display:grid;place-items:center}
+.hook[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.hook[aria-pressed="true"] .box{background:var(--accent);border-color:var(--accent)}
+.hook[aria-pressed="true"] .box::after{content:"";width:9px;height:5px;border:2px solid var(--paper);border-top:0;border-right:0;transform:rotate(-45deg) translate(1px,-1px)}
+.hook .t{flex:1;min-width:0}
+.hook .go{font-size:.8rem;color:var(--accent);font-weight:600;white-space:nowrap}
+.summary{font-size:.92rem;color:var(--muted)}
+
+.rules{display:flex;flex-direction:column;gap:10px}
+.rule{background:var(--paper);border:1px solid var(--line);border-radius:12px;scroll-margin-top:16px}
+.rule.hit{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.rule summary{list-style:none;cursor:pointer;padding:16px;display:flex;gap:14px;align-items:baseline}
+.rule summary::-webkit-details-marker{display:none}
+.num{font-family:var(--display);font-size:1.6rem;color:var(--accent);line-height:1;min-width:1.4em;font-variant-numeric:tabular-nums}
+.rt{font-weight:600;flex:1;min-width:0}
+.rt small{display:block;font-weight:400;color:var(--muted);font-size:.86rem;margin-top:2px}
+.grp{font-family:var(--display);font-weight:600;font-size:1.35rem;margin:18px 0 2px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.chev{color:var(--muted);transition:transform .2s}
+.rule[open] .rt small{display:block;font-weight:400;color:var(--muted);font-size:.86rem;margin-top:2px}
+.grp{font-family:var(--display);font-weight:600;font-size:1.35rem;margin:18px 0 2px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.chev{transform:rotate(90deg)}
+.rb{padding:0 16px 18px 16px;display:flex;flex-direction:column;gap:14px}
+.part .lbl{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:3px}
+.say{background:var(--accent-soft);border-radius:8px;padding:4px 14px;font-family:var(--display);font-size:1.22rem;line-height:1.4;display:flex;flex-direction:column}
+.say .v{display:flex;flex-direction:column;gap:8px;padding-block:12px}
+.say .v+.v{border-top:1px solid var(--line)}
+.say button{align-self:flex-start;font:600 .78rem var(--body);color:var(--accent);background:none;border:1px solid var(--accent);border-radius:999px;padding:4px 12px;cursor:pointer}
+.fail{background:var(--warn-soft);color:var(--ink);border-radius:8px;padding:10px 14px}
+.fail .lbl{color:var(--warn)}
+.learn{display:flex;gap:10px;align-items:center;font-size:.88rem;color:var(--muted);cursor:pointer}
+.learn input{width:18px;height:18px;accent-color:var(--accent)}
+
+.steps{display:flex;flex-direction:column;gap:12px}
+.step{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:6px}
+.step b{font-weight:700}
+
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-weight:600;font-size:.92rem}
+input[type=text],textarea{font:inherit;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:11px 12px;width:100%}
+textarea{min-height:64px;resize:vertical}
+input[type=text]:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:0;border-color:var(--accent)}
+.note{font-size:.9rem;color:var(--muted)}
+.alert{border:1px solid var(--warn);border-radius:12px;padding:14px 16px;color:var(--ink)}
+.alert b{color:var(--warn)}
+.saved{font-size:.8rem;color:var(--muted)}
+footer{font-family:var(--display);font-size:1.3rem;display:flex;flex-direction:column;gap:14px;border-top:1px solid var(--line);padding-top:28px}
+footer .sign{font-family:var(--body);font-size:.95rem;color:var(--muted)}
+.progress{font-size:.85rem;color:var(--muted);font-variant-numeric:tabular-nums}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+
+<div class="wrap">
+
+<header class="hero">
+  <p class="eyebrow">Персональный помощник для Таисии Борисовой. Рабочая тетрадь</p>
+  <h1>Мои правила воздуха</h1>
+  <p>Таисия, вам нужны правила не для того, чтобы Вячеслав наконец понял вашу боль. Они нужны, чтобы вы перестали каждый раз доказывать своё право на воздух.</p>
+  <div class="formula"><span>Я сказала ясно.</span><span>Я не объясняю бесконечно.</span><span>Я действую по правилу.</span></div>
+  <p class="lead">Каждое правило состоит из четырёх частей: когда оно включается, что сказать, что сделать сразу после фразы и где легко сорваться обратно. Без действия правило превращается в просьбу.</p>
+</header>
+
+<section id="first" class="first">
+  <p class="eyebrow">Прочитайте это в первую очередь</p>
+  <h2>Дело не в вас</h2>
+  <p>Когда на вас давят, легко подумать одно из двух: «со мной что-то не так» или «он плохой человек». Обе мысли уводят в сторону и отнимают силы.</p>
+  <div class="shift">
+    <p class="no">Я плохая.</p>
+    <p class="no">Он плохой.</p>
+    <p class="yes">Сейчас он говорит со мной так. И у меня есть правило.</p>
+  </div>
+  <p>Причин у такого поведения может быть сколько угодно: неуверенность в себе, агрессивное настроение, усталость, страх, трудный период в жизни. Это его период и его причины. Чужое плохое настроение не повод чувствовать себя виноватой или подавленной.</p>
+  <p>Вы не его психолог и не его психотерапевт. Это не ваш ребёнок, которого нужно успокаивать и нянчить. Разбираться, почему он так себя ведёт, не ваша задача.</p>
+  <p class="key">Вам не нужно понимать, почему он так. Вам нужно приучить его к определённым правилам общения с вами. Этому и посвящена тетрадь.</p>
+</section>
+
+<section id="hooks">
+  <p class="eyebrow">Часть 1</p>
+  <h2>Где меня затягивает</h2>
+  <p class="lead">Отметьте, что происходит с вами чаще всего. Нужные правила подсветятся ниже.</p>
+  <div class="hooks" id="hookList"></div>
+  <p class="summary" id="hookSummary">Пока ничего не отмечено.</p>
+</section>
+
+<section id="rules">
+  <p class="eyebrow">Часть 2</p>
+  <h2>Пятнадцать ситуаций</h2>
+  <p class="lead">Нажмите на ситуацию, чтобы раскрыть правило. Отмечайте фразы, которые уже выучили наизусть.</p>
+  <p class="progress" id="progress"></p>
+  <div class="rules" id="ruleList"></div>
+</section>
+
+<section id="second">
+  <p class="eyebrow">Часть 3</p>
+  <h2>Если правило нарушено второй раз</h2>
+  <p class="lead">Когда старые рычаги перестают работать, давление часто сначала усиливается. Это ожидаемо, и к этому нужно быть готовой заранее.</p>
+  <div class="steps">
+    <div class="step"><b>Второй раз в одном разговоре</b><p>Вы больше ничего не объясняете и сразу переходите к действию. Выходите, завершаете звонок, пишете одну строку на выбор: «Разговор продолжим позже», «Вернёмся к этому, когда будет время» или «Продолжим, когда сможем говорить спокойно».</p></div>
+    <div class="step"><b>Повторяется в течение недели</b><p>Вы записываете эпизоды в дневник ниже и приносите их на сессию. Вместе решаем, какое следующее последствие вы готовы включить.</p></div>
+  </div>
+</section>
+
+<section id="safety">
+  <p class="eyebrow">Часть 4</p>
+  <h2>План безопасности</h2>
+  <p class="lead">Заполните заранее, в спокойном состоянии. Записи остаются только на этом устройстве.</p>
+  <div class="field"><label for="s1">Куда я ухожу из разговора</label><input type="text" id="s1" data-save></div>
+  <div class="field"><label for="s2">Кому я пишу, когда мне тяжело</label><input type="text" id="s2" data-save></div>
+  <div class="field"><label for="s3">Кто заменяет Вячеслава в работе</label><input type="text" id="s3" data-save></div>
+  <div class="field"><label for="s4">Где мои документы и деньги, к которым у меня есть отдельный доступ</label><input type="text" id="s4" data-save></div>
+  <div class="alert"><b>Важно.</b> Если агрессия переходит в угрозы или вам физически небезопасно, ваша задача не удержать разговор, а уйти и обратиться за помощью.</div>
+</section>
+
+<section id="diary">
+  <p class="eyebrow">Часть 5</p>
+  <h2>Дневник попыток</h2>
+  <p class="lead">После каждого эпизода пять строк. Ошибки здесь нормальны: нервная система годами училась замирать и переучивается повторением.</p>
+  <div class="field"><label for="d1">Что произошло</label><textarea id="d1" data-save></textarea></div>
+  <div class="field"><label for="d2">Какое правило должно было включиться</label><input type="text" id="d2" data-save></div>
+  <div class="field"><label for="d3">Что я сказала и сделала</label><textarea id="d3" data-save></textarea></div>
+  <div class="field"><label for="d4">Где я сорвалась обратно</label><textarea id="d4" data-save></textarea></div>
+  <div class="field"><label for="d5">Что я сделаю в следующий раз</label><textarea id="d5" data-save></textarea></div>
+  <p class="saved" id="savedNote">Записи сохраняются автоматически.</p>
+</section>
+
+<footer>
+  <div class="formula"><span>Я сказала ясно.</span><span>Я не объясняю бесконечно.</span><span>Я действую по правилу.</span></div>
+  <p class="sign">С уважением, Бэлла Леонидовна.</p>
+</footer>
+
+</div>
+
+<script>
+const RULES=[
+ {g:"Непонимание",t:"«А что? А зачем? Я не понимаю»",p:"Я не объясняю очевидное взрослому человеку",h:"Он делает вид, что не понимает, и спрашивает одно и то же",w:"Эти вопросы звучат не для прояснения, а для давления.",s:["Я объяснила достаточно ясно. Ты можешь быть не согласен, но понять это можно.","Я уже ответила. Повторять в третий раз я не буду.","Давай вернёмся к решению. Объяснения я уже дала."],d:"Не повторять мысль третий раз. Две попытки объяснить, дальше вы возвращаете разговор к решению или заканчиваете его.",f:"Начать доказывать, что вы имеете право так чувствовать."},
+ {g:"Непонимание",t:"«Ты всё неправильно решила»",p:"Моё решение не требует его одобрения",h:"Он критикует мои решения задним числом",w:"Вы уже что-то решили или сделали, а он объявляет, что всё неправильно, и ничего не предлагает взамен.",s:["Это моё решение, и я за него отвечаю.","Если есть конкретное предложение, скажи. Оценки мне не нужны.","В следующий раз можешь предложить свой вариант заранее."],d:"Не пересказывать заново, почему вы так решили. Попросить конкретное предложение на будущее или закончить тему.",f:"Начать оправдываться и отменять решение под давлением."},
+ {g:"Непонимание",t:"Он переводит разговор на новые претензии",p:"Одна тема за раз",h:"Мы обсуждаем одно, а он вспоминает всё подряд",w:"Вы начинаете разговор об одном, а он вспоминает старые обиды и новые упрёки, и тема теряется.",s:["Сейчас мы говорим об одном. Остальное обсудим отдельно.","Давай закончим с этим вопросом, потом перейдём к следующему.","На всё сразу я не отвечаю. Одна тема за раз."],d:"Назвать тему разговора и возвращаться к ней. Если он продолжает уводить, закончить разговор.",f:"Отвечать на каждую новую претензию. Так разговор не закончится никогда."},
+ {g:"Агрессия",t:"Он повышает голос или оскорбляет",p:"Я не разговариваю в тоне нападения",h:"Он повышает голос, нападает, обвиняет",w:"Крик, оскорбления, обвинения, даже если тема важная.",s:["В таком тоне я разговор не продолжаю. Вернёмся к нему, когда будет спокойно.","Я готова обсуждать это без крика. Сейчас я выхожу.","Ты повышаешь голос, поэтому я заканчиваю разговор. Продолжим позже."],d:"Выйти из комнаты, завершить звонок или перейти на короткое сообщение.",f:"Остаться рядом, пока он «додавливает» вас до слёз."},
+ {g:"Агрессия",t:"Он отвечает сарказмом",p:"Я не отвечаю на сарказм как на нормальный вопрос",h:"Он отвечает сарказмом, уколами, переводит разговор на мою вину",w:"Уколы, насмешка, «ты не так сидишь, не так лежишь», перевод разговора на вашу вину.",s:["Скажи прямо, без уколов. Тогда я отвечу.","Назови конкретное действие, которое ты хочешь обсудить.","На насмешку я не отвечаю. Если есть вопрос, задай его прямо."],d:"Ждать прямой формулировки. Не расшифровывать за него подтекст.",f:"Объяснять, почему вам больно от сарказма. Это снова отдаёт ему разговор."},
+ {g:"Агрессия",t:"«Мне плохо, и это из-за тебя»",p:"Его плохое состояние не отменяет мою границу",h:"Он говорит «мне плохо», и я бросаю всё, чтобы его успокоить",w:"«Мне плохо» становится поводом обвинить вас и потребовать немедленного внимания.",s:["Я вижу, что тебе плохо. Это не даёт права давить на меня.","Мне жаль, что тебе тяжело. Но за твоё состояние отвечаю не я.","Поговорим, когда я буду готова. Сейчас я не могу быть твоей опорой."],d:"Предложить поговорить позже, а не становиться его опорой прямо сейчас.",f:"Перепутать сострадание с обязанностью спасать его ценой себя."},
+ {g:"Пространство",t:"Он мешает вашему уединению",p:"Моё личное пространство не угроза семье",h:"Он входит в моё пространство, когда я хочу побыть одна",w:"Ваше желание побыть одной он воспринимает как отвержение и идёт следом.",s:["Мне нужно время одной. Это не наказание и не угроза семье.","Я побуду одна и вернусь к разговору позже.","Я никуда не ухожу из семьи. Мне нужно немного тишины."],d:"Сказать, что вернётесь к разговору, и вернуться, когда будете готовы.",f:"Оправдываться за сам факт уединения. Его не нужно заслуживать."},
+ {g:"Пространство",t:"Он требует внимания, когда вы работаете",p:"Моё рабочее время тоже граница",h:"Он отвлекает меня, когда я занята делом",w:"Вы работаете или заняты важным делом, а он требует, чтобы вы немедленно переключились на него.",s:["Я сейчас работаю. Освобожусь и подойду.","Сейчас не могу. Поговорим, когда закончу.","Если срочно, напиши одной строкой. Остальное позже."],d:"Сказать, когда освободитесь, и продолжить своё дело.",f:"Бросать дела каждый раз, а потом злиться на себя."},
+ {g:"Страх и слёзы",t:"Вы цепенеете и не можете говорить",p:"Моя пауза не означает согласие",h:"Я цепенею и молчу, а он решает за двоих",w:"Вы цепенеете, а он занимает всё пространство и решает за двоих.",s:["Под давлением я разговор не продолжаю. Отвечу позже письменно.","Я молчу не потому, что согласна. Мне нужна пауза.","Сейчас я ничего не решаю. Отвечу, когда соберусь с мыслями."],d:"Выйти, поставить таймер на двадцать минут, записать три мысли, отправить короткий ответ.",f:"Думать, что молчание уже проиграло разговор. Пауза даёт время вернуть себе голос."},
+ {g:"Страх и слёзы",t:"«Ты плачешь, ничего не понятно»",p:"Слёзы не делают меня неправой",h:"Я плачу, и он говорит, что со мной невозможно разговаривать",w:"Вы плачете, и он объявляет, что смысл ваших слов потерян.",s:["То, что я плачу, не отменяет смысл моих слов.","Я плачу, и я продолжаю говорить серьёзно.","Мне сейчас трудно говорить голосом. Я напишу."],d:"Если голосом говорить трудно, перейти в письменный формат. Одну фразу стоит выучить заранее: в момент оцепенения речь уходит первой.",f:"Считать слёзы доказательством слабости."},
+ {g:"Доверие",t:"Он ведёт себя так, будто измены не было",p:"Я не доказываю своё право на боль",h:"Я снова доказываю, что мне больно после измены",w:"Он ждёт, что после разрыва с другой женщиной всё вернётся как было, а ваша боль кажется ему лишней.",s:["Твоё возвращение не отменяет того, что произошло. Доверие восстанавливается действиями, а не требованием забыть.","Мне нужно видеть поступки, а не слышать давление.","Я помню, что было. Мне нужно время, и я его возьму."],d:"Смотреть на повторяющиеся поступки, а не на обещания.",f:"Принять его тревогу за доказательство любви."},
+ {g:"Доверие",t:"Он требует физической близости",p:"Близость не включается по требованию",h:"Он требует близости, когда я к ней не готова",w:"Он ждёт близости как доказательства, что всё наладилось, и обижается или давит, когда вы не готовы.",s:["Близость после измены не включается по требованию. Ей нужно время.","Я не готова. Давление этого не изменит.","Моё «нет» не наказание. Это честный ответ."],d:"Отказывать спокойно и коротко, без долгих объяснений. Если он настаивает силой, это уже вопрос безопасности: действуйте по плану безопасности ниже.",f:"Соглашаться, чтобы избежать скандала или доказать, что всё в порядке."},
+ {g:"Бизнес",t:"Он ссорится во время заказа и смешивает семейное с рабочим",p:"Семейное отдельно, рабочее отдельно",h:"Он выясняет отношения на работе, при клиентах",w:"Во время заказа или рабочих задач он переносит туда семейный спор.",s:["Сейчас мы на работе. Личное обсудим дома.","Клиенты не должны видеть нашу ссору. Работаем.","Рабочие вопросы отдельно, семейные отдельно."],d:"Заранее договориться: на работе обсуждаются только рабочие вопросы. Во время заказа на личные темы не отвечать.",f:"Выяснять отношения при клиентах или сотрудниках."},
+ {g:"Бизнес",t:"Он отменяет мероприятие в последний момент",p:"Бизнес живёт по алгоритму, а не по настроению",h:"Он срывает или отменяет рабочие мероприятия",w:"Личный конфликт переходит в работу, он отменяет мероприятие или срывает договорённость.",s:["Мероприятие проходит в любом случае. Наши отношения обсудим отдельно.","Если ты не можешь провести, я включаю замену.","Отмена в последний момент имеет последствия, о которых мы договорились."],d:"Заранее прописать резервного ведущего, порядок замены и финансовую ответственность за отмену. В момент срыва не спорить о мотивах, а запускать замену.",f:"Уговаривать его быть взрослым вместо того, чтобы включить систему."},
+ {g:"Внутри меня",t:"Вам хочется стать удобной, чтобы стало тихо",p:"Я не покупаю мир своим удобством",h:"Я становлюсь удобной, чтобы стало тихо",w:"Внутри поднимается старое «будь хорошей, и тебя не оставят».",self:["Я могу быть неудобной и оставаться достойной уважения.","Моя ценность не зависит от того, удобна ли я сейчас."],s:["Моё несогласие не делает меня плохой женой.","Я не согласна, и это моё право.","Я остаюсь при своём решении."],d:"Оставить своё решение в силе, даже если он недоволен.",f:"Вернуться в роль девочки, которая должна заслужить право быть выбранной."}
+];
+const HOOKS=RULES.map((r,i)=>[r.h,[i]]);
+const KEY="pravila-vozduha-v1";
+let st={hooks:[],learned:[],fields:{}};
+try{const r=localStorage.getItem(KEY);if(r)st=Object.assign(st,JSON.parse(r))}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
+const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+const rl=document.getElementById("ruleList");
+let lastG="";
+rl.innerHTML=RULES.map((r,i)=>{
+ const gh=r.g!==lastG?`<h3 class="grp">${esc(r.g)}</h3>`:"";lastG=r.g;
+ const say=(arr,lbl)=>`<div class="part"><div class="lbl">${lbl} · выберите свой вариант</div><div class="say">${arr.map(txt=>`<div class="v"><span>«${esc(txt)}»</span><button type="button" data-copy="${esc(txt)}">Скопировать</button></div>`).join("")}</div></div>`;
+ return gh+`<details class="rule" id="r${i+1}"><summary><span class="num">${i+1}</span><span class="rt">${esc(r.t)}<small>Правило: ${esc(r.p)}</small></span><span class="chev" aria-hidden="true">›</span></summary><div class="rb">
+ <div class="part"><div class="lbl">Когда включается</div><p>${esc(r.w)}</p></div>
+ ${r.self?say(r.self,"Что сказать себе"):""}
+ ${say(r.s,r.self?"Что сказать ему":"Что сказать")}
+ <div class="part"><div class="lbl">Что сделать сразу после</div><p>${esc(r.d)}</p></div>
+ <div class="part fail"><div class="lbl">Где не сорваться</div><p>${esc(r.f)}</p></div>
+ <label class="learn"><input type="checkbox" id="l${i}" data-learn="${i}"> Фраза выучена</label>
+ </div></details>`}).join("");
+
+const hl=document.getElementById("hookList");
+hl.innerHTML=HOOKS.map((h,i)=>`<button type="button" class="hook" data-hook="${i}" aria-pressed="false"><span class="box" aria-hidden="true"></span><span class="t">${esc(h[0])}</span><span class="go">Правило ${h[1].map(n=>n+1).join(", ")}</span></button>`).join("");
+
+function render(){
+ document.querySelectorAll(".hook").forEach(b=>b.setAttribute("aria-pressed",st.hooks.includes(+b.dataset.hook)));
+ const hit=new Set(st.hooks.flatMap(i=>HOOKS[i][1]));
+ document.querySelectorAll(".rule").forEach((d,i)=>d.classList.toggle("hit",hit.has(i)));
+ const list=[...hit].sort((a,b)=>a-b).map(n=>n+1);
+ document.getElementById("hookSummary").textContent=list.length?`Ваши правила в первую очередь: ${list.join(", ")}. Они подсвечены ниже.`:"Пока ничего не отмечено.";
+ document.querySelectorAll("[data-learn]").forEach(c=>c.checked=st.learned.includes(+c.dataset.learn));
+ document.getElementById("progress").textContent=`Выучено фраз: ${st.learned.length} из ${RULES.length}`;
+}
+hl.addEventListener("click",e=>{
+ const b=e.target.closest(".hook");if(!b)return;const i=+b.dataset.hook;
+ const on=!st.hooks.includes(i);
+ st.hooks=on?[...st.hooks,i]:st.hooks.filter(x=>x!==i);save();render();
+ if(on&&e.target.closest(".go")){const d=document.getElementById("r"+(HOOKS[i][1][0]+1));d.open=true;d.scrollIntoView({behavior:"smooth"})}
+});
+rl.addEventListener("change",e=>{
+ const c=e.target.closest("[data-learn]");if(!c)return;const i=+c.dataset.learn;
+ st.learned=c.checked?[...new Set([...st.learned,i])]:st.learned.filter(x=>x!==i);save();render();
+});
+rl.addEventListener("click",e=>{
+ const b=e.target.closest("[data-copy]");if(!b)return;
+ const done=()=>{b.textContent="Скопировано";setTimeout(()=>b.textContent="Скопировать",1500)};
+ try{navigator.clipboard.writeText(b.dataset.copy).then(done,()=>{})}catch(err){}
+});
+document.querySelectorAll("[data-save]").forEach(el=>{
+ if(st.fields[el.id])el.value=st.fields[el.id];
+ el.addEventListener("input",()=>{st.fields[el.id]=el.value;save()});
+});
+render();
+</script>
+
+</body>
+</html>
