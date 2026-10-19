@@ -6,8 +6,9 @@ Updated: 2026-10-19
 - Branch codex/bella-preview only
 - gayd-spokoynyy-roditel.html rewritten from current main for owner review
 - Green mobile layout, complete free example, four product sections, first-use steps
-- Seven phrases always visible in distinct panel; entry hints removed
-- Generated editorial illustration replaces low-resolution screenshots; author photo retained
+- Seven phrases collapsed by default with Expand/Collapse; floating skip to after-phrases while reading
+- Generated notebook cover and page spread replace family illustration
+- Distinct paid offer with 2490 price and explicit paid contents heading; digital format stated
 - First-person voice, corrected product name, distinct quote font and prominent CTA
 - Legal links subdued; original consent logic retained
 - Extra CTA and concrete consequence example from retained source
