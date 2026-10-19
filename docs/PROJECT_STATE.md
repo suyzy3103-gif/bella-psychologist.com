@@ -14,16 +14,19 @@ Updated: 2026-10-19
 
 ## Live
 - Main and GitHub Pages source unchanged by this task
-- This page not deployed to the main domain or Sites
+- Page published only to separate Sites preview on 2026-10-19
+- Preview: https://bella-design-7f3c9a.aanekrassov.chatgpt.site/gayd-spokoynyy-roditel
+- Sites source bb4ecc8fcc6d7b9266f340907b6edf560e863f2b; deployment appgdep_6ad64f449cf881919fb1211f214171f6 succeeded
+- HTTP 200, expected heading and noindex confirmed; main domain unchanged
 - Existing catalogue preview remains separate
 
 ## Verification / limits
 - Conversion lift is a hypothesis, no A/B result or real purchase claimed
 - Full HTML, link, diff and secret checks recorded in review notes
-- Browser and payment-delivery journey require review before publication
+- Visual browser review and payment-delivery journey remain unverified
 - A production analytics/monitoring integration is not included in this review-only revision
 
 ## Next
 - Bella reviews wording and applicability of the free example
 - Validate mobile, consent flow and payment destination
-- Publish only after owner's instruction, preserving original URL
+- Publish to main domain only after owner's instruction, preserving original URL
