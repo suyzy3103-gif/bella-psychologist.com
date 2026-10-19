@@ -1,152 +1,43 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>7 фраз подростка - Полянинова Бэлла Леонидовна</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>Спокойный родитель — правила для семьи с подростком</title>
+<meta name="description" content="Как удерживать договорённости с подростком без бесконечного торга — пример и помощник для родителей детей 11–16 лет">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --ink:        #15302A;
-  --green-dark: #2F6B57;
-  --green:      #4A9A7C;
-  --green-pale: #E6F4EE;
-  --blue:       #2F5FA8;
-  --blue-pale:  #EAF1FC;
-  --violet-pale:#F1ECFB;
-  --violet:     #6A4CB0;
-  --rose:       #C23B4E;
-  --rose-pale:  #FDEDEF;
-  --paper:      #F6FBF8;
-  --text:       #2C3F38;
-  --white:      #ffffff;
-}
-html { scroll-behavior: smooth; }
-body { font-family: 'Manrope', sans-serif; background: var(--paper); color: var(--ink); font-size: 17px; line-height: 1.7; overflow-x: hidden; }
-
-.rights-top {
-  background: var(--white); border-bottom: 1px solid #DCEBE3;
-  text-align: center; font-size: 12px; font-weight: 600; color: var(--green-dark);
-  padding: 10px 16px; letter-spacing: .3px;
-}
-
-.cover {
-  background: linear-gradient(160deg, #E3F3EB 0%, #C6E6D7 55%, #A9D7C2 100%);
-  text-align: center; padding: 56px 22px 64px;
-}
-.cover-badge {
-  display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
-  color: var(--green-dark); background: rgba(255,255,255,.7); border-radius: 20px;
-  padding: 7px 18px; margin-bottom: 28px;
-}
-.cover-title {
-  font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 9vw, 56px); font-weight: 700;
-  color: var(--ink); line-height: 1.12; max-width: 640px; margin: 0 auto 30px;
-}
-.cover-story { max-width: 520px; margin: 0 auto; text-align: left; }
-.cover-story p { font-size: 17px; color: var(--text); margin-bottom: 14px; }
-.cover-story .strong { font-weight: 700; color: var(--ink); }
-.cover-buttons { display: flex; flex-direction: column; gap: 12px; align-items: center; margin-top: 26px; }
-
-.btn-main {
-  display: inline-block; width: 100%; max-width: 360px; padding: 17px 24px; background: var(--green-dark); color: var(--white);
-  font-size: 15px; font-weight: 700; letter-spacing: .5px; border-radius: 10px; text-decoration: none; text-align: center;
-  transition: background .2s;
-}
-.btn-main:hover { background: var(--ink); }
-.btn-light {
-  display: inline-block; width: 100%; max-width: 360px; padding: 15px 24px; background: var(--white); color: var(--green-dark);
-  font-size: 15px; font-weight: 700; border: 2px solid var(--green-dark); border-radius: 10px; text-decoration: none; text-align: center;
-}
-
-.section-title {
-  font-family: 'Cormorant Garamond', serif; font-size: clamp(30px, 7.5vw, 40px); font-weight: 700;
-  line-height: 1.2; text-align: center; color: var(--ink); max-width: 560px; margin: 0 auto 28px;
-}
-
-.phrases { max-width: 600px; margin: 0 auto; padding: 52px 16px 20px; }
-.card {
-  background: var(--white); border-radius: 16px; padding: 26px 22px; margin-bottom: 18px;
-  border-left: 4px solid var(--green); box-shadow: 0 2px 14px rgba(47,107,87,.08);
-}
-.card-num { font-size: 12px; font-weight: 700; letter-spacing: 2px; color: var(--green-dark); text-transform: uppercase; margin-bottom: 8px; }
-.card-quote {
-  font-family: 'Cormorant Garamond', serif; font-size: 27px; font-weight: 700;
-  color: var(--ink); line-height: 1.25; margin-bottom: 14px;
-}
-.card p { font-size: 17px; color: var(--text); margin-bottom: 12px; }
-.card p:last-child { margin-bottom: 0; }
-.answer {
-  background: var(--blue-pale); border-radius: 12px; padding: 16px 18px; margin: 16px 0;
-}
-.answer-label { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--blue); margin-bottom: 6px; }
-.answer p { font-size: 17px; font-weight: 600; color: #1E3557; margin: 0; }
-.card .key { font-weight: 700; color: var(--ink); }
-
-.why {
-  background: var(--violet-pale); padding: 52px 22px;
-}
-.why .inner { max-width: 540px; margin: 0 auto; }
-.why p { font-size: 17px; color: #2E2945; margin-bottom: 14px; }
-.why .steps p { margin-bottom: 2px; }
-.why .steps { margin-bottom: 14px; }
-.why .strong { font-weight: 700; color: #241C3F; }
-
-.program {
-  background: linear-gradient(155deg, #D8EFE4 0%, #B9E0CE 100%);
-  padding: 56px 22px;
-}
-.program .inner { max-width: 540px; margin: 0 auto; }
-.program-sub { text-align: center; font-size: 17px; font-weight: 700; color: var(--green-dark); margin: -14px 0 26px; }
-.program p { font-size: 17px; color: #22392F; margin-bottom: 14px; }
-.program .strong { font-weight: 700; color: var(--ink); }
-.get-box { background: var(--white); border-radius: 16px; padding: 22px 20px; margin: 22px 0; }
-.get-box h3 { font-size: 15px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--green-dark); margin-bottom: 12px; }
-.get-box ul { list-style: none; }
-.get-box li { position: relative; padding-left: 26px; font-size: 17px; color: var(--text); margin-bottom: 10px; }
-.get-box li::before { content: '✓'; position: absolute; left: 0; top: 0; color: var(--green); font-weight: 800; }
-.final-cta { text-align: center; margin-top: 26px; }
-.cta-note { font-size: 14px; color: #2C4A3E; margin-top: 12px; }
-
-.sign { text-align: center; padding: 40px 22px 18px; }
-.sign p { font-size: 17px; color: var(--text); }
-.sign .name { font-weight: 700; color: var(--ink); }
-.slogan {
-  text-align: center; padding: 6px 22px 40px;
-  font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 700; color: var(--rose);
-}
-
-.copyright { background: var(--green-pale); padding: 24px 22px 120px; text-align: center; }
-.copyright p { font-size: 13px; color: #4C6A5D; line-height: 1.8; }
-</style>
-</head>
-<body>
-
-<div class="rights-top">Полянинова Бэлла Леонидовна. Авторский продукт. Все права защищены</div>
-
-<section class="cover">
-  <div class="cover-badge">Ваш помощник «7 фраз подростка»</div>
-  <h1 class="cover-title">«Ну ещё пять минут» - и правило закончилось</h1>
-  <div class="cover-story">
-    <p>Вы сказали подростку: «Телефон убираем в десять».<br>
-    Он ответил: «Ну ещё пять минут».<br>
-    И через полчаса вы уже спорите не о телефоне, а о том, строгий ли вы родитель, любите ли вы ребёнка и почему «у всех нормальных родителей можно».</p>
-    <p class="strong">Так правило перестаёт быть правилом.</p>
-    <p>Не потому что вы плохой родитель.<br>
-    И не потому что подросток заранее решил разрушить ваш порядок.</p>
-    <p>Он просто быстро замечает, после каких слов вы начинаете сомневаться, объяснять, оправдываться, злиться или уступать.</p>
-    <p>Здесь я разобрала семь фраз подростка, после которых родители чаще всего сдают своё же правило. И что можно ответить, чтобы не превращать каждый вечер в торг, обиду и длинные объяснения.</p>
-    <p>В конце вы сможете перейти к программе «Спокойный родитель»: 30 правил для семьи с подростком, готовые формулировки и система внедрения.</p>
-  </div>
-  <div class="cover-buttons">
-    <a href="https://app.lava.top/products/1c8bd33c-54b9-450b-b26a-ca5f02129198" class="btn-main">Получить программу - 2490 ₽</a>
-    <a href="#phrases" class="btn-light">Сначала прочитать разбор</a>
-  </div>
+:root{--paper:#f7f8f3;--ink:#263b32;--muted:#596b60;--line:#cbd7c9;--green:#e8eee1;--white:#fffefa}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:20px}body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}main,footer{max-width:680px;margin:auto;padding:0 24px}header{padding:35px 0 16px}h1,h2,h3{font-family:Georgia,"Times New Roman",serif;font-weight:400;line-height:1.12;text-wrap:balance}h1{font-size:clamp(36px,7vw,56px);letter-spacing:-.04em;margin:18px 0}h2{font-size:clamp(29px,6vw,39px);letter-spacing:-.025em;margin:8px 0 20px}h3{font-size:25px;margin:8px 0 12px}p{margin:0 0 15px}a{color:inherit;text-underline-offset:4px}.eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}.author{font-size:13px;color:var(--muted);margin-bottom:24px}.lead{font-size:20px;line-height:1.45}.card{background:var(--white);padding:25px;border:1px solid var(--line);border-radius:20px;box-shadow:0 10px 28px #263b3208}.green{background:var(--green)}section{margin:28px 0}.scene{border-left:2px solid #809578;padding-left:19px;margin:24px 0}.scene p{margin-bottom:5px}.quote{font-family:Georgia,serif;font-size:24px;line-height:1.4}.step{padding:19px 0;border-top:1px solid var(--line)}.step:last-child{padding-bottom:0}.num{font-size:11px;color:var(--muted);letter-spacing:.09em}.note{font-size:14px;color:var(--muted)}.button{display:block;text-align:center;border:1px solid var(--ink);border-radius:8px;padding:15px 18px;text-decoration:none;background:transparent;font:inherit;line-height:1.4;cursor:pointer}.button:hover{background:#263b3209}a:focus-visible,summary:focus-visible{outline:3px solid #65804c;outline-offset:4px}.topics{display:flex;flex-wrap:wrap;gap:7px;margin:18px 0}.topics span{border:1px solid var(--line);border-radius:30px;padding:5px 12px;font-size:13px}.contents article{padding:20px 0;border-bottom:1px solid var(--line)}.contents article:last-child{border:0}.price{font-family:Georgia,serif;font-size:44px;margin:15px 0}.cta{text-align:center}.cta .note{margin-top:14px}details{border-top:1px solid var(--line);padding:18px 0}summary{cursor:pointer;font-weight:600;line-height:1.4}details p{margin:15px 0 0}.phrase-card{padding:18px 0;border-bottom:1px solid var(--line)}.phrase-card h3,.phrase-title{font-family:Georgia,serif;font-size:24px}.phrase-num,.answer-label{font-size:12px;color:var(--muted)}.answer{background:var(--green);padding:16px;border-radius:10px;margin:12px 0}.section-title{font-size:28px}.sign{font-family:Georgia,serif;font-size:24px;margin-top:25px}footer{font-size:12px;color:var(--muted);padding-bottom:35px}footer a{display:inline-block;margin-right:12px;margin-top:8px}.preview{font-size:12px;text-align:center;padding:8px;background:#e8eee1;color:#445548}.small-link{display:block;text-align:center;margin:15px 0;font-size:14px}@media(max-width:400px){main,footer{padding-left:18px;padding-right:18px}.card{padding:20px}body{font-size:16px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style></head><body>
+<div class="preview">Макет для согласования с Бэллой</div>
+<main id="main"><header>
+<p class="author">Полянинова Бэлла Леонидовна · психолог</p>
+<span class="eyebrow">Родителям подростков 11–16 лет</span>
+<h1>Чтобы каждый вечер не начинать один и тот же спор</h1>
+<p class="lead">«Ну ещё пять минут» — и вы снова объясняете то, о чём уже договорились</p>
+<p>Ниже — один пример, как подготовить правило и разговор о нём<br>А затем — помощник «Спокойный родитель», в котором собраны правила, готовые слова и порядок их внедрения в семье</p>
+<a class="small-link" href="#example">Сначала разобрать знакомую ситуацию ↓</a>
+</header>
+<section class="scene" aria-label="Знакомая ситуация"><p>Вы напоминаете про телефон</p><p>В ответ слышите: «Сейчас»</p><p>Через десять минут напоминаете снова</p><p>Потом начинаете объяснять, почему завтра нужно рано вставать</p><p><strong>А заканчивается всё спором о том, почему вы «всё запрещаете»</strong></p></section>
+<section><h2>Вы хотели договориться<br>А пришлось снова убеждать</h2>
+<p>В такой момент легко решить, что нужно подобрать более убедительные слова, стать строже или ещё немного потерпеть</p>
+<p>Но если каждый вечер заново решать, когда заканчивается время телефона и что делать при несогласии, разговор снова может пойти по привычному кругу</p>
+<p class="quote">Спокойствие начинается с опоры: вы заранее знаете, о чём договариваетесь и как поступите дальше</p>
+<p>Это не требование никогда не злиться<br>Это возможность не придумывать весь порядок действий в тот момент, когда вы уже устали</p></section>
+<section id="example" class="card green"><span class="eyebrow">Бесплатный разбор</span><h2>Телефон убираем в десять<br>А если снова «ещё пять минут»?</h2>
+<p class="note">Десять вечера — пример времени, а не универсальное расписание для каждой семьи</p>
+<div class="step"><span class="num">01 · ДО РАЗГОВОРА</span><h3>Сначала определите, что значит «убираем»</h3><p>В спокойное время обсудите время и место, где телефон будет находиться ночью<br>Объясните смысл правила и заранее проговорите, что произойдёт, если договорённость нарушится</p><p>Последствие должно быть известным, выполнимым и связанным с поступком — его не нужно придумывать в раздражении</p></div>
+<div class="step"><span class="num">02 · В МОМЕНТ ПРОСЬБЫ</span><h3>Признайте желание, вернитесь к договорённости</h3><p>Подросток говорит: «Ну ещё пять минут»</p><p class="quote">«Я понимаю, что хочется ещё<br>Мы договорились убирать телефон в десять<br>Если время не подходит, завтра спокойно обсудим его»</p><p>Вы слышите желание ребёнка и при этом не начинаете заново обсуждать весь семейный порядок</p></div>
+<div class="step"><span class="num">03 · ЕСЛИ РАЗГОВОР МЕНЯЕТСЯ</span><h3>«У всех нормальных родителей можно»</h3><p>В этот момент хочется защищать себя и доказывать, что вы хороший родитель<br>Попробуйте заметить этот поворот и вернуться к предмету разговора</p><p class="quote">«В нашей семье мы договорились так<br>Сейчас речь о времени телефона<br>Твои предложения обсудим завтра»</p><p>Если разговор переходит в крик, можно взять паузу и затем вернуться к нему<br>В помощнике отдельно разобраны пауза в конфликте и уважительный тон</p></div>
+<div class="step"><span class="num">04 · ПОСЛЕ РАЗГОВОРА</span><h3>Смотрите, что произошло после слов</h3><p>«Ладно, я понял» ещё не показывает, выполнена ли договорённость<br>Если она нарушена, опирайтесь на заранее оговорённое последствие, не добавляя новых ограничений из обиды</p><p>Если правило оказалось неудобным или непонятным, обсудите это в спокойное время<br>Договорённость можно пересматривать — для этого не обязательно ждать следующей ссоры</p></div>
 </section>
-
-<section class="phrases" id="phrases">
+<section><h2>Одна фраза помогает ответить<br>Но семье нужен порядок действий</h2><p>В примере с телефоном понадобились и понятное правило, и разговор до конфликта, и реакция на сопротивление, и решение после него</p><p>Завтра вопрос может быть другим</p><div class="scene"><p>Уроки снова отложены до ночи</p><p>Домашние обязанности выполняются только после напоминаний</p><p>Карманные деньги закончились раньше договорённого срока</p><p>Разговор с младшим ребёнком переходит в грубость</p></div><p>Ответ про телефон не решит каждую из этих ситуаций<br>Для каждой важно понять: о чём просить, какое правило установить, где ваша граница и какое последствие действительно выполнимо</p><p><strong>Именно для этой работы я создала «Спокойного родителя»</strong></p></section>
+<section id="program" class="card contents"><span class="eyebrow">Полный помощник</span><h2>Инструкция для взрослого, который хочет понимать свой следующий шаг</h2><p>Для мам и пап подростков 11–16 лет<br>Материал читает и применяет родитель — не нужно сначала убеждать ребёнка изучить программу</p>
+<article><span class="num">01 · УЗНАТЬ ПОВОРОТ РАЗГОВОРА</span><h3>7 тактик — и варианты ответа</h3><p>Когда появляются сравнения с другими семьями, торг, обида или молчание — разобраться, как меняется разговор и как можно ответить без длинной защиты своего решения</p></article>
+<article><span class="num">02 · НАЙТИ СВОЮ СИТУАЦИЮ</span><h3>30 правил по шести темам</h3><div class="topics"><span>Общение</span><span>Гаджеты</span><span>Быт</span><span>Учёба</span><span>Доверие</span><span>Свобода</span></div><p>Открыть нужную тему и увидеть формулировку с примером из жизни<br>Например, как взять паузу в конфликте, договориться о карманных деньгах или обсуждать семейные трудности без часовой лекции</p></article>
+<article><span class="num">03 · ПЕРЕЙТИ ОТ ЧТЕНИЯ К ПРАКТИКЕ</span><h3>5 шагов введения правила</h3><p>Объяснить смысл, начать с одного изменения, действовать последовательно, определить последствия и возвращаться к обсуждению в спокойное время</p><p>Чтобы прочитанный материал не остался ещё одной хорошей мыслью, которую трудно вспомнить вечером</p></article>
+<article><span class="num">04 · ПОНЯТЬ, ЧТО ЗАВИСИТ ОТ ВАС</span><h3>Просьба, правило, граница и последствие</h3><p>На бытовых примерах разобрать четыре разных действия<br>Просьба сообщает, чего вы хотите<br>Правило описывает договорённость<br>Граница определяет ваше действие<br>Последствие — что произойдёт после нарушения</p><p>Это особенно важно, когда вы уже всё объяснили, а согласия всё равно нет</p></article></section>
+<section><h2>Не нужно вводить тридцать правил за один вечер</h2><p>Начните с ситуации, которая сейчас забирает больше всего сил</p><div class="card"><p><strong>Откройте соответствующую тему</strong><br>Прочитайте правило и пример</p><p><strong>Подготовьте свои слова и действия</strong><br>Сверьтесь с разделами о внедрении, границах и последствиях</p><p><strong>Начните с одной договорённости</strong><br>В методике предусмотрены две недели практики одного правила — без попытки одновременно изменить всё</p></div><p class="note" style="margin-top:15px">Материал не обещает, что подросток сразу согласится или споры исчезнут<br>Он даёт родителю формулировки и последовательность, к которым можно возвращаться</p></section>
+<section class="card green cta" id="buy"><span class="eyebrow">Полный цифровой помощник</span><h2>Спокойный родитель</h2><p>30 правил · 7 тактик · 5 шагов внедрения<br>Примеры просьб, границ и последствий</p><p>Чтобы в сложном разговоре у вас была опора, подготовленная заранее</p><p class="price">2490 ₽</p><a class="button" data-preview-event="checkout_click" href="https://app.lava.top/products/1c8bd33c-54b9-450b-b26a-ca5f02129198">Получить «Спокойного родителя» за 2490 ₽</a><p class="note">После перехода откроется страница оплаты<br>Доступ к цифровому материалу предоставляется после оплаты</p></section>
+<section aria-label="Вопросы"><details><summary>Мне читать самой или дать подростку?</summary><p>Помощник предназначен родителю<br>Внутри — ваши формулировки и действия в семейных ситуациях</p></details><details><summary>Если я уже прочитала семь фраз?</summary><p>Это часть материала<br>В полном помощнике есть также тридцать правил по шести темам, пять шагов внедрения и отдельные примеры просьб, границ и последствий</p></details><details><summary>Я иногда срываюсь — мне подойдёт?</summary><p>Для чтения не нужно быть идеальным родителем<br>Можно начать с одной ситуации и заранее подготовить, что вы скажете и сделаете<br>Результат применения зависит от обстоятельств семьи и практики</p></details></section>
+<details id="phrases"><summary>Прочитать все 7 фраз из прежнего разбора</summary>
   <h2 class="section-title">7 фраз подростка, после которых родители сдаются</h2>
 
   <div class="card">
@@ -216,70 +107,8 @@ body { font-family: 'Manrope', sans-serif; background: var(--paper); color: var(
     <div class="answer"><div class="answer-label">Что можно сказать</div><p>«Хорошо. Тогда повторим: телефон убирается в десять. Если правило нарушается, завтра телефон убирается раньше. Я не буду каждый вечер начинать этот разговор заново».</p></div>
     <p class="key">Родителю важно не просто услышать согласие. Важно закрепить правило.</p>
   </div>
-</section>
-
-<section class="why">
-  <div class="inner">
-    <h2 class="section-title">Почему одной правильной фразы часто мало</h2>
-    <p>Фраза помогает в конкретном разговоре.</p>
-    <p>Но если дома каждое правило держится только на вашем настроении, усталости и способности выдержать очередной спор, подросток всё равно будет проверять границу снова.</p>
-    <p>Не потому что он плохой.<br>А потому что в семье нет ясной системы.</p>
-    <div class="steps">
-      <p>Сегодня вы выдержали.</p>
-      <p>Завтра устали и уступили.</p>
-      <p>Послезавтра начали объяснять.</p>
-      <p>Потом сорвались.</p>
-      <p>Потом почувствовали вину и снова всё разрешили.</p>
-    </div>
-    <p>Так ребёнок перестаёт понимать, где правило, а где настроение взрослого.</p>
-    <p class="strong">Спокойный родитель - это не тот, кто никогда не злится.<br>
-    Спокойный родитель - это тот, у кого есть опора: понятные правила, готовые слова и порядок внедрения.</p>
-  </div>
-</section>
-
-<section class="program">
-  <div class="inner">
-    <h2 class="section-title">Программа «Спокойный родитель»</h2>
-    <p class="program-sub">Ваш помощник в разговорах с подростком</p>
-    <p>Я создала программу «Спокойный родитель» для семей, где подросток уже умеет спорить, торговаться, обижаться, сравнивать вас с другими родителями и проверять, выдержите ли вы своё решение.</p>
-    <p class="strong">Внутри - 30 правил для семьи с подростком.</p>
-    <p>Не общие советы вроде «будьте последовательны».<br>
-    А готовые формулировки: что сказать, когда подросток просит исключение, давит на жалость, спорит, молчит, нарушает правило или делает вид, что всё понял.</p>
-    <p>Программа помогает родителю не придумывать ответ в момент конфликта, а заранее иметь порядок, на который можно опереться.</p>
-
-    <div class="get-box">
-      <h3>Вы получите</h3>
-      <ul>
-        <li>30 правил для семьи с подростком;</li>
-        <li>готовые фразы для сложных разговоров;</li>
-        <li>объяснение, где родители чаще всего сдаются;</li>
-        <li>систему внедрения правил без крика, торга и бесконечных объяснений;</li>
-        <li>понятный способ вернуть дома порядок, не разрушая контакт с ребёнком.</li>
-      </ul>
-    </div>
-
-    <p class="strong">Это не про жёсткость.<br>Это про взрослую опору.</p>
-    <p>Подростку нужны не идеальные родители. Ему нужны взрослые, которые умеют любить и выдерживать правило одновременно.</p>
-
-    <div class="final-cta">
-      <a href="https://app.lava.top/products/1c8bd33c-54b9-450b-b26a-ca5f02129198" class="btn-main">Получить программу «Спокойный родитель» - 2490 ₽</a>
-      <p class="cta-note">Доступ открывается сразу после оплаты.</p>
-    </div>
-  </div>
-</section>
-
-<section class="sign">
-  <p>С уважением,</p>
-  <p class="name">Бэлла Леонидовна</p>
-</section>
-<div class="slogan">Нам нужны правила. Всегда.</div>
-
-<section class="copyright">
-  <p><strong>© Полянинова Бэлла Леонидовна</strong><br>
-  Все права защищены. Копирование, распространение и использование материалов без письменного разрешения автора запрещено.<br>
-  @bella.psychologist</p>
-</section>
-
-<script src="consent.js" defer></script>
-</body>
-</html>
+</details>
+<section><p class="sign">С уважением,<br>Бэлла Леонидовна</p><p>Нам нужны правила<br>Всегда</p><a class="small-link" href="#buy">Вернуться к помощнику и цене ↑</a></section>
+</main><footer>© Полянинова Бэлла Леонидовна<br>Все права защищены<br><a href="https://bella-psychologist.com/dokumenty.html">Документы</a><a href="https://bella-psychologist.com/politika-konfidencialnosti.html">Политика конфиденциальности</a></footer>
+<script src="https://bella-psychologist.com/consent.js" defer></script>
+</body></html>
