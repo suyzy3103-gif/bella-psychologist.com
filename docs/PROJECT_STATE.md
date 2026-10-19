@@ -6,7 +6,10 @@ Updated: 2026-10-19
 - Branch codex/bella-preview only
 - gayd-spokoynyy-roditel.html rewritten from current main for owner review
 - Green mobile layout, complete free example, four product sections, first-use steps
-- Original seven phrase breakdowns retained in disclosure
+- Original seven phrase breakdowns retained, moved before offer with entry link
+- Real product screenshots, author photo, support email and comparison FAQ added
+- Extra CTA and concrete consequence example from retained source
+- Delivery method and customer reviews not verified; no invented claims
 - Product contents checked against main:spokoynyy_roditel.html
 - Price 2490 RUB and existing Lava product URL retained
 - Consents use the existing live consent.js, no changes to that service
@@ -23,7 +26,8 @@ Updated: 2026-10-19
 ## Verification / limits
 - Conversion lift is a hypothesis, no A/B result or real purchase claimed
 - Full HTML, link, diff and secret checks recorded in review notes
-- Visual browser review and payment-delivery journey remain unverified
+- Chromium checks at 320/390/680 px: no overflow, all images load, phrase block precedes offer
+- Real payment-delivery journey remains unverified
 - A production analytics/monitoring integration is not included in this review-only revision
 
 ## Next
