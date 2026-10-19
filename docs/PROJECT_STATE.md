@@ -10,12 +10,15 @@ Updated: 2026-10-19
 - Collapsed seven phrases, floating skip, paid offer and generated product visuals
 
 ## Live
-- Pending main merge and GitHub Pages publication
+- Live page deployed from dcfb4465f9443c8eedd5fc01fca33ba9c43b5faa through PR #1
+- GitHub Pages build succeeded; production URL returns HTTP 200
+- Browser confirmed new page, disclosure and skip target, unchanged checkout URL
 - Existing Pages source main / root remains unchanged
 
 ## Verification / limits
 - Preview layout 320/390/680 and consent gating checks passed
-- Real payment and material delivery not tested
+- Checkout product and RUB 2490 form verified in browser, including card/SBP options
+- No payment submitted; material delivery not tested
 - No existing client-event collector found for this static page
 - Continuous end-to-end payment monitoring is not configured
 
