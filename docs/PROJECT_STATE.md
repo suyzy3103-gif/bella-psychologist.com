@@ -6,8 +6,10 @@ Updated: 2026-10-19
 - Branch codex/bella-preview only
 - gayd-spokoynyy-roditel.html rewritten from current main for owner review
 - Green mobile layout, complete free example, four product sections, first-use steps
-- Original seven phrase breakdowns retained, moved before offer with entry link
-- Real product screenshots, author photo, support email and comparison FAQ added
+- Seven phrases always visible in distinct panel; entry hints removed
+- Generated editorial illustration replaces low-resolution screenshots; author photo retained
+- First-person voice, corrected product name, distinct quote font and prominent CTA
+- Legal links subdued; original consent logic retained
 - Extra CTA and concrete consequence example from retained source
 - Delivery method and customer reviews not verified; no invented claims
 - Product contents checked against main:spokoynyy_roditel.html
