@@ -21,7 +21,7 @@ Updated: 2026-10-19
 - Main and GitHub Pages source unchanged by this task
 - Page published only to separate Sites preview on 2026-10-19
 - Preview: https://bella-design-7f3c9a.aanekrassov.chatgpt.site/gayd-spokoynyy-roditel
-- Sites source 4fc66804bce2f18fddec62c532d9fac3ce37f6da; deployment appgdep_6ad6532d28c88191bfd340ff6b8f0df1 succeeded
+- Sites source e65ce3f6e74c3c5969d2985452b1ca11194cddfe; deployment appgdep_6ad6576eb5448191ac63c7fc9dedf586 succeeded
 - HTTP 200, expected heading and noindex confirmed; main domain unchanged
 - Existing catalogue preview remains separate
 
@@ -29,6 +29,7 @@ Updated: 2026-10-19
 - Conversion lift is a hypothesis, no A/B result or real purchase claimed
 - Full HTML, link, diff and secret checks recorded in review notes
 - Chromium checks at 320/390/680 px: no overflow, all images load, phrase block precedes offer
+- Consent lock, both-checkbox unlock, revocation and hint checked with current consent script
 - Real payment-delivery journey remains unverified
 - A production analytics/monitoring integration is not included in this review-only revision
 
