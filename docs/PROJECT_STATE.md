@@ -19,7 +19,7 @@ Updated: 2026-10-19
 - Main and GitHub Pages source unchanged by this task
 - Page published only to separate Sites preview on 2026-10-19
 - Preview: https://bella-design-7f3c9a.aanekrassov.chatgpt.site/gayd-spokoynyy-roditel
-- Sites source bb4ecc8fcc6d7b9266f340907b6edf560e863f2b; deployment appgdep_6ad64f449cf881919fb1211f214171f6 succeeded
+- Sites source 4fc66804bce2f18fddec62c532d9fac3ce37f6da; deployment appgdep_6ad6532d28c88191bfd340ff6b8f0df1 succeeded
 - HTTP 200, expected heading and noindex confirmed; main domain unchanged
 - Existing catalogue preview remains separate
 
