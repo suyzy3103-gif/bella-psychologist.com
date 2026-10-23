@@ -778,6 +778,10 @@
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 
+<script>
+  /* Купившим оба уровня не показываем доплату */
+  try{ if(new URLSearchParams(location.search).get('all')==='1'){ var s=document.querySelector('section.sale'); if(s){ s.innerHTML='<div style="text-align:center;padding:40px 20px"><p style="font-size:18px;margin:0 0 18px">Следующий шаг уже у вас.</p><a href="https://bella-psychologist.com/prakticheskaya-strategiya.html" class="btn-buy">Перейти к Практической стратегии</a></div>'; } } }catch(e){}
+</script>
 <script src="consent.js" defer></script>
 </body>
 </html>
