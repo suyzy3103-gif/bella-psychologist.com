@@ -56,6 +56,8 @@ p{margin:0}
 .segs{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
 .segs button{height:30px;border-radius:8px;border:1.5px solid var(--line);background:var(--paper);color:var(--muted);font:700 14px var(--body);cursor:pointer}
 .segs button.done{background:var(--green);border-color:var(--green);color:#fff}
+.segs button.active{background:var(--blue);border-color:var(--blue);color:#fff}
+.segs button.done.active{background:var(--green);border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-soft)}
 .segs button:focus-visible,button:focus-visible,summary:focus-visible,textarea:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
 
 section.block{margin-top:28px;display:grid;gap:14px}
@@ -532,7 +534,11 @@ function progress(){let n=0;for(let i=1;i<=6;i++){const d=!!store.get('done'+i);
 document.querySelectorAll('[data-done]').forEach(b=>b.onclick=()=>{const i=+b.dataset.done;const now=!store.get('done'+i);store.set('done'+i,now);progress();
   if(now&&i<6){const cur=document.getElementById('rule'+i),nx=document.getElementById('rule'+(i+1));cur.open=false;nx.open=true;nx.scrollIntoView({behavior:'smooth',block:'start'});}
   else if(now&&i===6){document.getElementById('final').scrollIntoView({behavior:'smooth'});}});
-segs.querySelectorAll('button').forEach(b=>b.onclick=()=>{const d=document.getElementById('rule'+b.dataset.go);d.open=true;d.scrollIntoView({behavior:'smooth',block:'start'});});
+segs.querySelectorAll('button').forEach(b=>b.onclick=()=>{const d=document.getElementById('rule'+b.dataset.go);d.open=true;setActive(+b.dataset.go);d.scrollIntoView({behavior:'smooth',block:'start'});});
+function setActive(n){[...segs.children].forEach((b,i)=>b.classList.toggle('active',i+1===n));}
+for(let i=1;i<=6;i++){const d=document.getElementById('rule'+i);d.addEventListener('toggle',()=>{if(d.open)setActive(i);});}
+try{const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)setActive(+e.target.id.replace('rule',''));});},{rootMargin:'-35% 0px -60% 0px'});
+for(let i=1;i<=6;i++)io.observe(document.getElementById('rule'+i));}catch(e){}
 
 /* карточка */
 function card(){const kept=RULETEXT.filter((t,i)=>store.get('keep'+(i+1)));
@@ -546,5 +552,6 @@ function selectCard(){const r=document.createRange();r.selectNodeContents(docume
 progress();card();
 </script>
 
+<script src="consent.js" defer></script>
 </body>
 </html>
